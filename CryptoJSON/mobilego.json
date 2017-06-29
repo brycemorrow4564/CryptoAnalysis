@@ -1,0 +1,20 @@
+[
+{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{"Volume": "479,990", "Market Cap": "133,166,000", "High": "1.97", "Low": "1.62", "Date": "Jun 27, 2017", "Close": "1.95", "Open": "1.90"},
+{"Volume": "591,650", "Market Cap": "143,677,000", "High": "2.12", "Low": "1.65", "Date": "Jun 26, 2017", "Close": "1.86", "Open": "2.05"},
+{"Volume": "560,898", "Market Cap": "154,057,000", "High": "2.31", "Low": "1.98", "Date": "Jun 25, 2017", "Close": "2.06", "Open": "2.20"},
+{"Volume": "1,073,790", "Market Cap": "175,164,000", "High": "2.57", "Low": "2.04", "Date": "Jun 24, 2017", "Close": "2.19", "Open": "2.50"},
+{"Volume": "2,421,370", "Market Cap": "153,027,000", "High": "2.67", "Low": "2.08", "Date": "Jun 23, 2017", "Close": "2.50", "Open": "2.19"},
+{"Volume": "1,682,630", "Market Cap": "115,806,000", "High": "2.26", "Low": "1.63", "Date": "Jun 22, 2017", "Close": "2.18", "Open": "1.65"},
+{"Volume": "566,234", "Market Cap": "117,583,000", "High": "1.74", "Low": "1.58", "Date": "Jun 21, 2017", "Close": "1.67", "Open": "1.68"},
+{"Volume": "772,775", "Market Cap": "105,690,000", "High": "1.68", "Low": "1.51", "Date": "Jun 20, 2017", "Close": "1.68", "Open": "1.51"},
+{"Volume": "827,185", "Market Cap": "104,283,000", "High": "1.61", "Low": "1.44", "Date": "Jun 19, 2017", "Close": "1.50", "Open": "1.49"},
+{"Volume": "603,616", "Market Cap": "103,803,000", "High": "1.50", "Low": "1.32", "Date": "Jun 18, 2017", "Close": "1.49", "Open": "1.48"},
+{"Volume": "521,890", "Market Cap": "105,571,000", "High": "1.52", "Low": "1.38", "Date": "Jun 17, 2017", "Close": "1.47", "Open": "1.51"},
+{"Volume": "715,272", "Market Cap": "102,340,000", "High": "1.60", "Low": "1.39", "Date": "Jun 16, 2017", "Close": "1.51", "Open": "1.46"},
+{"Volume": "890,866", "Market Cap": "106,062,000", "High": "1.64", "Low": "1.21", "Date": "Jun 15, 2017", "Close": "1.47", "Open": "1.52"},
+{"Volume": "1,046,410", "Market Cap": "138,153,000", "High": "2.11", "Low": "1.49", "Date": "Jun 14, 2017", "Close": "1.52", "Open": "1.97"},
+{"Volume": "934,554", "Market Cap": "-", "High": "2.23", "Low": "1.37", "Date": "Jun 13, 2017", "Close": "1.99", "Open": "1.37"},
+{"Volume": "186,015", "Market Cap": "-", "High": "3.30", "Low": "1.33", "Date": "Jun 12, 2017", "Close": "1.37", "Open": "2.68"},
+{"Volume": "187,166", "Market Cap": "-", "High": "4.41", "Low": "1.63", "Date": "Jun 11, 2017", "Close": "2.69", "Open": "2.45"}
+]

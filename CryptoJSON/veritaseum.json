@@ -1,0 +1,23 @@
+[
+{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{"Volume": "660,872", "Market Cap": "156,778,000", "High": "92.05", "Low": "68.18", "Date": "Jun 27, 2017", "Close": "91.12", "Open": "79.69"},
+{"Volume": "365,080", "Market Cap": "174,386,000", "High": "104.08", "Low": "64.75", "Date": "Jun 26, 2017", "Close": "73.60", "Open": "88.64"},
+{"Volume": "448,249", "Market Cap": "161,284,000", "High": "137.37", "Low": "76.89", "Date": "Jun 25, 2017", "Close": "87.86", "Open": "81.98"},
+{"Volume": "533,137", "Market Cap": "179,678,000", "High": "101.99", "Low": "65.10", "Date": "Jun 24, 2017", "Close": "91.28", "Open": "91.33"},
+{"Volume": "648,668", "Market Cap": "189,303,000", "High": "109.77", "Low": "81.78", "Date": "Jun 23, 2017", "Close": "88.08", "Open": "96.25"},
+{"Volume": "595,125", "Market Cap": "201,008,000", "High": "112.83", "Low": "72.42", "Date": "Jun 22, 2017", "Close": "101.09", "Open": "102.20"},
+{"Volume": "196,939", "Market Cap": "247,407,000", "High": "425.01", "Low": "69.71", "Date": "Jun 21, 2017", "Close": "101.43", "Open": "125.79"},
+{"Volume": "875,154", "Market Cap": "358,237,000", "High": "182.19", "Low": "34.75", "Date": "Jun 20, 2017", "Close": "125.65", "Open": "182.19"},
+{"Volume": "1,782,450", "Market Cap": "139,690,000", "High": "355.37", "Low": "70.46", "Date": "Jun 19, 2017", "Close": "153.59", "Open": "71.05"},
+{"Volume": "460,199", "Market Cap": "143,643,000", "High": "120.16", "Low": "57.11", "Date": "Jun 18, 2017", "Close": "80.06", "Open": "74.44"},
+{"Volume": "598,619", "Market Cap": "93,724,400", "High": "214.17", "Low": "42.36", "Date": "Jun 17, 2017", "Close": "74.51", "Open": "48.57"},
+{"Volume": "664,325", "Market Cap": "-", "High": "85.20", "Low": "28.25", "Date": "Jun 16, 2017", "Close": "47.63", "Open": "46.21"},
+{"Volume": "681,138", "Market Cap": "-", "High": "143.87", "Low": "28.58", "Date": "Jun 15, 2017", "Close": "78.91", "Open": "47.99"},
+{"Volume": "725,719", "Market Cap": "-", "High": "106.85", "Low": "11.68", "Date": "Jun 14, 2017", "Close": "48.00", "Open": "38.68"},
+{"Volume": "386,655", "Market Cap": "-", "High": "252.32", "Low": "15.39", "Date": "Jun 13, 2017", "Close": "54.15", "Open": "38.43"},
+{"Volume": "209,633", "Market Cap": "-", "High": "329.42", "Low": "11.91", "Date": "Jun 12, 2017", "Close": "23.30", "Open": "34.22"},
+{"Volume": "311,346", "Market Cap": "-", "High": "112.39", "Low": "0.000337", "Date": "Jun 11, 2017", "Close": "0.000338", "Open": "3.35"},
+{"Volume": "379,805", "Market Cap": "-", "High": "84.49", "Low": "3.16", "Date": "Jun 10, 2017", "Close": "3.16", "Open": "58.58"},
+{"Volume": "202,187", "Market Cap": "-", "High": "259.75", "Low": "47.15", "Date": "Jun 09, 2017", "Close": "58.61", "Open": "49.18"},
+{"Volume": "450,758", "Market Cap": "-", "High": "253.27", "Low": "33.71", "Date": "Jun 08, 2017", "Close": "48.56", "Open": "48.96"}
+]
