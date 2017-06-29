@@ -4,6 +4,7 @@ import re
 import datetime
 import os
 import lxml.html
+import shutil
 
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,18 +17,36 @@ import settings
 
 #Will keep looping until the page eventually loads 
 def ensure_page_loaded():
+    currUrl = settings.driver.current_url
+    lookForStr = 'start' #on page load, 'start' is embedded in url so we look for that 
+    if lookForStr in currUrl: 
+        return 
+    else: 
+        driver_get_page_timeout_wrapper(currUrl)
+
+def driver_get_page_timeout_wrapper(url):
     while True: 
-        currUrl = settings.driver.current_url
-        lookForStr = 'start' #on page load, 'start' is embedded in url so we look for that 
-        if lookForStr in currUrl: 
+        try: 
+            settings.driver.get(url)
             break 
+        except: 
+            pass
 
 '''DATA SCRAPING'''
 
 #Returns list of row objects (or dicts)
 def scrape_rows(fieldnames):
     tableClass = 'table'
-    table = settings.driver.find_element_by_class_name(tableClass)
+    table = None 
+    counter = 0
+    while True: 
+        try: 
+            table = settings.driver.find_element_by_class_name(tableClass)
+            break 
+        except: 
+            counter += 1
+            if counter == 200: 
+                raise "Got stuck in infinite loop looking for table for some reason"
     tbody = table.find_element_by_tag_name('tbody')
     thtml = str('<table><tbody>' + tbody.get_attribute('innerHTML') + '</tbody></table>').strip()
     root = lxml.html.fromstring(thtml)
@@ -67,17 +86,17 @@ def parse_date(rawDateData):
 
 '''FILE READS AND WRITE (CSV/JSON)'''
 
-def write_to_csv(rowObjects, fieldnames, csvDirRoot, coinName): 
-    csvfile = open(csvDirRoot + coinName + '.csv', 'w')
+def write_to_csv(rowObjects, fieldnames, coinName): 
+    csvfile = open(settings.csvDirRoot + coinName + '.csv', 'w')
     writer = csv.DictWriter(csvfile, extrasaction='ignore', fieldnames=fieldnames)
     writer.writeheader()
     for obj in rowObjects:
         writer.writerow(obj)
     csvfile.close()
 
-def write_to_json(jsonDirRoot, csvDirRoot, fieldnames, coinName): 
-    csvfile = open(csvDirRoot + coinName + '.csv', 'r')
-    jsonfile = open(str(jsonDirRoot + coinName + '.json'), 'w')
+def write_to_json(fieldnames, coinName): 
+    csvfile = open(settings.csvDirRoot + coinName + '.csv', 'r')
+    jsonfile = open(str(settings.jsonDirRoot + coinName + '.json'), 'w')
     reader = [row for row in csv.DictReader(csvfile, fieldnames)]
     numRows = len(reader)
     jsonfile.write('[\n')
@@ -87,6 +106,8 @@ def write_to_json(jsonDirRoot, csvDirRoot, fieldnames, coinName):
         jsonfile.write(',\n' if i != numRows - 1 else '\n')
     jsonfile.write(']')
     jsonfile.close()
+
+'''DATA DIRECTORY MANAGEMENT'''
 
 def check_crypto_dirs(top100Coins):
     csvs = [file.replace('.csv','') for file in os.listdir('CryptoCSV')]
@@ -98,19 +119,47 @@ def check_crypto_dirs(top100Coins):
     return [top100Coins[x] for x in indicesToKeep], [settings.main_page_url + 'currencies/' + top100Coins[x] + '/historical-data/' for x in indicesToKeep]
 
 
+def remove_non_top_100_coin_data(top100coins):
+    csvs = [file.replace('.csv','') for file in os.listdir('CryptoCSV')]
+    jsons = csvs = [file.replace('.json','') for file in os.listdir('CryptoJSON')]
+    for csvCoinName in csvs:
+        if csvCoinName not in top100coins: 
+            os.remove(settings.csvDirRoot + csvCoinName + '.csv')
+    for jsonCoinName in jsons:
+        if jsonCoinName not in top100coins: 
+            os.remove(settings.jsonDirRoot + jsonCoinName + '.json')
+
+def clear_crypto_dirs():
+    shutil.rmtree(settings.csvDirRoot)
+    shutil.rmtree(settings.jsonDirRoot)
+    os.mkdir(settings.csvDirRoot[:-1])
+    os.mkdir(settings.jsonDirRoot[:-1])
+
 '''MAIN LOGIC FUNCTIONS'''
     
 def run_data_scraper():
     top100Coins = get_top_100_coin_names()
-    coinNames, urls = check_crypto_dirs(top100Coins)
+    coinNames = None
+    urls = None 
+    #Take processing mode dependent actions 
+    if settings.mode == 'FromScratch':
+        coinNames = top100Coins
+        urls = [settings.main_page_url + 'currencies/' + coinName + '/historical-data/' for coinName in top100Coins]
+        clear_crypto_dirs()
+    elif settings.mode == 'Update':
+        remove_non_top_100_coin_data(top100coins)
+        coinNames, urls = check_crypto_dirs(top100Coins) #rework this function
+    else: 
+        raise 'Invalid processing mode in settings.py'
     for i in xrange(len(coinNames)):
         #Navigate to page where the data is for this particular coin 
         coinName = coinNames[i]
         url = urls[i]
-        settings.driver.get(url)
+        driver_get_page_timeout_wrapper(url)
         dropdownClass = 'reportrange'
         dropdown = settings.driver.find_element_by_id(dropdownClass)
         dropdown.location_once_scrolled_into_view
+        settings.driver.implicitly_wait(.2)
         dropdown.click()
         #Dropdown is jquery action loading html into the dom that always happens fast regardless of latency. 
         #The html is weird and there's no other way to check for it so an implicit wait of .4 seconds should work here 
@@ -118,6 +167,7 @@ def run_data_scraper():
         dropdownMenuClass = 'ranges'
         dropdownMenu = settings.driver.find_element_by_class_name(dropdownMenuClass)
         dropdownMenu.location_once_scrolled_into_view
+        settings.driver.implicitly_wait(.2)
         dropdownItems = dropdownMenu.find_elements_by_tag_name('li')
         targetItemText = 'All Time'
         for item in dropdownItems: 
@@ -125,16 +175,14 @@ def run_data_scraper():
                 item.click()
                 ensure_page_loaded()
                 break 
-        settings.driver.implicitly_wait(.6)
+        settings.driver.implicitly_wait(.3)
         #Scrape data 
         fieldnames = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap']
         rowObjects = scrape_rows(fieldnames)
         #Write to csv 
-        csvDirRoot = 'CryptoCSV/'
-        write_to_csv(rowObjects, fieldnames, csvDirRoot, coinName)
+        write_to_csv(rowObjects, fieldnames, coinName)
         #Create json from previously created csv 
-        jsonDirRoot = 'CryptoJSON/'
-        write_to_json(jsonDirRoot, csvDirRoot, fieldnames, coinName)
+        write_to_json(fieldnames, coinName)
 
 def main():
     settings.setup() #globals are driver, main_page_url

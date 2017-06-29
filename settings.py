@@ -10,7 +10,15 @@ def driver_setup():
     return driver
 
 def setup(): 
-    global driver, main_page_url, timeout_delay, wait
+    global driver, main_page_url, mode, csvDirRoot, jsonDirRoot
     #Set values of global variables
     main_page_url = 'https://coinmarketcap.com/'
     driver = driver_setup()
+    '''
+    FromScratch Mode: clear CryptoCSV/JSON dirs and start from scratch
+    Update Mode: remove non-top 100 coins from cryptoCSV/JSON dirs. Take data
+                 from previously created files and append only new data
+    '''
+    mode = 'FromScratch' #can either be 'Update' or 'FromScratch'
+    csvDirRoot = 'CryptoCSV/'
+    jsonDirRoot = 'CryptoJSON/'
