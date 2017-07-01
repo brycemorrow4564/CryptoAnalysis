@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>Title</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>The Title control represents a single line of text with explicit header / title semantics.</documentation>
+    <since>1.27.0</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="text" type="sap.ui.core/string" group="Appearance">
+            <documentation>Defines the text which should be displayed as a title.</documentation>
+        </property>
+        <property name="level" type="sap.ui.core/TitleLevel" defaultValue="Auto" group="Appearance">
+            <documentation>Defines the semantic level of the title.
+This information is e.g. used by assistive technologies like screenreaders to create a hierarchical site map for faster navigation.
+Depending on this setting either a HTML h1-h6 element is used or when using level &lt;code&gt;Auto&lt;/code&gt; no explicit level information is written (HTML5 header element).
+This property does not influence the style of the control. Use the property &lt;code&gt;titleStyle&lt;/code&gt; for this purpose instead.</documentation>
+        </property>
+        <property name="titleStyle" type="sap.ui.core/TitleLevel" defaultValue="Auto" group="Appearance">
+            <documentation>Defines the style of the title.
+When using the &lt;code&gt;Auto&lt;/code&gt; styling, the appearance of the title depends on the current position of the title (e.g. inside a &lt;code&gt;Toolbar&lt;/code&gt;).
+This default behavior can be overridden by setting a different style explicitly.
+The actual appearance of the title and the different styles always depends on the theme being used.</documentation>
+        </property>
+        <property name="width" type="sap.ui.core/CSSSize" group="Dimension">
+            <documentation>Defines the width of the title.</documentation>
+        </property>
+        <property name="textAlign" type="sap.ui.core/TextAlign" defaultValue="Initial" group="Appearance">
+            <documentation>Defines the alignment of the text within the title. &lt;b&gt;Note:&lt;/b&gt; This property only has an effect if the overall width of the title control is
+larger than the displayed text.</documentation>
+        </property>
+    </properties>
+    <associations>
+        <association name="title" type="sap.ui.core/Title" cardinality="0..1">
+            <documentation>Defines a relationship to a generic title description.
+If such a title element is associated, the properties text, level and tooltip (text only) of this element are consumed.
+The corresponding properties of the title control are ignored.</documentation>
+        </association>
+    </associations>
+</control>

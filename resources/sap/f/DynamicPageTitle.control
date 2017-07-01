@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>DynamicPageTitle</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>Title of the {@link sap.f.DynamicPage}.
+
+&lt;h3&gt;Overview&lt;/h3&gt;
+
+The &lt;code&gt;DynamicPageTitle&lt;/code&gt; control is part of the {@link sap.f.DynamicPage}
+family and is used to serve as title of the {@link sap.f.DynamicPage DynamicPage}.
+
+&lt;h3&gt;Usage&lt;/h3&gt;
+
+The &lt;code&gt;DynamicPageTitle&lt;/code&gt; can hold any control and displays the most important
+information regarding the object that will always remain visible while scrolling.
+
+&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;actions&lt;/code&gt; aggregation accepts any UI5 control, but it`s
+recommended to use controls, suitable for {@link sap.m.Toolbar} and {@link sap.m.OverflowToolbar}.
+
+If the &lt;code&gt;toggleHeaderOnTitleClick&lt;/code&gt; property of the {@link sap.f.DynamicPage DynamicPage}
+is set to &lt;code&gt;true&lt;/code&gt;, the user can switch between the expanded/collapsed states of the
+{@link sap.f.DynamicPageHeader DynamicPageHeader} by clicking on the &lt;code&gt;DynamicPageTitle&lt;/code&gt;.
+If set to &lt;code&gt;false&lt;/code&gt;, the &lt;code&gt;DynamicPageTitle&lt;/code&gt; is not clickable and the app must
+provide other means for expanding/collapsing the &lt;code&gt;DynamicPageHeader&lt;/code&gt;, if necessary.
+
+&lt;h3&gt;Responsive Behavior&lt;/h3&gt;
+
+The responsive behavior of the &lt;code&gt;DynamicPageTitle&lt;/code&gt; depends on the behavior of the
+content that is displayed.</documentation>
+    <since>1.42</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <aggregations>
+        <aggregation name="heading" type="sap.ui.core/Control" cardinality="0..1">
+            <documentation>The title or any other UI5 control that serves as a heading for the object.</documentation>
+        </aggregation>
+        <aggregation name="actions" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>The &lt;code&gt;DynamicPageTitle&lt;/code&gt; actions.
+&lt;br&gt;&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;actions&lt;/code&gt; aggregation accepts any UI5 control, but it`s recommended to use controls,
+suitable for {@link sap.m.Toolbar} and {@link sap.m.OverflowToolbar}.</documentation>
+        </aggregation>
+        <aggregation name="snappedContent" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>The content that is displayed in the &lt;code&gt;DynamicPageTitle&lt;/code&gt; in collapsed (snapped) state.</documentation>
+        </aggregation>
+        <aggregation name="expandedContent" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>The content that is displayed in the &lt;code&gt;DynamicPageTitle&lt;/code&gt; in expanded state.</documentation>
+        </aggregation>
+        <aggregation name="_overflowToolbar" type="sap.ui.core/Control" cardinality="0..1" visibility="hidden">
+            <documentation>Internal &lt;code&gt;OverflowToolbar&lt;/code&gt; for the &lt;code&gt;DynamicPageTitle&lt;/code&gt; actions.</documentation>
+        </aggregation>
+    </aggregations>
+</control>

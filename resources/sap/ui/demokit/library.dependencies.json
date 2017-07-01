@@ -1,0 +1,631 @@
+{
+  "modules" : [
+    {
+      "name" : "sap/ui/demokit/CodeSampleContainer.js",
+      "description" : "Provides control sap.ui.demokit.CodeSampleContainer.",
+      "size" : 6147,
+      "compressedSize" : 3146,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/Control.js", "sap/ui/commons/Link.js", "sap/ui/demokit/library.js", "sap/ui/demokit/CodeViewer.js", "sap/ui/demokit/UIAreaSubstitute.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/CodeSampleContainerRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.demokit.CodeSampleContainer",
+      "size" : 1817,
+      "compressedSize" : 880,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/CodeViewer.js",
+      "description" : "Provides control sap.ui.demokit.CodeViewer.",
+      "size" : 5673,
+      "compressedSize" : 2447,
+      "required" : ["jquery.sap.global.js", "sap/ui/commons/Button.js", "sap/ui/commons/Dialog.js", "sap/ui/core/Control.js", "sap/ui/demokit/library.js", "sap/ui/demokit/js/google-code-prettify/prettify.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/CodeViewerRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.demokit.CodeViewer",
+      "size" : 1754,
+      "compressedSize" : 785,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/DemokitApp.js",
+      "description" : "Main class for Demokit-like applications",
+      "size" : 46552,
+      "compressedSize" : 24607,
+      "required" : ["jquery.sap.global.js", "sap/ui/Device.js", "sap/ui/core/CustomData.js", "sap/ui/core/HTML.js", "sap/ui/core/library.js", "sap/ui/core/ListItem.js", "sap/ui/core/Title.js", "sap/ui/core/mvc/View.js", "sap/ui/core/search/OpenSearchProvider.js", "sap/ui/core/util/LibraryInfo.js", "sap/ui/model/Filter.js", "sap/ui/model/FilterOperator.js", "sap/ui/model/json/JSONModel.js", "sap/ui/layout/form/Form.js", "sap/ui/layout/form/FormContainer.js", "sap/ui/layout/form/FormElement.js", "sap/ui/layout/form/GridLayout.js", "sap/ui/layout/form/GridElementData.js", "sap/ui/layout/VerticalLayout.js", "sap/ui/commons/Button.js", "sap/ui/commons/Dialog.js", "sap/ui/commons/DropdownBox.js", "sap/ui/commons/FormattedTextView.js", "sap/ui/commons/Image.js", "sap/ui/commons/Label.js", "sap/ui/commons/library.js", "sap/ui/commons/Link.js", "sap/ui/commons/TextView.js", "sap/ui/commons/SearchField.js", "sap/ui/commons/Splitter.js", "sap/ui/commons/Tree.js", "sap/ui/commons/TreeNode.js", "sap/ui/commons/layout/AbsoluteLayout.js", "sap/ui/ux3/DataSet.js", "sap/ui/ux3/DataSetItem.js", "sap/ui/ux3/DataSetSimpleView.js", "sap/ui/ux3/NavigationItem.js", "sap/ui/ux3/Shell.js", "sap/ui/ux3/ToolPopup.js", "sap/ui/demokit/FeedbackClient.js", "sap/ui/demokit/library.js", "sap/ui/demokit/Tag.js", "sap/ui/demokit/TagCloud.js", "jquery.sap.script.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/EntityInfo.js",
+      "description" : "Provides reuse functionality for reading documentation from metamodel entities",
+      "size" : 8734,
+      "compressedSize" : 4633,
+      "required" : ["jquery.sap.global.js", "sap/ui/demokit/util/jsanalyzer/ModuleAnalyzer.js", "sap/ui/demokit/util/APIInfo.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/FeedbackClient.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 11850,
+      "compressedSize" : 6749,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/IconPool.js", "sap/ui/core/library.js", "sap/ui/layout/HorizontalLayout.js", "sap/ui/layout/VerticalLayout.js", "sap/ui/layout/form/SimpleForm.js", "sap/ui/layout/form/SimpleFormLayout.js", "sap/ui/commons/Button.js", "sap/ui/commons/CheckBox.js", "sap/ui/commons/FormattedTextView.js", "sap/ui/commons/Label.js", "sap/ui/commons/Link.js", "sap/ui/commons/SegmentedButton.js", "sap/ui/commons/TextArea.js", "sap/ui/commons/TextView.js", "sap/ui/ux3/ToolPopup.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/FileUploadIntrospector.js",
+      "description" : "Provides control sap.ui.demokit.FileUploadIntrospector.",
+      "size" : 3869,
+      "compressedSize" : 1666,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/Control.js", "sap/ui/demokit/library.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/FileUploadIntrospectorRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.demokit.FileUploadIntrospector",
+      "size" : 3154,
+      "compressedSize" : 1816,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/HexagonButton.js",
+      "description" : "Provides control sap.ui.demokit.HexagonButton.",
+      "size" : 2760,
+      "compressedSize" : 1090,
+      "required" : ["sap/ui/core/Control.js", "sap/ui/demokit/library.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/HexagonButtonGroup.js",
+      "description" : "Provides control sap.ui.demokit.HexagonButtonGroup.",
+      "size" : 1427,
+      "compressedSize" : 525,
+      "required" : ["sap/ui/core/Control.js", "sap/ui/demokit/library.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/HexagonButtonGroupRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.demokit.HexagonButtonGroup",
+      "size" : 1783,
+      "compressedSize" : 694,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/HexagonButtonRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.demokit.HexagonButton",
+      "size" : 1988,
+      "compressedSize" : 977,
+      "required" : ["jquery.sap.encoder.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/IndexLayout.js",
+      "description" : "Provides control sap.ui.demokit.IndexLayout.",
+      "size" : 9666,
+      "compressedSize" : 5403,
+      "required" : ["jquery.sap.global.js", "sap/ui/Device.js", "sap/ui/core/Control.js", "sap/ui/core/IntervalTrigger.js", "sap/ui/demokit/library.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/IndexLayoutPage.js",
+      "description" : "Creates Index Page within the Demokit",
+      "size" : 3958,
+      "compressedSize" : 2565,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/IconPool.js", "sap/ui/demokit/IndexLayout.js", "sap/ui/model/json/JSONModel.js", "sap/ui/core/Control.js", "sap/ui/core/Element.js", "jquery.sap.encoder.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/IndexLayoutRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.demokit.IndexLayout",
+      "size" : 1517,
+      "compressedSize" : 785,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/IndexPage.js",
+      "description" : "Provides a pseudo control for index pages within the Demokit",
+      "size" : 2993,
+      "compressedSize" : 1912,
+      "required" : ["jquery.sap.global.js", "sap/ui/commons/RichTooltip.js", "sap/ui/demokit/DemokitApp.js", "sap/ui/demokit/HexagonButton.js", "sap/ui/demokit/HexagonButtonGroup.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/SimpleTree.js",
+      "description" : "This is internal control dedicated for Demo Kit application usage",
+      "size" : 4532,
+      "compressedSize" : 2713,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/Control.js", "sap/ui/core/delegate/ItemNavigation.js", "sap/ui/model/Filter.js", "sap/ui/model/FilterOperator.js", "sap/m/SearchField.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/SimpleTreeNode.js",
+      "description" : "This is internal control dedicated for Demo Kit application usage",
+      "size" : 8576,
+      "compressedSize" : 5096,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/Element.js", "sap/ui/core/Icon.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/SimpleTreeRenderer.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 5605,
+      "compressedSize" : 3056,
+      "required" : ["jquery.sap.encoder.js", "sap/ui/demokit/SimpleTreeNode.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/Tag.js",
+      "description" : "Provides control sap.ui.demokit.Tag.",
+      "size" : 1367,
+      "compressedSize" : 532,
+      "required" : ["sap/ui/core/Element.js", "sap/ui/demokit/library.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/TagCloud.js",
+      "description" : "Provides control sap.ui.demokit.TagCloud.",
+      "size" : 1939,
+      "compressedSize" : 711,
+      "required" : ["sap/ui/core/Control.js", "sap/ui/demokit/library.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/TagCloudRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.demokit.TagCloud",
+      "size" : 2291,
+      "compressedSize" : 1104,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/UI5EntityCueCard.js",
+      "description" : "Provides control sap.ui.demokit.UI5EntityCueCard.",
+      "size" : 7651,
+      "compressedSize" : 3095,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/Control.js", "sap/ui/commons/Link.js", "sap/ui/demokit/EntityInfo.js", "sap/ui/demokit/library.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/UI5EntityCueCardRenderer.js",
+      "description" : "Provides default renderer for control sap.ui.demokit.UI5EntityCueCard",
+      "size" : 7892,
+      "compressedSize" : 4785,
+      "required" : ["jquery.sap.global.js", "sap/ui/demokit/library.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/UIAreaSubstitute.js",
+      "description" : "Provides control sap.ui.demokit.UIAreaSubstitute.",
+      "size" : 1328,
+      "compressedSize" : 506,
+      "required" : ["sap/ui/core/Element.js", "sap/ui/demokit/library.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/Component.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 774,
+      "compressedSize" : 524,
+      "required" : ["sap/ui/core/UIComponent.js", "sap/ui/model/json/JSONModel.js", "sap/ui/demokit/demoapps/model/libraryData.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/all.js",
+      "size" : 384,
+      "compressedSize" : 301,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/controller/App.controller.js",
+      "description" : "global JSZip, Promise",
+      "size" : 6317,
+      "compressedSize" : 2590,
+      "required" : ["sap/ui/core/mvc/Controller.js", "jquery.sap.global.js", "sap/ui/demokit/demoapps/model/sourceFileDownloader.js", "sap/ui/demokit/demoapps/model/formatter.js", "sap/m/MessageBox.js", "sap/m/MessageToast.js", "sap/ui/model/Filter.js", "sap/ui/model/FilterOperator.js", "sap/m/library.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/i18n/i18n.properties",
+      "size" : 1634,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/manifest.json",
+      "size" : 1062,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/model/formatter.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 1746,
+      "compressedSize" : 717,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/model/libraryData.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 5520,
+      "compressedSize" : 1575,
+      "required" : ["jquery.sap.global.js", "sap/ui/demokit/library.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/model/sourceFileDownloader.js",
+      "description" : "global Promise",
+      "size" : 769,
+      "compressedSize" : 485,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/view/App.view.xml",
+      "size" : 2120,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/demoapps/controller/App.controller.js", "sap/ui/layout/BlockLayout.js", "sap/ui/layout/BlockLayoutRow.js", "sap/ui/layout/BlockLayoutCell.js", "sap/ui/layout/Grid.js", "sap/ui/layout/VerticalLayout.js", "sap/ui/core/CustomData.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/view/BlockLayoutCell.fragment.xml",
+      "size" : 1424,
+      "required" : ["sap/ui/core/Fragment.js", "sap/ui/layout/BlockLayoutCell.js", "sap/ui/layout/VerticalLayout.js", "sap/ui/core/Icon.js", "sap/ui/layout/HorizontalLayout.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/view/BlockLayoutHeadlineCell.fragment.xml",
+      "size" : 378,
+      "required" : ["sap/ui/core/Fragment.js", "sap/ui/layout/BlockLayoutCell.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/demoapps/view/BlockLayoutTeaserCell.fragment.xml",
+      "size" : 1510,
+      "required" : ["sap/ui/core/Fragment.js", "sap/ui/layout/BlockLayoutCell.js", "sap/ui/layout/Grid.js", "sap/ui/layout/VerticalLayout.js", "sap/ui/core/Icon.js", "sap/ui/layout/HorizontalLayout.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/Bootstrap.js",
+      "description" : "Bootstrap for the 'explored' app.",
+      "size" : 10778,
+      "compressedSize" : 5850,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/ComponentContainer.js", "sap/m/Shell.js", "sap/ui/demokit/library.js", "sap/ui/demokit/explored/data.js", "sap/ui/core/util/LibraryInfo.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/Component.js",
+      "description" : "Root component for the 'explored' app.",
+      "size" : 4390,
+      "compressedSize" : 2627,
+      "required" : ["jquery.sap.global.js", "sap/ui/Device.js", "sap/ui/core/UIComponent.js", "sap/ui/core/mvc/View.js", "sap/ui/core/routing/History.js", "sap/ui/model/json/JSONModel.js", "sap/ui/model/resource/ResourceModel.js", "sap/m/InstanceManager.js", "sap/m/routing/RouteMatchedHandler.js", "sap/ui/demokit/explored/util/ObjectSearch.js", "sap/ui/demokit/explored/util/MyRouter.js", "sap/ui/demokit/explored/util/ToggleFullScreenHandler.js", "sap/ui/demokit/explored/data.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/data.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 328,
+      "compressedSize" : 242,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/i18n/messageBundle.properties",
+      "size" : 696,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/util/MyRouter.js",
+      "description" : "Provides acustomized router class for the 'explored' app.",
+      "size" : 1235,
+      "compressedSize" : 701,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/routing/History.js", "sap/ui/core/routing/Router.js", "sap/ui/core/Core.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/util/ObjectSearch.js",
+      "description" : "Provides a simple search feature",
+      "size" : 659,
+      "compressedSize" : 435,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/util/ToggleFullScreenHandler.js",
+      "description" : "Provides a simple search feature",
+      "size" : 1640,
+      "compressedSize" : 1151,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/app.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 2079,
+      "compressedSize" : 1495,
+      "required" : ["jquery.sap.global.js", "sap/ui/core/Core.js", "sap/ui/core/Component.js", "sap/ui/core/mvc/Controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/app.view.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 740,
+      "compressedSize" : 532,
+      "required" : ["sap/ui/core/mvc/JSView.js", "sap/m/SplitApp.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/appSettingsDialog.fragment.xml",
+      "size" : 1784,
+      "required" : ["sap/ui/core/Fragment.js", "sap/ui/layout/Grid.js", "sap/ui/layout/GridData.js", "sap/ui/core/Item.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/base.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 4731,
+      "compressedSize" : 2454,
+      "required" : ["sap/ui/core/mvc/Controller.js", "jquery.sap.storage.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/code.controller.js",
+      "description" : "declare unusual global vars for JSLint/SAPUI5 validation",
+      "size" : 8859,
+      "compressedSize" : 4905,
+      "required" : ["jquery.sap.global.js", "sap/ui/Device.js", "sap/ui/core/Component.js", "sap/ui/core/UIComponent.js", "sap/ui/core/mvc/Controller.js", "sap/ui/model/json/JSONModel.js", "sap/m/MessageToast.js", "sap/ui/demokit/explored/data.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/code.view.xml",
+      "size" : 1252,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/explored/view/code.controller.js", "sap/ui/demokit/CodeViewer.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/entity.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 17763,
+      "compressedSize" : 9973,
+      "required" : ["jquery.sap.global.js", "sap/ui/Device.js", "sap/ui/core/Component.js", "sap/ui/core/UIComponent.js", "sap/ui/core/routing/History.js", "sap/ui/core/mvc/Controller.js", "sap/ui/model/json/JSONModel.js", "sap/ui/demokit/EntityInfo.js", "sap/ui/demokit/util/JSDocUtil.js", "sap/ui/demokit/explored/util/ObjectSearch.js", "sap/ui/demokit/explored/util/ToggleFullScreenHandler.js", "sap/ui/demokit/explored/data.js", "sap/ui/demokit/explored/view/base.controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/entity.view.xml",
+      "size" : 11773,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/explored/view/entity.controller.js", "sap/ui/core/CustomData.js", "sap/ui/core/HTML.js", "sap/ui/layout/VerticalLayout.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/master.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 12292,
+      "compressedSize" : 6762,
+      "required" : ["sap/ui/Device.js", "sap/ui/core/Component.js", "sap/ui/core/Fragment.js", "sap/ui/core/UIComponent.js", "sap/ui/core/mvc/Controller.js", "sap/ui/model/Filter.js", "sap/ui/model/Sorter.js", "sap/m/GroupHeaderListItem.js", "sap/ui/demokit/explored/util/ToggleFullScreenHandler.js", "jquery.sap.storage.js", "sap/ui/demokit/explored/view/base.controller.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/master.view.xml",
+      "size" : 1841,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/explored/view/master.controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/notFound.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 1136,
+      "compressedSize" : 921,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/ui/core/UIComponent.js", "sap/ui/model/json/JSONModel.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/notFound.view.xml",
+      "size" : 467,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/explored/view/notFound.controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/sample.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 9176,
+      "compressedSize" : 5058,
+      "required" : ["jquery.sap.global.js", "sap/ui/Device.js", "sap/ui/core/Component.js", "sap/ui/core/ComponentContainer.js", "sap/ui/core/HTML.js", "sap/ui/core/UIComponent.js", "sap/ui/core/mvc/Controller.js", "sap/ui/core/routing/History.js", "sap/ui/model/json/JSONModel.js", "sap/m/library.js", "sap/m/Text.js", "sap/ui/demokit/explored/util/ToggleFullScreenHandler.js", "sap/ui/demokit/explored/data.js", "sap/ui/demokit/explored/view/base.controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/sample.view.xml",
+      "size" : 1543,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/explored/view/sample.controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/viewSettingsDialog.fragment.xml",
+      "size" : 1898,
+      "required" : ["sap/ui/core/Fragment.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/explored/view/welcome.view.xml",
+      "size" : 460,
+      "required" : ["sap/ui/core/mvc/XMLView.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/Component.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 3252,
+      "compressedSize" : 1640,
+      "required" : ["jquery.sap.global.js", "sap/ui/model/resource/ResourceModel.js", "sap/ui/core/IconPool.js", "sap/ui/core/UIComponent.js", "sap/ui/core/mvc/JSView.js", "sap/ui/model/json/JSONModel.js", "sap/ui/demokit/icex/model/FavoriteModel.js", "sap/ui/demokit/icex/util/Sorter.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/i18n/i18n.properties",
+      "size" : 659,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/model/Config.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 518,
+      "compressedSize" : 312,
+      "required" : ["sap/ui/Device.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/model/FavoriteModel.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 1888,
+      "compressedSize" : 1104,
+      "required" : ["sap/ui/demokit/icex/util/Sorter.js", "sap/ui/model/json/JSONModel.js", "jquery.sap.storage.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/util/Sorter.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 563,
+      "compressedSize" : 423,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/App.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 3955,
+      "compressedSize" : 2294,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/m/InstanceManager.js", "jquery.sap.history.js", "sap/ui/Device.js", "sap/ui/core/mvc/View.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/App.view.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 1222,
+      "compressedSize" : 949,
+      "required" : ["sap/ui/core/mvc/JSView.js", "sap/ui/core/mvc/XMLView.js", "sap/m/Shell.js", "sap/m/SplitApp.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Detail.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 2330,
+      "compressedSize" : 1481,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/ui/core/IconPool.js", "sap/ui/model/json/JSONModel.js", "sap/m/InstanceManager.js", "sap/m/MessageToast.js", "sap/ui/Device.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Detail.view.xml",
+      "size" : 3393,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/icex/view/Detail.controller.js", "sap/ui/core/Icon.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Favorite.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 2705,
+      "compressedSize" : 1879,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/ui/model/json/JSONModel.js", "sap/ui/Device.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Favorite.view.xml",
+      "size" : 1082,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/icex/view/Favorite.controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Group.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 1979,
+      "compressedSize" : 1409,
+      "required" : ["jquery.sap.global.js", "sap/ui/Device.js", "sap/ui/core/mvc/Controller.js", "sap/ui/model/json/JSONModel.js", "sap/ui/demokit/icex/model/Config.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Group.view.xml",
+      "size" : 900,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/icex/view/Group.controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Master.controller.js",
+      "description" : "! UI development toolkit for HTML5 (OpenUI5) (c) Copyright 2009-2017 SAP SE or an SAP affiliate company. Licensed under the Apache License, Version 2.0 - see LICENSE.txt.",
+      "size" : 2442,
+      "compressedSize" : 1614,
+      "required" : ["sap/ui/core/mvc/Controller.js", "sap/ui/model/Filter.js", "sap/ui/model/FilterOperator.js", "sap/ui/model/json/JSONModel.js", "sap/ui/demokit/icex/model/Config.js", "sap/ui/Device.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Master.view.xml",
+      "size" : 1656,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/demokit/icex/view/Master.controller.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/icex/view/Welcome.view.xml",
+      "size" : 1696,
+      "required" : ["sap/ui/core/mvc/XMLView.js", "sap/ui/core/Icon.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/library.js",
+      "description" : "Initialization Code and shared classes of library sap.ui.demokit.",
+      "size" : 8226,
+      "compressedSize" : 4072,
+      "required" : ["jquery.sap.global.js", "sap/ui/Global.js", "sap/ui/core/Core.js", "sap/ui/demokit/js/highlight-query-terms.js", "sap/ui/core/library.js", "sap/ui/commons/library.js", "sap/ui/core/util/LibraryInfo.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/manifest.json",
+      "size" : 1272,
+      "required" : [],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/util/APIInfo.js",
+      "description" : "Provides reuse functionality for reading documentation from api.json files (as created by the UI5 JSDoc3 template/plugin)",
+      "size" : 10687,
+      "compressedSize" : 5117,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/util/JSDocUtil.js",
+      "description" : "Provides reuse functionality for reading documentation from api.json files (as created by the UI5 JSDoc3 template/plugin)",
+      "size" : 2796,
+      "compressedSize" : 1097,
+      "required" : ["jquery.sap.strings.js", "jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/util/jsanalyzer/ASTUtils.js",
+      "description" : "Provides implementation of sap.ui.demokit.util.jsanalyzer.ASTUtils",
+      "size" : 5839,
+      "compressedSize" : 2568,
+      "required" : ["jquery.sap.global.js", "sap/ui/demokit/js/esprima.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/util/jsanalyzer/Doclet.js",
+      "description" : "Provides implementation of sap.ui.demokit.util.jsanalyzer.Doclet",
+      "size" : 2596,
+      "compressedSize" : 1233,
+      "required" : ["jquery.sap.global.js"],
+      "includes" : []
+    },
+    {
+      "name" : "sap/ui/demokit/util/jsanalyzer/ModuleAnalyzer.js",
+      "description" : "Provides implementation of sap.ui.demokit.util.jsanalyzer.EntityParser",
+      "size" : 23103,
+      "compressedSize" : 10848,
+      "required" : ["jquery.sap.global.js", "sap/ui/base/ManagedObjectMetadata.js", "sap/ui/demokit/util/jsanalyzer/ASTUtils.js", "sap/ui/demokit/util/jsanalyzer/Doclet.js", "sap/ui/demokit/js/esprima.js"],
+      "includes" : []
+    }
+  ]
+}

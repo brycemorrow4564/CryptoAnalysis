@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>RatingIndicator</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>Is used to rate content. The amount of rating symbols can be specified, as well as the URIs to the
+image icons which shall be used as rating symbols. When the user performs a rating, an event is fired.</documentation>
+    <since>1.14</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="enabled" type="sap.ui.core/boolean" defaultValue="true" group="Behavior">
+            <documentation>Value "true" is required to let the user rate with this control. It is recommended to set this parameter to "false" for the "Small" size which is meant for indicating a value only</documentation>
+        </property>
+        <property name="maxValue" type="sap.ui.core/int" defaultValue="5" group="Behavior">
+            <documentation>The number of displayed rating symbols</documentation>
+        </property>
+        <property name="value" type="sap.ui.core/float" defaultValue="0" group="Behavior" bindable="bindable">
+            <documentation>The indicated value of the rating</documentation>
+        </property>
+        <property name="iconSize" type="sap.ui.core/CSSSize" group="Behavior">
+            <documentation>The Size of the image or icon to be displayed. The default value depends on the theme. Please be sure that the size is corresponding to a full pixel value as some browsers don't support subpixel calculations. Recommended size is 1.375rem (22px) for normal, 1rem (16px) for small, and 2rem (32px) for large icons correspondingly.</documentation>
+        </property>
+        <property name="iconSelected" type="sap.ui.core/URI" group="Behavior">
+            <documentation>The URI to the icon font icon or image that will be displayed for selected rating symbols. A star icon will be used if the property is not set</documentation>
+        </property>
+        <property name="iconUnselected" type="sap.ui.core/URI" group="Behavior">
+            <documentation>The URI to the icon font icon or image that will be displayed for all unselected rating symbols. A star icon will be used if the property is not set</documentation>
+        </property>
+        <property name="iconHovered" type="sap.ui.core/URI" group="Behavior">
+            <documentation>The URI to the icon font icon or image that will be displayed for hovered rating symbols. A star icon will be used if the property is not set</documentation>
+        </property>
+        <property name="visualMode" type="sap.m/RatingIndicatorVisualMode" defaultValue="Half" group="Behavior">
+            <documentation>Defines how float values are visualized: Full, Half (see enumeration RatingIndicatorVisualMode)</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="change" allowPreventDefault="false">
+            <documentation>The event is fired when the user has done a rating.</documentation>
+            <parameters>
+                <parameter name="value" type="sap.ui.core/int">
+                    <documentation>The rated value</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="liveChange" allowPreventDefault="false">
+            <documentation>This event is triggered during the dragging period, each time the rating value changes.</documentation>
+            <parameters>
+                <parameter name="value" type="sap.ui.core/float">
+                    <documentation>The current value of the rating after a live change event.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+    </events>
+    <associations>
+        <association name="ariaDescribedBy" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>Association to controls / ids which describe this control (see WAI-ARIA attribute aria-describedby).</documentation>
+        </association>
+        <association name="ariaLabelledBy" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>Association to controls / ids which label this control (see WAI-ARIA attribute aria-labelledby).</documentation>
+        </association>
+    </associations>
+</control>

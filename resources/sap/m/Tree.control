@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>Tree</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>The &lt;code&gt;Tree&lt;/code&gt; control provides a tree structure for displaying data in a hierarchy.
+&lt;b&gt;Note:&lt;/b&gt; Growing feature is not supported by &lt;code&gt;Tree&lt;/code&gt;.</documentation>
+    <since>1.42</since>
+    <baseType>sap.m/ListBase</baseType>
+</control>

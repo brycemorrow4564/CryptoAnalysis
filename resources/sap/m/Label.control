@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>Label</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>The Label control is used in a UI5 mobile application to provide label text for other controls. Design such as bold, and text alignment can be specified.</documentation>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="design" type="sap.m/LabelDesign" defaultValue="Standard" group="Appearance">
+            <documentation>Sets the design of a Label to either Standard or Bold.</documentation>
+        </property>
+        <property name="text" type="sap.ui.core/string" group="Misc">
+            <documentation>Determines the Label text to be displayed.</documentation>
+        </property>
+        <property name="textAlign" type="sap.ui.core/TextAlign" defaultValue="Begin" group="Appearance">
+            <documentation>Available alignment settings are "Begin", "Center", "End", "Left", and "Right".</documentation>
+        </property>
+        <property name="textDirection" type="sap.ui.core/TextDirection" defaultValue="Inherit" group="Appearance">
+            <documentation>Options for the text direction are RTL and LTR. Alternatively, the control can inherit the text direction from its parent container.</documentation>
+        </property>
+        <property name="width" type="sap.ui.core/CSSSize" defaultValue="" group="Dimension">
+            <documentation>Determines the width of the label.</documentation>
+        </property>
+        <property name="required" type="sap.ui.core/boolean" defaultValue="false" group="Misc">
+            <documentation>Indicates that user input is required in the input this label labels.</documentation>
+        </property>
+    </properties>
+    <associations>
+        <association name="labelFor" type="sap.ui.core/Control" cardinality="0..1">
+            <documentation>Association to the labeled control.
+By default the label set the for attribute to the ID of the labeled control. This can be changed by implementing the function getIdForLabel on the labelled control.</documentation>
+        </association>
+    </associations>
+</control>

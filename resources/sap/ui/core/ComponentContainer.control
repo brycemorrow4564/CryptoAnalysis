@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>ComponentContainer</name>
+    <derived/>
+    <documentation>Component Container</documentation>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="name" type="sap.ui.core/string">
+            <documentation>Component name, the package where the component is contained. This property can only be applied initially.</documentation>
+        </property>
+        <property name="url" type="sap.ui.core/URI">
+            <documentation>The URL of the component. This property can only be applied initially.</documentation>
+        </property>
+        <property name="handleValidation" type="sap.ui.core/boolean" defaultValue="false">
+            <documentation>Enable/disable validation handling by MessageManager for this component.
+The resulting Messages will be propagated to the controls.
+This property can only be applied initially.</documentation>
+        </property>
+        <property name="settings" type="sap.ui.core/object">
+            <documentation>The settings object passed to the component when created. This property can only be applied initially.</documentation>
+        </property>
+        <property name="propagateModel" type="sap.ui.core/boolean" defaultValue="false">
+            <documentation>Defines whether binding information is propagated to the component.</documentation>
+        </property>
+        <property name="width" type="sap.ui.core/CSSSize" group="Dimension">
+            <documentation>Container width in CSS size</documentation>
+        </property>
+        <property name="height" type="sap.ui.core/CSSSize" group="Dimension">
+            <documentation>Container height in CSS size</documentation>
+        </property>
+        <property name="lifecycle" type="sap.ui.core/ComponentLifecycle" defaultValue="Legacy">
+            <documentation>Lifecycle behavior for the Component associated by the ComponentContainer.
+By default the behavior is "Legacy" which means that the ComponentContainer
+takes care to destroy the Component once the ComponentContainer is destroyed
+but not when a new Component is associated.</documentation>
+        </property>
+    </properties>
+    <associations>
+        <association name="component" type="sap.ui.core/UIComponent" cardinality="0..1">
+            <documentation>The component displayed in this ComponentContainer.</documentation>
+        </association>
+    </associations>
+</control>

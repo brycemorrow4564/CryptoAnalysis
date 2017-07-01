@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>TableSelectDialog</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>A dialog to select items in a table containing multiple values and attributes.
+&lt;h3&gt;Overview&lt;/h3&gt;
+The table select dialog helps users select items in a table-like structure with several attributes and values per item. A search fields helps narrow down the results.
+&lt;h3&gt;Structure&lt;/h3&gt;
+The table select dialog consists of the following elements:
+&lt;ul&gt;
+&lt;li&gt; Search field - used to search enter search terms for a specific item.&lt;/li&gt;
+&lt;li&gt; Infobar (optional) - shows additional information for the current selection (i.e. total number of selected items).&lt;/li&gt;
+&lt;li&gt; Content - the table with the items.&lt;/li&gt;
+&lt;li&gt; Footer (optional) - a toolbar for actions.&lt;/li&gt;
+&lt;/ul&gt;
+Table select dialog supports multi-selection when the &lt;code&gt;multiSelect&lt;/code&gt; property is set.
+
+The selected items can be stored for later editing when the &lt;code&gt;rememberSelections&lt;/code&gt; property is set.
+&lt;b&gt;Note:&lt;b&gt; This property has to be set before the dialog is opened.
+&lt;h3&gt;Usage&lt;/h3&gt;
+&lt;h4&gt;When to use:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to select one or more items from a comprehensive list that contains multiple attributes or values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;When not to use:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to select one item from a predefined set of options that contains only one value. Use a {@link sap.m.Select switch} control instead.&lt;/li&gt;
+&lt;li&gt;You need to select items within a query-based range. Use a {@link sap.ui.comp.valuehelpdialog.ValueHelpDialog value help} control instead.&lt;/li&gt;
+&lt;li&gt;You need to only filter a set of items. Use a {@link sap.ui.comp.filterbar.FilterBar filter bar} control instead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Responsive Behavior&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;On smaller screens, the columns of the table wrap and build a list that shows all the information.&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+    <since>1.16</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="title" type="sap.ui.core/string" group="Appearance">
+            <documentation>Specifies the title text in the dialog header.</documentation>
+        </property>
+        <property name="noDataText" type="sap.ui.core/string" group="Appearance">
+            <documentation>Specifies the text displayed when the table has no data.</documentation>
+        </property>
+        <property name="multiSelect" type="sap.ui.core/boolean" defaultValue="false" group="Dimension">
+            <documentation>Enables the user to select several options from the table.</documentation>
+        </property>
+        <property name="growingThreshold" type="sap.ui.core/int" group="Misc">
+            <documentation>Determines the number of items initially displayed in the table.</documentation>
+        </property>
+        <property name="contentWidth" type="sap.ui.core/CSSSize" group="Dimension" since="1.18">
+            <documentation>Determines the content width of the inner dialog. For more information, see the Dialog documentation.</documentation>
+        </property>
+        <property name="rememberSelections" type="sap.ui.core/boolean" defaultValue="false" group="Behavior" since="1.18">
+            <documentation>Controls whether the dialog clears the selection or not. When the dialog is opened multiple times in the same context to allow for corrections of previous user inputs, set this flag to "true". When the dialog should reset the selection to allow for a new selection each time set it to "false"
+Note: This property must be set before the Dialog is opened to have an effect.</documentation>
+        </property>
+        <property name="contentHeight" type="sap.ui.core/CSSSize" group="Dimension">
+            <documentation>Specifies the content height of the inner dialog. For more information, see the Dialog documentation.</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="confirm" allowPreventDefault="false">
+            <documentation>Fires when the dialog is confirmed by selecting an item in single-selection mode or by pressing the confirmation button in multi-selection mode. The items being selected are returned as event parameters.</documentation>
+            <parameters>
+                <parameter name="selectedItem" type="sap.m/StandardListItem">
+                    <documentation>Returns the selected list item. When no item is selected, "null" is returned. When multi-selection is enabled and multiple items are selected, only the first selected item is returned.</documentation>
+                </parameter>
+                <parameter name="selectedItems" type="sap.m/StandardListItem[]">
+                    <documentation>Returns an array containing the visible selected list items. If no items are selected, an empty array is returned.</documentation>
+                </parameter>
+                <parameter name="selectedContexts" type="sap.ui.core/string">
+                    <documentation>Returns the binding contexts of the selected items including the non-visible items.
+Note: In contrast to the parameter "selectedItems", this parameter includes the selected but NOT visible items (due to list filtering). An empty array is set for this parameter if no Databinding is used.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="search" allowPreventDefault="false">
+            <documentation>Fires when the search button has been clicked on dialog.</documentation>
+            <parameters>
+                <parameter name="value" type="sap.ui.core/string">
+                    <documentation>Specifies the value entered in the search field.</documentation>
+                </parameter>
+                <parameter name="itemsBinding" type="sap.ui.core/any">
+                    <documentation>Determines the Items binding of the Table Select Dialog. Only available if the items aggregation is bound to a model.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="liveChange" allowPreventDefault="false">
+            <documentation>Fires when the value of the search field is changed by a user (for example at each key press).</documentation>
+            <parameters>
+                <parameter name="value" type="sap.ui.core/string">
+                    <documentation>Specifies the value entered in the search field.</documentation>
+                </parameter>
+                <parameter name="itemsBinding" type="sap.ui.core/any">
+                    <documentation>The Items binding of the Table Select Dialog.
+Only available if the items aggregation is bound to a model.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="cancel" allowPreventDefault="false">
+            <documentation>Fires when the Cancel button is clicked.</documentation>
+        </event>
+    </events>
+    <aggregations default="items">
+        <aggregation name="items" type="sap.m/ColumnListItem" cardinality="0..n" bindable="bindable">
+            <documentation>The items of the table.</documentation>
+        </aggregation>
+        <aggregation name="_dialog" type="sap.ui.core/Control" cardinality="0..1" visibility="hidden">
+            <documentation>The internal dialog that is displayed when method open is called.</documentation>
+        </aggregation>
+        <aggregation name="columns" type="sap.m/Column" cardinality="0..n" bindable="bindable">
+            <documentation>The columns bindings.</documentation>
+        </aggregation>
+    </aggregations>
+    <methods>
+        <method name="open" type="sap.m/TableSelectDialog">
+            <documentation>Opens the internal dialog with a searchfield and a table.</documentation>
+            <parameters>
+                <parameter name="searchValue" type="sap.ui.core/string">
+                    <documentation>Value for the search. The table will be automatically trigger the search event if this parameter is set.</documentation>
+                </parameter>
+            </parameters>
+        </method>
+    </methods>
+</control>

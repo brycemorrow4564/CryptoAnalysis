@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>ObjectPageHeaderContent</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>ObjectPageHeaderContent represents the dynamic part of an Object page header. May contain any control.
+Unlike the Object page header title, the Object page header content is part of the scrolling area of the Object page.
+This enables it to hold any amount of information and still be usable on a mobile device.</documentation>
+    <since>1.30</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="contentDesign" type="sap.uxap/ObjectPageHeaderDesign" defaultValue="Light" group="Misc">
+            <documentation>Determines the design of the header - Light or Dark.
+&lt;b&gt;Note: &lt;/b&gt;This property is deprecated. It will continue to work in the Blue Crystal theme,
+but it will not be taken into account for the Belize themes.</documentation>
+            <deprecation since="1.40.1"></deprecation>
+        </property>
+    </properties>
+    <aggregations>
+        <aggregation name="content" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>The list of Objects of type sap.ui.core.Control.</documentation>
+        </aggregation>
+        <aggregation name="_editHeaderButton" type="sap.m/Button" cardinality="0..1" visibility="hidden">
+            <documentation>Internal aggregation for the "Edit Header" button.</documentation>
+        </aggregation>
+        <aggregation name="_objectImage" type="sap.ui.core/Control" cardinality="0..1" visibility="hidden"/>
+        <aggregation name="_placeholder" type="sap.ui.core/Icon" cardinality="0..1" visibility="hidden"/>
+    </aggregations>
+</control>

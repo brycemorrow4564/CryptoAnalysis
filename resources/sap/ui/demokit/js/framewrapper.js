@@ -1,0 +1,1 @@
+(function(){if(window.parent===window&&!/(?:\?|&)sap-ui-xx-standalone(?:=(?:true|x|X))?(?:&|$)/.test(window.location.search)){var u=document.location.href.replace("/docs/","/#docs/");window.location.replace(u);}}());

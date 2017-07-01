@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>ToolbarLayoutData</name>
+    <derived/>
+    <documentation>Defines layout data for the toolbar items.</documentation>
+    <since>1.20</since>
+    <baseType>sap.ui.core/LayoutData</baseType>
+    <properties>
+        <property name="shrinkable" type="sap.ui.core/boolean" defaultValue="false" group="Behavior">
+            <documentation>Determines whether the control, when in a toolbar, is shrinkable or not. For controls with fixed width (100px, 5rem, etc...) this property is ignored.
+
+Note: Nested layout controls should not be shrinkable.</documentation>
+        </property>
+        <property name="minWidth" type="sap.ui.core/CSSSize" group="Dimension">
+            <documentation>Sets the minimum width of the toolbar item.</documentation>
+        </property>
+        <property name="maxWidth" type="sap.ui.core/CSSSize" group="Dimension">
+            <documentation>Sets the maximum width of the toolbar item.</documentation>
+        </property>
+    </properties>
+</control>

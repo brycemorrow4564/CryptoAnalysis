@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>TextArea</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>The &lt;code&gt;sap.m.TextArea&lt;/code&gt; enables multi-line text input.</documentation>
+    <since>1.9.0</since>
+    <baseType>sap.m/InputBase</baseType>
+    <properties>
+        <property name="rows" type="sap.ui.core/int" defaultValue="2" group="Appearance">
+            <documentation>Defines the number of visible text lines for the control.
+&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;height&lt;/code&gt; property wins over the &lt;code&gt;rows&lt;/code&gt; property, if both are set.</documentation>
+        </property>
+        <property name="cols" type="sap.ui.core/int" defaultValue="20" group="Appearance">
+            <documentation>Defines the visible width of the control, in average character widths.
+&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;width&lt;/code&gt; property wins over the &lt;code&gt;cols&lt;/code&gt; property, if both are set.</documentation>
+        </property>
+        <property name="height" type="sap.ui.core/CSSSize" group="Appearance">
+            <documentation>Defines the height of the control.</documentation>
+        </property>
+        <property name="maxLength" type="sap.ui.core/int" defaultValue="0" group="Behavior">
+            <documentation>Defines the maximum number of characters that the &lt;code&gt;value&lt;/code&gt; can be.</documentation>
+        </property>
+        <property name="wrapping" type="sap.ui.core/Wrapping" defaultValue="None" group="Behavior">
+            <documentation>Indicates how the control wraps the text, e.g. &lt;code&gt;Soft&lt;/code&gt;, &lt;code&gt;Hard&lt;/code&gt;, &lt;code&gt;Off&lt;/code&gt;.</documentation>
+        </property>
+        <property name="valueLiveUpdate" type="sap.ui.core/boolean" defaultValue="false" group="Behavior" since="1.30">
+            <documentation>Indicates when the &lt;code&gt;value&lt;/code&gt; property gets updated with the user changes. Setting it to &lt;code&gt;true&lt;/code&gt; updates the &lt;code&gt;value&lt;/code&gt; property whenever the user has modified the text shown on the text area.</documentation>
+        </property>
+        <property name="growing" type="sap.ui.core/boolean" defaultValue="false" group="Behavior" since="1.38.0">
+            <documentation>Indicates the ability of the control to automatically grow and shrink dynamically with its content.
+&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;height&lt;/code&gt; property is ignored, if this property set to &lt;code&gt;true&lt;/code&gt;.</documentation>
+        </property>
+        <property name="growingMaxLines" type="sap.ui.core/int" defaultValue="0" group="Behavior" since="1.38.0">
+            <documentation>Defines the maximum number of lines that the control can grow.</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="liveChange" allowPreventDefault="false">
+            <documentation>Is fired whenever the user has modified the text shown on the text area.</documentation>
+            <parameters>
+                <parameter name="value" type="sap.ui.core/string">
+                    <documentation>The new &lt;code&gt;value&lt;/code&gt; of the control.</documentation>
+                </parameter>
+            </parameters>
+        </event>
+    </events>
+</control>

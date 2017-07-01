@@ -1,0 +1,255 @@
+import csv
+import json
+import time
+import re
+import datetime
+import os
+import lxml.html
+import shutil
+import glob
+
+from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.by import By
+
+import settings
+
+'''HACKY DRIVER UTILITY FUNCTIONS (BECAUSE SELENIUM SUCKS !!!)'''
+
+def close_and_reset_driver(url):
+    settings.driver.close()
+    settings.driver = settings.driver_setup(url)
+
+def driver_get_page_timeout_wrapper(url):
+    while True: 
+        try: 
+            settings.driver.get(url)
+            break 
+        except: 
+            print "30 sec timeout"
+            #Case of 30s timeout so severe network issues. It's best to close driver and reopen window
+            close_and_reset_driver(url)
+
+
+'''PAGE NAVIGATION'''
+
+
+def open_dropdown():
+    dropdownClass = 'reportrange'
+    dropdownMenuClass = 'daterangepicker'
+    dropdown = settings.driver.find_element_by_id(dropdownClass)
+    dropdown.location_once_scrolled_into_view
+    settings.driver.implicitly_wait(.3)
+    dropdown.click()
+    settings.driver.implicitly_wait(.3)
+    dropdownMenu = settings.driver.find_element_by_class_name(dropdownMenuClass)
+    currStyle = dropdownMenu.get_attribute('style')
+    if 'display: none' in currStyle:
+        print "failed to open dropdown"
+        open_dropdown() #recurse and try again  
+
+def ensure_all_time_page_loaded(recoveryUrl): #Either get rid of recoveryURL or implement timeout feature 
+    queryString = '?start='
+    while True:
+        if queryString in settings.driver.current_url: 
+            break 
+    
+
+def click_into_dropdown(recoveryUrl):
+    dropdownMenuClass = 'ranges'
+    dropdownMenu = settings.driver.find_element_by_class_name(dropdownMenuClass)
+    dropdownMenu.location_once_scrolled_into_view
+    dropdownItems = dropdownMenu.find_elements_by_tag_name('li')
+    targetItemText = 'All Time'
+    for item in dropdownItems: 
+        if item.text == targetItemText: 
+            item.click()
+            ensure_all_time_page_loaded(recoveryUrl)
+            break 
+    settings.driver.implicitly_wait(.5)
+
+
+def open_and_click_into_dropdown(recoveryUrl):
+
+    open_dropdown() #after this dropdown menu is guaranteed to be open 
+    click_into_dropdown(recoveryUrl) #after this we are guaranteed to be on "All Time" historical data page 
+    
+
+
+'''DATA SCRAPING'''
+
+#Returns list of row objects (or dicts)
+def scrape_rows(fieldnames):
+    tableClass = 'table'
+    table = None 
+    counter = 0
+    while True: 
+        try: 
+            table = settings.driver.find_element_by_class_name(tableClass)
+            print "found table " + settings.driver.current_url
+            break 
+        except: 
+            print "unable to locate table on page " + settings.driver.current_url
+            pass
+    tbody = table.find_element_by_tag_name('tbody')
+    thtml = str('<table><tbody>' + tbody.get_attribute('innerHTML') + '</tbody></table>').strip()
+    root = lxml.html.fromstring(thtml)
+    xpathOne = 'tbody/tr'
+    rows = root.xpath(xpathOne)
+    print 'nums rows ' + str(len(rows))
+    rowObjects = list()
+    for row in rows:
+        cellVals = [c.text for c in row.getchildren()]
+        rowObjects.append({key: val for key, val in zip(fieldnames, cellVals)})
+    return rowObjects
+
+#Get names of all coins in top 100 and the urls where their historical data is stored
+def get_top_100_coin_names(): 
+    tableId = 'currencies'
+    table = settings.driver.find_element_by_id(tableId)
+    rows = table.find_elements_by_tag_name('tr')
+    coinNames = list()
+    for r in rows[1:]: #remove first item from urls since it is header row 
+        coinNames.append(r.get_attribute('id')[3:])
+    return coinNames
+
+'''DATE UTILITY FUNCTIONS'''
+
+#given name of month returns integer 1-12 
+def month_num_from_name(month):
+    return {datetime.date(2017, i, 1).strftime('%B').lower():i for i in range(1,13)}[month.lower()]
+
+
+#'Jun 10, 2017' --> datetime.datetime object 
+def parse_date(rawDateData):
+    dateRegex = re.compile('([^\s\,]+)')
+    datetimeData = [str(elem) for elem in dateRegex.findall(rawDateData)]
+    monthName = datetime.datetime.strptime(datetimeData[0], '%b').strftime('%B')
+    day = datetimeData[1]
+    year = datetimeData[2]
+    return datetime.datetime(int(year), month_num_from_name(monthName), int(day))
+
+'''FILE READS AND WRITE (CSV/JSON)'''
+
+def write_to_csv(rowObjects, fieldnames, coinName): 
+    csvfile = open(settings.csvDirRoot + coinName + '.csv', 'w')
+    writer = csv.DictWriter(csvfile, extrasaction='ignore', fieldnames=fieldnames)
+    writer.writeheader()
+    for obj in rowObjects:
+        writer.writerow(obj)
+    csvfile.close()
+
+def write_to_json(fieldnames, coinName): 
+    csvfile = open(settings.csvDirRoot + coinName + '.csv', 'r')
+    jsonfile = open(str(settings.jsonDirRoot + coinName + '.json'), 'w')
+    reader = [row for row in csv.DictReader(csvfile, fieldnames)]
+    numRows = len(reader)
+    jsonfile.write('{ "' + coinName + '": [')
+    for i in xrange(numRows): 
+        row = reader[i]
+        json.dump(row, jsonfile)
+        jsonfile.write(',\n' if i != numRows - 1 else '\n')
+    jsonfile.write(']}')
+    jsonfile.close()
+
+'''DATA DIRECTORY MANAGEMENT'''
+
+def check_crypto_dirs(top100Coins):
+    csvs = [file.replace('.csv','') for file in os.listdir(settings.csvDirName)]
+    jsons = csvs = [file.replace('.json','') for file in os.listdir(settings.jsonDirName)]
+    indicesToKeep = list()
+    for i in xrange(len(top100Coins)): 
+        if top100Coins[i] not in jsons or top100Coins[i] not in csvs:
+            indicesToKeep.append(i)
+    return [top100Coins[x] for x in indicesToKeep], [settings.main_page_url + 'currencies/' + top100Coins[x] + '/historical-data/' for x in indicesToKeep]
+
+def clear_crypto_dirs():
+    shutil.rmtree(settings.csvDirRoot)
+    shutil.rmtree(settings.jsonDirRoot)
+    os.mkdir(settings.csvDirName)
+    os.mkdir(settings.jsonDirName)
+
+#Aggregates contents of all json files into one large file (ALLCOINS.json)
+def create_aggregate_json(): 
+    jsonStr = '{ "Coins": [\n'
+    fileNames = os.listdir(settings.jsonDirName)
+    numFiles = len(fileNames)
+    for i in xrange(numFiles): 
+        filename = fileNames[i]
+        with open(settings.jsonDirRoot + filename) as jsonFile: 
+            jsonObj = json.load(jsonFile)
+            jsonStr += json.dumps(jsonObj) + (',\n' if i != numFiles - 1 else '\n')       
+    jsonStr += ']}'
+    aggrJsonObj = json.loads(jsonStr)
+    with open(settings.jsonDirRoot + 'ALLCOINS.json', 'w') as aggregateFile: 
+        json.dump(aggrJsonObj, aggregateFile)
+
+
+
+'''MAIN LOGIC FUNCTIONS'''
+
+'''
+Since almost all of the exeuction time of the program is the navigating between pages and waiting for pages to load, 
+compared to extremely fast html parsing operations for the formatting and storage (csv, json) of data, I made the 
+design choice to have the program start from scratch with each iteration, rather than trying to simply append data
+to preexisting files. 
+'''
+    
+def run_data_scraper():
+    create_aggregate_json()
+    settings.driver.close()
+    exit()
+
+
+    clear_crypto_dirs() #clear all previous data from csv and json dirs 
+    top100Coins = get_top_100_coin_names()
+    coinNames = top100Coins
+    urls = [settings.main_page_url + 'currencies/' + coinName + '/historical-data/' for coinName in top100Coins]
+    for i in xrange(len(coinNames)):
+        coinName = coinNames[i]
+        url = urls[i]
+        driver_get_page_timeout_wrapper(url) #after this you are guaranteed to be on historical data page 
+        recoveryUrl = url #will be used to reset state if driver encounters fatal errors 
+        open_and_click_into_dropdown(recoveryUrl)
+        #Scrape data 
+        fieldnames = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap']
+        rowObjects = scrape_rows(fieldnames)
+        #Write to csv 
+        write_to_csv(rowObjects, fieldnames, coinName)
+        #Create json from previously created csv 
+        write_to_json(fieldnames, coinName)
+    #Create all encompassing file after we have gathered and parsed all data 
+    create_aggregate_json()
+
+def main():
+    settings.setup() #globals are driver, main_page_url
+    try: 
+        run_data_scraper()
+    except Exception as e: 
+        print e.message
+    settings.driver.close()
+
+if __name__ == '__main__':
+    main()
+
+
+
+'''
+Things to implement  
+3. Find out how to make sure geckodriver process only on a single port 
+4. Create a web project and load this data into the project dynamically
+5. Provide basic links for downloads
+'''
+
+'''
+def remove_non_top_100_coin_data(top100coins):
+    csvs = [file.replace('.csv','') for file in os.listdir('CryptoCSV')]
+    jsons = csvs = [file.replace('.json','') for file in os.listdir('CryptoJSON')]
+    for csvCoinName in csvs:
+        if csvCoinName not in top100coins: 
+            os.remove(settings.csvDirRoot + csvCoinName + '.csv')
+    for jsonCoinName in jsons:
+        if jsonCoinName not in top100coins: 
+            os.remove(settings.jsonDirRoot + jsonCoinName + '.json')
+'''

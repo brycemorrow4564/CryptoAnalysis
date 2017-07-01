@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>ObjectPageSubSection</name>
+    <derived/>
+    <documentation>An ObjectPageSubSection is the second-level information container of an Object page and may only be used within an Object page section.
+Subsections may display primary information in the so called blocks aggregation (always visible)
+and not-so-important information in the moreBlocks aggregation, whose content is initially hidden, but may be accessed via a See more (...) button.
+Disclaimer: This control is intended to be used only as part of the Object page layout</documentation>
+    <since>1.26</since>
+    <baseType>sap.uxap/ObjectPageSectionBase</baseType>
+    <properties>
+        <property name="mode" type="sap.uxap/ObjectPageSubSectionMode" defaultValue="Collapsed" group="Appearance">
+            <documentation>A mode property that will be passed to the controls in the blocks and moreBlocks aggregations. Only relevant if these aggregations use Object page blocks.</documentation>
+        </property>
+        <property name="titleUppercase" type="sap.ui.core/boolean" defaultValue="false" group="Appearance">
+            <documentation>Determines whether the Subsection title is displayed in upper case.</documentation>
+        </property>
+    </properties>
+    <aggregations default="blocks">
+        <aggregation name="_grid" type="sap.ui.core/Control" cardinality="0..1" visibility="hidden">
+            <documentation>Internal grid aggregation</documentation>
+        </aggregation>
+        <aggregation name="blocks" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>Controls to be displayed in the subsection</documentation>
+        </aggregation>
+        <aggregation name="moreBlocks" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>Additional controls to display when the Show more / See all / (...) button is pressed</documentation>
+        </aggregation>
+        <aggregation name="actions" type="sap.ui.core/Control" cardinality="0..n">
+            <documentation>Actions available for this Subsection</documentation>
+        </aggregation>
+    </aggregations>
+</control>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>CodeViewer</name>
+    <derived/>
+    <documentation>Shows a piece of (Javascript) code and allows to edit it</documentation>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="source" type="sap.ui.core/string" group="Misc">
+            <documentation>The source code to display.</documentation>
+        </property>
+        <property name="width" type="sap.ui.core/CSSSize" group="Misc">
+            <documentation>The CSS width property</documentation>
+        </property>
+        <property name="height" type="sap.ui.core/CSSSize" group="Misc">
+            <documentation>The CSS height property</documentation>
+        </property>
+        <property name="editable" type="sap.ui.core/boolean" defaultValue="false" group="Misc">
+            <documentation>Whether the code can be edited or not</documentation>
+        </property>
+        <property name="lineNumbering" type="sap.ui.core/boolean" defaultValue="false" group="Misc">
+            <documentation>Whether the code to have line numbering or not</documentation>
+        </property>
+        <property name="visible" type="sap.ui.core/boolean" defaultValue="true" group="Misc">
+            <documentation>Whether the code viewer should be visible</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="press" allowPreventDefault="false">
+            <documentation>Called when the mouse button is clicked over the non-editable(!) control</documentation>
+        </event>
+        <event name="save" allowPreventDefault="false">
+            <documentation>Called when the editor is active and should be saved</documentation>
+        </event>
+    </events>
+</control>

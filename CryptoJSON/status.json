@@ -1,4 +1,4 @@
-[
-{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
-{"Volume": "", "Market Cap": "", "High": "", "Low": "", "Date": "No data was found for the selected time period.", "Close": "", "Open": ""}
-]
+{ "status": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{"Volume": "18,083,200", "Market Cap": "194,259,000", "High": "0.061866", "Low": "0.050574", "Date": "Jun 29, 2017", "Close": "0.051921", "Open": "0.055975"},
+{"Volume": "13,747,700", "Market Cap": "-", "High": "0.061775", "Low": "0.056150", "Date": "Jun 28, 2017", "Close": "0.056150", "Open": "0.061775"}
+]}

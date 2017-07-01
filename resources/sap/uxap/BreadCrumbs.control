@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>BreadCrumbs</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>The BreadCrumbs control represents the navigation steps up to the current location in the application and allows
+the user to quickly navigate to a previous location on the path that got him to the current location.
+It has two main modes of operation. One is a trail of links followed by separators (when there's enough space
+for the control to fit on one line), and the other is a dropdown list with the links (when the trail of links
+wouldn't fit on one line).</documentation>
+    <since>1.30</since>
+    <baseType>sap.ui.core/Control</baseType>
+    <properties>
+        <property name="showCurrentLocation" type="sap.ui.core/boolean" defaultValue="true" group="Behavior">
+            <documentation>Sets the visibility of the current/last element in the BreadCrumbs path.</documentation>
+        </property>
+    </properties>
+    <aggregations default="links">
+        <aggregation name="links" type="sap.m/Link" cardinality="0..n">
+            <documentation>A list of all the active link elements in the BreadCrumbs control.</documentation>
+        </aggregation>
+        <aggregation name="currentLocation" type="sap.m/Text" cardinality="0..1">
+            <documentation>The current/last element in the BreadCrumbs path.</documentation>
+        </aggregation>
+        <aggregation name="_tubeIcon" type="sap.ui.core/Icon" cardinality="0..1" visibility="hidden">
+            <documentation>An icon that is used as a separator after each link in the standard mode.</documentation>
+        </aggregation>
+        <aggregation name="_overflowSelect" type="sap.m/Select" cardinality="0..1" visibility="hidden">
+            <documentation>A select control which is used to display the BreadCrumbs content on smaller mobile devices or
+when there's not enough space for the control to fit on one line.</documentation>
+        </aggregation>
+    </aggregations>
+</control>

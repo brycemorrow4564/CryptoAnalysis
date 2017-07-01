@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+    <name>MultiInput</name>
+    <derived/>
+    <author>SAP SE</author>
+    <documentation>MultiInput provides functionality to add / remove / enter tokens</documentation>
+    <baseType>sap.m/Input</baseType>
+    <properties>
+        <property name="enableMultiLineMode" type="sap.ui.core/boolean" defaultValue="false" group="Behavior" since="1.28">
+            <documentation>If set to true, the MultiInput will be displayed in multi-line display mode.
+In multi-line display mode, all tokens can be fully viewed and easily edited in the MultiInput.
+The default value is false.
+&lt;b&gt;Note:&lt;/b&gt; This property does not take effect on smartphones.</documentation>
+        </property>
+        <property name="maxTokens" type="sap.ui.core/int" group="Behavior" since="1.36">
+            <documentation>The max number of tokens that is allowed in MultiInput.</documentation>
+        </property>
+    </properties>
+    <events>
+        <event name="tokenChange" allowPreventDefault="false">
+            <documentation>Fired when the tokens aggregation changed (add / remove token)</documentation>
+            <deprecation since="1.46">Please use the new event tokenUpdate.</deprecation>
+            <parameters>
+                <parameter name="type" type="sap.ui.core/string">
+                    <documentation>Type of tokenChange event.
+There are four TokenChange types: "added", "removed", "removedAll", "tokensChanged".
+Use Tokenizer.TokenChangeType.Added for "added",    Tokenizer.TokenChangeType.Removed for "removed", Tokenizer.TokenChangeType.RemovedAll for "removedAll" and Tokenizer.TokenChangeType.TokensChanged for "tokensChanged".</documentation>
+                </parameter>
+                <parameter name="token" type="sap.m/Token">
+                    <documentation>The added token or removed token.
+This parameter is used when tokenChange type is "added" or "removed".</documentation>
+                </parameter>
+                <parameter name="tokens" type="sap.m/Token[]">
+                    <documentation>The array of removed tokens.
+This parameter is used when tokenChange type is "removedAll".</documentation>
+                </parameter>
+                <parameter name="addedTokens" type="sap.m/Token[]">
+                    <documentation>The array of tokens that are added.
+This parameter is used when tokenChange type is "tokenChanged".</documentation>
+                </parameter>
+                <parameter name="removedTokens" type="sap.m/Token[]">
+                    <documentation>The array of tokens that are removed.
+This parameter is used when tokenChange type is "tokenChanged".</documentation>
+                </parameter>
+            </parameters>
+        </event>
+        <event name="tokenUpdate" allowPreventDefault="false">
+            <documentation>Fired when the tokens aggregation changed (add / remove token)</documentation>
+        </event>
+    </events>
+    <aggregations>
+        <aggregation name="tokens" type="sap.m/Token" cardinality="0..n">
+            <documentation>The currently displayed tokens</documentation>
+        </aggregation>
+        <aggregation name="tokenizer" type="sap.m/Tokenizer" cardinality="0..1" visibility="hidden">
+            <documentation>The tokenizer which displays the tokens</documentation>
+        </aggregation>
+        <aggregation name="_tokensInfo" type="sap.ui.core/InvisibleText" cardinality="0..1" visibility="hidden">
+            <documentation>Hidden text used for accesibility</documentation>
+        </aggregation>
+    </aggregations>
+</control>
