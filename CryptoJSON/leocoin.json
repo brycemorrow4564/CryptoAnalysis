@@ -1,4 +1,5 @@
-{ "leocoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "leocoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "312,323", "Market Cap": "52,837,600", "High": "0.619151", "Low": "0.586440", "Date": "Jun 29, 2017", "Close": "0.609407", "Open": "0.616507"},
 {"Volume": "269,210", "Market Cap": "51,818,800", "High": "0.625278", "Low": "0.599840", "Date": "Jun 28, 2017", "Close": "0.612972", "Open": "0.604911"},
 {"Volume": "246,301", "Market Cap": "49,791,900", "High": "0.611615", "Low": "0.563954", "Date": "Jun 27, 2017", "Close": "0.610580", "Open": "0.581586"},

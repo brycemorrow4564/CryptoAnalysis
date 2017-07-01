@@ -1,4 +1,5 @@
-{ "vertcoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "vertcoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "2,016,130", "Market Cap": "32,337,700", "High": "0.883580", "Low": "0.786083", "Date": "Jun 29, 2017", "Close": "0.812654", "Open": "0.872014"},
 {"Volume": "2,571,050", "Market Cap": "28,390,400", "High": "0.890706", "Low": "0.722694", "Date": "Jun 28, 2017", "Close": "0.872743", "Open": "0.765570"},
 {"Volume": "1,932,140", "Market Cap": "30,852,600", "High": "0.831968", "Low": "0.657474", "Date": "Jun 27, 2017", "Close": "0.754849", "Open": "0.831968"},

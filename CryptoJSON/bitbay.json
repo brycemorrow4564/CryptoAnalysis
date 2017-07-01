@@ -1,4 +1,5 @@
-{ "bitbay": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "bitbay",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "316,995", "Market Cap": "42,153,000", "High": "0.044035", "Low": "0.034540", "Date": "Jun 29, 2017", "Close": "0.037982", "Open": "0.041836"},
 {"Volume": "272,627", "Market Cap": "42,111,400", "High": "0.044057", "Low": "0.039737", "Date": "Jun 28, 2017", "Close": "0.042207", "Open": "0.041795"},
 {"Volume": "329,142", "Market Cap": "38,831,900", "High": "0.042030", "Low": "0.033505", "Date": "Jun 27, 2017", "Close": "0.042030", "Open": "0.038540"},

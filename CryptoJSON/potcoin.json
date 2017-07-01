@@ -1,4 +1,5 @@
-{ "potcoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "potcoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "500,675", "Market Cap": "24,823,200", "High": "0.115055", "Low": "0.106915", "Date": "Jun 29, 2017", "Close": "0.108203", "Open": "0.114266"},
 {"Volume": "797,842", "Market Cap": "25,397,000", "High": "0.117295", "Low": "0.105891", "Date": "Jun 28, 2017", "Close": "0.114371", "Open": "0.116909"},
 {"Volume": "536,641", "Market Cap": "24,198,800", "High": "0.121764", "Low": "0.097212", "Date": "Jun 27, 2017", "Close": "0.119076", "Open": "0.111402"},

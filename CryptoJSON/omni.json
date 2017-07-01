@@ -1,4 +1,5 @@
-{ "omni": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "omni",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "783,316", "Market Cap": "39,908,900", "High": "72.24", "Low": "64.11", "Date": "Jun 29, 2017", "Close": "66.45", "Open": "71.37"},
 {"Volume": "1,802,370", "Market Cap": "37,834,200", "High": "80.24", "Low": "67.03", "Date": "Jun 28, 2017", "Close": "70.06", "Open": "67.66"},
 {"Volume": "1,901,700", "Market Cap": "37,915,000", "High": "69.95", "Low": "54.08", "Date": "Jun 27, 2017", "Close": "67.22", "Open": "67.81"},

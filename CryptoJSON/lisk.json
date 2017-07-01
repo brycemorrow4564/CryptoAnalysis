@@ -1,4 +1,5 @@
-{ "lisk": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "lisk",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "6,162,700", "Market Cap": "318,025,000", "High": "2.94", "Low": "2.61", "Date": "Jun 29, 2017", "Close": "2.71", "Open": "2.92"},
 {"Volume": "9,012,530", "Market Cap": "303,893,000", "High": "2.99", "Low": "2.53", "Date": "Jun 28, 2017", "Close": "2.92", "Open": "2.79"},
 {"Volume": "8,630,910", "Market Cap": "304,949,000", "High": "2.80", "Low": "2.15", "Date": "Jun 27, 2017", "Close": "2.74", "Open": "2.80"},

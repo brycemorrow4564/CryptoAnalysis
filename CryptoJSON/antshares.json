@@ -1,4 +1,5 @@
-{ "antshares": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "antshares",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "77,050,000", "Market Cap": "416,970,000", "High": "10.07", "Low": "7.91", "Date": "Jun 29, 2017", "Close": "9.77", "Open": "8.34"},
 {"Volume": "72,982,300", "Market Cap": "347,826,000", "High": "8.69", "Low": "6.49", "Date": "Jun 28, 2017", "Close": "8.38", "Open": "6.96"},
 {"Volume": "71,029,700", "Market Cap": "267,538,000", "High": "7.26", "Low": "5.09", "Date": "Jun 27, 2017", "Close": "6.83", "Open": "5.35"},

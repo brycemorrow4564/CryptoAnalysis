@@ -1,4 +1,5 @@
-{ "blackcoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "blackcoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,735,600", "Market Cap": "37,138,300", "High": "0.490355", "Low": "0.453205", "Date": "Jun 29, 2017", "Close": "0.464581", "Open": "0.487251"},
 {"Volume": "2,735,090", "Market Cap": "35,920,500", "High": "0.493871", "Low": "0.444603", "Date": "Jun 28, 2017", "Close": "0.485923", "Open": "0.471286"},
 {"Volume": "2,983,860", "Market Cap": "37,372,000", "High": "0.507103", "Low": "0.415621", "Date": "Jun 27, 2017", "Close": "0.474020", "Open": "0.490343"},

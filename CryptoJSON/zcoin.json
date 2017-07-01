@@ -1,4 +1,5 @@
-{ "zcoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "zcoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,291,860", "Market Cap": "35,203,400", "High": "15.06", "Low": "13.01", "Date": "Jun 29, 2017", "Close": "13.47", "Open": "14.49"},
 {"Volume": "2,194,600", "Market Cap": "31,083,100", "High": "15.90", "Low": "12.22", "Date": "Jun 28, 2017", "Close": "14.52", "Open": "12.82"},
 {"Volume": "2,304,410", "Market Cap": "31,771,300", "High": "13.78", "Low": "11.13", "Date": "Jun 27, 2017", "Close": "12.51", "Open": "13.15"},

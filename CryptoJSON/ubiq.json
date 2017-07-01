@@ -1,4 +1,5 @@
-{ "ubiq": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "ubiq",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "343,265", "Market Cap": "67,037,000", "High": "1.83", "Low": "1.64", "Date": "Jun 29, 2017", "Close": "1.75", "Open": "1.80"},
 {"Volume": "473,179", "Market Cap": "66,987,900", "High": "1.89", "Low": "1.60", "Date": "Jun 28, 2017", "Close": "1.80", "Open": "1.80"},
 {"Volume": "654,992", "Market Cap": "68,311,800", "High": "1.88", "Low": "1.40", "Date": "Jun 27, 2017", "Close": "1.78", "Open": "1.83"},

@@ -1,4 +1,5 @@
-{ "monero": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "monero",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "11,470,500", "Market Cap": "691,512,000", "High": "47.91", "Low": "44.67", "Date": "Jun 29, 2017", "Close": "45.02", "Open": "47.04"},
 {"Volume": "10,812,600", "Market Cap": "643,627,000", "High": "47.41", "Low": "42.29", "Date": "Jun 28, 2017", "Close": "47.32", "Open": "43.80"},
 {"Volume": "12,171,600", "Market Cap": "638,919,000", "High": "44.05", "Low": "38.51", "Date": "Jun 27, 2017", "Close": "43.57", "Open": "43.49"},

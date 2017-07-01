@@ -1,4 +1,5 @@
-{ "cloakcoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "cloakcoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "692,530", "Market Cap": "49,135,500", "High": "10.37", "Low": "8.69", "Date": "Jun 29, 2017", "Close": "8.69", "Open": "9.73"},
 {"Volume": "1,447,880", "Market Cap": "47,684,200", "High": "11.95", "Low": "8.50", "Date": "Jun 28, 2017", "Close": "9.63", "Open": "9.45"},
 {"Volume": "1,185,210", "Market Cap": "48,756,500", "High": "9.97", "Low": "7.51", "Date": "Jun 27, 2017", "Close": "9.47", "Open": "9.67"},

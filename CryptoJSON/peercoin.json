@@ -1,4 +1,5 @@
-{ "peercoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "peercoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "2,003,060", "Market Cap": "64,592,600", "High": "2.68", "Low": "2.48", "Date": "Jun 29, 2017", "Close": "2.57", "Open": "2.67"},
 {"Volume": "2,971,520", "Market Cap": "60,966,900", "High": "2.69", "Low": "2.47", "Date": "Jun 28, 2017", "Close": "2.67", "Open": "2.52"},
 {"Volume": "3,984,360", "Market Cap": "59,670,200", "High": "2.67", "Low": "2.21", "Date": "Jun 27, 2017", "Close": "2.51", "Open": "2.47"},

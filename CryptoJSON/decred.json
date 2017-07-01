@@ -1,4 +1,5 @@
-{ "decred": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "decred",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,066,580", "Market Cap": "187,711,000", "High": "37.10", "Low": "33.06", "Date": "Jun 29, 2017", "Close": "34.20", "Open": "36.02"},
 {"Volume": "1,453,690", "Market Cap": "190,554,000", "High": "37.37", "Low": "34.23", "Date": "Jun 28, 2017", "Close": "36.09", "Open": "36.62"},
 {"Volume": "2,134,180", "Market Cap": "183,242,000", "High": "36.26", "Low": "29.13", "Date": "Jun 27, 2017", "Close": "36.26", "Open": "35.26"},

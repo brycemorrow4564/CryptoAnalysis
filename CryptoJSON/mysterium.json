@@ -1,4 +1,5 @@
-{ "mysterium": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "mysterium",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "430,202", "Market Cap": "34,212,300", "High": "1.83", "Low": "1.67", "Date": "Jun 29, 2017", "Close": "1.67", "Open": "1.76"},
 {"Volume": "644,797", "Market Cap": "37,386,400", "High": "1.94", "Low": "1.71", "Date": "Jun 28, 2017", "Close": "1.78", "Open": "1.92"},
 {"Volume": "441,063", "Market Cap": "32,058,900", "High": "1.90", "Low": "1.45", "Date": "Jun 27, 2017", "Close": "1.90", "Open": "1.65"},

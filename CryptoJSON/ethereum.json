@@ -1,4 +1,5 @@
-{ "ethereum": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "ethereum",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,508,580,000", "Market Cap": "30,495,300,000", "High": "330.71", "Low": "297.37", "Date": "Jun 29, 2017", "Close": "302.88", "Open": "328.37"},
 {"Volume": "2,056,550,000", "Market Cap": "27,207,000,000", "High": "333.10", "Low": "276.41", "Date": "Jun 28, 2017", "Close": "327.93", "Open": "293.04"},
 {"Volume": "1,973,870,000", "Market Cap": "25,309,700,000", "High": "293.09", "Low": "227.14", "Date": "Jun 27, 2017", "Close": "293.09", "Open": "272.69"},

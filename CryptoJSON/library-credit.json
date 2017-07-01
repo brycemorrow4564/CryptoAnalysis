@@ -1,4 +1,5 @@
-{ "library-credit": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "library-credit",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "3,479,180", "Market Cap": "45,655,600", "High": "0.724260", "Low": "0.598117", "Date": "Jun 29, 2017", "Close": "0.613279", "Open": "0.666267"},
 {"Volume": "5,643,330", "Market Cap": "40,910,000", "High": "0.721993", "Low": "0.555108", "Date": "Jun 28, 2017", "Close": "0.665272", "Open": "0.597012"},
 {"Volume": "3,558,300", "Market Cap": "38,463,600", "High": "0.610710", "Low": "0.463983", "Date": "Jun 27, 2017", "Close": "0.593382", "Open": "0.561312"},

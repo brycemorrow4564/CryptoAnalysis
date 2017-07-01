@@ -1,4 +1,5 @@
-{ "lykke": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "lykke",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "726,309", "Market Cap": "61,829,300", "High": "0.382446", "Low": "0.356320", "Date": "Jun 29, 2017", "Close": "0.376720", "Open": "0.380930"},
 {"Volume": "1,353,970", "Market Cap": "55,472,700", "High": "0.383313", "Low": "0.338542", "Date": "Jun 28, 2017", "Close": "0.381240", "Open": "0.341842"},
 {"Volume": "1,179,480", "Market Cap": "56,039,900", "High": "0.346711", "Low": "0.281405", "Date": "Jun 27, 2017", "Close": "0.338763", "Open": "0.345341"},

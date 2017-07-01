@@ -1,4 +1,5 @@
-{ "komodo": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "komodo",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "293,245", "Market Cap": "183,449,000", "High": "1.87", "Low": "1.75", "Date": "Jun 29, 2017", "Close": "1.80", "Open": "1.82"},
 {"Volume": "434,552", "Market Cap": "190,432,000", "High": "1.90", "Low": "1.72", "Date": "Jun 28, 2017", "Close": "1.83", "Open": "1.89"},
 {"Volume": "509,578", "Market Cap": "181,888,000", "High": "1.93", "Low": "1.53", "Date": "Jun 27, 2017", "Close": "1.86", "Open": "1.80"},

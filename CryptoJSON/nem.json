@@ -1,4 +1,5 @@
-{ "nem": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "nem",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "4,851,220", "Market Cap": "1,540,500,000", "High": "0.176060", "Low": "0.159967", "Date": "Jun 29, 2017", "Close": "0.163684", "Open": "0.171167"},
 {"Volume": "7,495,030", "Market Cap": "1,477,110,000", "High": "0.178329", "Low": "0.155272", "Date": "Jun 28, 2017", "Close": "0.170694", "Open": "0.164123"},
 {"Volume": "5,954,270", "Market Cap": "1,461,290,000", "High": "0.169999", "Low": "0.140698", "Date": "Jun 27, 2017", "Close": "0.163454", "Open": "0.162366"},

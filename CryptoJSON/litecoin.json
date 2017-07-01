@@ -1,4 +1,5 @@
-{ "litecoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "litecoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "300,131,000", "Market Cap": "2,216,710,000", "High": "42.83", "Low": "40.35", "Date": "Jun 29, 2017", "Close": "41.07", "Open": "42.83"},
 {"Volume": "353,444,000", "Market Cap": "2,111,870,000", "High": "43.61", "Low": "39.18", "Date": "Jun 28, 2017", "Close": "42.85", "Open": "40.82"},
 {"Volume": "565,265,000", "Market Cap": "2,127,600,000", "High": "41.39", "Low": "36.20", "Date": "Jun 27, 2017", "Close": "40.54", "Open": "41.13"},

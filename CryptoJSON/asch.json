@@ -1,4 +1,5 @@
-{ "asch": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "asch",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "890,696", "Market Cap": "48,547,900", "High": "0.660111", "Low": "0.604795", "Date": "Jun 29, 2017", "Close": "0.641502", "Open": "0.647306"},
 {"Volume": "1,657,730", "Market Cap": "49,171,500", "High": "0.661497", "Low": "0.587121", "Date": "Jun 28, 2017", "Close": "0.647378", "Open": "0.655620"},
 {"Volume": "3,635,200", "Market Cap": "47,307,700", "High": "0.657813", "Low": "0.497307", "Date": "Jun 27, 2017", "Close": "0.650358", "Open": "0.630770"},

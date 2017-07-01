@@ -1,4 +1,5 @@
-{ "elastic": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "elastic",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "61,830", "Market Cap": "25,924,800", "High": "0.497582", "Low": "0.179667", "Date": "Jun 29, 2017", "Close": "0.464983", "Open": "0.383011"},
 {"Volume": "64,626", "Market Cap": "34,039,600", "High": "0.521563", "Low": "0.379641", "Date": "Jun 28, 2017", "Close": "0.383367", "Open": "0.512218"},
 {"Volume": "61,577", "Market Cap": "38,777,000", "High": "0.617176", "Low": "0.449371", "Date": "Jun 27, 2017", "Close": "0.508901", "Open": "0.584336"},

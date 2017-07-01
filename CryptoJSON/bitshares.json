@@ -1,4 +1,5 @@
-{ "bitshares": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "bitshares",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "48,186,900", "Market Cap": "720,000,000", "High": "0.277966", "Low": "0.252043", "Date": "Jun 29, 2017", "Close": "0.256396", "Open": "0.277306"},
 {"Volume": "93,570,900", "Market Cap": "648,913,000", "High": "0.282441", "Low": "0.236783", "Date": "Jun 28, 2017", "Close": "0.277695", "Open": "0.249929"},
 {"Volume": "76,238,100", "Market Cap": "682,511,000", "High": "0.267221", "Low": "0.220018", "Date": "Jun 27, 2017", "Close": "0.245319", "Open": "0.262872"},

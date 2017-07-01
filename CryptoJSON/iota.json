@@ -1,4 +1,5 @@
-{ "iota": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "iota",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "5,324,020", "Market Cap": "1,044,460,000", "High": "0.459387", "Low": "0.361568", "Date": "Jun 29, 2017", "Close": "0.417798", "Open": "0.375767"},
 {"Volume": "4,704,400", "Market Cap": "1,111,460,000", "High": "0.399874", "Low": "0.357338", "Date": "Jun 28, 2017", "Close": "0.379136", "Open": "0.399874"},
 {"Volume": "4,411,090", "Market Cap": "1,145,140,000", "High": "0.420035", "Low": "0.353549", "Date": "Jun 27, 2017", "Close": "0.392269", "Open": "0.411989"},

@@ -1,4 +1,5 @@
-{ "viacoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "viacoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,568,170", "Market Cap": "31,378,600", "High": "1.63", "Low": "1.26", "Date": "Jun 29, 2017", "Close": "1.55", "Open": "1.38"},
 {"Volume": "928,018", "Market Cap": "31,665,100", "High": "1.54", "Low": "1.33", "Date": "Jun 28, 2017", "Close": "1.38", "Open": "1.39"},
 {"Volume": "944,935", "Market Cap": "31,264,900", "High": "1.41", "Low": "1.15", "Date": "Jun 27, 2017", "Close": "1.39", "Open": "1.38"},

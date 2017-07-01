@@ -6,6 +6,7 @@ jQuery.sap.require('sap.m.semantic.DetailPage');
 jQuery.sap.require('sap.m.Label');
 jQuery.sap.require('sap.m.Page');
 jQuery.sap.require('sap.ui.commons.Button');
+jQuery.sap.require('sap.ui.')
 
 var COMPONENT = {
     "SplitApp"      : sap.m.SplitApp,
@@ -16,6 +17,7 @@ var COMPONENT = {
     "Label"         : sap.m.Label,
     "Button"        : sap.ui.commons.Button,
     "Page"          : sap.m.Page,
-    "App"           : sap.m.App
+    "App"           : sap.m.App,
+    "JSONModel"     : sap.ui.model.json.JSONModel
 
 }

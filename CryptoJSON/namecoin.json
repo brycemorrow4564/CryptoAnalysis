@@ -1,4 +1,5 @@
-{ "namecoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "namecoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,846,080", "Market Cap": "40,356,300", "High": "2.76", "Low": "2.51", "Date": "Jun 29, 2017", "Close": "2.61", "Open": "2.74"},
 {"Volume": "2,706,470", "Market Cap": "39,320,600", "High": "2.76", "Low": "2.51", "Date": "Jun 28, 2017", "Close": "2.74", "Open": "2.67"},
 {"Volume": "4,234,690", "Market Cap": "35,583,900", "High": "2.66", "Low": "2.20", "Date": "Jun 27, 2017", "Close": "2.64", "Open": "2.41"},

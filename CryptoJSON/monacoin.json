@@ -1,4 +1,5 @@
-{ "monacoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "monacoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "258,009", "Market Cap": "35,735,400", "High": "0.767210", "Low": "0.688944", "Date": "Jun 29, 2017", "Close": "0.734600", "Open": "0.690481"},
 {"Volume": "162,026", "Market Cap": "35,590,800", "High": "0.706360", "Low": "0.661847", "Date": "Jun 28, 2017", "Close": "0.689670", "Open": "0.688296"},
 {"Volume": "306,581", "Market Cap": "31,693,900", "High": "0.686930", "Low": "0.589250", "Date": "Jun 27, 2017", "Close": "0.677952", "Open": "0.613526"},

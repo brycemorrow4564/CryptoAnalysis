@@ -1,4 +1,5 @@
-{ "burst": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "burst",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "968,241", "Market Cap": "33,504,400", "High": "0.018680", "Low": "0.017019", "Date": "Jun 29, 2017", "Close": "0.017151", "Open": "0.018654"},
 {"Volume": "1,689,980", "Market Cap": "32,927,500", "High": "0.018985", "Low": "0.017026", "Date": "Jun 28, 2017", "Close": "0.018619", "Open": "0.018338"},
 {"Volume": "4,177,270", "Market Cap": "33,624,400", "High": "0.019103", "Low": "0.015274", "Date": "Jun 27, 2017", "Close": "0.018153", "Open": "0.018733"},

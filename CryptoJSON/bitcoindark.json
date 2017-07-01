@@ -1,4 +1,5 @@
-{ "bitcoindark": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "bitcoindark",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "335,747", "Market Cap": "99,342,000", "High": "78.23", "Low": "73.14", "Date": "Jun 29, 2017", "Close": "73.48", "Open": "77.08"},
 {"Volume": "348,270", "Market Cap": "96,009,700", "High": "80.63", "Low": "70.75", "Date": "Jun 28, 2017", "Close": "77.12", "Open": "74.49"},
 {"Volume": "1,078,690", "Market Cap": "100,217,000", "High": "80.65", "Low": "65.46", "Date": "Jun 27, 2017", "Close": "74.13", "Open": "77.76"},

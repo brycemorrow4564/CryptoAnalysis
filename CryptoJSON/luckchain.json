@@ -1,4 +1,5 @@
-{ "luckchain": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "luckchain",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "3,920,520", "Market Cap": "23,697,000", "High": "0.038970", "Low": "0.031330", "Date": "Jun 29, 2017", "Close": "0.033463", "Open": "0.033971"},
 {"Volume": "2,377,960", "Market Cap": "18,838,200", "High": "0.034406", "Low": "0.025319", "Date": "Jun 28, 2017", "Close": "0.034098", "Open": "0.027006"},
 {"Volume": "1,983,820", "Market Cap": "20,695,900", "High": "0.031580", "Low": "0.022111", "Date": "Jun 27, 2017", "Close": "0.027075", "Open": "0.029670"},

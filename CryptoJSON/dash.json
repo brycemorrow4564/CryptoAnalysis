@@ -1,4 +1,5 @@
-{ "dash": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "dash",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "42,548,600", "Market Cap": "1,353,710,000", "High": "184.48", "Low": "176.72", "Date": "Jun 29, 2017", "Close": "177.17", "Open": "183.17"},
 {"Volume": "27,008,600", "Market Cap": "1,307,820,000", "High": "185.97", "Low": "174.59", "Date": "Jun 28, 2017", "Close": "184.13", "Open": "177.01"},
 {"Volume": "48,931,600", "Market Cap": "1,203,160,000", "High": "176.02", "Low": "153.94", "Date": "Jun 27, 2017", "Close": "176.02", "Open": "162.89"},

@@ -1,4 +1,5 @@
-{ "digibyte": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "digibyte",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "5,575,670", "Market Cap": "187,184,000", "High": "0.021757", "Low": "0.019276", "Date": "Jun 29, 2017", "Close": "0.019527", "Open": "0.021471"},
 {"Volume": "8,019,950", "Market Cap": "182,265,000", "High": "0.022150", "Low": "0.019256", "Date": "Jun 28, 2017", "Close": "0.021528", "Open": "0.020917"},
 {"Volume": "9,335,860", "Market Cap": "174,890,000", "High": "0.020994", "Low": "0.017553", "Date": "Jun 27, 2017", "Close": "0.020837", "Open": "0.020129"},

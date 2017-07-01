@@ -1,4 +1,5 @@
-{ "nxt": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "nxt",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "6,627,190", "Market Cap": "172,401,000", "High": "0.173835", "Low": "0.160346", "Date": "Jun 29, 2017", "Close": "0.164680", "Open": "0.172574"},
 {"Volume": "10,520,400", "Market Cap": "167,501,000", "High": "0.177249", "Low": "0.160349", "Date": "Jun 28, 2017", "Close": "0.172712", "Open": "0.167669"},
 {"Volume": "12,830,300", "Market Cap": "180,948,000", "High": "0.181129", "Low": "0.148365", "Date": "Jun 27, 2017", "Close": "0.166896", "Open": "0.181129"},

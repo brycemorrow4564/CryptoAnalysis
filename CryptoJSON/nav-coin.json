@@ -1,4 +1,5 @@
-{ "nav-coin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "nav-coin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "538,183", "Market Cap": "27,826,300", "High": "0.463816", "Low": "0.412507", "Date": "Jun 29, 2017", "Close": "0.414325", "Open": "0.452957"},
 {"Volume": "485,398", "Market Cap": "26,219,000", "High": "0.451601", "Low": "0.390253", "Date": "Jun 28, 2017", "Close": "0.441450", "Open": "0.426817"},
 {"Volume": "585,395", "Market Cap": "24,003,900", "High": "0.427069", "Low": "0.333860", "Date": "Jun 27, 2017", "Close": "0.422100", "Open": "0.390795"},

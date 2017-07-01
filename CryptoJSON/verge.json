@@ -1,4 +1,5 @@
-{ "verge": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "verge",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "684,886", "Market Cap": "40,390,700", "High": "0.003099", "Low": "0.002831", "Date": "Jun 29, 2017", "Close": "0.002957", "Open": "0.003012"},
 {"Volume": "820,351", "Market Cap": "38,963,400", "High": "0.003196", "Low": "0.002797", "Date": "Jun 28, 2017", "Close": "0.003040", "Open": "0.002906"},
 {"Volume": "999,769", "Market Cap": "40,828,000", "High": "0.003152", "Low": "0.002408", "Date": "Jun 27, 2017", "Close": "0.002912", "Open": "0.003045"},

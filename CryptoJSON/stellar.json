@@ -1,4 +1,5 @@
-{ "stellar": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "stellar",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "10,598,500", "Market Cap": "323,762,000", "High": "0.032263", "Low": "0.028674", "Date": "Jun 29, 2017", "Close": "0.029039", "Open": "0.031839"},
 {"Volume": "17,106,400", "Market Cap": "291,560,000", "High": "0.033615", "Low": "0.028027", "Date": "Jun 28, 2017", "Close": "0.031998", "Open": "0.029205"},
 {"Volume": "16,402,100", "Market Cap": "294,588,000", "High": "0.031348", "Low": "0.024228", "Date": "Jun 27, 2017", "Close": "0.029113", "Open": "0.030218"},

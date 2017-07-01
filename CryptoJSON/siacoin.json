@@ -1,4 +1,5 @@
-{ "siacoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "siacoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "11,464,800", "Market Cap": "448,698,000", "High": "0.016510", "Low": "0.014951", "Date": "Jun 29, 2017", "Close": "0.015176", "Open": "0.016431"},
 {"Volume": "18,103,800", "Market Cap": "421,813,000", "High": "0.016529", "Low": "0.014826", "Date": "Jun 28, 2017", "Close": "0.016454", "Open": "0.015462"},
 {"Volume": "22,702,200", "Market Cap": "417,768,000", "High": "0.016256", "Low": "0.013040", "Date": "Jun 27, 2017", "Close": "0.015304", "Open": "0.015333"},

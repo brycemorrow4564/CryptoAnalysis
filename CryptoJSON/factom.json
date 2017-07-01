@@ -1,4 +1,5 @@
-{ "factom": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "factom",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "3,172,030", "Market Cap": "236,139,000", "High": "27.94", "Low": "24.82", "Date": "Jun 29, 2017", "Close": "25.20", "Open": "26.98"},
 {"Volume": "4,795,800", "Market Cap": "230,476,000", "High": "28.20", "Low": "24.71", "Date": "Jun 28, 2017", "Close": "27.10", "Open": "26.33"},
 {"Volume": "5,141,850", "Market Cap": "221,878,000", "High": "26.19", "Low": "21.22", "Date": "Jun 27, 2017", "Close": "26.15", "Open": "25.35"},

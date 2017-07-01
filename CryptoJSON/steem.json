@@ -1,4 +1,5 @@
-{ "steem": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "steem",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "2,264,590", "Market Cap": "452,171,000", "High": "1.93", "Low": "1.71", "Date": "Jun 29, 2017", "Close": "1.75", "Open": "1.92"},
 {"Volume": "2,796,140", "Market Cap": "425,000,000", "High": "1.96", "Low": "1.71", "Date": "Jun 28, 2017", "Close": "1.92", "Open": "1.81"},
 {"Volume": "3,648,900", "Market Cap": "423,370,000", "High": "1.82", "Low": "1.48", "Date": "Jun 27, 2017", "Close": "1.78", "Open": "1.80"},

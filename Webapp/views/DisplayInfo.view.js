@@ -2,9 +2,9 @@ jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals")
 
 sap.ui.jsview("sap.crypto.app.views.DisplayInfo", {
 
-//   getControllerName: function() {
-//      return "sap.crypto.app.controllers.App";
-//   },
+   getControllerName: function() {
+      return "sap.crypto.app.controllers.DisplayInfo";
+   },
 
    createContent: function(oController) {
 

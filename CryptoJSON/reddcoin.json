@@ -1,4 +1,5 @@
-{ "reddcoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "reddcoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "743,053", "Market Cap": "51,024,800", "High": "0.001803", "Low": "0.001633", "Date": "Jun 29, 2017", "Close": "0.001743", "Open": "0.001787"},
 {"Volume": "764,479", "Market Cap": "48,712,500", "High": "0.001885", "Low": "0.001583", "Date": "Jun 28, 2017", "Close": "0.001789", "Open": "0.001706"},
 {"Volume": "818,973", "Market Cap": "47,295,200", "High": "0.001703", "Low": "0.001406", "Date": "Jun 27, 2017", "Close": "0.001695", "Open": "0.001657"},

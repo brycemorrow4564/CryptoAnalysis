@@ -1,4 +1,5 @@
-{ "dogecoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "dogecoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "6,596,660", "Market Cap": "306,604,000", "High": "0.002787", "Low": "0.002599", "Date": "Jun 29, 2017", "Close": "0.002656", "Open": "0.002787"},
 {"Volume": "9,713,640", "Market Cap": "289,857,000", "High": "0.002822", "Low": "0.002526", "Date": "Jun 28, 2017", "Close": "0.002793", "Open": "0.002636"},
 {"Volume": "16,548,800", "Market Cap": "302,422,000", "High": "0.002766", "Low": "0.002245", "Date": "Jun 27, 2017", "Close": "0.002623", "Open": "0.002750"},

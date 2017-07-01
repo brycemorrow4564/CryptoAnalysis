@@ -1,4 +1,5 @@
-{ "peerplays-ppy": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "peerplays-ppy",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "36,324", "Market Cap": "38,691,700", "High": "14.61", "Low": "7.91", "Date": "Jun 29, 2017", "Close": "9.72", "Open": "10.58"},
 {"Volume": "10,991", "Market Cap": "59,482,100", "High": "16.27", "Low": "9.33", "Date": "Jun 28, 2017", "Close": "10.59", "Open": "16.27"},
 {"Volume": "58,054", "Market Cap": "35,293,000", "High": "16.16", "Low": "8.03", "Date": "Jun 27, 2017", "Close": "16.16", "Open": "9.71"},

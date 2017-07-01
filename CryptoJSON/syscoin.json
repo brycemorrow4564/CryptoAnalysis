@@ -1,4 +1,5 @@
-{ "syscoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "syscoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,521,740", "Market Cap": "104,906,000", "High": "0.206318", "Low": "0.183294", "Date": "Jun 29, 2017", "Close": "0.188309", "Open": "0.199529"},
 {"Volume": "1,566,880", "Market Cap": "100,954,000", "High": "0.201305", "Low": "0.182442", "Date": "Jun 28, 2017", "Close": "0.199493", "Open": "0.192022"},
 {"Volume": "1,810,250", "Market Cap": "106,777,000", "High": "0.203107", "Low": "0.162181", "Date": "Jun 27, 2017", "Close": "0.190576", "Open": "0.203107"},

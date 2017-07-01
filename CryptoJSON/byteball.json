@@ -1,4 +1,5 @@
-{ "byteball": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "byteball",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,223,300", "Market Cap": "201,573,000", "High": "896.57", "Low": "788.06", "Date": "Jun 29, 2017", "Close": "847.87", "Open": "788.96"},
 {"Volume": "1,288,660", "Market Cap": "200,732,000", "High": "802.45", "Low": "720.60", "Date": "Jun 28, 2017", "Close": "799.61", "Open": "785.67"},
 {"Volume": "546,278", "Market Cap": "190,247,000", "High": "780.58", "Low": "686.26", "Date": "Jun 27, 2017", "Close": "780.58", "Open": "744.63"},

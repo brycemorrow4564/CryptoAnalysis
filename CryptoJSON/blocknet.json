@@ -1,4 +1,5 @@
-{ "blocknet": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "blocknet",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "42,230", "Market Cap": "25,157,600", "High": "7.40", "Low": "6.32", "Date": "Jun 29, 2017", "Close": "6.93", "Open": "6.36"},
 {"Volume": "72,378", "Market Cap": "24,785,000", "High": "6.95", "Low": "6.02", "Date": "Jun 28, 2017", "Close": "6.36", "Open": "6.26"},
 {"Volume": "65,425", "Market Cap": "24,769,600", "High": "6.49", "Low": "5.17", "Date": "Jun 27, 2017", "Close": "6.22", "Open": "6.26"},

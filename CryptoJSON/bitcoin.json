@@ -1,4 +1,5 @@
-{ "bitcoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "bitcoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "949,979,000", "Market Cap": "42,150,300,000", "High": "2588.83", "Low": "2510.48", "Date": "Jun 29, 2017", "Close": "2539.32", "Open": "2567.56"},
 {"Volume": "1,183,870,000", "Market Cap": "41,906,700,000", "High": "2603.98", "Low": "2484.42", "Date": "Jun 28, 2017", "Close": "2574.79", "Open": "2553.03"},
 {"Volume": "1,489,790,000", "Market Cap": "40,677,900,000", "High": "2552.45", "Low": "2332.99", "Date": "Jun 27, 2017", "Close": "2552.45", "Open": "2478.45"},

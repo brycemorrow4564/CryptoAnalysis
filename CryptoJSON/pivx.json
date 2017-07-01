@@ -1,4 +1,5 @@
-{ "pivx": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "pivx",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "433,521", "Market Cap": "100,576,000", "High": "1.89", "Low": "1.79", "Date": "Jun 29, 2017", "Close": "1.87", "Open": "1.87"},
 {"Volume": "552,582", "Market Cap": "99,334,700", "High": "1.90", "Low": "1.71", "Date": "Jun 28, 2017", "Close": "1.87", "Open": "1.85"},
 {"Volume": "804,362", "Market Cap": "91,792,000", "High": "1.85", "Low": "1.59", "Date": "Jun 27, 2017", "Close": "1.84", "Open": "1.71"},

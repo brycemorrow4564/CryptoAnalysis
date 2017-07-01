@@ -1,4 +1,5 @@
-{ "ripple": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "ripple",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "89,745,300", "Market Cap": "10,743,200,000", "High": "0.280873", "Low": "0.264175", "Date": "Jun 29, 2017", "Close": "0.265421", "Open": "0.280565"},
 {"Volume": "126,278,000", "Market Cap": "10,545,100,000", "High": "0.281490", "Low": "0.267840", "Date": "Jun 28, 2017", "Close": "0.280455", "Open": "0.275391"},
 {"Volume": "186,951,000", "Market Cap": "10,617,700,000", "High": "0.278810", "Low": "0.251052", "Date": "Jun 27, 2017", "Close": "0.276306", "Open": "0.277288"},

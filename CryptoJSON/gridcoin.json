@@ -1,4 +1,5 @@
-{ "gridcoin": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "gridcoin",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "316,947", "Market Cap": "25,647,900", "High": "0.068750", "Low": "0.059246", "Date": "Jun 29, 2017", "Close": "0.059246", "Open": "0.065711"},
 {"Volume": "395,388", "Market Cap": "24,084,300", "High": "0.068089", "Low": "0.058601", "Date": "Jun 28, 2017", "Close": "0.065558", "Open": "0.061705"},
 {"Volume": "478,747", "Market Cap": "25,836,900", "High": "0.067715", "Low": "0.053243", "Date": "Jun 27, 2017", "Close": "0.061218", "Open": "0.066195"},

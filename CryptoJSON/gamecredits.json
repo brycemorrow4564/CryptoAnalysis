@@ -1,4 +1,5 @@
-{ "gamecredits": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "gamecredits",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,814,910", "Market Cap": "247,603,000", "High": "3.99", "Low": "3.73", "Date": "Jun 29, 2017", "Close": "3.87", "Open": "3.91"},
 {"Volume": "2,540,590", "Market Cap": "239,632,000", "High": "4.03", "Low": "3.54", "Date": "Jun 28, 2017", "Close": "3.93", "Open": "3.79"},
 {"Volume": "3,016,230", "Market Cap": "227,948,000", "High": "3.79", "Low": "3.06", "Date": "Jun 27, 2017", "Close": "3.79", "Open": "3.60"},

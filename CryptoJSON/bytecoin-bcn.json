@@ -1,4 +1,5 @@
-{ "bytecoin-bcn": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "bytecoin-bcn",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "4,828,020", "Market Cap": "425,809,000", "High": "0.002644", "Low": "0.002203", "Date": "Jun 29, 2017", "Close": "0.002256", "Open": "0.002326"},
 {"Volume": "2,606,850", "Market Cap": "420,324,000", "High": "0.002363", "Low": "0.002128", "Date": "Jun 28, 2017", "Close": "0.002300", "Open": "0.002296"},
 {"Volume": "2,587,810", "Market Cap": "434,077,000", "High": "0.002406", "Low": "0.001824", "Date": "Jun 27, 2017", "Close": "0.002261", "Open": "0.002371"},

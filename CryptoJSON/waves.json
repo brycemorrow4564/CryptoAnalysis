@@ -1,4 +1,5 @@
-{ "waves": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "waves",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "1,639,660", "Market Cap": "423,977,000", "High": "4.28", "Low": "3.90", "Date": "Jun 29, 2017", "Close": "3.91", "Open": "4.24"},
 {"Volume": "2,772,690", "Market Cap": "431,391,000", "High": "4.34", "Low": "4.03", "Date": "Jun 28, 2017", "Close": "4.24", "Open": "4.31"},
 {"Volume": "2,439,380", "Market Cap": "395,139,000", "High": "4.31", "Low": "3.66", "Date": "Jun 27, 2017", "Close": "4.29", "Open": "3.95"},

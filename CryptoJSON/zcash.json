@@ -1,4 +1,5 @@
-{ "zcash": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "zcash",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "28,494,500", "Market Cap": "523,837,000", "High": "344.35", "Low": "313.32", "Date": "Jun 29, 2017", "Close": "324.38", "Open": "337.43"},
 {"Volume": "29,121,800", "Market Cap": "508,309,000", "High": "347.13", "Low": "314.24", "Date": "Jun 28, 2017", "Close": "342.61", "Open": "327.43"},
 {"Volume": "43,883,000", "Market Cap": "481,606,000", "High": "331.74", "Low": "274.78", "Date": "Jun 27, 2017", "Close": "328.65", "Open": "310.22"},

@@ -1,4 +1,5 @@
-{ "stratis": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
+{ "name": "stratis",
+ "priceHistory": [{"Volume": "Volume", "Market Cap": "Market Cap", "High": "High", "Low": "Low", "Date": "Date", "Close": "Close", "Open": "Open"},
 {"Volume": "6,378,180", "Market Cap": "685,773,000", "High": "7.02", "Low": "6.17", "Date": "Jun 29, 2017", "Close": "6.59", "Open": "6.97"},
 {"Volume": "6,790,860", "Market Cap": "660,817,000", "High": "7.26", "Low": "6.22", "Date": "Jun 28, 2017", "Close": "6.97", "Open": "6.71"},
 {"Volume": "8,249,570", "Market Cap": "651,371,000", "High": "6.85", "Low": "5.40", "Date": "Jun 27, 2017", "Close": "6.68", "Open": "6.62"},
