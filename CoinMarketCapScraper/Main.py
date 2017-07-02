@@ -6,7 +6,7 @@ import datetime
 import os
 import lxml.html
 import shutil
-import glob
+import locale
 
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -20,6 +20,10 @@ import settings
 def close_and_reset_driver(url):
     settings.driver.close()
     settings.driver = settings.driver_setup(url)
+
+def verify_query_string_url():
+    return settings.queryString in settings.driver.current_url
+
 
 def driver_get_page_timeout_wrapper(url):
     while True: 
@@ -51,7 +55,6 @@ def scrape_rows(fieldnames):
     root = lxml.html.fromstring(thtml)
     xpathOne = 'tbody/tr'
     rows = root.xpath(xpathOne)
-    print 'nums rows ' + str(len(rows))
     rowObjects = list()
     for row in rows:
         cellVals = [c.text for c in row.getchildren()]
@@ -91,18 +94,33 @@ def write_to_csv(rowObjects, fieldnames, coinName):
     writer = csv.DictWriter(csvfile, extrasaction='ignore', fieldnames=fieldnames)
     writer.writeheader()
     for obj in rowObjects:
+        for fieldname in fieldnames: 
+            try: 
+                obj[fieldname] = int(obj[fieldname].replace(',','')) #convert data from string to int if possible else pass 
+            except Exception as e:
+                pass
         writer.writerow(obj)
     csvfile.close()
 
 def write_to_json(fieldnames, coinName): 
     csvfile = open(settings.csvDirRoot + coinName + '.csv', 'r')
     jsonfile = open(str(settings.jsonDirRoot + coinName + '.json'), 'w')
-    reader = [row for row in csv.DictReader(csvfile, fieldnames)]
+    reader = [row for row in csv.DictReader(csvfile, fieldnames)][1:]
     numRows = len(reader)
     jsonfile.write('{ "name": ' + '"' + coinName + '",\n "priceHistory": [' )
-    for i in xrange(numRows): 
+    for i in xrange(numRows): #eliminate last row which is header row for csv
         row = reader[i]
-        json.dump(row, jsonfile)
+        for fieldname in fieldnames[1:]:
+            try: 
+                row[fieldname] = float(row[fieldname]) #this will fail if field should have value but is empty i.e. '-'
+            except Exception as e: 
+                pass
+        try:
+            json.dump(row, jsonfile)
+        except Exception as e: 
+            print "Misclassification of url routing by coinmarketcap"
+            jsonfile.close()
+            return 
         jsonfile.write(',\n' if i != numRows - 1 else '\n')
     jsonfile.write(']}')
     jsonfile.close()
@@ -145,10 +163,14 @@ def run_data_scraper():
     top100Coins = get_top_100_coin_names()
     coinNames = top100Coins
     urls = [settings.main_page_url + coinName + '/historical-data/' + settings.queryString for coinName in top100Coins]
+    #coinRank = {coinNames[i]: i+1 for i in xrange(len(coinNames))}
     for i in xrange(len(coinNames)):
         coinName = coinNames[i]
         url = urls[i]
         driver_get_page_timeout_wrapper(url) #after this you are guaranteed to be on historical data page 
+        if not verify_query_string_url(): 
+            print "Query string was not found in the url for " + coinName
+            continue 
         #Scrape data 
         fieldnames = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap']
         rowObjects = scrape_rows(fieldnames)
@@ -168,7 +190,10 @@ def main():
     settings.driver.close()
 
 if __name__ == '__main__':
+    start_time = time.time()
     main()
+    elapsed_time = time.time() - start_time
+    print elapsed_time
 
 
 

@@ -10,19 +10,22 @@ sap.ui.jsview("sap.crypto.app.views.App", {
 
         this.setDisplayBlock(true);
         var app = new COMPONENT.SplitApp('app');
-        var displayInfo = new COMPONENT.JSView({
-                    viewName: 'sap.crypto.app.views.DisplayInfo'
-                });
+
+        var singleCoinView = new COMPONENT.JSView({
+            viewName: 'sap.crypto.app.views.CoinDetail'
+        });
+
+        var comparisonCoinsView = new COMPONENT.JSView({
+            viewName: 'sap.crypto.app.views.CoinDetail'
+        });
 
         var coinSideBar = new COMPONENT.JSView({
             viewName: 'sap.crypto.app.views.CoinSideBar'
         });
 
-
-        app.setHomeIcon({ 'phone':'phone-icon.png', 'phone@2':'phone-retina.png', 'tablet':'tablet-icon.png', 'tablet@2':'tablet-retina.png', 'icon':'desktop.ico' });
-
         app.addMasterPage(coinSideBar);
-        app.addDetailPage(displayInfo);
+        app.addDetailPage(singleCoinView);
+        app.addDetailPage(comparisonCoinsView);
         return app;
    }
 
