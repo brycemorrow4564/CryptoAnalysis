@@ -2,221 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2422578b-8ef9-4f55-94f5-d11943ee919d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PlotlyTesting/testPlotting.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Webapp/controllers/CoinComparison.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Webapp/controllers/CoinDetail.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Webapp/views/CoinComparison.view.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Webapp/views/CoinDetail.view.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CryptoCSV/cryptonite.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CryptoCSV/ion.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CryptoCSV/mergecoin.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CryptoCSV/vpncoin.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CryptoJSON/cryptonite.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CryptoJSON/ion.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CryptoJSON/mergecoin.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CryptoJSON/vpncoin.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Webapp/controllers/DisplayInfo.controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Webapp/views/DisplayInfo.view.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PlotlyTesting/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoinMarketCapScraper/Main.py" afterPath="$PROJECT_DIR$/CoinMarketCapScraper/Main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/antshares.csv" afterPath="$PROJECT_DIR$/CryptoCSV/antshares.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/ark.csv" afterPath="$PROJECT_DIR$/CryptoCSV/ark.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/asch.csv" afterPath="$PROJECT_DIR$/CryptoCSV/asch.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/bancor.csv" afterPath="$PROJECT_DIR$/CryptoCSV/bancor.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/bitbay.csv" afterPath="$PROJECT_DIR$/CryptoCSV/bitbay.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/bitcoin-plus.csv" afterPath="$PROJECT_DIR$/CryptoCSV/bitcoin-plus.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/bitcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/bitcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/bitcoindark.csv" afterPath="$PROJECT_DIR$/CryptoCSV/bitcoindark.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/bitconnect.csv" afterPath="$PROJECT_DIR$/CryptoCSV/bitconnect.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/bitshares.csv" afterPath="$PROJECT_DIR$/CryptoCSV/bitshares.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/blackcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/blackcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/blocknet.csv" afterPath="$PROJECT_DIR$/CryptoCSV/blocknet.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/burst.csv" afterPath="$PROJECT_DIR$/CryptoCSV/burst.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/byteball.csv" afterPath="$PROJECT_DIR$/CryptoCSV/byteball.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/bytecoin-bcn.csv" afterPath="$PROJECT_DIR$/CryptoCSV/bytecoin-bcn.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/cloakcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/cloakcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/counterparty.csv" afterPath="$PROJECT_DIR$/CryptoCSV/counterparty.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/crown.csv" afterPath="$PROJECT_DIR$/CryptoCSV/crown.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/dash.csv" afterPath="$PROJECT_DIR$/CryptoCSV/dash.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/decred.csv" afterPath="$PROJECT_DIR$/CryptoCSV/decred.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/digibyte.csv" afterPath="$PROJECT_DIR$/CryptoCSV/digibyte.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/digitalnote.csv" afterPath="$PROJECT_DIR$/CryptoCSV/digitalnote.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/dnotes.csv" afterPath="$PROJECT_DIR$/CryptoCSV/dnotes.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/dogecoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/dogecoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/dubaicoin-dbix.csv" afterPath="$PROJECT_DIR$/CryptoCSV/dubaicoin-dbix.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/e-coin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/e-coin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/e-dinar-coin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/e-dinar-coin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/earthcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/earthcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/einsteinium.csv" afterPath="$PROJECT_DIR$/CryptoCSV/einsteinium.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/elastic.csv" afterPath="$PROJECT_DIR$/CryptoCSV/elastic.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/emercoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/emercoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/energycoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/energycoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/ethereum-classic.csv" afterPath="$PROJECT_DIR$/CryptoCSV/ethereum-classic.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/ethereum.csv" afterPath="$PROJECT_DIR$/CryptoCSV/ethereum.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/expanse.csv" afterPath="$PROJECT_DIR$/CryptoCSV/expanse.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/factom.csv" afterPath="$PROJECT_DIR$/CryptoCSV/factom.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/faircoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/faircoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/feathercoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/feathercoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/firstcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/firstcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/gamecredits.csv" afterPath="$PROJECT_DIR$/CryptoCSV/gamecredits.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/gridcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/gridcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/gulden.csv" afterPath="$PROJECT_DIR$/CryptoCSV/gulden.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/heat-ledger.csv" afterPath="$PROJECT_DIR$/CryptoCSV/heat-ledger.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/infinitecoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/infinitecoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/iocoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/iocoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/iota.csv" afterPath="$PROJECT_DIR$/CryptoCSV/iota.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/komodo.csv" afterPath="$PROJECT_DIR$/CryptoCSV/komodo.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/leocoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/leocoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/library-credit.csv" afterPath="$PROJECT_DIR$/CryptoCSV/library-credit.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/lisk.csv" afterPath="$PROJECT_DIR$/CryptoCSV/lisk.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/litecoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/litecoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/lomocoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/lomocoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/luckchain.csv" afterPath="$PROJECT_DIR$/CryptoCSV/luckchain.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/lykke.csv" afterPath="$PROJECT_DIR$/CryptoCSV/lykke.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/monacoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/monacoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/monero.csv" afterPath="$PROJECT_DIR$/CryptoCSV/monero.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/monetaryunit.csv" afterPath="$PROJECT_DIR$/CryptoCSV/monetaryunit.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/mooncoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/mooncoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/mysterium.csv" afterPath="$PROJECT_DIR$/CryptoCSV/mysterium.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/namecoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/namecoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/nav-coin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/nav-coin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/nem.csv" afterPath="$PROJECT_DIR$/CryptoCSV/nem.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/neoscoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/neoscoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/nexus.csv" afterPath="$PROJECT_DIR$/CryptoCSV/nexus.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/novacoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/novacoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/nxt.csv" afterPath="$PROJECT_DIR$/CryptoCSV/nxt.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/omni.csv" afterPath="$PROJECT_DIR$/CryptoCSV/omni.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/peercoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/peercoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/peerplays-ppy.csv" afterPath="$PROJECT_DIR$/CryptoCSV/peerplays-ppy.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/pivx.csv" afterPath="$PROJECT_DIR$/CryptoCSV/pivx.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/potcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/potcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/primecoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/primecoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/quark.csv" afterPath="$PROJECT_DIR$/CryptoCSV/quark.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/radium.csv" afterPath="$PROJECT_DIR$/CryptoCSV/radium.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/reddcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/reddcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/ripple.csv" afterPath="$PROJECT_DIR$/CryptoCSV/ripple.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/salus.csv" afterPath="$PROJECT_DIR$/CryptoCSV/salus.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/shift.csv" afterPath="$PROJECT_DIR$/CryptoCSV/shift.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/siacoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/siacoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/sibcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/sibcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/skycoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/skycoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/steem.csv" afterPath="$PROJECT_DIR$/CryptoCSV/steem.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/stellar.csv" afterPath="$PROJECT_DIR$/CryptoCSV/stellar.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/stratis.csv" afterPath="$PROJECT_DIR$/CryptoCSV/stratis.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/syscoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/syscoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/ubiq.csv" afterPath="$PROJECT_DIR$/CryptoCSV/ubiq.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/verge.csv" afterPath="$PROJECT_DIR$/CryptoCSV/verge.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/vericoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/vericoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/vertcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/vertcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/viacoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/viacoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/voxels.csv" afterPath="$PROJECT_DIR$/CryptoCSV/voxels.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/waves.csv" afterPath="$PROJECT_DIR$/CryptoCSV/waves.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/worldcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/worldcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/ybcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/ybcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/zcash.csv" afterPath="$PROJECT_DIR$/CryptoCSV/zcash.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoCSV/zcoin.csv" afterPath="$PROJECT_DIR$/CryptoCSV/zcoin.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/ALLCOINS.json" afterPath="$PROJECT_DIR$/CryptoJSON/ALLCOINS.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/antshares.json" afterPath="$PROJECT_DIR$/CryptoJSON/antshares.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/ark.json" afterPath="$PROJECT_DIR$/CryptoJSON/ark.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/asch.json" afterPath="$PROJECT_DIR$/CryptoJSON/asch.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/bancor.json" afterPath="$PROJECT_DIR$/CryptoJSON/bancor.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/bitbay.json" afterPath="$PROJECT_DIR$/CryptoJSON/bitbay.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/bitcoin-plus.json" afterPath="$PROJECT_DIR$/CryptoJSON/bitcoin-plus.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/bitcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/bitcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/bitcoindark.json" afterPath="$PROJECT_DIR$/CryptoJSON/bitcoindark.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/bitconnect.json" afterPath="$PROJECT_DIR$/CryptoJSON/bitconnect.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/bitshares.json" afterPath="$PROJECT_DIR$/CryptoJSON/bitshares.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/blackcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/blackcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/blocknet.json" afterPath="$PROJECT_DIR$/CryptoJSON/blocknet.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/burst.json" afterPath="$PROJECT_DIR$/CryptoJSON/burst.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/byteball.json" afterPath="$PROJECT_DIR$/CryptoJSON/byteball.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/bytecoin-bcn.json" afterPath="$PROJECT_DIR$/CryptoJSON/bytecoin-bcn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/cloakcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/cloakcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/counterparty.json" afterPath="$PROJECT_DIR$/CryptoJSON/counterparty.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/crown.json" afterPath="$PROJECT_DIR$/CryptoJSON/crown.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/dash.json" afterPath="$PROJECT_DIR$/CryptoJSON/dash.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/decred.json" afterPath="$PROJECT_DIR$/CryptoJSON/decred.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/digibyte.json" afterPath="$PROJECT_DIR$/CryptoJSON/digibyte.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/digitalnote.json" afterPath="$PROJECT_DIR$/CryptoJSON/digitalnote.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/dnotes.json" afterPath="$PROJECT_DIR$/CryptoJSON/dnotes.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/dogecoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/dogecoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/dubaicoin-dbix.json" afterPath="$PROJECT_DIR$/CryptoJSON/dubaicoin-dbix.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/e-coin.json" afterPath="$PROJECT_DIR$/CryptoJSON/e-coin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/e-dinar-coin.json" afterPath="$PROJECT_DIR$/CryptoJSON/e-dinar-coin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/earthcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/earthcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/einsteinium.json" afterPath="$PROJECT_DIR$/CryptoJSON/einsteinium.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/elastic.json" afterPath="$PROJECT_DIR$/CryptoJSON/elastic.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/emercoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/emercoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/energycoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/energycoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/ethereum-classic.json" afterPath="$PROJECT_DIR$/CryptoJSON/ethereum-classic.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/ethereum.json" afterPath="$PROJECT_DIR$/CryptoJSON/ethereum.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/expanse.json" afterPath="$PROJECT_DIR$/CryptoJSON/expanse.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/factom.json" afterPath="$PROJECT_DIR$/CryptoJSON/factom.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/faircoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/faircoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/feathercoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/feathercoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/firstcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/firstcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/gamecredits.json" afterPath="$PROJECT_DIR$/CryptoJSON/gamecredits.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/gridcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/gridcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/gulden.json" afterPath="$PROJECT_DIR$/CryptoJSON/gulden.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/heat-ledger.json" afterPath="$PROJECT_DIR$/CryptoJSON/heat-ledger.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/infinitecoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/infinitecoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/iocoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/iocoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/iota.json" afterPath="$PROJECT_DIR$/CryptoJSON/iota.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/komodo.json" afterPath="$PROJECT_DIR$/CryptoJSON/komodo.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/leocoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/leocoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/library-credit.json" afterPath="$PROJECT_DIR$/CryptoJSON/library-credit.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/lisk.json" afterPath="$PROJECT_DIR$/CryptoJSON/lisk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/litecoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/litecoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/lomocoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/lomocoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/luckchain.json" afterPath="$PROJECT_DIR$/CryptoJSON/luckchain.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/lykke.json" afterPath="$PROJECT_DIR$/CryptoJSON/lykke.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/monacoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/monacoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/monero.json" afterPath="$PROJECT_DIR$/CryptoJSON/monero.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/monetaryunit.json" afterPath="$PROJECT_DIR$/CryptoJSON/monetaryunit.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/mooncoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/mooncoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/mysterium.json" afterPath="$PROJECT_DIR$/CryptoJSON/mysterium.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/namecoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/namecoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/nav-coin.json" afterPath="$PROJECT_DIR$/CryptoJSON/nav-coin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/nem.json" afterPath="$PROJECT_DIR$/CryptoJSON/nem.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/neoscoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/neoscoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/nexus.json" afterPath="$PROJECT_DIR$/CryptoJSON/nexus.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/novacoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/novacoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/nxt.json" afterPath="$PROJECT_DIR$/CryptoJSON/nxt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/omni.json" afterPath="$PROJECT_DIR$/CryptoJSON/omni.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/peercoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/peercoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/peerplays-ppy.json" afterPath="$PROJECT_DIR$/CryptoJSON/peerplays-ppy.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/pivx.json" afterPath="$PROJECT_DIR$/CryptoJSON/pivx.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/potcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/potcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/primecoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/primecoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/quark.json" afterPath="$PROJECT_DIR$/CryptoJSON/quark.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/radium.json" afterPath="$PROJECT_DIR$/CryptoJSON/radium.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/reddcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/reddcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/ripple.json" afterPath="$PROJECT_DIR$/CryptoJSON/ripple.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/salus.json" afterPath="$PROJECT_DIR$/CryptoJSON/salus.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/shift.json" afterPath="$PROJECT_DIR$/CryptoJSON/shift.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/siacoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/siacoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/sibcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/sibcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/skycoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/skycoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/steem.json" afterPath="$PROJECT_DIR$/CryptoJSON/steem.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/stellar.json" afterPath="$PROJECT_DIR$/CryptoJSON/stellar.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/stratis.json" afterPath="$PROJECT_DIR$/CryptoJSON/stratis.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/syscoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/syscoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/ubiq.json" afterPath="$PROJECT_DIR$/CryptoJSON/ubiq.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/verge.json" afterPath="$PROJECT_DIR$/CryptoJSON/verge.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/vericoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/vericoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/vertcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/vertcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/viacoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/viacoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/voxels.json" afterPath="$PROJECT_DIR$/CryptoJSON/voxels.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/waves.json" afterPath="$PROJECT_DIR$/CryptoJSON/waves.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/worldcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/worldcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/ybcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/ybcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/zcash.json" afterPath="$PROJECT_DIR$/CryptoJSON/zcash.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CryptoJSON/zcoin.json" afterPath="$PROJECT_DIR$/CryptoJSON/zcoin.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" afterPath="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/LocalJsonLoader.js" afterPath="$PROJECT_DIR$/Webapp/Utility/LocalJsonLoader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" afterPath="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/App.view.js" afterPath="$PROJECT_DIR$/Webapp/views/App.view.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js" afterPath="$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ghostdriver.log" afterPath="$PROJECT_DIR$/ghostdriver.log" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -229,47 +16,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.view.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="47" lean-forward="false" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoinSideBar.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoinDetail.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinDetail.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="70" lean-forward="false" selection-start-line="6" selection-start-column="70" selection-end-line="6" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testPlotting.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testPlotting.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PlotlyTesting/testPlotting.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -279,31 +26,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoinDetail.view.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/views/CoinDetail.view.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PlotlyTesting/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+            <state relative-caret-position="559">
+              <caret line="53" column="3" lean-forward="true" selection-start-line="53" selection-start-column="3" selection-end-line="53" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoinComparison.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinComparison.controller.js">
+      <file leaf-file-name="bitcoin.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CryptoJSON/bitcoin.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="54" lean-forward="false" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoinSideBar.view.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="44" lean-forward="false" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+            <state relative-caret-position="720">
+              <caret line="48" column="15" lean-forward="false" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -386,13 +123,16 @@
         <option value="$PROJECT_DIR$/Webapp/controllers/CoinComparison.controller.js" />
         <option value="$PROJECT_DIR$/Webapp/views/CoinDetail.view.js" />
         <option value="$PROJECT_DIR$/Webapp/controllers/CoinDetail.controller.js" />
+        <option value="$PROJECT_DIR$/CryptoJSON/bitcoin.json" />
+        <option value="$PROJECT_DIR$/PlotlyTesting/formatJsonDataToPlot.js" />
+        <option value="$PROJECT_DIR$/PlotlyTesting/index.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="37" />
+    <option name="x" value="48" />
     <option name="y" value="23" />
-    <option name="width" value="1920" />
+    <option name="width" value="1676" />
     <option name="height" value="977" />
   </component>
   <component name="ProjectView">
@@ -419,6 +159,34 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="CryptoAnalysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CryptoAnalysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CryptoAnalysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CryptoAnalysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CryptoAnalysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PlotlyTesting" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -704,7 +472,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="37" y="23" width="1920" height="977" extended-state="0" />
+    <frame x="48" y="23" width="1676" height="977" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -721,7 +489,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23958333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.274463" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -747,21 +515,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/Utility/LocalJsonLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -923,7 +676,6 @@
     <entry file="file://$PROJECT_DIR$/CryptoCSV/bitconnect.csv" />
     <entry file="file://$PROJECT_DIR$/CryptoCSV/antshares.csv" />
     <entry file="file://$PROJECT_DIR$/CryptoCSV/bitcrystals.csv" />
-    <entry file="file://$PROJECT_DIR$/CryptoJSON/bitcoin.json" />
     <entry file="file://$PROJECT_DIR$/CryptoJSON/iota.json" />
     <entry file="file://$PROJECT_DIR$/Webapp/Utility/LocalJsonLoader.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -979,22 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="47" lean-forward="false" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -1039,6 +775,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="26" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="47" lean-forward="false" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CryptoJSON/bitcoin.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="15" lean-forward="false" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PlotlyTesting/formatJsonDataToPlot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PlotlyTesting/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="53" column="3" lean-forward="true" selection-start-line="53" selection-start-column="3" selection-end-line="53" selection-end-column="3" />
           <folding />
         </state>
       </provider>
