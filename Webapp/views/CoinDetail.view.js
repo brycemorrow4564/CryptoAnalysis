@@ -1,4 +1,4 @@
-jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals")
+jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals");
 
 sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
 
@@ -6,11 +6,30 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
       return "sap.crypto.app.controllers.CoinDetail";
    },
 
+
+
    createContent: function(oController) {
 
-        return new COMPONENT.Page({
+        var model = sap.ui.getCore().getModel('CoinToChart');
+
+        var configTableBtn = new COMPONENT.Button({
+            text: "Configure Tables",
+            press: function(evt) {
+                oController.navToTableConfiguration(evt);
+            }
+        });
+
+        var html = new COMPONENT.HTML({
             content: [
-                new COMPONENT.Label({text: 'Main Page'})
+                "<div id='highstockGraph'></div>"
+            ]
+        });
+
+        return new COMPONENT.Page({
+            id: "CoinDetailPage",
+            content: [
+                configTableBtn,
+                html
             ]
         });
    }

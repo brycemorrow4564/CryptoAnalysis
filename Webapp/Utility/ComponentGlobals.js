@@ -9,6 +9,8 @@ jQuery.sap.require('sap.ui.commons.Button');
 jQuery.sap.require('sap.ui.model.json.JSONModel');
 jQuery.sap.require('sap.m.List');
 jQuery.sap.require('sap.m.StandardListItem');
+jQuery.sap.require('sap.m.semantic.DetailPage');
+jQuery.sap.require('sap.ui.table.Table');
 
 var COMPONENT = {
     "SplitApp"          : sap.m.SplitApp,
@@ -22,6 +24,10 @@ var COMPONENT = {
     "App"               : sap.m.App,
     "JSONModel"         : sap.ui.model.json.JSONModel,
     "List"              : sap.m.List,
-    "StandardListItem"  : sap.m.StandardListItem
+    "StandardListItem"  : sap.m.StandardListItem,
+    "HTML"              : sap.ui.core.HTML,
+    "DetailPage"        : sap.m.semantic.DetailPage,
+    "Table"             : sap.ui.table.Table,
+    "Column"            : sap.ui.table.Column
 
 }

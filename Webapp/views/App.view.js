@@ -1,4 +1,4 @@
-jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals")
+jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals");
 
 sap.ui.jsview("sap.crypto.app.views.App", {
 
@@ -9,24 +9,8 @@ sap.ui.jsview("sap.crypto.app.views.App", {
    createContent: function(oController) {
 
         this.setDisplayBlock(true);
-        var app = new COMPONENT.SplitApp('app');
-
-        var singleCoinView = new COMPONENT.JSView({
-            viewName: 'sap.crypto.app.views.CoinDetail'
-        });
-
-        var comparisonCoinsView = new COMPONENT.JSView({
-            viewName: 'sap.crypto.app.views.CoinDetail'
-        });
-
-        var coinSideBar = new COMPONENT.JSView({
-            viewName: 'sap.crypto.app.views.CoinSideBar'
-        });
-
-        app.addMasterPage(coinSideBar);
-        app.addDetailPage(singleCoinView);
-        app.addDetailPage(comparisonCoinsView);
-        return app;
+        this.oApp = new COMPONENT.SplitApp("app", {});
+        return this.oApp;
    }
 
 });

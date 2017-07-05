@@ -1,4 +1,5 @@
 jQuery.sap.require('sap.crypto.app.Utility.LocalJsonLoader');
+jQuery.sap.require('sap.crypto.app.Utility.HighstockJsonFormatter');
 
 sap.ui.define([
    "sap/ui/core/mvc/Controller"
@@ -6,33 +7,31 @@ sap.ui.define([
    "use strict";
    return Controller.extend("sap.crypto.app.controllers.CoinDetail", {
 
-        onInit: function() {
-            var eventBus        = sap.ui.getCore().getEventBus(),
-                data            = JSON_LOADER.get_aggregate_json(),
-                topCoinData     = data['Coins'][0],
-                topCoinModel    = new COMPONENT.JSONModel(topCoinData);
-
-            this.getView().setModel(topCoinModel);
-            eventBus.subscribe('CoinSideBar', 'generateCoinView', this.generateCoinView, this);
+        isSameSet: function(arr1, arr2) {
+          return  $( arr1 ).not( arr2 ).length === 0 && $( arr2 ).not( arr1 ).length === 0;
         },
 
-        //Why is this firing twice for a single event?
-        generateCoinView: function(channel, event, data) {
-            var coinName        = data,
-                data            = JSON_LOADER.get_aggregate_json(),
-                allCoinsData    = data['Coins'];
+        onInit: function() {
+            sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'generateCoinView', this.generateCoinView, this);
+        },
+
+        generateCoinView: function(channel, event, coinNames) {
+
+            var allCoinsData = sap.ui.getCore().getModel("AggregateCoinJson").getProperty("/Coins"),
+                coinDataList = [];
 
             for (var i = 0; i < allCoinsData.length; i++) {
-                if (allCoinsData[i]['name'] == coinName) {
-                    data = allCoinsData[i];
-                    break;
+                if (coinNames.includes(allCoinsData[i]['name'])) {
+                    coinDataList.push(allCoinsData[i]);
                 }
             }
 
-            var coinModel = new COMPONENT.JSONModel(data);
-            this.getView().setModel(coinModel);
-            alert(this.getView().getModel().getJSON());
+            HIGHSTOCK_JSON_FORMATTER.exWhyIfyDataList(coinDataList);
+        },
 
+        navToTableConfiguration: function(evt) {
+            var oRouter = this.getOwnerComponent().getRouter();;
+            oRouter.navTo("ConfigureTable");
         }
 
    });

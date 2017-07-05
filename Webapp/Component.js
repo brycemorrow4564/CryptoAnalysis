@@ -6,15 +6,13 @@ sap.ui.define([
    "use strict";
    return UIComponent.extend("sap.crypto.app.Component", {
         metadata : {
-		    rootView: {
-		        viewName: "sap.crypto.app.views.App",
-		        type: 'JS'
-		    }
+            manifest: "json"
 	    },
         init : function () {
-            // call the init function of the parent
+
             UIComponent.prototype.init.apply(this, arguments);
-            // set i18n model
+            this.getRouter().initialize();
+
             var i18nModel = new ResourceModel({
                 bundleName : "sap.crypto.app.i18n.i18n"
             });

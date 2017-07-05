@@ -23,12 +23,13 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
         var coinList = new COMPONENT.List({
             id: oController.coinListId,
             mode: sap.m.ListMode.MultiSelect,
-            selectionChange: function(evt) { oController.selectionChange(evt) },
-            updateFinished : function(evt) {
-                var firstItem = this.getItems()[0];
-                this.setSelectedItem(firstItem, true);
-                oController.selectionChange(evt);
-            }
+            selectionChange: function(evt) { oController.selectionChange(evt) }
+//            updateFinished : function(evt) {
+//                //selects first item by default
+//                var firstItem = this.getItems()[0];
+//                this.setSelectedItem(firstItem, true);
+//                oController.selectionChange(evt);
+//            }
         }).bindItems({
             path: "/Coins",
             sorter : mcSorter,

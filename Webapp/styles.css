@@ -1,0 +1,10 @@
+#highstockGraph {
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+.highcharts-background {
+    border-style: solid;
+    border-color: #d1e0ee;
+}

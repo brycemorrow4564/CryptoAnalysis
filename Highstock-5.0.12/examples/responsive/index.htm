@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highstock Example</title>
+
+		<style type="text/css">
+#container {
+	min-width: 310px;
+	max-width: 800px;
+}
+		</style>
+	</head>
+	<body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="../../code/highstock.js"></script>
+
+<div id="container"></div>
+
+<button id="large">Large</button>
+<button id="small">Small</button>
+<button id="auto">Auto</button>
+
+
+		<script type="text/javascript">
+Date.prototype.getUnixTime = function() { return this.getTime()/1000|0 };
+if(!Date.now) Date.now = function() { return new Date(); }
+Date.time = function() { return Date.now().getUnixTime(); }
+
+$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
+
+	var coinJson = '';
+	$.ajax({
+		async: false,
+		url: "../../ALLCOINS.json",
+		success: function(jsdata) {
+			coinJson = jsdata;
+		}
+	});
+
+	var coinJson = coinJson['Coins'][0]['priceHistory'],
+		points = [];
+
+	for (var i = coinJson.length - 1; i > 0; i--) {
+		var obj = coinJson[i];
+		var date = obj['Date'].replace(',','').replace(' ','-'),
+			epoch = new Date(date).valueOf();
+		var markCap = obj['Market Cap'];
+		if (isNaN(markCap)) { //if row has no value entry i.e. '-' then skip
+			continue;
+		}
+		points.push([epoch, markCap]);
+	}
+
+	var options = {
+
+		xaxis: {
+			type: 'datetime'
+		},
+
+        chart: {
+            height: 400
+        },
+
+        title: {
+            text: 'Market Cap Over Time'
+        },
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        series: [{
+            name: 'Market Cap',
+            data: points,
+            type: 'area',
+            threshold: null,
+            tooltip: {
+                valueDecimals: 2
+            },
+            fillColor: {
+                linearGradient: {
+                    x1: 1,
+                    y1: 0,
+                    x2: 0,
+                    y2: 1
+                },
+                stops: [
+                    [0, Highcharts.getOptions().colors[0]],
+                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                ]
+            },
+        }],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    chart: {
+                        height: 300
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    navigator: {
+                        enabled: false
+                    }
+                }
+            }]
+        }
+    }
+
+    // Create the chart
+    var chart = Highcharts.stockChart('container', options);
+
+
+    $('#small').click(function () {
+        chart.setSize(400);
+    });
+
+    $('#large').click(function () {
+        chart.setSize(800);
+    });
+
+    $('#auto').click(function () {
+        chart.setSize(null);
+    });
+});
+
+		</script>
+	</body>
+</html>

@@ -23,17 +23,9 @@ sap.ui.define([
                 list = sap.ui.getCore().byId(listId),
                 selectedItems = list.getSelectedItems();
 
-            //coinName(s) will be passed to appropriate view via eventBus
-            if (selectedItems.length == 1) { //If one item selected --> Detail view
-                var coinName = selectedItems[0].getTitle();
-                eventBus.publish('CoinSideBar', 'generateCoinView', coinName);
-            } else { //If more than one item selected --> Comparison view
-                var coinNames = [];
-                selectedItems.forEach(function(item) { coinNames.push(item.getTitle()); });
-                eventBus.publish('CoinSideBar', 'generateCoinViews', coinName);
-            }
-
-
+            var coinNames = [];
+            selectedItems.forEach(function(item) { coinNames.push(item.getTitle()); });
+            eventBus.publish('CoinSideBar', 'generateCoinView', coinNames);
         }
 
    });
