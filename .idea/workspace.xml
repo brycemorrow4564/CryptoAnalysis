@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2422578b-8ef9-4f55-94f5-d11943ee919d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Webapp/Utility/Globals.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" afterPath="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/HighstockJsonFormatter.js" afterPath="$PROJECT_DIR$/Webapp/Utility/HighstockJsonFormatter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/controllers/CoinDetail.controller.js" afterPath="$PROJECT_DIR$/Webapp/controllers/CoinDetail.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" afterPath="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js" afterPath="$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/index.html" afterPath="$PROJECT_DIR$/Webapp/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/CoinDetail.view.js" afterPath="$PROJECT_DIR$/Webapp/views/CoinDetail.view.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js" afterPath="$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" afterPath="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ghostdriver.log" afterPath="$PROJECT_DIR$/ghostdriver.log" />
-    </list>
+    <list default="true" id="2422578b-8ef9-4f55-94f5-d11943ee919d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
