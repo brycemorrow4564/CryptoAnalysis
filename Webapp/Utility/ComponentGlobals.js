@@ -10,6 +10,7 @@ jQuery.sap.require('sap.ui.model.json.JSONModel');
 jQuery.sap.require('sap.m.List');
 jQuery.sap.require('sap.m.StandardListItem');
 jQuery.sap.require('sap.m.semantic.DetailPage');
+jQuery.sap.require('sap.m.MultiComboBox');
 jQuery.sap.require('sap.ui.table.Table');
 
 var COMPONENT = {
@@ -27,7 +28,7 @@ var COMPONENT = {
     "StandardListItem"  : sap.m.StandardListItem,
     "HTML"              : sap.ui.core.HTML,
     "DetailPage"        : sap.m.semantic.DetailPage,
-    "Table"             : sap.ui.table.Table,
-    "Column"            : sap.ui.table.Column
-
+    "Table"             : sap.m.Table,
+    "Column"            : sap.m.Column,
+    "MultiComboBox"     : sap.m.MultiComboBox
 }

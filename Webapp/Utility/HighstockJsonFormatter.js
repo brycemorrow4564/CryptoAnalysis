@@ -1,43 +1,45 @@
 HIGHSTOCK_JSON_FORMATTER = {
 
     //Input should ALWAYS be a list of json coin objects even for a single coin to aid in simplicity of implementation
-    exWhyIfyDataList: function(dataIn) {
+    processAndPlot: function(coinToChartData, coinDataMap) {
 
-        dataIn = Object.prototype.toString.call(dataIn) === '[object Array]' ? dataIn : [dataIn]; //convert to array if single input
-        var pointsArr = []; //array of points objects to be passed to options.series.data
+        for (var i = 0; i < coinToChartData.length; i++) {
+            var coinChartObj    = coinToChartData[i],
+                plotDivId       = coinChartObj['name'],
+                coinList        = coinChartObj['data'],
+                pointsArr       = []; //array of points objects to be passed to options.series.data
 
-        dataIn.forEach(function(coinData) {
+            coinList.forEach(function(coinName) {
+                var priceHist   = coinDataMap[coinName]['priceHistory'],
+                    points      = [];
 
-            var priceHist = coinData['priceHistory'],
-                points = [];
-
-            for (var i = priceHist.length - 1; i > 0; i--) {
-                var rowObj = priceHist[i],
-                    date = rowObj['Date'].replace(',','').replace(' ','-'),
-                    epoch = new Date(date).valueOf(),
-                    markCap = rowObj['Market Cap'];
-                if (isNaN(markCap)) { //if row has no value entry i.e. '-' then skip
-                    continue;
+                for (var x = priceHist.length - 1; x > 0; x--) {
+                    var rowObj = priceHist[x],
+                        date = rowObj['Date'].replace(',','').replace(' ','-'),
+                        epoch = new Date(date).valueOf(),
+                        markCap = rowObj['Market Cap'];
+                    if (isNaN(markCap)) { //if row has no value entry i.e. '-' then skip
+                        continue;
+                    }
+                    points.push([epoch, markCap]);
                 }
-                points.push([epoch, markCap]);
-            }
+                pointsArr.push(points);
+            });
 
-            pointsArr.push(points);
-        });
+            var options = this.getOptions(),
+                series = this.getSeries(),
+                seriesData = [];
 
-        var options = this.getOptions(),
-            series = this.getSeries(),
-            seriesData = [];
+            pointsArr.forEach(function(points) {
+                shallowSeriesObj = Object.assign({}, series); //create shallow copy of series
+                shallowSeriesObj.data = points;
+                seriesData.push(shallowSeriesObj);
+            });
 
-        pointsArr.forEach(function(points) {
-            shallowSeriesObj = Object.assign({}, series); //create shallow copy of series
-            shallowSeriesObj.data = points;
-            seriesData.push(shallowSeriesObj);
-        });
+            options.series = seriesData;
 
-        options.series = seriesData;
-
-        var chart = Highcharts.stockChart('highstockGraph', options);
+            Highcharts.stockChart(plotDivId, options);
+        }
     },
 
     getOptions: function() {

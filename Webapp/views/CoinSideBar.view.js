@@ -8,6 +8,8 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
 
    createContent: function(oController) {
 
+        //Create option to toggle sorter functions based on input from user (price, marketcap, alphabetical, etc.)
+
         var mcSorter = new sap.ui.model.Sorter('priceHistory', null); //sorts items by market cap valuation
 
         mcSorter.fnCompare = function(a, b) {
@@ -23,13 +25,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
         var coinList = new COMPONENT.List({
             id: oController.coinListId,
             mode: sap.m.ListMode.MultiSelect,
-            selectionChange: function(evt) { oController.selectionChange(evt) }
-//            updateFinished : function(evt) {
-//                //selects first item by default
-//                var firstItem = this.getItems()[0];
-//                this.setSelectedItem(firstItem, true);
-//                oController.selectionChange(evt);
-//            }
+            selectionChange: function(evt) { oController.selectionChange(evt); }
         }).bindItems({
             path: "/Coins",
             sorter : mcSorter,
