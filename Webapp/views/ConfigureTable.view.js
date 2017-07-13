@@ -10,16 +10,36 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
 
         var addChartBtn = new COMPONENT.Button({
             text: 'Add Chart',
-            press: function(evt) { oController.addChart(); }
+            width: "100%",
+            press: function(evt) { oController.addChart(); },
+            layoutData: new COMPONENT.GridData({
+                span: "XL4 L6 M6 S8",
+                indent: "XL4 L3 M3 S2"
+            })
         });
 
-        var template = new sap.ui.core.ListItem({
+        var firstRow = new COMPONENT.HorizontalLayout({
+            content: [addChartBtn]
+        });
+
+
+        var removeChartBtn = new COMPONENT.Button({
+            text: "Remove Chart",
+            press: function(evt) { oController.removeChart(); }
+        });
+        var chartTemplate = new sap.ui.core.ListItem({
+            text: '{ConfigCoinToChart>name}'
+        });
+        var selectChartsToRemove = new COMPONENT.MultiComboBox({
+            id: oController.selectChartsToRemoveId
+        }).bindItems('ConfigCoinToChart>/columns', chartTemplate);
+
+        var coinTemplate = new sap.ui.core.ListItem({
             text: '{AllCoins>name}'
         });
-
         var selectMultiCoins = new COMPONENT.MultiComboBox({
             selectionChange: function(evt) { oController.handleChangeAction(evt); },
-        }).bindItems('AllCoins>/coins', template);
+        }).bindItems('AllCoins>/coins', coinTemplate);
 
 
         var chartManager = new COMPONENT.Table({
@@ -56,7 +76,9 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                   oController.navBack();
             },
             content: [
-                addChartBtn,
+                firstRow,
+                selectChartsToRemove,
+                removeChartBtn,
                 selectMultiCoins,
                 chartManager
             ]

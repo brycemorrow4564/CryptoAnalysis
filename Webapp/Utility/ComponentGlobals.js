@@ -30,5 +30,9 @@ var COMPONENT = {
     "DetailPage"        : sap.m.semantic.DetailPage,
     "Table"             : sap.m.Table,
     "Column"            : sap.m.Column,
-    "MultiComboBox"     : sap.m.MultiComboBox
+    "MultiComboBox"     : sap.m.MultiComboBox,
+    "ComboBox"          : sap.m.ComboBox,
+    "HorizontalLayout"  : sap.ui.layout.HorizontalLayout,
+    "LayoutData"        : sap.ui.layout.LayoutData,
+    "GridData"          : sap.ui.layout.GridData
 }

@@ -7,6 +7,17 @@ sap.ui.define([
    "use strict";
    return Controller.extend("sap.crypto.app.controllers.ConfigureTable", {
 
+    /*
+    Functionality for chart configuration
+
+    Add chart button
+    Remove chart dropdown and button to apply action
+
+    dropdown to select action (add/remove from chart)
+    dropdown to select chart to apply action to
+    dropdown to select coins to apply action to
+    */
+        selectChartsToRemoveId: 'ChartsToRemove',
         chartManagerTableId: 'ChartManagerTable',
 
         onInit: function() {
@@ -86,6 +97,54 @@ sap.ui.define([
 
             sap.ui.getCore().getModel("CoinToChart").setData(newData);
             sap.ui.getCore().getModel('CoinToChart').refresh();
+        },
+
+        removeChart: function() {
+
+            var chartsToRemoveList = sap.ui.getCore().byId(this.selectChartsToRemoveId),
+                chartsToRemoveItems = chartsToRemoveList.getSelectedItems(),
+                chartsToRemove = [],
+                globalModel = sap.ui.getCore().getModel('CoinToChart'),
+                configModel = this.getView().getModel('ConfigCoinToChart'),
+                allCoinsModel = this.getView().getModel('AllCoins'),
+                allCoinNames = [],
+                allCoinNamesObjects = [],
+                coinToChartObjects = [],
+                unclickCoinNames = [],
+                allCoinsObj = {},
+                chartCounter = 1;
+
+            chartsToRemoveItems.forEach(function(chartItem) { chartsToRemove.push(chartItem.getText()); });
+
+            globalModel.getProperty('/columns').forEach(function(coinToChartObj) {
+                var chartName = coinToChartObj['name'];
+                if ($.inArray(chartName, chartsToRemove) == -1) { //returns -1 if not in array so we, keep these coins
+                    var coinNames = coinToChartObj['data'];
+                    coinNames.forEach(function(name) {
+                        allCoinNames.push(name);
+                        allCoinNamesObjects.push({"name": name});
+                    });
+                    coinToChartObjects.push({ //redo chart names since we might remove non-consecutive charts
+                        'name': 'Chart ' + chartCounter++,
+                        'data': coinNames
+                    });
+                } else {
+                    //since we are removing this chart, we need to keep track of which coins
+                    //are being removed so we can publish to event bus and unclick in sidebar
+                    unclickCoinNames = unclickCoinNames.concat(coinToChartObj['data']);
+                }
+            });
+
+            //Publish coins to unclick to EventBus
+            sap.ui.getCore().getEventBus().publish('ConfigureTable', 'deselectCoins', {"coins": unclickCoinNames});
+
+            //Set new data and refresh
+            globalModel.setData({'columns': coinToChartObjects});
+            configModel.setData({'columns': coinToChartObjects});
+            allCoinsModel.setData({'coins': allCoinNamesObjects})
+            globalModel.refresh(true);
+            configModel.refresh(true);
+            allCoinsModel.refresh(true);
         }
 
    });

@@ -15,6 +15,7 @@ sap.ui.define([
                 allCoinsModel   = new COMPONENT.JSONModel(data);
 
             this.getView().setModel(allCoinsModel);
+            sap.ui.getCore().getEventBus().subscribe('ConfigureTable', 'deselectCoins', this.deselectCoins, this);
         },
 
         selectionChange: function(evt) {
@@ -95,6 +96,25 @@ sap.ui.define([
 
             eventBus.publish('CoinSideBar', 'generateCoinView'); //CoinDetail subscribes to this event and reacts to model changes
             eventBus.publish('CoinSideBar', 'updateTable'); //Refresh table in ConfigureTable view
+        },
+
+        deselectCoins: function(channel, event, data) {
+
+            var coinList        = sap.ui.getCore().byId(this.coinListId),
+                selectedCoins   = coinList.getSelectedItems();
+
+            data['coins'].forEach(function(coinName) {
+                for (var i = 0; i < selectedCoins.length; i++) {
+                    if (coinName == selectedCoins[i].getTitle()) {
+                        selectedCoins.splice(i,1); //remove item
+                        break;
+                    }
+                }
+            });
+
+            //Clear selection and reselect remaining coins
+            coinList.removeSelections(true);
+            selectedCoins.forEach(function(item) { coinList.setSelectedItem(item, true); })
         }
 
    });
