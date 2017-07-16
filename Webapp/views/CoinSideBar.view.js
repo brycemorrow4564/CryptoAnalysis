@@ -8,6 +8,18 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
 
    createContent: function(oController) {
 
+        var header = new COMPONENT.HeaderContainer({
+            width: "100%",
+            content: [
+                new COMPONENT.Icon({
+                    src: 'sap-icon://database',
+                }).addStyleClass('iconSize'),
+                new COMPONENT.Label({
+                    text: "Select Coins"
+                }).setWidth('10rem')
+            ]
+        }).addStyleClass('centerChildren');
+
         //Create option to toggle sorter functions based on input from user (price, marketcap, alphabetical, etc.)
 
         var mcSorter = new sap.ui.model.Sorter('priceHistory', null); //sorts items by market cap valuation
@@ -24,6 +36,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
 
         var coinList = new COMPONENT.List({
             id: oController.coinListId,
+            title: 'Current',
             mode: sap.m.ListMode.MultiSelect,
             selectionChange: function(evt) { oController.selectionChange(evt); }
         }).bindItems({
@@ -33,6 +46,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
         });
 
         return new COMPONENT.Page({
+            title: 'Select Coins',
             content: [
                 coinList
             ]

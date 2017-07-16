@@ -8,3 +8,38 @@
     border-style: solid;
     border-color: #d1e0ee;
 }
+
+.centerChildren {
+    display: flex;
+    align-items: center;
+}
+
+.chartTableMarker button {
+    margin-right: 5px;
+}
+
+.configPanelMargin {
+    margin: 1% 0 1% 0;
+}
+
+.addChartBtnSpacing {
+    margin-bottom: 0.25rem;
+}
+
+#addChartBtn {
+    color: #FFF;
+    background-color: #5FF6A0;
+}
+
+#addChartBtn > span {
+    color: #FFF;
+}
+
+#removeChartBtn {
+    color: #FFF;
+    background-color: #F56F71;
+}
+
+#removeChartBtn > span {
+    color: #FFF;
+}

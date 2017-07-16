@@ -13,15 +13,27 @@ sap.ui.define([
         onInit: function() {
             //Whenever a change occurs in the CoinSideBar, we must regenerate the coin view with up to date model data
             sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'generateCoinView', this.generateCoinView, this);
+            //Generate coin view whenever we navigate to this page (say from configure table page)
+            //We attach this function after rendering so that we can locate the html divs for plotting
+            var controller = this;
+            this.getView().attachAfterRendering(function(evt, self = controller) {
+                var router = sap.ui.core.UIComponent.getRouterFor(controller);
+                router.attachRouteMatched(controller.generateCoinView, controller);
+                router.fireRouteMatched({
+                    'name': 'CoinDetail'
+                });
+            });
         },
 
         clearPlottingDivs: function() {
             //Called whenever the there is no data to plot. Clears all highstock chart divs
-            $('.CHARTDIV').each(function(index) { $(this).empty(); });
+            $('.CHARTDIV').each(function(index) { var elem = $(this); elem.empty(); });
         },
 
         //Dynamically populate view with coin data using jquery and highstock apis (no model binding is used)
         generateCoinView: function(channel, event) {
+
+            this.clearPlottingDivs();
 
             var allCoinsData = sap.ui.getCore().getModel("AggregateCoinJson").getProperty("/Coins"),
                 coinDataMap = {},
@@ -30,7 +42,6 @@ sap.ui.define([
                 relevantCoinToChartData = [];
 
             if (coinToChartData.length == 0) { //When no items selected, clear plotting divs and exit
-                this.clearPlottingDivs();
                 return;
             }
 
@@ -59,8 +70,7 @@ sap.ui.define([
         },
 
         navToTableConfiguration: function(evt) {
-            var oRouter = this.getOwnerComponent().getRouter();;
-            oRouter.navTo("ConfigureTable");
+            this.getOwnerComponent().getRouter().navTo("ConfigureTable");
         }
 
    });

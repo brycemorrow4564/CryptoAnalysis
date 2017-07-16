@@ -1,5 +1,6 @@
 jQuery.sap.require('sap.crypto.app.Utility.LocalJsonLoader');
 jQuery.sap.require('sap.crypto.app.Utility.HighstockJsonFormatter');
+jQuery.sap.require('sap.crypto.app.Utility.Globals');
 
 sap.ui.define([
    "sap/ui/core/mvc/Controller"
@@ -7,72 +8,55 @@ sap.ui.define([
    "use strict";
    return Controller.extend("sap.crypto.app.controllers.ConfigureTable", {
 
-    /*
-    Functionality for chart configuration
-
-    Add chart button
-    Remove chart dropdown and button to apply action
-
-    dropdown to select action (add/remove from chart)
-    dropdown to select chart to apply action to
-    dropdown to select coins to apply action to
-    */
-        selectChartsToRemoveId: 'ChartsToRemove',
-        chartManagerTableId: 'ChartManagerTable',
+        selectChartsId      : 'ChartsToRemove',
+        selectDefaultChartId: 'DefaultChart',
+        selectCoinsId       : 'CoinsToRemove',
+        chartManagerTableId : 'ChartManagerTable',
+        allCoinsModelId     : 'AllCoins',
+        coinToChartModelId  : 'CoinToChart',
 
         onInit: function() {
 
-            var coinToChartModel = sap.ui.getCore().getModel('CoinToChart'),
-                view = this.getView(),
-                allCoinNames = [],
-                allCoinNamesObjects = [],
-                allCoinsObj = {};
-
-            coinToChartModel.getProperty('/columns').forEach(function(coinToChartObj) {
-                var coinNames = coinToChartObj['data'];
-                coinNames.forEach(function(name) {
-                    allCoinNames.push(name);
-                    allCoinNamesObjects.push({"name": name});
-                });
-            });
-
-            allCoinsObj.coins = allCoinNamesObjects;
-
-            //Copy data from model on core locally. Use event bus to keep this model updated when core model changes.
-            this.getView().setModel(coinToChartModel, 'ConfigCoinToChart');
-            this.getView().setModel(new COMPONENT.JSONModel(allCoinsObj), 'AllCoins');
-
-            sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'updateTable', this.updateTable, this);
+            /* Setup AllCoins model, which is used to display list of all coin names for batch action.
+               Data will be loaded into this model via onRouteMatched. It will also be updated when selection
+               events occur in the CoinSideBar view. */
+            this.getView().setModel(new COMPONENT.JSONModel({}), this.allCoinsModelId);
+            sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
+            sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'updateAllCoins', this.updateAllCoins, this);
         },
 
-        updateTable: function() {
+        onRouteMatched: function(oEvent) {
 
-            var coinToChartModel = sap.ui.getCore().getModel('CoinToChart'),
-                allCoinNames = [],
-                allCoinNamesObjects = [],
-                allCoinsObj = {};
+            var coinToChartModel    = sap.ui.getCore().getModel(this.coinToChartModelId),
+                allCoinNamesObjects = [];
 
             coinToChartModel.getProperty('/columns').forEach(function(coinToChartObj) {
-                var coinNames = coinToChartObj['data'];
-                coinNames.forEach(function(name) {
-                    allCoinNames.push(name);
-                    allCoinNamesObjects.push({"name": name});
-                });
+                coinToChartObj['data'].forEach(function(coinName) { allCoinNamesObjects.push({"name": coinName}); });
             });
 
-            var configModel = this.getView().getModel("ConfigCoinToChart"),
-                allCoinsModel = this.getView().getModel('AllCoins');
-
-            configModel.setData(JSON.parse(coinToChartModel.getJSON()));
-            allCoinsModel.setData({'coins': allCoinNamesObjects})
-
-            configModel.refresh(true);
-            allCoinsModel.refresh(true);
+            this.getView().getModel(this.allCoinsModelId).setData({'coins': allCoinNamesObjects});
         },
 
-        navBack: function(evt) {
-            var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("");
+        updateAllCoins: function() {
+
+            this.onRouteMatched();
+        },
+
+        setDefaultChart: function(oEvent) {
+            try {
+                var selectChartList = sap.ui.getCore().byId(this.selectDefaultChartId),
+                    newDefault = selectChartList.getSelectedItem().getText();
+                GLOBALS.defaultChartId = newDefault;
+                selectChartList.setSelectedItem(null);
+            } catch (err) {
+                //This will catch exceptions when no item is selected. If this is the case we do nothing.
+                console.log(err);
+            }
+        },
+
+        navToCoinDetail: function(evt) {
+
+            this.getOwnerComponent().getRouter().navTo("CoinDetail");
         },
 
         /*  This method allows users to add a new chart from the configure tables view. This adds a new entry
@@ -81,38 +65,31 @@ sap.ui.define([
         addChart: function() {
 
             var chartManagerTable   = sap.ui.getCore().byId(this.chartManagerTableId),
-                numRows             = chartManagerTable.getItems().length,
-                label               = "Chart " + (numRows + 1),
-                coinToChartModel    = sap.ui.getCore().getModel('CoinToChart'),
-                currData            = coinToChartModel.getProperty('/'),
-                colList             = currData['columns'],
-                newChartData        = {},
-                newData             = {};
+                label               = "Chart " + (chartManagerTable.getItems().length + 1),
+                coinToChartModel    = sap.ui.getCore().getModel(this.coinToChartModelId),
+                colList             = coinToChartModel.getProperty('/')['columns'];
 
-            //Update model data
-            newChartData["name"] = label;
-            newChartData["data"] = [];
-            colList.push(newChartData);
-            newData.columns = colList;
+            colList.push({
+                "name": label,
+                "data": []
+            });
 
-            sap.ui.getCore().getModel("CoinToChart").setData(newData);
-            sap.ui.getCore().getModel('CoinToChart').refresh();
+            coinToChartModel.setData({'columns': colList});
+            coinToChartModel.refresh(true);
         },
 
-        removeChart: function() {
+        removeCharts: function() {
 
-            var chartsToRemoveList = sap.ui.getCore().byId(this.selectChartsToRemoveId),
+            var chartsToRemoveList  = sap.ui.getCore().byId(this.selectChartsId),
                 chartsToRemoveItems = chartsToRemoveList.getSelectedItems(),
-                chartsToRemove = [],
-                globalModel = sap.ui.getCore().getModel('CoinToChart'),
-                configModel = this.getView().getModel('ConfigCoinToChart'),
-                allCoinsModel = this.getView().getModel('AllCoins'),
-                allCoinNames = [],
+                chartsToRemove      = [],
+                globalModel         = sap.ui.getCore().getModel(this.coinToChartModelId),
+                allCoinsModel       = this.getView().getModel(this.allCoinsModelId),
                 allCoinNamesObjects = [],
-                coinToChartObjects = [],
-                unclickCoinNames = [],
-                allCoinsObj = {},
-                chartCounter = 1;
+                coinToChartObjects  = [],
+                unclickCoinNames    = [],
+                allCoinsObj         = {},
+                chartCounter        = 1;
 
             chartsToRemoveItems.forEach(function(chartItem) { chartsToRemove.push(chartItem.getText()); });
 
@@ -121,7 +98,6 @@ sap.ui.define([
                 if ($.inArray(chartName, chartsToRemove) == -1) { //returns -1 if not in array so we, keep these coins
                     var coinNames = coinToChartObj['data'];
                     coinNames.forEach(function(name) {
-                        allCoinNames.push(name);
                         allCoinNamesObjects.push({"name": name});
                     });
                     coinToChartObjects.push({ //redo chart names since we might remove non-consecutive charts
@@ -140,11 +116,122 @@ sap.ui.define([
 
             //Set new data and refresh
             globalModel.setData({'columns': coinToChartObjects});
-            configModel.setData({'columns': coinToChartObjects});
             allCoinsModel.setData({'coins': allCoinNamesObjects})
+
             globalModel.refresh(true);
-            configModel.refresh(true);
             allCoinsModel.refresh(true);
+
+            //Deselect all charts in combo box
+            chartsToRemoveList.setSelectedItems([]);
+        },
+
+        generateCoinCells: function(sId,oContext) {
+
+            var data = oContext.oModel.getProperty(oContext.sPath),
+                chartName = data['name'],
+                coins = data['data'],
+                buttons = [];
+
+            for (var i = 0; i < coins.length; i++) {
+                buttons.push(
+                    new COMPONENT.Button({
+                        text: coins[i],
+                    }).addStyleClass('chartTableBtnMarker')
+                );
+            }
+
+            return new sap.m.ColumnListItem({
+                cells: [
+                    new COMPONENT.Label({
+                        text : {'path': 'CoinToChart>name'}
+                    }),
+                    new COMPONENT.HorizontalLayout({
+                        width: '100%',
+                        allowWrapping: true,
+                        content: buttons
+                    }).addStyleClass('CoinContainerMarker')
+                ]
+            });
+        },
+
+        removeCoins: function() {
+
+            //Get List control, get selected items, and extract text to get the names of clicked coins
+            var selectCoins = sap.ui.getCore().byId(this.selectCoinsId),
+                selectedOptions = selectCoins.getSelectedItems(),
+                selectedCoinNames = [];
+
+            selectedOptions.forEach(function(option) { selectedCoinNames.push(option.getText()); });
+
+            //Now that we know which coins to remove. We get all models that need to be altered and begin this process.
+            var globalModel = sap.ui.getCore().getModel(this.coinToChartModelId),
+                allCoinsModel = this.getView().getModel(this.allCoinsModelId),
+                allCoinNamesObjects = [],
+                coinToChartObjects = [],
+                unclickCoinNames = [],
+                allCoinsObj = {};
+
+            globalModel.getProperty('/columns').forEach(function(coinToChartObj) {
+                var chartName = coinToChartObj['name'],
+                    coins = coinToChartObj['data'],
+                    keepCoins = [];
+                for (var i = 0; i < coins.length; i++) {
+                    if ($.inArray(coins[i], selectedCoinNames) == -1) { //returns -1 if not in array so we, keep these coins
+                        allCoinNamesObjects.push({"name": coins[i]});
+                        keepCoins.push(coins[i]);
+                    }
+                }
+                coinToChartObjects.push({
+                    "name": chartName,
+                    "data": keepCoins
+                });
+            });
+
+            //Publish coins to unclick to EventBus
+            sap.ui.getCore().getEventBus().publish('ConfigureTable', 'deselectCoins', {"coins": selectedCoinNames});
+
+            //Set new data and refresh
+            globalModel.setData({'columns': coinToChartObjects});
+            allCoinsModel.setData({'coins': allCoinNamesObjects})
+
+            globalModel.refresh(true);
+            allCoinsModel.refresh(true);
+
+            //Deselect items in combo box
+            selectCoins.setSelectedItems([]);
+        },
+
+        moveCoinsToChart(coinNames, newChart) {
+
+            var globalModel = sap.ui.getCore().getModel(this.coinToChartModelId),
+                coinToChartObjects = [];
+
+            globalModel.getProperty('/columns').forEach(function(coinToChartObj) {
+                var chartName = coinToChartObj['name'],
+                    coins = coinToChartObj['data'],
+                    keepCoins = [];
+                if (chartName == newChart) {
+                    coinToChartObjects.push({
+                        "name": chartName,
+                        "data": coinNames.concat(coins)
+                    });
+                } else {
+                    for (var i = 0; i < coins.length; i++) {
+                        if ($.inArray(coins[i], coinNames) == -1) { //returns -1 if not in array so we, keep these coins
+                            keepCoins.push(coins[i]);
+                        }
+                    }
+                    coinToChartObjects.push({
+                        "name": chartName,
+                        "data": keepCoins
+                    });
+                }
+
+            });
+
+            //Set new data and refresh
+            globalModel.setData({'columns': coinToChartObjects});
+            globalModel.refresh(true);
         }
 
    });

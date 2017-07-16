@@ -11,7 +11,13 @@ jQuery.sap.require('sap.m.List');
 jQuery.sap.require('sap.m.StandardListItem');
 jQuery.sap.require('sap.m.semantic.DetailPage');
 jQuery.sap.require('sap.m.MultiComboBox');
+jQuery.sap.require('sap.m.ComboBox');
+jQuery.sap.require('sap.m.Toolbar');
+jQuery.sap.require('sap.m.ObjectHeader');
 jQuery.sap.require('sap.ui.table.Table');
+jQuery.sap.require('sap.ui.layout.Grid');
+jQuery.sap.require('sap.ui.core.Icon');
+
 
 var COMPONENT = {
     "SplitApp"          : sap.m.SplitApp,
@@ -23,6 +29,8 @@ var COMPONENT = {
     "Button"            : sap.ui.commons.Button,
     "Page"              : sap.m.Page,
     "App"               : sap.m.App,
+    "ObjectHeader"      : sap.m.ObjectHeader,
+    "Toolbar"           : sap.m.Toolbar,
     "JSONModel"         : sap.ui.model.json.JSONModel,
     "List"              : sap.m.List,
     "StandardListItem"  : sap.m.StandardListItem,
@@ -32,7 +40,11 @@ var COMPONENT = {
     "Column"            : sap.m.Column,
     "MultiComboBox"     : sap.m.MultiComboBox,
     "ComboBox"          : sap.m.ComboBox,
+    "HeaderContainer"   : sap.m.HeaderContainer,
+    "Icon"              : sap.ui.core.Icon,
     "HorizontalLayout"  : sap.ui.layout.HorizontalLayout,
+    "Grid"              : sap.ui.layout.Grid,
+    "VerticalLayout"    : sap.ui.layout.VerticalLayout,
     "LayoutData"        : sap.ui.layout.LayoutData,
     "GridData"          : sap.ui.layout.GridData
 }

@@ -87,7 +87,7 @@ sap.ui.define([
 
             //Reset model data on core after performing necessary changes
             sap.ui.getCore().getModel('CoinToChart').setData({'columns': data})
-            sap.ui.getCore().getModel('CoinToChart').refresh();
+            sap.ui.getCore().getModel('CoinToChart').refresh(true);
 
             var eventBus = sap.ui.getCore().getEventBus(),
                 listId = evt.getParameters()['id'],
@@ -95,7 +95,7 @@ sap.ui.define([
                 selectedItems = list.getSelectedItems();
 
             eventBus.publish('CoinSideBar', 'generateCoinView'); //CoinDetail subscribes to this event and reacts to model changes
-            eventBus.publish('CoinSideBar', 'updateTable'); //Refresh table in ConfigureTable view
+            eventBus.publish('CoinSideBar', 'updateAllCoins'); //Refresh table in ConfigureTable view
         },
 
         deselectCoins: function(channel, event, data) {

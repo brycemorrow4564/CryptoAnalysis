@@ -26,6 +26,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
         });
 
         return new COMPONENT.Page({
+            showHeader: false,
             id: oController.detailPageId,
             content: [
                 configTableBtn,
