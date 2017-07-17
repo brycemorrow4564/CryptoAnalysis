@@ -8,12 +8,18 @@ sap.ui.define([
    "use strict";
    return Controller.extend("sap.crypto.app.controllers.ConfigureTable", {
 
-        selectChartsId      : 'ChartsToRemove',
+        chartMode           : 'chart',
+        coinMode            : 'coin',
         selectDefaultChartId: 'DefaultChart',
-        selectCoinsId       : 'CoinsToRemove',
         chartManagerTableId : 'ChartManagerTable',
         allCoinsModelId     : 'AllCoins',
         coinToChartModelId  : 'CoinToChart',
+        removeRowId         : 'RemoveRow',
+        removeCoinId        : 'RemoveCoin',
+        removeChartId       : 'RemoveChart',
+        removeSelectorId    : 'RemoveSelector',
+        segButtonsId        : 'SegButtons',
+        vertLayoutId        : 'VertLayout',
 
         onInit: function() {
 
@@ -80,7 +86,7 @@ sap.ui.define([
 
         removeCharts: function() {
 
-            var chartsToRemoveList  = sap.ui.getCore().byId(this.selectChartsId),
+            var chartsToRemoveList  = sap.ui.getCore().byId(this.removeSelectorId),
                 chartsToRemoveItems = chartsToRemoveList.getSelectedItems(),
                 chartsToRemove      = [],
                 globalModel         = sap.ui.getCore().getModel(this.coinToChartModelId),
@@ -157,7 +163,7 @@ sap.ui.define([
         removeCoins: function() {
 
             //Get List control, get selected items, and extract text to get the names of clicked coins
-            var selectCoins = sap.ui.getCore().byId(this.selectCoinsId),
+            var selectCoins = sap.ui.getCore().byId(this.removeSelectorId),
                 selectedOptions = selectCoins.getSelectedItems(),
                 selectedCoinNames = [];
 
@@ -232,7 +238,49 @@ sap.ui.define([
             //Set new data and refresh
             globalModel.setData({'columns': coinToChartObjects});
             globalModel.refresh(true);
-        }
+        },
 
+        getCoinTemplate: function() {
+            var item = new sap.ui.core.ListItem();
+            return item.bindProperty('text', 'AllCoins>name');
+        },
+
+        getChartTemplate: function() {
+            var item = new sap.ui.core.ListItem();
+            return item.bindProperty('text', 'CoinToChart>name');
+        },
+
+        switchComboBox: function(newComboId) {
+
+            var currCombo = sap.ui.getCore().byId(this.removeRowId).getContent()[0];
+
+            if (newComboId == this.coinMode) {
+                //activate coin combo selector
+                currCombo.bindItems(this.allCoinsModelId + '>/coins', this.getCoinTemplate());
+            } else {
+                //activate chart combo selector
+                currCombo.bindItems(this.coinToChartModelId + '>/columns', this.getChartTemplate());
+            }
+
+            this.getView().getModel(this.allCoinsModelId).refresh(true);
+            this.getView().getModel(this.coinToChartModelId).refresh(true);
+        },
+
+        removeChartOrCoin: function() {
+
+            var segBtns = sap.ui.getCore().byId(this.segButtonsId),
+                selectedId = segBtns.getSelectedButton();
+
+            switch(selectedId) {
+                case this.removeChartId:
+                    this.removeCharts();
+                    break;
+                case this.removeCoinId:
+                    this.removeCoins();
+                    break;
+                default:
+                    throw "Unrecognized remove button id"
+            }
+        }
    });
 });

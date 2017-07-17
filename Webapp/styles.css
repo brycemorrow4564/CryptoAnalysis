@@ -26,20 +26,63 @@
     margin-bottom: 0.25rem;
 }
 
-#addChartBtn {
-    color: #FFF;
-    background-color: #5FF6A0;
+.removeBtnBorderRadiusRight span.sapMBtnInner {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-#addChartBtn > span {
-    color: #FFF;
+.removeBtnBorderRadiusLeft span.sapMBtnInner {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-#removeChartBtn {
-    color: #FFF;
-    background-color: #F56F71;
+#VertLayout div.sapUiVltCell:first-child > div {
+    margin-bottom: 0;
 }
 
-#removeChartBtn > span {
-    color: #FFF;
+#RemoveChart {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#ChartManagerTable button {
+    height: 2rem;
+}
+
+#ChartManagerTable button > span {
+    font-size: 0.7rem;
+    height: 1.67rem;
+    min-width: 1.67rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+#ChartManagerTable {
+    margin: 0 auto;
+}
+
+#ChartManagerTable table {
+    border: 1px solid #d1e0ee;
+}
+
+#ChartManagerTable label {
+    color: #346187;
+}
+
+#ChartManagerTable th {
+    background-color: #eff4f9;
+    border-bottom: 1px solid #d1e0ee;
+}
+
+#ChartManagerTable td {
+    border-bottom: 0;
+    vertical-align: middle;
+}
+
+#ChartManagerTable td > label {
+    padding-top: 5%; 
+}
+
+#ChartManagerTable tr:first-child td {
+    border-top: 0;
 }

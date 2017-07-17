@@ -9,48 +9,44 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
    createContent: function(oController) {
 
         var addChartBtn = new COMPONENT.Button({
-                id: 'addChartBtn',
                 text: 'Add Chart',
-                icon: 'sap-icon://kpi-corporate-performance',
                 press: function(evt) { oController.addChart(); },
                 width: "100%",
-                height: '40px', //hard coding this works because the controls it is associated with are NOT responsive
                 layoutData : new COMPONENT.GridData({
                   span : "XL8 L8 M10 S10",
                   indent: "XL2 L2 M1 S1"
                 })
-            }).addStyleClass('addChartBtnColor');
-        var firstRow = new COMPONENT.Grid({
+            }).addStyleClass('addChartBtnColor'),
+            firstRow = new COMPONENT.Grid({
                 hSpacing: 0,
                 vSpacing: 0,
                 width: "100%",
                 content: [addChartBtn]
             }).addStyleClass('addChartBtnSpacing');
 
-        //Used for multiple combo boxes that display items as all chart names in CoinToChart model
+
         var chartTemplate = new sap.ui.core.ListItem({
                 text: '{' + oController.coinToChartModelId + '>name}'
-            });
-
-        var selectDefaultChart = new COMPONENT.ComboBox({
+            }),
+            selectDefaultChart = new COMPONENT.ComboBox({
                 id: oController.selectDefaultChartId,
                 width: '100%',
                 layoutData : new COMPONENT.GridData({
-                  span : "XL6 L6 M6 S6",
+                  span : "XL5 L4 M5 S5",
                   indent: "XL2 L2 M1 S1"
                 })
-            }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate);
-        var setDefaultBtn = new COMPONENT.Button({
+            }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate),
+            setDefaultBtn = new COMPONENT.Button({
                 text: "Set Default Chart",
-                icon: 'sap-icon://opportunity',
+                tooltip: 'tests',
                 width: "100%",
-                height: '40px',
                 press: function(oEvent) { oController.setDefaultChart(oEvent); },
                 layoutData : new COMPONENT.GridData({
-                  span : "XL2 L2 M4 S4",
+                  span : "XL3 L4 M5 S4",
+                  indent: 'XL0 L0 M0 S0'
                 })
-            });
-        var row = new COMPONENT.Grid({
+            }).addStyleClass('removeBtnBorderRadiusLeft'),
+            secondRow = new COMPONENT.Grid({
                 hSpacing: 0,
                 vSpacing: 0,
                 width: "100%",
@@ -58,76 +54,65 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                     selectDefaultChart,
                     setDefaultBtn
                 ]
-            }).addStyleClass('centerChildren');
+            });
 
 
-        var selectChartsToRemove = new COMPONENT.MultiComboBox({
-                id: oController.selectChartsId,
+        var removeBtn = new COMPONENT.Button({
+                text: "Remove",
+                width: "100%",
+                press: function(oEvent) { oController.removeChartOrCoin() },
+                layoutData : new COMPONENT.GridData({
+                  span : "XL1 L2 M2 S3",
+                  indent: 'XL0 L0 M0 S0'
+                })
+            }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('removeBtnBorderRadiusRight'),
+            segBtns = new COMPONENT.SegmentedButton({
+                id: oController.segButtonsId,
+                width: '100%',
+                buttons: [
+                    new COMPONENT.Button({
+                        id: oController.removeChartId,
+                        icon: 'sap-icon://line-chart',
+                        width: "50%",
+                        press: function(evt) { oController.switchComboBox(oController.chartMode); }
+                    }),
+                    new COMPONENT.Button({
+                        id: oController.removeCoinId,
+                        icon: 'sap-icon://lead',
+                        width: "50%",
+                        press: function(evt) { oController.switchComboBox(oController.coinMode); }
+                    })
+                ],
+                layoutData : new COMPONENT.GridData({
+                  span : "XL2 L2 M3 S3",
+                })
+            }),
+            removeSelector = new COMPONENT.MultiComboBox({
+                id: oController.removeSelectorId,
                 width: '100%',
                 layoutData : new COMPONENT.GridData({
-                  span : "XL6 L6 M6 S6",
+                  span : "XL5 L4 M5 S5",
                   indent: "XL2 L2 M1 S1"
                 })
-            }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate);
-        var removeChartBtn = new COMPONENT.Button({
-                id: 'removeChartBtn', 
-                text: "Remove Chart(s)",
-                icon: 'sap-icon://line-chart',
-                width: "100%",
-                height: '40px',
-                press: function(evt) { oController.removeCharts(); },
-                layoutData : new COMPONENT.GridData({
-                  span : "XL2 L2 M4 S4",
-                })
-            });
-        var secondRow = new COMPONENT.Grid({
+            }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate),
+            thirdRow = new COMPONENT.Grid({
+                id: oController.removeRowId,
                 hSpacing: 0,
                 vSpacing: 0,
                 width: "100%",
                 content: [
-                    selectChartsToRemove,
-                    removeChartBtn
-                ]
-            }).addStyleClass('centerChildren');
-
-
-        var coinTemplate = new sap.ui.core.ListItem({
-                text: '{' + oController.allCoinsModelId + '>name}'
-            });
-        var selectMultiCoins = new COMPONENT.MultiComboBox({
-                width: "100%",
-                id: oController.selectCoinsId,
-                layoutData : new COMPONENT.GridData({
-                  span : "XL6 L6 M6 S6",
-                  indent: "XL2 L2 M1 S1"
-                })
-            }).bindItems(oController.allCoinsModelId + '>/coins', coinTemplate);
-        var removeCoinsBtn = new COMPONENT.Button({
-                text: "Remove Coin(s)",
-                icon: 'sap-icon://lead',
-                width: '100%',
-                height: '40px',
-                press: function(evt) { oController.removeCoins(); },
-                layoutData : new COMPONENT.GridData({
-                  span : "XL2 L2 M4 S4",
-                })
-            });
-        var thirdRow = new COMPONENT.Grid({
-                hSpacing: 0,
-                vSpacing: 0,
-                width: "100%",
-                content: [
-                    selectMultiCoins,
-                    removeCoinsBtn
+                    removeSelector,
+                    removeBtn,
+                    segBtns
                 ]
             }).addStyleClass('centerChildren');
 
 
         var vertLayout = new COMPONENT.VerticalLayout({
+                id: oController.vertLayoutId,
                 width: "100%",
                 content: [
                     firstRow,
-                    row,
                     secondRow,
                     thirdRow
                 ]
@@ -135,6 +120,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
 
         var chartManager = new COMPONENT.Table({
                 id: oController.chartManagerTableId,
+                width: '94%',
                 columns: [
                     new COMPONENT.Column({
                         header: new COMPONENT.Label({
@@ -187,6 +173,8 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 }
             })
         }
+
+        console.log(chartManager.getHeaderToolbar());
 
         return new COMPONENT.Page({
             showNavButton: true,

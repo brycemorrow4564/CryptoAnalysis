@@ -8,18 +8,6 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
 
    createContent: function(oController) {
 
-        var header = new COMPONENT.HeaderContainer({
-            width: "100%",
-            content: [
-                new COMPONENT.Icon({
-                    src: 'sap-icon://database',
-                }).addStyleClass('iconSize'),
-                new COMPONENT.Label({
-                    text: "Select Coins"
-                }).setWidth('10rem')
-            ]
-        }).addStyleClass('centerChildren');
-
         //Create option to toggle sorter functions based on input from user (price, marketcap, alphabetical, etc.)
 
         var mcSorter = new sap.ui.model.Sorter('priceHistory', null); //sorts items by market cap valuation
