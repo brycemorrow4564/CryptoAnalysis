@@ -1,55 +1,74 @@
-#highstockGraph {
-    width: 85%;
-    margin: 0 auto;
-    margin-top: 5%;
+/*
+SIDE BAR STYLING
+*/
+
+#app-Master { /* Sets defined width for coin list sidebar */
+    width: 220px;
 }
 
-.highcharts-background {
-    border-style: solid;
-    border-color: #d1e0ee;
+#CoinList-listUl li { /* Styles each list element (but not labels) in the coin list */
+    background-color: #eff4f9;
+    border-bottom: 1px solid #ffffff;
 }
 
-.centerChildren {
+#CoinList-listUl div.sapMSLITitleOnly { /* Styles labels in coin list */
+    transition: color .4s ease;
+    color: #346187; !important
+}
+
+#CoinList-listUl > li:hover div.sapMSLITitleOnly { /* Hover style for coin list labels */
+    color: #bfbfbf; !important
+}
+
+/*
+CONFIG PANEL FORMATTING
+*/
+
+#__page0-intHeader { /* Colors config page header */
+    background-color: #eff4f9;
+}
+
+.centerChildren { /* Keeps buttons inline with combo boxes in config settings */
     display: flex;
     align-items: center;
 }
 
-.chartTableMarker button {
+.chartTableMarker button { /* Provides spacing between each button element added to chart config table */
     margin-right: 5px;
 }
 
-.configPanelMargin {
+:not(.sapMBtnDisabled)>.sapMBtnDefault.sapMBtnInner.sapMBtnActive { /* overrides active state for config buttons during dragging */
+    background-image: none;
+    background-color: #f7f7f7;
+    border-color: #ababab;
+    color: #346187;
+    text-shadow: none;
+}
+
+.configPanelMargin { /* spacing within div for config panel */
     margin: 1% 0 1% 0;
 }
 
-.addChartBtnSpacing {
-    margin-bottom: 0.25rem;
-}
-
-.removeBtnBorderRadiusRight span.sapMBtnInner {
+.removeBtnBorderRadiusRight span.sapMBtnInner { /* rounds the right side borders of an element */
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.removeBtnBorderRadiusLeft span.sapMBtnInner {
+.removeBtnBorderRadiusLeft span.sapMBtnInner { /* rounds the left side borders of an element */
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-#VertLayout div.sapUiVltCell:first-child > div {
-    margin-bottom: 0;
-}
-
-#RemoveChart {
+#RemoveChart { /* Directly applied border rounding style since icon buttons have different html structure */
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-#ChartManagerTable button {
+#ChartManagerTable button { /* Changes spacing when there are multiple rows of buttons in one td of config table */
     height: 2rem;
 }
 
-#ChartManagerTable button > span {
+#ChartManagerTable button > span { /* Changes size of all buttons added to config table */
     font-size: 0.7rem;
     height: 1.67rem;
     min-width: 1.67rem;
@@ -57,32 +76,71 @@
     align-items: center;
 }
 
-#ChartManagerTable {
+#ChartManagerTable { /* Margins for config table */
     margin: 0 auto;
 }
 
-#ChartManagerTable table {
+#ChartManagerTable table { /* Border for config table */
     border: 1px solid #d1e0ee;
 }
 
-#ChartManagerTable label {
+#ChartManagerTable label { /* Text coloring for config table */
     color: #346187;
 }
 
-#ChartManagerTable th {
+#ChartManagerTable th { /* Styling for header row of config table */
     background-color: #eff4f9;
     border-bottom: 1px solid #d1e0ee;
 }
 
-#ChartManagerTable td {
+#ChartManagerTable td { /* Styling and formatting for each of the table entries */
     border-bottom: 0;
     vertical-align: middle;
 }
 
-#ChartManagerTable td > label {
-    padding-top: 5%; 
+#ChartManagerTable td > label { /* Spacing to compensate for sap styling. Allows chart label to be vertically centered in table */
+    padding-top: 5%;
 }
 
-#ChartManagerTable tr:first-child td {
+#ChartManagerTable td:first-child { /* Colors text for "No Data" when there are no chart entries */
+    color: #346187;
+}
+
+#ChartManagerTable tr:first-child td { /* Removes default sap border styling from first table element */
     border-top: 0;
 }
+
+/* media queries for config page */
+
+@media screen and (max-width: 770px) and (min-width: 720px) {
+    .configBtnMedia > span > span {
+        font-size: .7rem;
+    }
+
+    #RemoveChart-img, #RemoveCoin-img  {
+        font-size: 1.15rem;
+    }
+}
+
+@media screen and (max-width: 719px) and (min-width: 630px) {
+    .configBtnMedia > span > span {
+        font-size: .6rem;
+    }
+
+    #RemoveChart-img, #RemoveCoin-img {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 629px) and (min-width: 0px) {
+    .configBtnMedia > span > span {
+        font-size: .5rem;
+    }
+
+    #RemoveChart-img, #RemoveCoin-img {
+        font-size: .83rem;
+    }
+}
+
+
+

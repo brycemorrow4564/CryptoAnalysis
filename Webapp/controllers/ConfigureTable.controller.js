@@ -141,7 +141,7 @@ sap.ui.define([
             for (var i = 0; i < coins.length; i++) {
                 buttons.push(
                     new COMPONENT.Button({
-                        text: coins[i],
+                        text: coins[i]
                     }).addStyleClass('chartTableBtnMarker')
                 );
             }
@@ -252,7 +252,8 @@ sap.ui.define([
 
         switchComboBox: function(newComboId) {
 
-            var currCombo = sap.ui.getCore().byId(this.removeRowId).getContent()[0];
+            var core = sap.ui.getCore(),
+                currCombo = core.byId(this.removeRowId).getContent()[0];
 
             if (newComboId == this.coinMode) {
                 //activate coin combo selector
@@ -281,6 +282,31 @@ sap.ui.define([
                 default:
                     throw "Unrecognized remove button id"
             }
+        },
+
+        resetConfig: function() {
+
+            var globalModel = sap.ui.getCore().getModel(this.coinToChartModelId),
+                allCoinsModel = this.getView().getModel(this.allCoinsModelId);
+
+            globalModel.setData({
+                'columns': [
+                    {
+                        'name': 'Chart 1',
+                        'data': []
+                    }
+                ]
+            });
+            allCoinsModel.setData({'coins': []});
+
+            sap.ui.getCore().getEventBus().publish('ConfigureTable', 'deselectAllCoins');
+
+            globalModel.refresh(true);
+            allCoinsModel.refresh(true);
         }
    });
 });
+
+
+
+

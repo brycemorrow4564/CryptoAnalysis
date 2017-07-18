@@ -7,8 +7,9 @@ sap.ui.define([
    "use strict";
    return Controller.extend("sap.crypto.app.controllers.CoinSideBar", {
 
-        coinListId:     'CoinList',
-        allCoinsModelId: 'AllCoins',
+        coinListId      : 'CoinList',
+        allCoinsModelId : 'AllCoins',
+        pageId          : "SidebarPage",
 
         onInit: function() {
             var data            = JSON_LOADER.get_aggregate_json(),
@@ -16,20 +17,42 @@ sap.ui.define([
 
             this.getView().setModel(allCoinsModel);
             sap.ui.getCore().getEventBus().subscribe('ConfigureTable', 'deselectCoins', this.deselectCoins, this);
+            sap.ui.getCore().getEventBus().subscribe('ConfigureTable', 'deselectAllCoins', this.deselectAllCoins, this);
         },
 
-        selectionChange: function(evt) {
+        checkBoxClick: function(evt) {
 
             var itemClicked = evt.getParameters().listItem,
                 itemStatus = itemClicked.isSelected(),
-                coinName = itemClicked.getTitle();
+                coinName = itemClicked.getTitle(),
+                numSelectedItems = evt.getSource().getSelectedItems().length;
+
+            this.selectionChange(itemClicked, itemStatus, coinName, numSelectedItems);
+        },
+
+        listItemClick: function(evt) {
+
+            //Events are different so we have to make some alterations when list item, rather than checkbox is clicked
+            var itemClicked = evt.getSource(),
+                itemStatus = !itemClicked.isSelected(),
+                coinName = itemClicked.getTitle(),
+                list = sap.ui.getCore().byId(this.coinListId),
+                numSelectedItems = list.getSelectedItems().length + (itemStatus ? 1 : 0);
+
+            list.setSelectedItem(itemClicked, itemStatus);
+
+            this.selectionChange(itemClicked, itemStatus, coinName, numSelectedItems);
+
+        },
+
+        selectionChange: function(itemClicked, itemStatus, coinName, numSelectedItems) {
 
             var coinToChartModel = sap.ui.getCore().getModel("CoinToChart"),
                 data = coinToChartModel.getProperty('/columns');
 
             //Make conditional changes to coinToChart model
             if (!itemStatus) { //If item was unselected, we need to remove the coin name from the table config model
-                if (evt.getSource().getSelectedItems().length == 0) { //special case if no items are selected
+                if (numSelectedItems == 0) { //special case if no items are selected
                     data = [];
                 } else {
                     var targetList = -1,
@@ -89,10 +112,7 @@ sap.ui.define([
             sap.ui.getCore().getModel('CoinToChart').setData({'columns': data})
             sap.ui.getCore().getModel('CoinToChart').refresh(true);
 
-            var eventBus = sap.ui.getCore().getEventBus(),
-                listId = evt.getParameters()['id'],
-                list = sap.ui.getCore().byId(listId),
-                selectedItems = list.getSelectedItems();
+            var eventBus = sap.ui.getCore().getEventBus();
 
             eventBus.publish('CoinSideBar', 'generateCoinView'); //CoinDetail subscribes to this event and reacts to model changes
             eventBus.publish('CoinSideBar', 'updateAllCoins'); //Refresh table in ConfigureTable view
@@ -115,6 +135,20 @@ sap.ui.define([
             //Clear selection and reselect remaining coins
             coinList.removeSelections(true);
             selectedCoins.forEach(function(item) { coinList.setSelectedItem(item, true); })
+        },
+
+        deselectAllCoins: function(channel, event) {
+            sap.ui.getCore().byId(this.coinListId).removeSelections(true);
+        },
+
+        onLiveChange: function(oEvent) {
+
+            var data = oEvent.getSource().getValue(),
+                filter = new sap.ui.model.Filter('name', sap.ui.model.FilterOperator.StartsWith, data),
+                list = sap.ui.getCore().byId(this.coinListId),
+                oBinding = list.getBinding('items');
+
+            oBinding.filter([filter]);
         }
 
    });

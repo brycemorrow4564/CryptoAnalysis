@@ -8,21 +8,35 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
 
    createContent: function(oController) {
 
+//        var customHeader = new COMPONENT.
+
         var addChartBtn = new COMPONENT.Button({
                 text: 'Add Chart',
                 press: function(evt) { oController.addChart(); },
                 width: "100%",
                 layoutData : new COMPONENT.GridData({
-                  span : "XL8 L8 M10 S10",
+                  span : "XL3 L3 M4 S4",
                   indent: "XL2 L2 M1 S1"
                 })
-            }).addStyleClass('addChartBtnColor'),
-            firstRow = new COMPONENT.Grid({
+            }).addStyleClass('configBtnMedia'),
+            resetConfigBtn = new COMPONENT.Button({
+                text: 'Reset Config',
+                press: function(evt) { oController.resetConfig(); },
+                width: "100%",
+                layoutData : new COMPONENT.GridData({
+                    span : "XL3 L3 M4 S4",
+                    indent: "XL2 L2 M2 S2"
+                })
+            }).addStyleClass('configBtnMedia'),
+            thirdRow = new COMPONENT.Grid({
                 hSpacing: 0,
                 vSpacing: 0,
                 width: "100%",
-                content: [addChartBtn]
-            }).addStyleClass('addChartBtnSpacing');
+                content: [
+                    addChartBtn,
+                    resetConfigBtn
+                ]
+            });
 
 
         var chartTemplate = new sap.ui.core.ListItem({
@@ -42,11 +56,11 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 width: "100%",
                 press: function(oEvent) { oController.setDefaultChart(oEvent); },
                 layoutData : new COMPONENT.GridData({
-                  span : "XL3 L4 M5 S4",
+                  span : "XL3 L4 M5 S5",
                   indent: 'XL0 L0 M0 S0'
                 })
-            }).addStyleClass('removeBtnBorderRadiusLeft'),
-            secondRow = new COMPONENT.Grid({
+            }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('configBtnMedia'),
+            firstRow = new COMPONENT.Grid({
                 hSpacing: 0,
                 vSpacing: 0,
                 width: "100%",
@@ -62,26 +76,26 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 width: "100%",
                 press: function(oEvent) { oController.removeChartOrCoin() },
                 layoutData : new COMPONENT.GridData({
-                  span : "XL1 L2 M2 S3",
+                  span : "XL1 L2 M2 S2",
                   indent: 'XL0 L0 M0 S0'
                 })
-            }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('removeBtnBorderRadiusRight'),
+            }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('removeBtnBorderRadiusRight').addStyleClass('configBtnMedia'),
             segBtns = new COMPONENT.SegmentedButton({
                 id: oController.segButtonsId,
                 width: '100%',
                 buttons: [
                     new COMPONENT.Button({
                         id: oController.removeChartId,
-                        icon: 'sap-icon://line-chart',
+                        icon: 'sap-icon://area-chart',
                         width: "50%",
                         press: function(evt) { oController.switchComboBox(oController.chartMode); }
-                    }),
+                    }).addStyleClass('configIconBtnMedia'),
                     new COMPONENT.Button({
                         id: oController.removeCoinId,
                         icon: 'sap-icon://lead',
                         width: "50%",
                         press: function(evt) { oController.switchComboBox(oController.coinMode); }
-                    })
+                    }).addStyleClass('configIconBtnMedia')
                 ],
                 layoutData : new COMPONENT.GridData({
                   span : "XL2 L2 M3 S3",
@@ -95,7 +109,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                   indent: "XL2 L2 M1 S1"
                 })
             }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate),
-            thirdRow = new COMPONENT.Grid({
+            secondRow = new COMPONENT.Grid({
                 id: oController.removeRowId,
                 hSpacing: 0,
                 vSpacing: 0,
@@ -147,7 +161,10 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
             }
             $("#" + oController.chartManagerTableId + " button").draggable({
                 cancel: false, //buttons disallowed for draggable by default so we deactivate this property
-                helper: 'clone' //drags a clone of the button rather than the original element.
+                helper: 'clone', //drags a clone of the button rather than the original element.
+                drag: function(event, ui) {
+                    $(event.target).removeClass('sapMBtnActive');
+                }
             });
 
             $("#" + oController.chartManagerTableId + " td").droppable({
@@ -167,14 +184,14 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                             oController.moveCoinsToChart([coinName], newChart);
                         }
                     } else {
+                        alert('here');
+                        console.log($('#' + ui.draggable.context.id));
                         return;
                     }
 
                 }
             })
         }
-
-        console.log(chartManager.getHeaderToolbar());
 
         return new COMPONENT.Page({
             showNavButton: true,

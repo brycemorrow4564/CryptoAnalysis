@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2422578b-8ef9-4f55-94f5-d11943ee919d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" afterPath="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" afterPath="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js" afterPath="$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/index.html" afterPath="$PROJECT_DIR$/Webapp/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/styles.css" afterPath="$PROJECT_DIR$/Webapp/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/App.view.js" afterPath="$PROJECT_DIR$/Webapp/views/App.view.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js" afterPath="$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" afterPath="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" />
     </list>
@@ -21,8 +25,38 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Webapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="604">
-              <caret line="42" column="91" lean-forward="false" selection-start-line="42" selection-start-column="91" selection-end-line="42" selection-end-column="91" />
+            <state relative-caret-position="150">
+              <caret line="10" column="68" lean-forward="false" selection-start-line="10" selection-start-column="68" selection-end-line="10" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComponentGlobals.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoinSideBar.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-53">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.view.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -31,28 +65,8 @@
       <file leaf-file-name="ConfigureTable.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfigureTable.view.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="111" column="45" lean-forward="false" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoinSideBar.view.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="41" lean-forward="false" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+            <state relative-caret-position="2160">
+              <caret line="144" column="59" lean-forward="false" selection-start-line="144" selection-start-column="59" selection-end-line="144" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -61,8 +75,18 @@
       <file leaf-file-name="styles.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Webapp/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="82" column="21" lean-forward="false" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+            <state relative-caret-position="300">
+              <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigureTable.view.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="165" column="42" lean-forward="false" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -79,36 +103,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setvisibi</find>
-      <find>setvisibil</find>
-      <find>setvisibili</find>
-      <find>setvisibilit</find>
-      <find>setvisibility</find>
-      <find>oController</find>
-      <find>t</find>
-      <find>thr</find>
-      <find>throw</find>
-      <find>allCoinsModelid</find>
-      <find>cent</find>
-      <find>centerC</find>
-      <find>centerChild</find>
-      <find>centerChildre</find>
-      <find>centerChildren</find>
+      <find>res</find>
+      <find>resi</find>
+      <find>250</find>
+      <find>deselect</find>
+      <find>allcoinsmodelid</find>
+      <find>consol</find>
+      <find>console.og</find>
+      <find>console.o</find>
+      <find>console.lo</find>
+      <find>co</find>
+      <find>con</find>
+      <find>console</find>
+      <find>console.</find>
+      <find>console.l</find>
+      <find>console.log</find>
+      <find>d</find>
+      <find>drop</find>
+      <find>dropp</find>
+      <find>droppa</find>
+      <find>droppab</find>
+      <find>allCoinsModelId</find>
+      <find>droppable</find>
+      <find>C</find>
+      <find>Chart</find>
+      <find>cells</find>
+      <find>chartTableBtn</find>
       <find>c</find>
-      <find>cente</find>
       <find>center</find>
-      <find>center</find>
-      <find>centerc</find>
       <find>centerchild</find>
       <find>centerchildren</find>
-      <find>visibil</find>
-      <find>s</find>
-      <find>sapui</find>
-      <find>sapuire</find>
-      <find>sapuires</find>
-      <find>border</find>
-      <find>removeCoins</find>
-      <find>vert</find>
     </findStrings>
     <replaceStrings>
       <replace>MarketCap</replace>
@@ -176,17 +200,17 @@
         <option value="$PROJECT_DIR$/Webapp/views/detailpage.view.js" />
         <option value="$PROJECT_DIR$/Webapp/manifest.json" />
         <option value="$PROJECT_DIR$/Webapp/views/masterpage.view.js" />
-        <option value="$PROJECT_DIR$/Webapp/views/App.view.js" />
         <option value="$PROJECT_DIR$/Webapp/Utility/HighstockJsonFormatter.js" />
         <option value="$PROJECT_DIR$/Webapp/Utility/Globals.js" />
         <option value="$PROJECT_DIR$/Webapp/views/Home.view.js" />
         <option value="$PROJECT_DIR$/Webapp/controllers/Home.controller.js" />
         <option value="$PROJECT_DIR$/Webapp/controllers/CoinDetail.controller.js" />
-        <option value="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" />
         <option value="$PROJECT_DIR$/Webapp/views/CoinDetail.view.js" />
         <option value="$PROJECT_DIR$/Webapp/index.html" />
         <option value="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" />
+        <option value="$PROJECT_DIR$/Webapp/views/App.view.js" />
         <option value="$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js" />
+        <option value="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" />
         <option value="$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js" />
         <option value="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" />
         <option value="$PROJECT_DIR$/Webapp/styles.css" />
@@ -759,14 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/views/Home.view.js" />
     <entry file="file://$PROJECT_DIR$/Webapp/controllers/Home.controller.js" />
     <entry file="file://$PROJECT_DIR$/Webapp/manifest.json">
@@ -785,22 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/views/CoinDetail.view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="45" lean-forward="false" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinDetail.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -809,50 +809,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="39" column="21" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="42" column="91" lean-forward="false" selection-start-line="42" selection-start-column="91" selection-end-line="42" selection-end-column="91" />
+        <state relative-caret-position="150">
+          <caret line="10" column="68" lean-forward="false" selection-start-line="10" selection-start-column="68" selection-end-line="10" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="41" lean-forward="false" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+        <state relative-caret-position="975">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="2" selection-end-line="72" selection-end-column="16" />
+          <folding>
+            <marker date="1500396963000" expanded="true" signature="2126:2470" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js">
+    <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="-53">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/views/CoinDetail.view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="33" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="111" column="45" lean-forward="false" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
+        <state relative-caret-position="748">
+          <caret line="165" column="42" lean-forward="false" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2160">
+          <caret line="144" column="59" lean-forward="false" selection-start-line="144" selection-start-column="59" selection-end-line="144" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="82" column="21" lean-forward="false" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+        <state relative-caret-position="300">
+          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding />
         </state>
       </provider>

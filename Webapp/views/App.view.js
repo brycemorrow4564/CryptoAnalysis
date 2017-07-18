@@ -9,7 +9,11 @@ sap.ui.jsview("sap.crypto.app.views.App", {
    createContent: function(oController) {
 
         this.setDisplayBlock(true);
-        this.oApp = new COMPONENT.SplitApp("app", {});
+        this.oApp = new COMPONENT.SplitApp("app", {
+            layoutData: new COMPONENT.SplitterLayoutData({
+                resizable: true
+            })
+        });
         return this.oApp;
    }
 

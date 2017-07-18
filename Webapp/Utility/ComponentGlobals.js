@@ -15,14 +15,17 @@ jQuery.sap.require('sap.m.MultiComboBox');
 jQuery.sap.require('sap.m.ComboBox');
 jQuery.sap.require('sap.m.Popover');
 jQuery.sap.require('sap.m.Toolbar');
+jQuery.sap.require('sap.m.SearchField');
 jQuery.sap.require('sap.m.ObjectHeader');
 jQuery.sap.require('sap.ui.table.Table');
 jQuery.sap.require('sap.ui.layout.Grid');
 jQuery.sap.require('sap.ui.core.Icon');
+jQuery.sap.require('sap.ui.layout.SplitterLayoutData');
 
 
 var COMPONENT = {
     "SplitApp"          : sap.m.SplitApp,
+    "SplitterLayoutData": sap.ui.layout.SplitterLayoutData,
     "View"              : sap.ui.core.mvc.View,
     "MasterPage"        : sap.m.semantic.MasterPage,
     "DetailPage"        : sap.m.semantic.DetailPage,
@@ -31,6 +34,7 @@ var COMPONENT = {
     "Button"            : sap.m.Button,
     "SegmentedButton"   : sap.m.SegmentedButton,
     "Page"              : sap.m.Page,
+    "SearchField"       : sap.m.SearchField,
     "Popover"           : sap.m.Popover,
     "App"               : sap.m.App,
     "ObjectHeader"      : sap.m.ObjectHeader,
