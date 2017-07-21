@@ -59,6 +59,16 @@ CONFIG PANEL FORMATTING
     border-bottom-left-radius: 0;
 }
 
+#RemoveSelector {
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem;
+}
+
+#DefaultChart, #DefaultChart-inner { /* Need to include inner here as well due to structural semantic */
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem;
+}
+
 #RemoveChart { /* Directly applied border rounding style since icon buttons have different html structure */
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -142,5 +152,20 @@ CONFIG PANEL FORMATTING
     }
 }
 
+/*
+Highstock Graph Formatting
+*/
 
+.CHARTDIV {
+    width: 86%;
+    margin: 0 auto 3% auto;
+    border: 1px solid #346187;
+}
 
+#CoinDetailPage div.CHARTDIV:not(.hideChart):first-of-type {
+    margin-top: 1.5%;
+}
+
+.hideChart {
+    display: none;
+}

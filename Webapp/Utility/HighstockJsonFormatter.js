@@ -1,7 +1,18 @@
 HIGHSTOCK_JSON_FORMATTER = {
 
-    //Input should ALWAYS be a list of json coin objects even for a single coin to aid in simplicity of implementation
-    processAndPlot: function(coinToChartData, coinDataMap) {
+    //Input should ALWAYS be a list of json coin objects even for a single coin to simplify implementation
+    processAndPlot: function(coinToChartData, coinDataMap, dataMode) {
+
+        //Hide all divs. We will show the ones with information in them later on
+        var chartNamesPlotted = [];
+        $('.CHARTDIV').addClass('hideChart');
+
+        // Load the fonts
+        Highcharts.createElement('link', {
+           href: 'https://fonts.googleapis.com/css?family=Dosis:400,600',
+           rel: 'stylesheet',
+           type: 'text/css'
+        }, null, document.getElementsByTagName('head')[0]);
 
         for (var i = 0; i < coinToChartData.length; i++) {
             var coinChartObj    = coinToChartData[i],
@@ -17,50 +28,74 @@ HIGHSTOCK_JSON_FORMATTER = {
                     var rowObj = priceHist[x],
                         date = rowObj['Date'].replace(',','').replace(' ','-'),
                         epoch = new Date(date).valueOf(),
-                        markCap = rowObj['Market Cap'];
-                    if (isNaN(markCap)) { //if row has no value entry i.e. '-' then skip
+                        d = rowObj[dataMode];
+                    if (isNaN(d)) { //if row has no value entry i.e. '-' then skip
                         continue;
                     }
-                    points.push([epoch, markCap]);
+                    points.push([epoch, d]);
                 }
                 pointsArr.push(points);
             });
 
-            var options = this.getOptions(),
-                series = this.getSeries(),
+            var options = this.getOptions(plotDivId, dataMode),
                 seriesData = [];
 
-            pointsArr.forEach(function(points) {
-                shallowSeriesObj = Object.assign({}, series); //create shallow copy of series
-                shallowSeriesObj.data = points;
-                seriesData.push(shallowSeriesObj);
-            });
+            //coinList and pointsArr have the same length and there is 1 to 1 between coinname and data
+            for (var y = 0; y < coinList.length; y++) {
+                var coinName = coinList[y],
+                    points = pointsArr[y];
+
+                seriesData.push({
+                     name: coinName,
+                     type: 'line',
+                     data: points
+                });
+            }
 
             options.series = seriesData;
-
             Highcharts.stockChart(plotDivId, options);
+            chartNamesPlotted.push(plotDivId);
         }
+
+        //Unhide charts that we have plotted
+        $('.CHARTDIV').each(function() {
+            if ($.inArray($(this)[0].id, chartNamesPlotted) != -1) {
+                $(this).removeClass('hideChart');
+            }
+        })
     },
 
-    getOptions: function() {
+    getOptions: function(chartName, dataMode) {
 
-        var options = {
-            colors: ["#6794a7", "#014d64", "#76c0c1",
-                     "#01a2d9", "#7ad2f6", "#00887d",
-                     "#adadad", "#7bd3f6", "#7c260b",
-                     "#ee8f71", "#76c0c1", "#a18376"],
+        return {
+            rangeSelector: {
+                selected: 1
+            },
+            colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee',
+                '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'
+            ],
             credits: {
                 enabled: false
             },
             tooltip: {
-                backgroundColor: "#FFFFFF",
-                borderColor: "#76c0c1",
-                style: {
-                    color: "#000000"
-                }
+                borderWidth: 0,
+                backgroundColor: 'rgba(219,219,216,0.8)',
+                shadow: false,
+                split: true
             },
             xaxis: {
-                type: 'datetime'
+                type: 'datetime',
+                gridLineWidth: 1,
+                labels: {
+                    style: {
+                        fontSize: '12px'
+                    }
+                }
+            },
+            plotOptions: {
+                candlestick: {
+                    lineColor: '#404048'
+                }
             },
             yaxis: {
                 gridLineColor: "#FFFFFF",
@@ -68,27 +103,38 @@ HIGHSTOCK_JSON_FORMATTER = {
                 minorGridLineColor: "#FFFFFF",
                 tickColor: "#D7D7D8",
                 tickWidth: 1,
+                minorTickInterval: 'auto',
                 title: {
                     style: {
-                        color: "#A0A0A3"
+                        textTransform: 'uppercase'
+                    }
+                },
+                labels: {
+                    style: {
+                        fontSize: '12px'
                     }
                 }
             },
             chart: {
                 height: 400,
-                backgroundColor: "#eff4f9",
+                backgroundColor: null,
                 borderColor: "#000000",
                 style: {
-                    fontFamily: "Droid Sans",
+                    fontFamily: "Dosis, sans-serif",
                     color: "#3C3C3C"
                 }
             },
             title: {
-                text: 'Market Cap Over Time',
+                text: chartName,
                 align: 'left',
                 style: {
-                    fontWeight: 'bold'
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase'
                 }
+            },
+            subtitle: {
+                text: dataMode
             },
             labels: {
                 style: {
@@ -111,13 +157,17 @@ HIGHSTOCK_JSON_FORMATTER = {
                     }
                 }
             },
-            legendBackgroundColor: "rgba(0, 0, 0, 0.5)",
+            legend: {
+                itemStyle: {
+                    fontWeight: 'bold',
+                    fontSize: '13px'
+                }
+            },
             background2: "#505053",
             dataLabelsColor: "#B0B0B3",
             textColor: "#C0C0C0",
             contrastTextColor: "#F0F0F3",
             maskColor: "rgba(255,255,255,0.3)",
-            //series: [{data: points}, {data: points2}],
             responsive: {
                 rules: [{
                     condition: {
@@ -127,9 +177,9 @@ HIGHSTOCK_JSON_FORMATTER = {
                         chart: {
                             height: 300
                         },
-                        subtitle: {
-                            text: null
-                        },
+//                        subtitle: {
+//                            text: null
+//                        },
                         navigator: {
                             enabled: false
                         }
@@ -137,34 +187,5 @@ HIGHSTOCK_JSON_FORMATTER = {
                 }]
             }
         };
-
-        return options;
     },
-
-    getSeries: function() {
-
-        var series = {
-            name: 'Market Cap',
-            type: 'area',
-            threshold: null,
-            tooltip: {
-                valueDecimals: 2
-            },
-            fillColor: {
-                linearGradient: {
-                    x1: 1,
-                    y1: 0,
-                    x2: 0,
-                    y2: 1
-                },
-                stops: [
-                    [0, Highcharts.getOptions().colors[0]],
-                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                ]
-            }
-        };
-
-        return series;
-    }
-
 }

@@ -1,5 +1,6 @@
 jQuery.sap.require('sap.crypto.app.Utility.LocalJsonLoader');
 jQuery.sap.require('sap.crypto.app.Utility.HighstockJsonFormatter');
+$.sap.require('sap.crypto.app.Utility.Globals');
 
 sap.ui.define([
    "sap/ui/core/mvc/Controller"
@@ -35,29 +36,19 @@ sap.ui.define([
 
             this.clearPlottingDivs();
 
-            var allCoinsData = sap.ui.getCore().getModel("AggregateCoinJson").getProperty("/Coins"),
+            var core = sap.ui.getCore(),
+                allCoinsData = core.getModel(GLOBALS.aggCoinModelId).getProperty("/Coins"),
                 coinDataMap = {},
                 coinNames = [],
-                coinToChartData = sap.ui.getCore().getModel("CoinToChart").getProperty('/columns'),
-                relevantCoinToChartData = [];
+                coinToChartData = core.getModel(GLOBALS.coinChartModelId).getProperty('/columns'),
+                dataMode = core.getModel(GLOBALS.dataModeModelId).getProperty('/active');
 
             if (coinToChartData.length == 0) { //When no items selected, clear plotting divs and exit
                 return;
             }
 
             for (var i = 0; i < coinToChartData.length; i++) {
-                var chartDataObj = coinToChartData[i],
-                    chartName = chartDataObj['name'],
-                    chartCoinNames = chartDataObj['data'];
-
-                //If we have added a chart to the model but there is no data associated with it, do NOT plot the chart
-                if (chartCoinNames.length != 0) {
-                    var obj = {};
-                    obj.name = chartName;
-                    obj.data = chartCoinNames;
-                    relevantCoinToChartData.push(obj);
-                    coinNames = coinNames.concat(chartCoinNames);
-                }
+                coinNames = coinNames.concat(coinToChartData[i]['data']);
             }
 
             for (var i = 0; i < allCoinsData.length; i++) {
@@ -66,7 +57,7 @@ sap.ui.define([
                 }
             }
 
-            HIGHSTOCK_JSON_FORMATTER.processAndPlot(relevantCoinToChartData, coinDataMap);
+            HIGHSTOCK_JSON_FORMATTER.processAndPlot(coinToChartData, coinDataMap, dataMode);
         },
 
         navToTableConfiguration: function(evt) {

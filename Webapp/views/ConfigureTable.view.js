@@ -1,4 +1,5 @@
 jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals");
+jQuery.sap.require("sap.crypto.app.Utility.Globals");
 
 sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
 
@@ -7,8 +8,6 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
    },
 
    createContent: function(oController) {
-
-//        var customHeader = new COMPONENT.
 
         var addChartBtn = new COMPONENT.Button({
                 text: 'Add Chart',
@@ -28,7 +27,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                     indent: "XL2 L2 M2 S2"
                 })
             }).addStyleClass('configBtnMedia'),
-            thirdRow = new COMPONENT.Grid({
+            addChartResetConfigRow = new COMPONENT.Grid({
                 hSpacing: 0,
                 vSpacing: 0,
                 width: "100%",
@@ -38,6 +37,37 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 ]
             });
 
+        var modeTemplate = new sap.ui.core.ListItem({
+                text: '{' + oController.dataModeModelId + '>name}'
+            }),
+            dataModeSelector = new COMPONENT.ComboBox({
+                id: oController.dataModeSelectorId,
+                width: '100%',
+                layoutData : new COMPONENT.GridData({
+                  span : "XL5 L4 M5 S5",
+                  indent: "XL2 L2 M1 S1"
+                })
+            }).bindItems(oController.dataModeModelId + '>/modes', modeTemplate),
+            setDataModeBtn = new COMPONENT.Button({
+                text: 'Set Data Mode',
+                width: '100%',
+                press: function(oEvent) { oController.setDataMode(oEvent); },
+                layoutData : new COMPONENT.GridData({
+                  span : "XL3 L4 M5 S5",
+                  indent: 'XL0 L0 M0 S0'
+                })
+            }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('configBtnMedia'),
+            dataModeRow = new COMPONENT.Grid({
+                hSpacing: 0,
+                vSpacing: 0,
+                width: "100%",
+                content: [
+                    dataModeSelector,
+                    setDataModeBtn
+                ]
+            });
+            dataModeSelector.bindProperty('placeholder', oController.dataModeModelId + '>/active')
+
 
         var chartTemplate = new sap.ui.core.ListItem({
                 text: '{' + oController.coinToChartModelId + '>name}'
@@ -45,6 +75,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
             selectDefaultChart = new COMPONENT.ComboBox({
                 id: oController.selectDefaultChartId,
                 width: '100%',
+                placeholder: GLOBALS.defaultChartId,
                 layoutData : new COMPONENT.GridData({
                   span : "XL5 L4 M5 S5",
                   indent: "XL2 L2 M1 S1"
@@ -52,7 +83,6 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
             }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate),
             setDefaultBtn = new COMPONENT.Button({
                 text: "Set Default Chart",
-                tooltip: 'tests',
                 width: "100%",
                 press: function(oEvent) { oController.setDefaultChart(oEvent); },
                 layoutData : new COMPONENT.GridData({
@@ -60,7 +90,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                   indent: 'XL0 L0 M0 S0'
                 })
             }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('configBtnMedia'),
-            firstRow = new COMPONENT.Grid({
+            setDefaultRow = new COMPONENT.Grid({
                 hSpacing: 0,
                 vSpacing: 0,
                 width: "100%",
@@ -104,12 +134,13 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
             removeSelector = new COMPONENT.MultiComboBox({
                 id: oController.removeSelectorId,
                 width: '100%',
+                placeholder: 'Remove Charts',
                 layoutData : new COMPONENT.GridData({
                   span : "XL5 L4 M5 S5",
                   indent: "XL2 L2 M1 S1"
                 })
             }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate),
-            secondRow = new COMPONENT.Grid({
+            removeRow = new COMPONENT.Grid({
                 id: oController.removeRowId,
                 hSpacing: 0,
                 vSpacing: 0,
@@ -126,9 +157,10 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 id: oController.vertLayoutId,
                 width: "100%",
                 content: [
-                    firstRow,
-                    secondRow,
-                    thirdRow
+                    dataModeRow,
+                    setDefaultRow,
+                    removeRow,
+                    addChartResetConfigRow,
                 ]
             }).addStyleClass('configPanelMargin');
 

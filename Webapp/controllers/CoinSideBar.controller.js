@@ -47,7 +47,7 @@ sap.ui.define([
 
         selectionChange: function(itemClicked, itemStatus, coinName, numSelectedItems) {
 
-            var coinToChartModel = sap.ui.getCore().getModel("CoinToChart"),
+            var coinToChartModel = sap.ui.getCore().getModel(GLOBALS.coinChartModelId),
                 data = coinToChartModel.getProperty('/columns');
 
             //Make conditional changes to coinToChart model
@@ -109,8 +109,9 @@ sap.ui.define([
             }
 
             //Reset model data on core after performing necessary changes
-            sap.ui.getCore().getModel('CoinToChart').setData({'columns': data})
-            sap.ui.getCore().getModel('CoinToChart').refresh(true);
+            var model = sap.ui.getCore().getModel(GLOBALS.coinChartModelId);
+            model.setData({'columns': data});
+            model.refresh(true);
 
             var eventBus = sap.ui.getCore().getEventBus();
 

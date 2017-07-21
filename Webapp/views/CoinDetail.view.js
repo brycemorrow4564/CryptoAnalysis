@@ -9,11 +9,12 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
    createContent: function(oController) {
 
         var configTableBtn = new COMPONENT.Button({
-            text: "Configure Tables",
+            text: "Configure Charts",
+            icon: 'sap-icon://action-settings',
             press: function(evt) {
                 oController.navToTableConfiguration(evt);
             }
-        }),
+        }).addStyleClass('sapUiResponsiveMargin'),
            htmlStr = '';
 
         //Create divs for plotting all possible charts. Class included for easy jQuery access later on.
@@ -25,7 +26,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
             content: htmlStr
         });
 
-        return new COMPONENT.Page({
+        var page = new COMPONENT.Page({
             showHeader: false,
             id: oController.detailPageId,
             content: [
@@ -33,6 +34,17 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
                 html
             ]
         });
+
+        page.onAfterRendering = function(evt) {
+
+            if (sap.m.Page.prototype.onAfterRendering) { //apply any default behavior so we don't override essential things
+                sap.m.Page.prototype.onAfterRendering.apply(this);
+            }
+
+            $('.CHARTDIV').addClass('hideChart');
+        };
+
+        return page;
    }
 
 });

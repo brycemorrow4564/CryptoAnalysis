@@ -20,6 +20,8 @@ sap.ui.define([
         removeSelectorId    : 'RemoveSelector',
         segButtonsId        : 'SegButtons',
         vertLayoutId        : 'VertLayout',
+        dataModeModelId     : GLOBALS.dataModeModelId,
+        dataModeSelectorId  : 'DataModeSelector',
 
         onInit: function() {
 
@@ -27,13 +29,15 @@ sap.ui.define([
                Data will be loaded into this model via onRouteMatched. It will also be updated when selection
                events occur in the CoinSideBar view. */
             this.getView().setModel(new COMPONENT.JSONModel({}), this.allCoinsModelId);
+
             sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
             sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'updateAllCoins', this.updateAllCoins, this);
         },
 
         onRouteMatched: function(oEvent) {
 
-            var coinToChartModel    = sap.ui.getCore().getModel(this.coinToChartModelId),
+            var core                = sap.ui.getCore(),
+                coinToChartModel    = core.getModel(this.coinToChartModelId),
                 allCoinNamesObjects = [];
 
             coinToChartModel.getProperty('/columns').forEach(function(coinToChartObj) {
@@ -53,6 +57,7 @@ sap.ui.define([
                 var selectChartList = sap.ui.getCore().byId(this.selectDefaultChartId),
                     newDefault = selectChartList.getSelectedItem().getText();
                 GLOBALS.defaultChartId = newDefault;
+                selectChartList.setPlaceholder(newDefault);
                 selectChartList.setSelectedItem(null);
             } catch (err) {
                 //This will catch exceptions when no item is selected. If this is the case we do nothing.
@@ -149,7 +154,7 @@ sap.ui.define([
             return new sap.m.ColumnListItem({
                 cells: [
                     new COMPONENT.Label({
-                        text : {'path': 'CoinToChart>name'}
+                        text : {'path': GLOBALS.coinChartModelId + '>name'}
                     }),
                     new COMPONENT.HorizontalLayout({
                         width: '100%',
@@ -247,7 +252,7 @@ sap.ui.define([
 
         getChartTemplate: function() {
             var item = new sap.ui.core.ListItem();
-            return item.bindProperty('text', 'CoinToChart>name');
+            return item.bindProperty('text', GLOBALS.coinChartModelId + '>name');
         },
 
         switchComboBox: function(newComboId) {
@@ -258,9 +263,11 @@ sap.ui.define([
             if (newComboId == this.coinMode) {
                 //activate coin combo selector
                 currCombo.bindItems(this.allCoinsModelId + '>/coins', this.getCoinTemplate());
+                currCombo.setPlaceholder('Remove Coins');
             } else {
                 //activate chart combo selector
                 currCombo.bindItems(this.coinToChartModelId + '>/columns', this.getChartTemplate());
+                currCombo.setPlaceholder('Remove Charts');
             }
 
             this.getView().getModel(this.allCoinsModelId).refresh(true);
@@ -303,6 +310,30 @@ sap.ui.define([
 
             globalModel.refresh(true);
             allCoinsModel.refresh(true);
+        },
+
+        setDataMode: function(oEvent) {
+
+            var newMode = sap.ui.getCore().byId(this.dataModeSelectorId).getSelectedItem().getText(),
+                dataModeModel = core.getModel(GLOBALS.dataModeModelId) ,
+                dataModeObj = JSON.parse(dataModeModel.getJSON());
+
+            switch (newMode) {
+                case "Volume":
+                    dataModeObj.active = 'Volume';
+                    break;
+                case "Market Cap":
+                    dataModeObj.active = 'Market Cap';
+                    break;
+                case "Daily Price":
+                    dataModeObj.active = 'Open';
+                    break;
+                default:
+                    throw "Data mode unrecognized";
+            }
+
+          dataModeModel.setData(dataModeObj);
+          dataModeModel.refresh(true);
         }
    });
 });

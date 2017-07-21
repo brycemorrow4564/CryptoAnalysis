@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans+Mono" />
 
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="../Highstock-5.0.12/code/highstock.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js" asnyc ></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" asnyc ></script>
+    <script src="../Highstock-5.0.12/code/highstock.js" asnyc ></script>
     <script id="sap-ui-bootstrap"
             src="../resources/sap-ui-core.js"
             data-sap-ui-theme="sap_belize"
@@ -30,7 +30,9 @@
 
         $.sap.require('sap.crypto.app.Utility.LocalJsonLoader');
         $.sap.require('sap.crypto.app.Utility.ComponentGlobals');
+        $.sap.require('sap.crypto.app.Utility.Globals');
 
+        //Initialize App
         sap.ui.getCore().attachInit(function () {
             new sap.ui.core.ComponentContainer({
                 propagateModel:true,
@@ -38,10 +40,26 @@
             }).placeAt("content");
         });
 
-        sap.ui.getCore().setModel(new COMPONENT.JSONModel(JSON_LOADER.get_aggregate_json()), "AggregateCoinJson");
-        sap.ui.getCore().setModel(new COMPONENT.JSONModel({"columns": []}), "CoinToChart");
+        //Setup some initial data
+        var dataModesObj = {
+                'active': 'Market Cap',     //Current data mode
+                'modes': [                  //All possible data modes
+                    {'name': 'Market Cap'},
+                    {'name': 'Volume'},
+                    {'name': 'Daily Price'}
+                ]
+            },
+            coinToChartData = {
+                "columns": []
+            },
+            core = sap.ui.getCore();
+
+        core.setModel(new COMPONENT.JSONModel(dataModesObj), GLOBALS.dataModeModelId);
+        core.setModel(new COMPONENT.JSONModel(JSON_LOADER.get_aggregate_json()), GLOBALS.aggCoinModelId);
+        core.setModel(new COMPONENT.JSONModel(coinToChartData), GLOBALS.coinChartModelId);
     </script>
 </head>
 <body class="sapUiBody" id="content">
+<body id="container">
 </body>
 </html>
