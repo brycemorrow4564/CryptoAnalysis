@@ -159,7 +159,7 @@ Highstock Graph Formatting
 .CHARTDIV {
     width: 86%;
     margin: 0 auto 3% auto;
-    border: 1px solid #346187;
+    border: 3px solid #346187;
 }
 
 #CoinDetailPage div.CHARTDIV:not(.hideChart):first-of-type {

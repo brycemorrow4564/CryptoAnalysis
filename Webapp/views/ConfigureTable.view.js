@@ -38,7 +38,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
             });
 
         var modeTemplate = new sap.ui.core.ListItem({
-                text: '{' + oController.dataModeModelId + '>name}'
+                text: '{' + GLOBALS.dataModeModelId + '>name}'
             }),
             dataModeSelector = new COMPONENT.ComboBox({
                 id: oController.dataModeSelectorId,
@@ -47,11 +47,13 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                   span : "XL5 L4 M5 S5",
                   indent: "XL2 L2 M1 S1"
                 })
-            }).bindItems(oController.dataModeModelId + '>/modes', modeTemplate),
+            }).bindItems(GLOBALS.dataModeModelId + '>/modes', modeTemplate),
             setDataModeBtn = new COMPONENT.Button({
                 text: 'Set Data Mode',
                 width: '100%',
-                press: function(oEvent) { oController.setDataMode(oEvent); },
+                press: function(oEvent) {
+                    oController.setDataMode(oEvent);
+                },
                 layoutData : new COMPONENT.GridData({
                   span : "XL3 L4 M5 S5",
                   indent: 'XL0 L0 M0 S0'
@@ -66,7 +68,9 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                     setDataModeBtn
                 ]
             });
-            dataModeSelector.bindProperty('placeholder', oController.dataModeModelId + '>/active')
+            dataModeSelector.bindProperty('placeholder', GLOBALS.dataModeModelId + '>/active', function(val) {
+                return val === 'Open' ? "Daily Price" : val; //Display daily price instead of open or just normal val
+            });
 
 
         var chartTemplate = new sap.ui.core.ListItem({
@@ -84,7 +88,9 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
             setDefaultBtn = new COMPONENT.Button({
                 text: "Set Default Chart",
                 width: "100%",
-                press: function(oEvent) { oController.setDefaultChart(oEvent); },
+                press: function(oEvent) {
+                    oController.setDefaultChart(oEvent);
+                },
                 layoutData : new COMPONENT.GridData({
                   span : "XL3 L4 M5 S5",
                   indent: 'XL0 L0 M0 S0'

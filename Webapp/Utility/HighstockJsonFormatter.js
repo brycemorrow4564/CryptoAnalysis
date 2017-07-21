@@ -1,11 +1,28 @@
 HIGHSTOCK_JSON_FORMATTER = {
 
+    randShuffle: function(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    },
+
     //Input should ALWAYS be a list of json coin objects even for a single coin to simplify implementation
     processAndPlot: function(coinToChartData, coinDataMap, dataMode) {
 
         //Hide all divs. We will show the ones with information in them later on
         var chartNamesPlotted = [];
-        $('.CHARTDIV').addClass('hideChart');
 
         // Load the fonts
         Highcharts.createElement('link', {
@@ -14,11 +31,13 @@ HIGHSTOCK_JSON_FORMATTER = {
            type: 'text/css'
         }, null, document.getElementsByTagName('head')[0]);
 
+        var dataPlottedForChartMap  = {};
+
         for (var i = 0; i < coinToChartData.length; i++) {
-            var coinChartObj    = coinToChartData[i],
-                plotDivId       = coinChartObj['name'],
-                coinList        = coinChartObj['data'],
-                pointsArr       = []; //array of points objects to be passed to options.series.data
+            var coinChartObj            = coinToChartData[i],
+                plotDivId               = coinChartObj['name'],
+                coinList                = coinChartObj['data'],
+                pointsArr               = []; //array of points objects to be passed to options.series.data
 
             coinList.forEach(function(coinName) {
                 var priceHist   = coinDataMap[coinName]['priceHistory'],
@@ -37,81 +56,112 @@ HIGHSTOCK_JSON_FORMATTER = {
                 pointsArr.push(points);
             });
 
-            var options = this.getOptions(plotDivId, dataMode),
-                seriesData = [];
+            //This variable is used so that we only remove the hidden class for charts where data is plotted
+            dataPlottedForChartMap[plotDivId] = pointsArr.length !== 0;
 
-            //coinList and pointsArr have the same length and there is 1 to 1 between coinname and data
-            for (var y = 0; y < coinList.length; y++) {
-                var coinName = coinList[y],
-                    points = pointsArr[y];
+            var options = this.getOptions(plotDivId, dataMode, coinList, pointsArr);
 
-                seriesData.push({
-                     name: coinName,
-                     type: 'line',
-                     data: points
-                });
-            }
-
-            options.series = seriesData;
             Highcharts.stockChart(plotDivId, options);
             chartNamesPlotted.push(plotDivId);
         }
 
         //Unhide charts that we have plotted
         $('.CHARTDIV').each(function() {
-            if ($.inArray($(this)[0].id, chartNamesPlotted) != -1) {
+            var chartName = $(this)[0].id;
+            if ($.inArray(chartName, chartNamesPlotted) != -1 && dataPlottedForChartMap[chartName]) {
                 $(this).removeClass('hideChart');
             }
         })
     },
 
-    getOptions: function(chartName, dataMode) {
+    getOptions: function(chartName, dataMode, coinList, pointsArr) {
 
-        return {
+        var seriesData = [];
+//            colorSet = ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee',
+//                                         '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'];
+
+        var colorSet = this.randShuffle(['#ffd400','#ff2e00','#6aff00','#00ffbb','#00e5ff','#0061ff','#aa00ff','#f200ff','#ff00ae']);
+
+        //coinList and pointsArr have the same length and there is 1 to 1 between coinname and data
+        for (var y = 0; y < coinList.length; y++) {
+            var coinName = coinList[y],
+                points = pointsArr[y];
+
+            seriesData.push({
+                 name: coinName,
+                 type: 'line',
+                 data: points
+            });
+        }
+
+        var options = {
+
             rangeSelector: {
                 selected: 1
             },
-            colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee',
-                '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'
-            ],
+            colors: colorSet,
             credits: {
                 enabled: false
+            },
+            plotOptions: {
+                series: {
+                    showInNavigator: true // Global value
+                }
             },
             tooltip: {
                 borderWidth: 0,
                 backgroundColor: 'rgba(219,219,216,0.8)',
                 shadow: false,
-                split: true
+                formatter: function() {
+                    var s = [];
+                    $.each(this.points, function(i, point) {
+                        var obj = {};
+                        obj.sortProp = point.y;
+                        obj.data = '<br/><span style="color:' + this.point.color + '">\u25CF</span> ' + point.series.name +' : $'+ point.y.toLocaleString();
+                        s.push(obj);
+                    });
+
+                    //Sort so that coin with largest value is at top of tooltip
+                    s.sort(function(a,b) {
+                        return a.sortProp === b.sortProp ? 0 : (a.sortProp > b.sortProp ? -1 : 1);
+                    });
+
+                    var dArr = (new Date(this.x)).toLocaleDateString('en-GB', {
+                            day : 'numeric',
+                            month : 'short',
+                            year : 'numeric'
+                        }).split(' ');
+
+                    return ['<span>' + dArr[1] + ' ' + dArr[0] + ', ' + dArr[2] + "</span><br>"].concat(s.map(function(obj) { return obj.data; }));
+                },
+                shared: true
             },
-            xaxis: {
+            series: seriesData,
+            xAxis: {
                 type: 'datetime',
-                gridLineWidth: 1,
-                labels: {
-                    style: {
-                        fontSize: '12px'
-                    }
-                }
-            },
-            plotOptions: {
-                candlestick: {
-                    lineColor: '#404048'
-                }
-            },
-            yaxis: {
-                gridLineColor: "#FFFFFF",
-                lineColor: "#FFFFFF",
-                minorGridLineColor: "#FFFFFF",
-                tickColor: "#D7D7D8",
-                tickWidth: 1,
-                minorTickInterval: 'auto',
-                title: {
-                    style: {
-                        textTransform: 'uppercase'
-                    }
+                dateTimeLabelFormats: {
+                    day: '%Y<br/>%b %e',
+                    week: '%Y<br/>%b %e',
+                    month: '%Y<br/>%b %e',
                 },
                 labels: {
                     style: {
                         fontSize: '12px'
+                    }
+                }
+            },
+            yAxis: {
+                lineColor: "#FFFFFF",
+                tickColor: "#D7D7D8",
+                tickWidth: 1,
+                minorTickInterval: 'auto',
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 'bold'
+                    },
+                    formatter: function() {
+                        return '$' + this.value.toLocaleString();
                     }
                 }
             },
@@ -134,7 +184,12 @@ HIGHSTOCK_JSON_FORMATTER = {
                 }
             },
             subtitle: {
-                text: dataMode
+                text: dataMode === "Open" ? 'Daily Price' : dataMode,
+                style: {
+                    fontSize: '20px',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase'
+                }
             },
             labels: {
                 style: {
@@ -177,9 +232,6 @@ HIGHSTOCK_JSON_FORMATTER = {
                         chart: {
                             height: 300
                         },
-//                        subtitle: {
-//                            text: null
-//                        },
                         navigator: {
                             enabled: false
                         }
@@ -187,5 +239,7 @@ HIGHSTOCK_JSON_FORMATTER = {
                 }]
             }
         };
+
+        return options;
     },
 }

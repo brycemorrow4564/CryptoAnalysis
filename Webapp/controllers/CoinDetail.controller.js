@@ -12,6 +12,9 @@ sap.ui.define([
         maxNumCharts: 25, //Maximum number of charts a user can include on the detail page
 
         onInit: function() {
+
+            console.log('CoinDetail: init');
+
             //Whenever a change occurs in the CoinSideBar, we must regenerate the coin view with up to date model data
             sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'generateCoinView', this.generateCoinView, this);
             //Generate coin view whenever we navigate to this page (say from configure table page)
@@ -19,7 +22,7 @@ sap.ui.define([
             var controller = this;
             this.getView().attachAfterRendering(function(evt, self = controller) {
                 var router = sap.ui.core.UIComponent.getRouterFor(controller);
-                router.attachRouteMatched(controller.generateCoinView, controller);
+                router.attachRoutePatternMatched(controller.generateCoinView, controller);
                 router.fireRouteMatched({
                     'name': 'CoinDetail'
                 });
@@ -27,6 +30,8 @@ sap.ui.define([
         },
 
         clearPlottingDivs: function() {
+
+            console.log('CoinDetail: clear divs');
             //Called whenever the there is no data to plot. Clears all highstock chart divs
             $('.CHARTDIV').each(function(index) { var elem = $(this); elem.empty(); });
         },
@@ -34,7 +39,10 @@ sap.ui.define([
         //Dynamically populate view with coin data using jquery and highstock apis (no model binding is used)
         generateCoinView: function(channel, event) {
 
+            console.log('CoinDetail: generate coin view');
+
             this.clearPlottingDivs();
+            $('.CHARTDIV').addClass('hideChart');
 
             var core = sap.ui.getCore(),
                 allCoinsData = core.getModel(GLOBALS.aggCoinModelId).getProperty("/Coins"),
@@ -61,6 +69,9 @@ sap.ui.define([
         },
 
         navToTableConfiguration: function(evt) {
+
+            console.log('CoinDetail: navToConfig');
+
             this.getOwnerComponent().getRouter().navTo("ConfigureTable");
         }
 

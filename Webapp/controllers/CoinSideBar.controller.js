@@ -12,6 +12,9 @@ sap.ui.define([
         pageId          : "SidebarPage",
 
         onInit: function() {
+
+            console.log('Sidebar: sidebar init');
+
             var data            = JSON_LOADER.get_aggregate_json(),
                 allCoinsModel   = new COMPONENT.JSONModel(data);
 
@@ -22,6 +25,8 @@ sap.ui.define([
 
         checkBoxClick: function(evt) {
 
+            console.log('Sidebar: check box click');
+
             var itemClicked = evt.getParameters().listItem,
                 itemStatus = itemClicked.isSelected(),
                 coinName = itemClicked.getTitle(),
@@ -31,6 +36,8 @@ sap.ui.define([
         },
 
         listItemClick: function(evt) {
+
+            console.log('Sidebar: list item click');
 
             //Events are different so we have to make some alterations when list item, rather than checkbox is clicked
             var itemClicked = evt.getSource(),
@@ -46,6 +53,8 @@ sap.ui.define([
         },
 
         selectionChange: function(itemClicked, itemStatus, coinName, numSelectedItems) {
+
+            console.log('Sidebar: selection change');
 
             var coinToChartModel = sap.ui.getCore().getModel(GLOBALS.coinChartModelId),
                 data = coinToChartModel.getProperty('/columns');
@@ -121,6 +130,8 @@ sap.ui.define([
 
         deselectCoins: function(channel, event, data) {
 
+            console.log('Sidebar: deselect coins');
+
             var coinList        = sap.ui.getCore().byId(this.coinListId),
                 selectedCoins   = coinList.getSelectedItems();
 
@@ -139,10 +150,15 @@ sap.ui.define([
         },
 
         deselectAllCoins: function(channel, event) {
+
+            console.log('Sidebar: deselect all');
+
             sap.ui.getCore().byId(this.coinListId).removeSelections(true);
         },
 
         onLiveChange: function(oEvent) {
+
+            console.log('Sidebar: live change');
 
             var data = oEvent.getSource().getValue(),
                 filter = new sap.ui.model.Filter('name', sap.ui.model.FilterOperator.StartsWith, data),
