@@ -4,7 +4,7 @@ var http = require("http"),
     fs = require("fs"),
     schedule = require("node-schedule"),
     PythonShell = require('python-shell'),
-    port = process.argv[2] || 8888;
+    port = process.env.PORT || 8080;
 
 http.createServer(function(request, response) {
 
