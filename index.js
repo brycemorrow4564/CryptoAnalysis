@@ -21,7 +21,7 @@ http.createServer(function(request, response) {
         return;
       }
 
-      fs.readFile(filename, "utf8", function(err, file) {
+      fs.readFile(filename, function(err, file) {
         if (err) {
           response.writeHead(500, {
             "Content-Type": "text/plain"
@@ -31,8 +31,8 @@ http.createServer(function(request, response) {
           return;
         }
 
-        response.writeHead(200);
-        response.write(file, "binary");
+        response.writeHead(200, {"Content-Type": "text/html"});
+        response.write(file);
         response.end();
 
       });
