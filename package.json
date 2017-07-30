@@ -7,7 +7,6 @@
     "ajax-request": "^1.2.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "http-proxy": "^1.16.2",
     "jquery": "^3.2.1",
     "morgan": "^1.8.2",
     "node-schedule": "^1.2.3",
@@ -17,7 +16,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node Server.js"
   },
   "repository": {
     "type": "git",
