@@ -7,28 +7,29 @@ import os
 import lxml.html
 import shutil
 import locale
+import sys
 
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 
-import settings
+import settings as settings 
 
 '''HACKY DRIVER UTILITY FUNCTIONS (BECAUSE SELENIUM SUCKS !!!)'''
 
 def close_and_reset_driver(url):
-    settings.driver.close()
-    settings.driver = settings.driver_setup(url)
+    GLOBAL.driver.close()
+    GLOBAL.driver = GLOBAL.driver_setup(url)
 
 def verify_query_string_url():
-    return settings.queryString in settings.driver.current_url
+    return GLOBAL.queryString in GLOBAL.driver.current_url
 
 
 def driver_get_page_timeout_wrapper(url):
     while True: 
         try: 
-            settings.driver.get(url)
+            GLOBAL.driver.get(url)
             break 
         except: 
             print "30 sec timeout"
@@ -44,11 +45,11 @@ def scrape_rows(fieldnames):
     counter = 0
     while True: 
         try: 
-            table = settings.driver.find_element_by_class_name(tableClass)
-            print "found table " + settings.driver.current_url
+            table = GLOBAL.driver.find_element_by_class_name(tableClass)
+            print "found table " + GLOBAL.driver.current_url
             break 
         except: 
-            print "unable to locate table on page " + settings.driver.current_url
+            print "unable to locate table on page " + GLOBAL.driver.current_url
             pass
     tbody = table.find_element_by_tag_name('tbody')
     thtml = str('<table><tbody>' + tbody.get_attribute('innerHTML') + '</tbody></table>').strip()
@@ -64,7 +65,7 @@ def scrape_rows(fieldnames):
 #Get names of all coins in top 100 and the urls where their historical data is stored
 def get_top_100_coin_names(): 
     tableId = 'currencies'
-    table = settings.driver.find_element_by_id(tableId)
+    table = GLOBAL.driver.find_element_by_id(tableId)
     rows = table.find_elements_by_tag_name('tr')
     coinNames = list()
     for r in rows[1:]: #remove first item from urls since it is header row 
@@ -90,7 +91,7 @@ def parse_date(rawDateData):
 '''FILE READS AND WRITE (CSV/JSON)'''
 
 def write_to_csv(rowObjects, fieldnames, coinName): 
-    csvfile = open(settings.csvDirRoot + coinName + '.csv', 'w')
+    csvfile = open(GLOBAL.csvDirRoot + coinName + '.csv', 'w')
     writer = csv.DictWriter(csvfile, extrasaction='ignore', fieldnames=fieldnames)
     writer.writeheader()
     for obj in rowObjects:
@@ -103,8 +104,8 @@ def write_to_csv(rowObjects, fieldnames, coinName):
     csvfile.close()
 
 def write_to_json(fieldnames, coinName): 
-    csvfile = open(settings.csvDirRoot + coinName + '.csv', 'r')
-    jsonfile = open(str(settings.jsonDirRoot + coinName + '.json'), 'w')
+    csvfile = open(GLOBAL.csvDirRoot + coinName + '.csv', 'r')
+    jsonfile = open(str(GLOBAL.jsonDirRoot + coinName + '.json'), 'w')
     reader = [row for row in csv.DictReader(csvfile, fieldnames)][1:]
     numRows = len(reader)
     jsonfile.write('{ "name": ' + '"' + coinName + '",\n "priceHistory": [' )
@@ -128,26 +129,33 @@ def write_to_json(fieldnames, coinName):
 #Aggregates contents of all json files into one large file (ALLCOINS.json)
 def create_aggregate_json(): 
     jsonStr = '{ "Coins": [\n'
-    fileNames = os.listdir(settings.jsonDirName)
+    fileNames = os.listdir(GLOBAL.jsonDirName)
     numFiles = len(fileNames)
     for i in xrange(numFiles): 
         filename = fileNames[i]
-        with open(settings.jsonDirRoot + filename) as jsonFile: 
+        with open(GLOBAL.jsonDirRoot + filename) as jsonFile: 
             jsonObj = json.load(jsonFile)
             jsonStr += json.dumps(jsonObj) + (',\n' if i != numFiles - 1 else '\n')       
     jsonStr += ']}'
     aggrJsonObj = json.loads(jsonStr)
-    with open(settings.jsonDirRoot + 'ALLCOINS.json', 'w') as aggregateFile: 
+    with open(GLOBAL.jsonDirRoot + 'ALLCOINS.json', 'w') as aggregateFile: 
         json.dump(aggrJsonObj, aggregateFile)
         aggregateFile.close()
 
 '''DATA DIRECTORY MANAGEMENT'''
 
 def clear_crypto_dirs():
-    shutil.rmtree(settings.csvDirRoot)
-    shutil.rmtree(settings.jsonDirRoot)
-    os.mkdir(settings.csvDirName)
-    os.mkdir(settings.jsonDirName)
+    #Remove Dirs if the exist, if they do not we catch error and continue on
+    try:
+        shutil.rmtree(GLOBAL.csvDirRoot)
+    except: 
+        pass
+    try:
+        shutil.rmtree(GLOBAL.jsonDirRoot)
+    except: 
+        pass
+    os.mkdir('../WebApp/' + GLOBAL.csvDirName)
+    os.mkdir('../WebApp/' + GLOBAL.jsonDirName)
 
 '''MAIN LOGIC FUNCTIONS'''
 
@@ -162,7 +170,7 @@ def run_data_scraper():
     clear_crypto_dirs() #clear all previous data from csv and json dirs 
     top100Coins = get_top_100_coin_names()
     coinNames = top100Coins
-    urls = [settings.main_page_url + coinName + '/historical-data/' + settings.queryString for coinName in top100Coins]
+    urls = [GLOBAL.main_page_url + coinName + '/historical-data/' + GLOBAL.queryString for coinName in top100Coins]
     #coinRank = {coinNames[i]: i+1 for i in xrange(len(coinNames))}
     for i in xrange(len(coinNames)):
         coinName = coinNames[i]
@@ -182,12 +190,15 @@ def run_data_scraper():
     create_aggregate_json()
 
 def main():
-    settings.setup()
-    try: 
-        run_data_scraper()
-    except Exception as e: 
-        print e.message
-    settings.driver.close()
+    global GLOBAL
+    GLOBAL = settings.setup()
+    run_data_scraper()
+    try:
+        pass
+        #run_data_scraper()
+    except Exception as e:
+        sys.stdout.write( e.message)
+    GLOBAL.driver.close()
 
 if __name__ == '__main__':
     start_time = time.time()
