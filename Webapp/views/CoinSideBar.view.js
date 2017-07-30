@@ -9,7 +9,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
    createContent: function(oController) {
 
         var searchBar = new COMPONENT.SearchField({
-            items: "{/Coins}",
+            items: "{" + GLOBALS.aggCoinModelId + ">/Coins}",
             placeholder: 'Search Coins',
             liveChange: function(evt) {oController.onLiveChange(evt); },
             mode: 'MultiSelect',
@@ -27,7 +27,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
         };
 
         var templateItem = new COMPONENT.StandardListItem({
-           title: '{name}',
+           title: '{' + GLOBALS.aggCoinModelId + '>name}',
            type: 'Active',
            tap: function(oEvent) { oController.listItemClick(oEvent); }
         });
@@ -38,7 +38,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
             mode: sap.m.ListMode.MultiSelect,
             selectionChange: function(evt) { oController.checkBoxClick(evt); }
         }).bindItems({
-            path: "/Coins",
+            path: GLOBALS.aggCoinModelId + ">/Coins",
             sorter : mcSorter,
             template: templateItem
         });
@@ -48,7 +48,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
             function(evt) {
                 var listControl = sap.ui.getCore().byId(oController.coinListId);
                 $("#" + listControl.sId).addClass('CoinListStyle');
-            };
+        };
 
         //only do right side border, top will be handled at page level.
         var page = new COMPONENT.Page({
@@ -62,16 +62,6 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
                 coinList
             ]
         });
-
-//        page.onAfterRendering =
-//
-//            function(evt) {
-//                if (sap.m.Page.prototype.onAfterRendering) { //apply any default behavior so we don't override essential things
-//                    sap.m.Page.prototype.onAfterRendering.apply(this);
-//                }
-//                $('#app-Master').resi
-//            };
-
 
         return page;
    }

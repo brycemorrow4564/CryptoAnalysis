@@ -1,0 +1,9 @@
+{
+  "name": "static_server",
+  "version": "0.1.0",
+  "dependencies": {
+    "ajax-request": "^1.2.3",
+    "http-proxy": "^1.11.2"
+  },
+  "private": true
+}

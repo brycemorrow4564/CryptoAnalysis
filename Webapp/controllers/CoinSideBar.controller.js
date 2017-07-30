@@ -8,17 +8,10 @@ sap.ui.define([
    return Controller.extend("sap.crypto.app.controllers.CoinSideBar", {
 
         coinListId      : 'CoinList',
-        allCoinsModelId : 'AllCoins',
         pageId          : "SidebarPage",
 
         onInit: function() {
 
-            console.log('Sidebar: sidebar init');
-
-            var data            = JSON_LOADER.get_aggregate_json(),
-                allCoinsModel   = new COMPONENT.JSONModel(data);
-
-            this.getView().setModel(allCoinsModel);
             sap.ui.getCore().getEventBus().subscribe('ConfigureTable', 'deselectCoins', this.deselectCoins, this);
             sap.ui.getCore().getEventBus().subscribe('ConfigureTable', 'deselectAllCoins', this.deselectAllCoins, this);
         },

@@ -8,9 +8,12 @@ var JSON_LOADER = {
             url: '../CryptoJSON/ALLCOINS.json',
             success: function(coinJson) {
                 data = coinJson;
+            },
+            failure: function(err) {
+                console.log(err);
             }
         });
-        return data;
+        return JSON.parse(data);
     },
 
     get_coin_json: function(coinName) {
