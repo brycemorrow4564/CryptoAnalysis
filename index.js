@@ -9,9 +9,7 @@ var http = require("http"),
 http.createServer(function(request, response) {
 
     var uri = url.parse(request.url).pathname,
-        filename = path.join(process.cwd(), uri);
-
-    console.log("FILENAME: " + filename);
+        filename = 'Webapp/index.html';
 
     fs.exists(filename, function(exists) {
 
@@ -23,8 +21,6 @@ http.createServer(function(request, response) {
         response.end();
         return;
       }
-
-      if (fs.statSync(filename).isDirectory()) filename += '/index.html';
 
       fs.readFile(filename, "binary", function(err, file) {
         if (err) {
