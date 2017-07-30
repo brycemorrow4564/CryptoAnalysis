@@ -1,12 +1,13 @@
 {
-  "name": "CryptoAnalysis",
+  "name": "cryptoanalysis",
   "version": "1.0.0",
-  "description": "",
-  "main": "Server.js",
+  "description": "Crypto Currency Data Viz",
+  "main": "index.js",
   "dependencies": {
     "ajax-request": "^1.2.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "http-proxy": "^1.16.2",
     "jquery": "^3.2.1",
     "morgan": "^1.8.2",
     "node-schedule": "^1.2.3",
@@ -15,15 +16,13 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./Server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brycemorrow4564/CryptoAnalysis.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Bryce Morrow",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/brycemorrow4564/CryptoAnalysis/issues"
