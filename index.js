@@ -8,8 +8,7 @@ var http = require("http"),
 
 http.createServer(function(request, response) {
 
-    var uri = url.parse(request.url).pathname,
-        filename = 'Webapp/index.html';
+    var filename = 'Webapp/index.html';
 
     fs.exists(filename, function(exists) {
 
@@ -22,7 +21,7 @@ http.createServer(function(request, response) {
         return;
       }
 
-      fs.readFile(filename, "binary", function(err, file) {
+      fs.readFile(filename, "utf8", function(err, file) {
         if (err) {
           response.writeHead(500, {
             "Content-Type": "text/plain"
