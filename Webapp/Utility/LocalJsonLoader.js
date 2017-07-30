@@ -13,7 +13,7 @@ var JSON_LOADER = {
                 console.log(err);
             }
         });
-        return JSON.parse(data);
+        return data;
     }
 
 }
