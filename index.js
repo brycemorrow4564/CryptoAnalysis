@@ -9,7 +9,9 @@ var http = require("http"),
 http.createServer(function(request, response) {
 
     var uri = url.parse(request.url).pathname,
-        filename = 'Webapp' + path.join(process.cwd(), uri);
+        filename = path.join(process.cwd(), uri);
+
+    console.log("FILENAME: " + filename);
 
     fs.exists(filename, function(exists) {
 
