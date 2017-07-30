@@ -14,10 +14,6 @@ var JSON_LOADER = {
             }
         });
         return JSON.parse(data);
-    },
-
-    get_coin_json: function(coinName) {
-
     }
 
 }
