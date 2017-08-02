@@ -86,7 +86,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 })
             }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate),
             setDefaultBtn = new COMPONENT.Button({
-                text: "Set Default Chart",
+                text: "Set Default Add Chart",
                 width: "100%",
                 press: function(oEvent) {
                     oController.setDefaultChart(oEvent);
@@ -172,20 +172,35 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
 
         var chartManager = new COMPONENT.Table({
                 id: oController.chartManagerTableId,
-                width: '94%',
+                width: '90%',
+                dragAndDropAlertDisplayed: false, //custom flag param to display one time info msg
                 columns: [
                     new COMPONENT.Column({
                         header: new COMPONENT.Label({
                             text: 'Chart'
                         }),
-                        width: "20%"
+                        width: "22%"
                     }),
                     new COMPONENT.Column({
                         header: new COMPONENT.Label({
                             text: 'Coins'
                         })
                     })
-                ]
+                ],
+                updateFinished: function() { //Each time table updates, we want to bold the default chart for improved UI experience
+
+                    if (sap.m.Table.prototype.updateFinished) { //apply any default behavior so we don't override essential things
+                        sap.m.Table.prototype.updateFinished.apply(this);
+                    }
+
+                    $("label.sapMLabel").each(function(label) {
+                        if ($(this).context.innerHTML === GLOBALS.defaultChartId) {
+                            $(this).addClass('boldDefaultChart');
+                        } else {
+                            $(this).removeClass('boldDefaultChart');
+                        }
+                    })
+                }
             }).addStyleClass('chartTableMarker');
 
         chartManager.bindItems({
@@ -197,6 +212,19 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
             if (sap.m.Table.prototype.onAfterRendering) { //apply any default behavior so we don't override essential things
                 sap.m.Table.prototype.onAfterRendering.apply(this);
             }
+
+            //Display one time alert message to tell user they can drag and drop tiles
+            if (!this.dragAndDropAlertDisplayed) {
+                this.dragAndDropAlertDisplayed = true;
+                window.setTimeout(function(){
+                    COMPONENT.MessageToast.show("Note: You can drag and drop coin name tiles between charts", {
+                        duration: 4500,
+                        animationDuration: 1500
+                    });
+                }, 1800);
+            }
+
+            //Implement jQuery draggable function
             $("#" + oController.chartManagerTableId + " button").draggable({
                 cancel: false, //buttons disallowed for draggable by default so we deactivate this property
                 helper: 'clone', //drags a clone of the button rather than the original element.
@@ -205,6 +233,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 }
             });
 
+            //Implement jQuery droppable function
             $("#" + oController.chartManagerTableId + " td").droppable({
                 drop: function(event, ui) {
                     //first we determine if the component was dropped in an acceptable location

@@ -21,6 +21,8 @@ sap.ui.define([
         vertLayoutId        : 'VertLayout',
         dataModeSelectorId  : 'DataModeSelector',
 
+        dragAndDropAlertDisplayed: false,
+
         onInit: function() {
 
             console.log('Config: init');
@@ -70,6 +72,10 @@ sap.ui.define([
                 //This will catch exceptions when no item is selected. If this is the case we do nothing.
                 console.log(err);
             }
+
+            //After this we want our change to be immediate so we fire update event for table
+            var table = sap.ui.getCore().byId(this.chartManagerTableId);
+            table.fireUpdateFinished();
         },
 
         navToCoinDetail: function(evt) {
@@ -115,7 +121,13 @@ sap.ui.define([
                 allCoinsObj         = {},
                 chartCounter        = 1;
 
-            chartsToRemoveItems.forEach(function(chartItem) { chartsToRemove.push(chartItem.getText()); });
+            chartsToRemoveItems.forEach(function(chartItem) {
+                var chartName = chartItem.getText();
+                chartsToRemove.push(chartName);
+                if (chartName == GLOBALS.defaultChartId) {
+                    GLOBALS.defaultChartId = "Chart 1";
+                }
+            });
 
             globalModel.getProperty('/columns').forEach(function(coinToChartObj) {
                 var chartName = coinToChartObj['name'];
@@ -150,7 +162,7 @@ sap.ui.define([
             chartsToRemoveList.setSelectedItems([]);
         },
 
-        generateCoinCells: function(sId,oContext) {
+        generateCoinCells: function(sId, oContext) {
 
             console.log('Config: generate table coin cells on change');
 
@@ -170,7 +182,9 @@ sap.ui.define([
             return new sap.m.ColumnListItem({
                 cells: [
                     new COMPONENT.Label({
-                        text : {'path': GLOBALS.coinChartModelId + '>name'}
+                        text : {
+                            'path': GLOBALS.coinChartModelId + '>name'
+                        }
                     }),
                     new COMPONENT.HorizontalLayout({
                         width: '100%',
@@ -364,6 +378,7 @@ sap.ui.define([
           dataModeModel.setData(dataModeObj);
           dataModeModel.refresh(true);
         }
+
    });
 });
 

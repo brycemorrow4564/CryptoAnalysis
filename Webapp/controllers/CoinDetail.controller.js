@@ -27,6 +27,7 @@ sap.ui.define([
                     'name': 'CoinDetail'
                 });
             });
+
         },
 
         clearPlottingDivs: function() {
@@ -58,9 +59,10 @@ sap.ui.define([
                 counter += coinToChartData[i]['data'].length;
             }
 
+            //Take appropriate action w/ regards to no data text 
             if (counter == 0) {
                 noContentMsg.removeStyleClass('noDisplay');
-                return
+                return;
             } else {
                 noContentMsg.addStyleClass('noDisplay');
             }

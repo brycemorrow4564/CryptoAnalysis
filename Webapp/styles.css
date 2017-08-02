@@ -18,10 +18,16 @@ html.sap-desktop body.sapUiBody .sapMInputBaseInner:not(.sapMInputBaseReadonlyIn
 #RemoveSelector.sapMMultiComboBoxFocus,
 html.sap-desktop body.sapUiBody .sapMBtn:focus > .sapMBtnActive.sapMFocusable {
     outline-offset: 0px;
-    outline: none; 
+    outline: none;
 }
 
+header.sapMTB.sapMPageHeader {
+    border-color: #d1e0ee;
+}
 
+#ChartManagerTable label.boldDefaultChart {
+    font-weight: bold;
+}
 /*
 NO DATA STYLING
 */

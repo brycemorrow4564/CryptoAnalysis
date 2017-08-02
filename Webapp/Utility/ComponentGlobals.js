@@ -1,28 +1,30 @@
-jQuery.sap.require('sap.m.App');
-jQuery.sap.require('sap.ui.core.mvc.View');
-jQuery.sap.require('sap.ui.core.mvc.JSView');
-jQuery.sap.require('sap.m.semantic.MasterPage');
-jQuery.sap.require('sap.m.semantic.DetailPage');
-jQuery.sap.require('sap.m.Label');
-jQuery.sap.require('sap.m.Title');
-jQuery.sap.require('sap.m.Page');
-jQuery.sap.require('sap.m.Button');
-jQuery.sap.require('sap.m.SegmentedButton');
-jQuery.sap.require('sap.ui.model.json.JSONModel');
-jQuery.sap.require('sap.m.List');
-jQuery.sap.require('sap.m.StandardListItem');
-jQuery.sap.require('sap.m.semantic.DetailPage');
-jQuery.sap.require('sap.m.MultiComboBox');
-jQuery.sap.require('sap.m.ComboBox');
-jQuery.sap.require('sap.m.Popover');
-jQuery.sap.require('sap.m.Toolbar');
-jQuery.sap.require('sap.m.ToolbarSpacer');
-jQuery.sap.require('sap.m.SearchField');
-jQuery.sap.require('sap.m.ObjectHeader');
-jQuery.sap.require('sap.ui.table.Table');
-jQuery.sap.require('sap.ui.layout.Grid');
-jQuery.sap.require('sap.ui.core.Icon');
-jQuery.sap.require('sap.ui.layout.SplitterLayoutData');
+$.sap.require('sap.m.App');
+$.sap.require('sap.ui.core.mvc.View');
+$.sap.require('sap.ui.core.mvc.JSView');
+$.sap.require('sap.m.semantic.MasterPage');
+$.sap.require('sap.m.semantic.DetailPage');
+$.sap.require('sap.m.Label');
+$.sap.require('sap.m.Title');
+$.sap.require('sap.m.Page');
+$.sap.require('sap.m.Dialog');
+$.sap.require('sap.m.Button');
+$.sap.require('sap.m.SegmentedButton');
+$.sap.require('sap.ui.model.json.JSONModel');
+$.sap.require('sap.m.List');
+$.sap.require('sap.m.StandardListItem');
+$.sap.require('sap.m.MessageToast');
+$.sap.require('sap.m.semantic.DetailPage');
+$.sap.require('sap.m.MultiComboBox');
+$.sap.require('sap.m.ComboBox');
+$.sap.require('sap.m.Popover');
+$.sap.require('sap.m.Toolbar');
+$.sap.require('sap.m.ToolbarSpacer');
+$.sap.require('sap.m.SearchField');
+$.sap.require('sap.m.ObjectHeader');
+$.sap.require('sap.ui.table.Table');
+$.sap.require('sap.ui.layout.Grid');
+$.sap.require('sap.ui.core.Icon');
+$.sap.require('sap.ui.layout.SplitterLayoutData');
 
 var COMPONENT = {
     "SplitApp"          : sap.m.SplitApp,
@@ -36,6 +38,7 @@ var COMPONENT = {
     "Button"            : sap.m.Button,
     "SegmentedButton"   : sap.m.SegmentedButton,
     "Page"              : sap.m.Page,
+    "Dialog"            : sap.m.Dialog,
     "SearchField"       : sap.m.SearchField,
     "Popover"           : sap.m.Popover,
     "App"               : sap.m.App,
@@ -46,6 +49,7 @@ var COMPONENT = {
     "List"              : sap.m.List,
     "StandardListItem"  : sap.m.StandardListItem,
     "HTML"              : sap.ui.core.HTML,
+    "jsfragment"        : sap.ui.jsfragment,
     "DetailPage"        : sap.m.semantic.DetailPage,
     "Table"             : sap.m.Table,
     "Column"            : sap.m.Column,
@@ -57,5 +61,6 @@ var COMPONENT = {
     "Grid"              : sap.ui.layout.Grid,
     "VerticalLayout"    : sap.ui.layout.VerticalLayout,
     "LayoutData"        : sap.ui.layout.LayoutData,
-    "GridData"          : sap.ui.layout.GridData
+    "GridData"          : sap.ui.layout.GridData,
+    "MessageToast"      : sap.m.MessageToast
 }
