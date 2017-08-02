@@ -8,14 +8,12 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
 
    createContent: function(oController) {
 
-        var configTableBtn = new COMPONENT.Button({
-            text: "Configure Charts",
-            icon: 'sap-icon://action-settings',
-            press: function(evt) {
-                oController.navToTableConfiguration(evt);
-            }
-        }).addStyleClass('sapUiResponsiveMargin'),
-           htmlStr = '';
+        var noContentFormat = new COMPONENT.Title({
+            id: oController.noContentMsgId,
+            text: 'Add coins from sidebar to see graphs',
+        }).addStyleClass('noContentTitle'),
+
+            htmlStr = '';
 
         //Create divs for plotting all possible charts. Class included for easy jQuery access later on.
         for (var i = 1; i <= oController.maxNumCharts; i++) {
@@ -27,10 +25,23 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
         });
 
         var page = new COMPONENT.Page({
-            showHeader: false,
             id: oController.detailPageId,
+            customHeader: new COMPONENT.Toolbar({
+                content: [
+                    new COMPONENT.ToolbarSpacer(),
+                    new COMPONENT.Button({
+                        text: 'About'
+                    }),
+                    new COMPONENT.Button({
+                        text: "Configure Charts",
+                        press: function(evt) {
+                            oController.navToTableConfiguration(evt);
+                        }
+                    })
+                ]
+            }),
             content: [
-                configTableBtn,
+                noContentFormat,
                 html
             ]
         });

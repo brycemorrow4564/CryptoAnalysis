@@ -1,4 +1,3 @@
-jQuery.sap.require('sap.crypto.app.Utility.LocalJsonLoader');
 jQuery.sap.require('sap.crypto.app.Utility.HighstockJsonFormatter');
 $.sap.require('sap.crypto.app.Utility.Globals');
 
@@ -9,6 +8,7 @@ sap.ui.define([
    return Controller.extend("sap.crypto.app.controllers.CoinDetail", {
 
         detailPageId: "CoinDetailPage",
+        noContentMsgId: "NoContentMsg",
         maxNumCharts: 25, //Maximum number of charts a user can include on the detail page
 
         onInit: function() {
@@ -23,7 +23,7 @@ sap.ui.define([
             this.getView().attachAfterRendering(function(evt, self = controller) {
                 var router = sap.ui.core.UIComponent.getRouterFor(controller);
                 router.attachRoutePatternMatched(controller.generateCoinView, controller);
-                router.fireRouteMatched({
+                router.fireRoutePatternMatched({
                     'name': 'CoinDetail'
                 });
             });
@@ -44,19 +44,25 @@ sap.ui.define([
             this.clearPlottingDivs();
             $('.CHARTDIV').addClass('hideChart');
 
-            var core = sap.ui.getCore(),
-                allCoinsData = core.getModel(GLOBALS.aggCoinModelId).getProperty("/Coins"),
-                coinDataMap = {},
-                coinNames = [],
-                coinToChartData = core.getModel(GLOBALS.coinChartModelId).getProperty('/columns'),
-                dataMode = core.getModel(GLOBALS.dataModeModelId).getProperty('/active');
-
-            if (coinToChartData.length == 0) { //When no items selected, clear plotting divs and exit
-                return;
-            }
+            var core                = sap.ui.getCore(),
+                allCoinsData        = core.getModel(GLOBALS.aggCoinModelId).getProperty("/Coins"),
+                coinDataMap         = {},
+                coinNames           = [],
+                coinToChartData     = core.getModel(GLOBALS.coinChartModelId).getProperty('/columns'),
+                dataMode            = core.getModel(GLOBALS.dataModeModelId).getProperty('/active'),
+                noContentMsg        = core.byId(this.noContentMsgId),
+                counter             = 0;
 
             for (var i = 0; i < coinToChartData.length; i++) {
                 coinNames = coinNames.concat(coinToChartData[i]['data']);
+                counter += coinToChartData[i]['data'].length;
+            }
+
+            if (counter == 0) {
+                noContentMsg.removeStyleClass('noDisplay');
+                return
+            } else {
+                noContentMsg.addStyleClass('noDisplay');
             }
 
             for (var i = 0; i < allCoinsData.length; i++) {
@@ -73,6 +79,10 @@ sap.ui.define([
             console.log('CoinDetail: navToConfig');
 
             this.getOwnerComponent().getRouter().navTo("ConfigureTable");
+        },
+
+        getNoContentFormat: function() {
+            return this.getView().noContentFormat;
         }
 
    });

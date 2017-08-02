@@ -9,7 +9,7 @@
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="../Highstock-5.0.12/code/highstock.js"></script>
+    <script src="./Highstock-5.0.12/code/highstock.js"></script> <!-- Change back to deploy -->
     <script id="sap-ui-bootstrap"
             src="../resources/sap-ui-core.js"
             data-sap-ui-theme="sap_belize"
@@ -27,7 +27,7 @@
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-droppable');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-draggable');
 
-        $.sap.require('sap.crypto.app.Utility.LocalJsonLoader');
+        $.sap.require('sap.crypto.app.LocalJsonLoader'); //In WebApp dir due to ajax relative path call semantics
         $.sap.require('sap.crypto.app.Utility.ComponentGlobals');
         $.sap.require('sap.crypto.app.Utility.Globals');
 
@@ -58,7 +58,5 @@
         core.setModel(new COMPONENT.JSONModel(coinToChartData), GLOBALS.coinChartModelId);
     </script>
 </head>
-<body class="sapUiBody" id="content">
-<body id="container">
-</body>
+<body class="sapUiBody" id="content"></body>
 </html>

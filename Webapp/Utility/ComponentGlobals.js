@@ -4,6 +4,7 @@ jQuery.sap.require('sap.ui.core.mvc.JSView');
 jQuery.sap.require('sap.m.semantic.MasterPage');
 jQuery.sap.require('sap.m.semantic.DetailPage');
 jQuery.sap.require('sap.m.Label');
+jQuery.sap.require('sap.m.Title');
 jQuery.sap.require('sap.m.Page');
 jQuery.sap.require('sap.m.Button');
 jQuery.sap.require('sap.m.SegmentedButton');
@@ -15,13 +16,13 @@ jQuery.sap.require('sap.m.MultiComboBox');
 jQuery.sap.require('sap.m.ComboBox');
 jQuery.sap.require('sap.m.Popover');
 jQuery.sap.require('sap.m.Toolbar');
+jQuery.sap.require('sap.m.ToolbarSpacer');
 jQuery.sap.require('sap.m.SearchField');
 jQuery.sap.require('sap.m.ObjectHeader');
 jQuery.sap.require('sap.ui.table.Table');
 jQuery.sap.require('sap.ui.layout.Grid');
 jQuery.sap.require('sap.ui.core.Icon');
 jQuery.sap.require('sap.ui.layout.SplitterLayoutData');
-
 
 var COMPONENT = {
     "SplitApp"          : sap.m.SplitApp,
@@ -31,6 +32,7 @@ var COMPONENT = {
     "DetailPage"        : sap.m.semantic.DetailPage,
     "JSView"            : sap.ui.core.mvc.JSView,
     "Label"             : sap.m.Label,
+    "Title"             : sap.m.Title,
     "Button"            : sap.m.Button,
     "SegmentedButton"   : sap.m.SegmentedButton,
     "Page"              : sap.m.Page,
@@ -39,6 +41,7 @@ var COMPONENT = {
     "App"               : sap.m.App,
     "ObjectHeader"      : sap.m.ObjectHeader,
     "Toolbar"           : sap.m.Toolbar,
+    "ToolbarSpacer"     : sap.m.ToolbarSpacer,
     "JSONModel"         : sap.ui.model.json.JSONModel,
     "List"              : sap.m.List,
     "StandardListItem"  : sap.m.StandardListItem,

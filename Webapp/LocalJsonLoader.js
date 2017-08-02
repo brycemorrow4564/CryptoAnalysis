@@ -5,12 +5,15 @@ var JSON_LOADER = {
         var data = '';
         $.ajax({
             async: false,
-            url: '../CryptoJSON/ALLCOINS.json',
+            url: './CryptoJSON/ALLCOINS.json',
             success: function(coinJson) {
                 data = coinJson;
             },
+            error: function(err) {
+                console.log('error');
+            },
             failure: function(err) {
-                console.log(err);
+                console.log('fail');
             }
         });
         return data;

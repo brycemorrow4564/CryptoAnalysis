@@ -1,4 +1,3 @@
-jQuery.sap.require('sap.crypto.app.Utility.LocalJsonLoader');
 jQuery.sap.require('sap.crypto.app.Utility.Globals');
 
 sap.ui.define([

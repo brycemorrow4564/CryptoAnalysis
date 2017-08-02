@@ -1,4 +1,66 @@
 /*
+GENERAL STYLINGS
+*/
+
+.sapMBtnBase > span, .sapMComboBoxTextField.sapMComboBoxBase, #RemoveCoin, #RemoveChart {
+    outline: none;
+    border-color: #94a9bd;
+}
+
+.noDisplay.sapMTitle.noContentTitle { /* Toggleable class to hide noContent text */
+    display: none;
+}
+
+
+/* Removes dotted outline for focus / active on buttons  */
+html.sap-desktop body.sapUiBody .sapMBtn:focus > .sapMFocusable,
+html.sap-desktop body.sapUiBody .sapMInputBaseInner:not(.sapMInputBaseReadonlyInner):focus,
+#RemoveSelector.sapMMultiComboBoxFocus,
+html.sap-desktop body.sapUiBody .sapMBtn:focus > .sapMBtnActive.sapMFocusable {
+    outline-offset: 0px;
+    outline: none; 
+}
+
+
+/*
+NO DATA STYLING
+*/
+
+.noContentTitle.sapMTitle {
+    display: flex;
+    width: 100%;
+    padding-top: 17%;
+}
+
+.noContentTitle.sapMTitle > span {
+    margin: 0 auto;
+    color: #d1d1d1;
+    font-size: 1.5rem;
+    font-size: 2.5vw;
+}
+
+@media screen and (max-width: 770px) and (min-width: 720px) {
+    .configBtnMedia > span > span {
+        font-size: .7rem;
+    }
+
+    #RemoveChart-img, #RemoveCoin-img  {
+        font-size: 1.15rem;
+    }
+}
+
+@media screen and (max-width: 629px) and (min-width: 0px) {
+    .configBtnMedia > span > span {
+        font-size: .5rem;
+    }
+
+    #RemoveChart-img, #RemoveCoin-img {
+        font-size: .83rem;
+    }
+}
+
+
+/*
 SIDE BAR STYLING
 */
 
@@ -59,12 +121,7 @@ CONFIG PANEL FORMATTING
     border-bottom-left-radius: 0;
 }
 
-#RemoveSelector {
-    border-top-left-radius: .2rem;
-    border-bottom-left-radius: .2rem;
-}
-
-#DefaultChart, #DefaultChart-inner { /* Need to include inner here as well due to structural semantic */
+.sapMComboBoxBase { /* Border radius for 3 selector containers on CoinDetail page */
     border-top-left-radius: .2rem;
     border-bottom-left-radius: .2rem;
 }
@@ -158,7 +215,7 @@ Highstock Graph Formatting
 
 .CHARTDIV {
     width: 86%;
-    margin: 0 auto 3% auto;
+    margin: 3% auto 3% auto;
     border: 3px solid #346187;
 }
 
