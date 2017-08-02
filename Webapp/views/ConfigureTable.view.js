@@ -218,6 +218,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 this.dragAndDropAlertDisplayed = true;
                 window.setTimeout(function(){
                     COMPONENT.MessageToast.show("Note: You can drag and drop coin name tiles between charts", {
+                        autoClose: false,
                         duration: 4500,
                         animationDuration: 1500
                     });

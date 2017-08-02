@@ -29,14 +29,9 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
             customHeader: new COMPONENT.Toolbar({
                 content: [
                     new COMPONENT.ToolbarSpacer(),
-                    new COMPONENT.Button({
-                        text: 'About'
-                    }),
-                    new COMPONENT.Button({
-                        text: "Configure Charts",
-                        press: function(evt) {
-                            oController.navToTableConfiguration(evt);
-                        }
+                    new COMPONENT.HTML({
+                        content: '<button id="AboutHeaderBtn"><span>About</span></button>' +
+                                 '<button id="ConfigurationHeaderBtn"><span>Configuration</span></button>'
                     })
                 ]
             }),
@@ -52,7 +47,18 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
                 sap.m.Page.prototype.onAfterRendering.apply(this);
             }
 
+            //Hide all plotting charts as we have no data to plot
             $('.CHARTDIV').addClass('hideChart');
+
+            //Link buttons to proper navigation functions
+            $('#ConfigurationHeaderBtn').click(function(){
+                oController.navToTableConfiguration();
+            });
+            $('#AboutHeaderBtn').click().click(function(){
+                alert("Under construction");
+                //IMPLEMENT THIS AND CREATE A NEW VIEW
+                //oController.navToAboutPage();
+            });
         };
 
         return page;

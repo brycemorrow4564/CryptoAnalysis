@@ -15,7 +15,6 @@ GENERAL STYLINGS
 /* Removes dotted outline for focus / active on buttons  */
 html.sap-desktop body.sapUiBody .sapMBtn:focus > .sapMFocusable,
 html.sap-desktop body.sapUiBody .sapMInputBaseInner:not(.sapMInputBaseReadonlyInner):focus,
-#RemoveSelector.sapMMultiComboBoxFocus,
 html.sap-desktop body.sapUiBody .sapMBtn:focus > .sapMBtnActive.sapMFocusable {
     outline-offset: 0px;
     outline: none;
@@ -28,6 +27,51 @@ header.sapMTB.sapMPageHeader {
 #ChartManagerTable label.boldDefaultChart {
     font-weight: bold;
 }
+
+/*
+HEADER STYLINGS
+*/
+
+#AboutHeaderBtn, #ConfigurationHeaderBtn  {
+    position: relative;
+    height: 3rem;
+    margin: 0;
+    padding: 0.250rem .75rem;
+    vertical-align: top;
+    border: none;
+    background-color: transparent;
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+    cursor: pointer;
+}
+
+#AboutHeaderBtn:focus, #ConfigurationHeaderBtn:focus  {
+    outline: none;
+}
+
+#AboutHeaderBtn > span, #ConfigurationHeaderBtn  > span {
+    overflow: hidden;
+    vertical-align: top;
+    line-height: 2.375rem;
+    display: block;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.875rem;
+    height: 2.500rem;
+    min-width: 2.500rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    font-weight: normal;
+    color: #799ebe;
+    transition: color .4s ease;
+}
+
+#AboutHeaderBtn > span:hover, #ConfigurationHeaderBtn > span:hover {
+    color: #427cac;
+}
+
 /*
 NO DATA STYLING
 */
@@ -81,11 +125,15 @@ SIDE BAR STYLING
 
 #CoinList-listUl div.sapMSLITitleOnly { /* Styles labels in coin list */
     transition: color .4s ease;
-    color: #346187; !important
+    color: #799ebe; !important
 }
 
 #CoinList-listUl > li:hover div.sapMSLITitleOnly { /* Hover style for coin list labels */
-    color: #bfbfbf; !important
+    color: #427cac; !important
+}
+
+.sapMCbBg.sapMCbMark {
+    border-color: #c0d5e9;
 }
 
 /*
@@ -222,7 +270,7 @@ Highstock Graph Formatting
 .CHARTDIV {
     width: 86%;
     margin: 3% auto 3% auto;
-    border: 3px solid #346187;
+    border: 3px solid #dddddd;
 }
 
 #CoinDetailPage div.CHARTDIV:not(.hideChart):first-of-type {
