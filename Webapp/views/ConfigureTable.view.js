@@ -1,5 +1,7 @@
 jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals");
 jQuery.sap.require("sap.crypto.app.Utility.Globals");
+$.sap.require('sap.crypto.app.Utility.GenerateCustomHeader');
+$.sap.require('sap.crypto.app.Utility.RouterGeneral');
 
 sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
 
@@ -44,7 +46,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 id: oController.dataModeSelectorId,
                 width: '100%',
                 layoutData : new COMPONENT.GridData({
-                  span : "XL5 L4 M5 S5",
+                  span : "XL4 L4 M5 S5",
                   indent: "XL2 L2 M1 S1"
                 })
             }).bindItems(GLOBALS.dataModeModelId + '>/modes', modeTemplate),
@@ -55,7 +57,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                     oController.setDataMode(oEvent);
                 },
                 layoutData : new COMPONENT.GridData({
-                  span : "XL3 L4 M5 S5",
+                  span : "XL4 L4 M5 S5",
                   indent: 'XL0 L0 M0 S0'
                 })
             }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('configBtnMedia'),
@@ -81,7 +83,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 width: '100%',
                 placeholder: GLOBALS.defaultChartId,
                 layoutData : new COMPONENT.GridData({
-                  span : "XL5 L4 M5 S5",
+                  span : "XL4 L4 M5 S5",
                   indent: "XL2 L2 M1 S1"
                 })
             }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate),
@@ -92,7 +94,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                     oController.setDefaultChart(oEvent);
                 },
                 layoutData : new COMPONENT.GridData({
-                  span : "XL3 L4 M5 S5",
+                  span : "XL4 L4 M5 S5",
                   indent: 'XL0 L0 M0 S0'
                 })
             }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('configBtnMedia'),
@@ -112,7 +114,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 width: "100%",
                 press: function(oEvent) { oController.removeChartOrCoin() },
                 layoutData : new COMPONENT.GridData({
-                  span : "XL1 L2 M2 S2",
+                  span : "XL2 L2 M2 S2",
                   indent: 'XL0 L0 M0 S0'
                 })
             }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('removeBtnBorderRadiusRight').addStyleClass('configBtnMedia'),
@@ -142,7 +144,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 width: '100%',
                 placeholder: 'Remove Charts',
                 layoutData : new COMPONENT.GridData({
-                  span : "XL5 L4 M5 S5",
+                  span : "XL4 L4 M5 S5",
                   indent: "XL2 L2 M1 S1"
                 })
             }).bindItems(oController.coinToChartModelId + '>/columns', chartTemplate),
@@ -173,7 +175,6 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
         var chartManager = new COMPONENT.Table({
                 id: oController.chartManagerTableId,
                 width: '90%',
-                dragAndDropAlertDisplayed: false, //custom flag param to display one time info msg
                 columns: [
                     new COMPONENT.Column({
                         header: new COMPONENT.Label({
@@ -213,18 +214,6 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 sap.m.Table.prototype.onAfterRendering.apply(this);
             }
 
-            //Display one time alert message to tell user they can drag and drop tiles
-            if (!this.dragAndDropAlertDisplayed) {
-                this.dragAndDropAlertDisplayed = true;
-                window.setTimeout(function(){
-                    COMPONENT.MessageToast.show("Note: You can drag and drop coin name tiles between charts", {
-                        autoClose: false,
-                        duration: 4500,
-                        animationDuration: 1500
-                    });
-                }, 1800);
-            }
-
             //Implement jQuery draggable function
             $("#" + oController.chartManagerTableId + " button").draggable({
                 cancel: false, //buttons disallowed for draggable by default so we deactivate this property
@@ -261,16 +250,22 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
             })
         }
 
-        return new COMPONENT.Page({
-            showNavButton: true,
-            navButtonTap:function(){
-                  oController.navToCoinDetail();
-            },
+        var page = new COMPONENT.Page({
+            customHeader: CUSTOM_HEADER_GENERATOR.getCustomHeader(oController.getView()),
             content: [
                 vertLayout,
                 chartManager
             ]
         });
+
+        page.onAfterRendering = function(evt) {
+            if (sap.m.Page.prototype.onAfterRendering) { //apply any default behavior so we don't override essential things
+                sap.m.Page.prototype.onAfterRendering.apply(this);
+            }
+            ROUTER.setupHeaderRouting();
+        };
+
+        return page;
    }
 
 });

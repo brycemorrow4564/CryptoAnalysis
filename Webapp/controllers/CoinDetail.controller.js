@@ -1,5 +1,6 @@
 jQuery.sap.require('sap.crypto.app.Utility.HighstockJsonFormatter');
 $.sap.require('sap.crypto.app.Utility.Globals');
+$.sap.require('sap.crypto.app.Utility.RouterGeneral');
 
 sap.ui.define([
    "sap/ui/core/mvc/Controller"
@@ -22,8 +23,8 @@ sap.ui.define([
             var controller = this;
             this.getView().attachAfterRendering(function(evt, self = controller) {
                 var router = sap.ui.core.UIComponent.getRouterFor(controller);
-                router.attachRoutePatternMatched(controller.generateCoinView, controller);
-                router.fireRoutePatternMatched({
+                router.attachRouteMatched(controller.generateCoinView, controller);
+                router.fireRouteMatched({
                     'name': 'CoinDetail'
                 });
             });
@@ -74,13 +75,6 @@ sap.ui.define([
             }
 
             HIGHSTOCK_JSON_FORMATTER.processAndPlot(coinToChartData, coinDataMap, dataMode);
-        },
-
-        navToTableConfiguration: function(evt) {
-
-            console.log('CoinDetail: navToConfig');
-
-            this.getOwnerComponent().getRouter().navTo("ConfigureTable");
         },
 
         getNoContentFormat: function() {

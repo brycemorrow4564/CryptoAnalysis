@@ -69,6 +69,11 @@
               "pattern" : "ConfigureTable",
               "name" : "ConfigureTable",
               "view" : "ConfigureTable"
+            },
+            {
+              "pattern": "About",
+              "name": "About",
+              "view": "About"
             }
           ]
         }

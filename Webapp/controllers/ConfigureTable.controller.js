@@ -1,5 +1,6 @@
 jQuery.sap.require('sap.crypto.app.Utility.HighstockJsonFormatter');
 jQuery.sap.require('sap.crypto.app.Utility.Globals');
+$.sap.require('sap.crypto.app.Utility.RouterGeneral');
 
 sap.ui.define([
    "sap/ui/core/mvc/Controller"
@@ -32,7 +33,7 @@ sap.ui.define([
                events occur in the CoinSideBar view. */
             this.getView().setModel(new COMPONENT.JSONModel({}), this.allCoinsModelId);
 
-            sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
+            sap.ui.core.UIComponent.getRouterFor(this).attachRouteMatched(this.onRouteMatched, this);
             sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'updateAllCoins', this.updateAllCoins, this);
         },
 
@@ -78,12 +79,6 @@ sap.ui.define([
             table.fireUpdateFinished();
         },
 
-        navToCoinDetail: function(evt) {
-
-            console.log('Config: nav to coin detail');
-
-            this.getOwnerComponent().getRouter().navTo("CoinDetail");
-        },
 
         /*  This method allows users to add a new chart from the configure tables view. This adds a new entry
             into the table, updates the CoinToChart model. Upon navigation back to the detail view, the model

@@ -1,4 +1,6 @@
 jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals");
+$.sap.require('sap.crypto.app.Utility.GenerateCustomHeader');
+$.sap.require('sap.crypto.app.Utility.RouterGeneral');
 
 sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
 
@@ -26,15 +28,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
 
         var page = new COMPONENT.Page({
             id: oController.detailPageId,
-            customHeader: new COMPONENT.Toolbar({
-                content: [
-                    new COMPONENT.ToolbarSpacer(),
-                    new COMPONENT.HTML({
-                        content: '<button id="AboutHeaderBtn"><span>About</span></button>' +
-                                 '<button id="ConfigurationHeaderBtn"><span>Configuration</span></button>'
-                    })
-                ]
-            }),
+            customHeader: CUSTOM_HEADER_GENERATOR.getCustomHeader(oController.getView()),
             content: [
                 noContentFormat,
                 html
@@ -42,23 +36,13 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
         });
 
         page.onAfterRendering = function(evt) {
-
             if (sap.m.Page.prototype.onAfterRendering) { //apply any default behavior so we don't override essential things
                 sap.m.Page.prototype.onAfterRendering.apply(this);
             }
-
             //Hide all plotting charts as we have no data to plot
             $('.CHARTDIV').addClass('hideChart');
 
-            //Link buttons to proper navigation functions
-            $('#ConfigurationHeaderBtn').click(function(){
-                oController.navToTableConfiguration();
-            });
-            $('#AboutHeaderBtn').click().click(function(){
-                alert("Under construction");
-                //IMPLEMENT THIS AND CREATE A NEW VIEW
-                //oController.navToAboutPage();
-            });
+            ROUTER.setupHeaderRouting();
         };
 
         return page;

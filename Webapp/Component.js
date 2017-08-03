@@ -11,7 +11,9 @@ sap.ui.define([
         init : function () {
 
             UIComponent.prototype.init.apply(this, arguments);
-            this.getRouter().initialize();
+            var oRouter = this.getRouter();
+            oRouter.register('router'); //name router for easy access
+            oRouter.initialize();
 
             var i18nModel = new ResourceModel({
                 bundleName : "sap.crypto.app.i18n.i18n"

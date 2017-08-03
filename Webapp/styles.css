@@ -32,7 +32,7 @@ header.sapMTB.sapMPageHeader {
 HEADER STYLINGS
 */
 
-#AboutHeaderBtn, #ConfigurationHeaderBtn  {
+.header-button {
     position: relative;
     height: 3rem;
     margin: 0;
@@ -45,11 +45,19 @@ HEADER STYLINGS
     cursor: pointer;
 }
 
-#AboutHeaderBtn:focus, #ConfigurationHeaderBtn:focus  {
+.active-header-tab {
+    border-bottom: 2px solid #0a5899;
+}
+
+.header-button > span.active-header-text {
+    color: #0a5899;
+}
+
+.header-button:focus  {
     outline: none;
 }
 
-#AboutHeaderBtn > span, #ConfigurationHeaderBtn  > span {
+.header-button > span {
     overflow: hidden;
     vertical-align: top;
     line-height: 2.375rem;
@@ -60,6 +68,7 @@ HEADER STYLINGS
     height: 2.500rem;
     min-width: 2.500rem;
     margin: 0;
+    margin-bottom: 1px;
     padding: 0;
     text-align: center;
     position: relative;
@@ -68,8 +77,8 @@ HEADER STYLINGS
     transition: color .4s ease;
 }
 
-#AboutHeaderBtn > span:hover, #ConfigurationHeaderBtn > span:hover {
-    color: #427cac;
+.header-button > span:hover {
+    color: #0a5899;
 }
 
 /*
@@ -129,7 +138,7 @@ SIDE BAR STYLING
 }
 
 #CoinList-listUl > li:hover div.sapMSLITitleOnly { /* Hover style for coin list labels */
-    color: #427cac; !important
+    color: #0a5899; !important
 }
 
 .sapMCbBg.sapMCbMark {
