@@ -18,7 +18,7 @@ CUSTOM_HEADER_GENERATOR = {
             }
         });
 
-        htmlStr += '<div class="header-bottom-border"></div>'
+        htmlStr += '<div class="header-bottom-border"></div>';
 
         return new COMPONENT.Toolbar({
             content: [

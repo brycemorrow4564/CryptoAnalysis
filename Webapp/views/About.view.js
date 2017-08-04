@@ -25,7 +25,7 @@ sap.ui.jsview("sap.crypto.app.views.About", {
             }
             ROUTER.setupHeaderRouting();
 
-            var topOffset = $('.sapMPageHeader').height() - 3;
+            var topOffset = $('.sapMPageHeader').height() - 3; //Border width is 2px so subtract
             $('.header-bottom-border').css('top', topOffset);
         };
 

@@ -52,6 +52,11 @@
         "controlId": "app"
       },
       "routes": [
+        {
+          "name": "",
+          "pattern": "",
+          "target": ["CoinSideBar", "CoinDetail"]
+        },
       {
         "name": "CoinDetail",
         "pattern": "Charts",
