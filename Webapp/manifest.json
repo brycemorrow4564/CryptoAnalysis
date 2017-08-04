@@ -49,35 +49,47 @@
         "viewType": "JS",
         "viewPath": "sap.crypto.app.views",
         "clearTarget": false,
-        "controlId": "app",
-        "controlAggregation": "detailPages"
+        "controlId": "app"
       },
       "routes": [
-        {
-          "pattern" : "",
-          "name" : "CoinSideBar",
-          "view" : "CoinSideBar",
-          "targetAggregation" : "masterPages",
-          "targetControl" : "app",
-          "subroutes" : [
-            {
-            "pattern" : "",
-            "name" : "CoinDetail",
-            "view" : "CoinDetail"
-            },
-            {
-              "pattern" : "ConfigureTable",
-              "name" : "ConfigureTable",
-              "view" : "ConfigureTable"
-            },
-            {
-              "pattern": "About",
-              "name": "About",
-              "view": "About"
-            }
-          ]
-        }
-      ]
+      {
+        "name": "CoinDetail",
+        "pattern": "Charts",
+        "target": ["CoinSideBar", "CoinDetail"]
+      },
+      {
+        "name": "ConfigureTable",
+        "pattern": "Configuration",
+        "target": ["CoinSideBar", "ConfigureTable"]
+      },
+      {
+        "name": "About",
+        "pattern": "About",
+        "target": ["CoinSideBar", "About"]
+      }
+    ],
+    "targets": {
+      "CoinSideBar": {
+        "viewName": "CoinSideBar",
+        "controlAggregation": "masterPages",
+        "viewLevel": 0
+      },
+      "ConfigureTable": {
+        "viewName": "ConfigureTable",
+        "controlAggregation": "detailPages",
+        "viewLevel": 2
+      },
+      "About": {
+        "viewName": "About",
+        "controlAggregation": "detailPages",
+        "viewLevel": 3
+      },
+      "CoinDetail": {
+        "viewName": "CoinDetail",
+        "controlAggregation": "detailPages",
+        "viewLevel": 1
+      }
+    }
     }
   }
 }

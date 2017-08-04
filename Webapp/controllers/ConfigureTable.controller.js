@@ -33,11 +33,16 @@ sap.ui.define([
                events occur in the CoinSideBar view. */
             this.getView().setModel(new COMPONENT.JSONModel({}), this.allCoinsModelId);
 
-            sap.ui.core.UIComponent.getRouterFor(this).attachRouteMatched(this.onRouteMatched, this);
+            sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
             sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'updateAllCoins', this.updateAllCoins, this);
         },
 
         onRouteMatched: function(oEvent) {
+
+            var currDetPageName = sap.ui.getCore().byId("app").getCurrentDetailPage().sViewName.split('.').splice(-1)[0].trim();
+            if (currDetPageName !== "ConfigureTable") {
+                return;
+            }
 
             console.log('Config: config route match');
 
@@ -49,7 +54,7 @@ sap.ui.define([
                 coinToChartObj['data'].forEach(function(coinName) { allCoinNamesObjects.push({"name": coinName}); });
             });
 
-            this.getView().getModel(this.allCoinsModelId).setData({'coins': allCoinNamesObjects});
+            //this.getView().getModel(this.allCoinsModelId).setData({'coins': allCoinNamesObjects});
         },
 
         updateAllCoins: function() {
@@ -376,7 +381,3 @@ sap.ui.define([
 
    });
 });
-
-
-
-

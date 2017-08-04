@@ -6,7 +6,7 @@ CUSTOM_HEADER_GENERATOR = {
     customHeader: function(targetBtnText) {
 
         var htmlStr = '',
-            btnTexts = ['About', 'Charts', 'Configuration'];
+            btnTexts = ['Charts', 'Configuration', 'About'];
 
         btnTexts.forEach(function(label) {
             if (label === targetBtnText) {

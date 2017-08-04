@@ -11,6 +11,8 @@ ROUTER = {
         var buttonText = jqueryObj.context.innerText.trim(),
             navPattern = this.buttonRoutePatternMap[buttonText];
 
+        console.log("HANDLING NAV FOR " + navPattern);
+
         sap.ui.core.routing.Router.getRouter("router").navTo(navPattern);
     },
 

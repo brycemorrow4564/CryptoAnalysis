@@ -10,6 +10,7 @@ sap.ui.define([
 
         detailPageId: "CoinDetailPage",
         noContentMsgId: "NoContentMsg",
+        isInit: true,
         maxNumCharts: 25, //Maximum number of charts a user can include on the detail page
 
         onInit: function() {
@@ -23,10 +24,13 @@ sap.ui.define([
             var controller = this;
             this.getView().attachAfterRendering(function(evt, self = controller) {
                 var router = sap.ui.core.UIComponent.getRouterFor(controller);
-                router.attachRouteMatched(controller.generateCoinView, controller);
-                router.fireRouteMatched({
-                    'name': 'CoinDetail'
-                });
+                router.attachRoutePatternMatched(controller.generateCoinView, controller);
+                if (controller.isInit) {
+                    controller.isInit = false;
+                    router.fireRoutePatternMatched({
+                        'name': 'CoinDetail'
+                    });
+                }
             });
 
         },
@@ -40,6 +44,11 @@ sap.ui.define([
 
         //Dynamically populate view with coin data using jquery and highstock apis (no model binding is used)
         generateCoinView: function(channel, event) {
+
+            var currDetPageName = sap.ui.getCore().byId("app").getCurrentDetailPage().sViewName.split('.').splice(-1)[0].trim();
+            if (currDetPageName !== "CoinDetail") {
+                return;
+            }
 
             console.log('CoinDetail: generate coin view');
 

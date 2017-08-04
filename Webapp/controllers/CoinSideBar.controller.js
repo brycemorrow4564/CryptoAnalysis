@@ -10,7 +10,6 @@ sap.ui.define([
         pageId          : "SidebarPage",
 
         onInit: function() {
-
             sap.ui.getCore().getEventBus().subscribe('ConfigureTable', 'deselectCoins', this.deselectCoins, this);
             sap.ui.getCore().getEventBus().subscribe('ConfigureTable', 'deselectAllCoins', this.deselectAllCoins, this);
         },
@@ -39,9 +38,7 @@ sap.ui.define([
                 numSelectedItems = list.getSelectedItems().length + (itemStatus ? 1 : 0);
 
             list.setSelectedItem(itemClicked, itemStatus);
-
             this.selectionChange(itemClicked, itemStatus, coinName, numSelectedItems);
-
         },
 
         selectionChange: function(itemClicked, itemStatus, coinName, numSelectedItems) {
@@ -114,10 +111,14 @@ sap.ui.define([
             model.setData({'columns': data});
             model.refresh(true);
 
-            var eventBus = sap.ui.getCore().getEventBus();
+            var eventBus = sap.ui.getCore().getEventBus(),
+                currDetPageName = sap.ui.getCore().byId("app").getCurrentDetailPage().sViewName.split('.').splice(-1)[0].trim();
 
-            eventBus.publish('CoinSideBar', 'generateCoinView'); //CoinDetail subscribes to this event and reacts to model changes
-            eventBus.publish('CoinSideBar', 'updateAllCoins'); //Refresh table in ConfigureTable view
+            if (currDetPageName === 'CoinDetail') {
+                eventBus.publish('CoinSideBar', 'generateCoinView'); //CoinDetail subscribes to this event and reacts to model changes
+            } else if (currDetPageName === 'ConfigureTable') {
+                eventBus.publish('CoinSideBar', 'updateAllCoins'); //ConfigureTable subscribes to this to keep table updated
+            }
         },
 
         deselectCoins: function(channel, event, data) {
