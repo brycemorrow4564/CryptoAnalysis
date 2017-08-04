@@ -1,4 +1,4 @@
-jQuery.sap.require("sap.crypto.app.Utility.ComponentGlobals");
+$.sap.require("sap.crypto.app.Utility.ComponentGlobals");
 $.sap.require('sap.crypto.app.Utility.GenerateCustomHeader');
 $.sap.require('sap.crypto.app.Utility.RouterGeneral');
 
@@ -43,6 +43,9 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
             $('.CHARTDIV').addClass('hideChart');
 
             ROUTER.setupHeaderRouting();
+
+            var topOffset = $('.sapMPageHeader').height() - 3;
+            $('.header-bottom-border').css('top', topOffset);
         };
 
         return page;

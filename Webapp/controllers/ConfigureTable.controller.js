@@ -1,5 +1,5 @@
-jQuery.sap.require('sap.crypto.app.Utility.HighstockJsonFormatter');
-jQuery.sap.require('sap.crypto.app.Utility.Globals');
+$.sap.require('sap.crypto.app.Utility.HighstockJsonFormatter');
+$.sap.require('sap.crypto.app.Utility.Globals');
 $.sap.require('sap.crypto.app.Utility.RouterGeneral');
 
 sap.ui.define([

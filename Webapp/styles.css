@@ -1,3 +1,11 @@
+.header-bottom-border {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #d1e0ee;
+    z-index: 2
+}
+
 /*
 GENERAL STYLINGS
 */
@@ -11,17 +19,12 @@ GENERAL STYLINGS
     display: none;
 }
 
-
 /* Removes dotted outline for focus / active on buttons  */
 html.sap-desktop body.sapUiBody .sapMBtn:focus > .sapMFocusable,
 html.sap-desktop body.sapUiBody .sapMInputBaseInner:not(.sapMInputBaseReadonlyInner):focus,
 html.sap-desktop body.sapUiBody .sapMBtn:focus > .sapMBtnActive.sapMFocusable {
     outline-offset: 0px;
     outline: none;
-}
-
-header.sapMTB.sapMPageHeader {
-    border-color: #d1e0ee;
 }
 
 #ChartManagerTable label.boldDefaultChart {
@@ -47,6 +50,13 @@ HEADER STYLINGS
 
 .active-header-tab {
     border-bottom: 2px solid #0a5899;
+    position: relative;
+    z-index: 3;
+}
+
+.header-tab-abs {
+    position: absolute;
+    border-top: 1px solid #0a5899;
 }
 
 .header-button > span.active-header-text {
@@ -79,6 +89,10 @@ HEADER STYLINGS
 
 .header-button > span:hover {
     color: #0a5899;
+}
+
+header.sapMPageHeader.sapMTB {
+    border: none;
 }
 
 /*

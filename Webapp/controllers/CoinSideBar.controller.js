@@ -1,4 +1,4 @@
-jQuery.sap.require('sap.crypto.app.Utility.Globals');
+$.sap.require('sap.crypto.app.Utility.Globals');
 
 sap.ui.define([
    "sap/ui/core/mvc/Controller"

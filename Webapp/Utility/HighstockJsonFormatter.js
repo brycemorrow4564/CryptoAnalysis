@@ -1,5 +1,18 @@
 HIGHSTOCK_JSON_FORMATTER = {
 
+    colorsSetup: false,
+    colorSetMap: {},
+
+    setupColorSets: function() {
+
+        var colors = ['#90ccff','#0024ff','#00d5ff','#b5ffcb','#98ff52','#008d02','#ffbb0c','#ff560c'];
+
+        this.colorsSetup = true;
+        for (var x = 1; x <= 25; x++) {
+            this.colorSetMap['Chart ' + x] = this.randShuffle(colors);
+        }
+    },
+
     randShuffle: function(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -20,6 +33,11 @@ HIGHSTOCK_JSON_FORMATTER = {
 
     //Input should ALWAYS be a list of json coin objects even for a single coin to simplify implementation
     processAndPlot: function(coinToChartData, coinDataMap, dataMode) {
+
+        //Randomly shuffle base color set and assign variants to charts randomly
+        if (!this.colorsSetup) {
+            this.setupColorSets();
+        }
 
         //Hide all divs. We will show the ones with information in them later on
         var chartNamesPlotted = [];
@@ -77,10 +95,6 @@ HIGHSTOCK_JSON_FORMATTER = {
     getOptions: function(chartName, dataMode, coinList, pointsArr) {
 
         var seriesData = [];
-//            colorSet = ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee',
-//                                         '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'];
-
-        var colorSet = this.randShuffle(['#ffd400','#ff2e00','#6aff00','#00ffbb','#00e5ff','#0061ff','#aa00ff','#f200ff','#ff00ae']);
 
         //coinList and pointsArr have the same length and there is 1 to 1 between coinname and data
         for (var y = 0; y < coinList.length; y++) {
@@ -97,9 +111,9 @@ HIGHSTOCK_JSON_FORMATTER = {
         var options = {
 
             rangeSelector: {
-                selected: 1
+                selected: 0
             },
-            colors: colorSet,
+            colors: this.colorSetMap[chartName],
             credits: {
                 enabled: false
             },
@@ -117,7 +131,9 @@ HIGHSTOCK_JSON_FORMATTER = {
                     $.each(this.points, function(i, point) {
                         var obj = {};
                         obj.sortProp = point.y;
-                        obj.data = '<br/><span style="color:' + this.point.color + '">\u25CF</span> ' + point.series.name +' : $'+ point.y.toLocaleString();
+                        obj.data = '<br/><span style="color:' + this.point.color + '">\u25CF</span> ' +
+                                    point.series.name +' : $'+ point.y.toLocaleString();
+
                         s.push(obj);
                     });
 
