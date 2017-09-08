@@ -9,7 +9,7 @@ HIGHSTOCK_JSON_FORMATTER = {
 
         this.colorsSetup = true;
         for (var x = 1; x <= 25; x++) {
-            this.colorSetMap['Chart ' + x] = this.randShuffle(colors);
+            this.colorSetMap['Chart ' + x] = colors;
         }
     },
 
@@ -38,6 +38,8 @@ HIGHSTOCK_JSON_FORMATTER = {
         if (!this.colorsSetup) {
             this.setupColorSets();
         }
+
+        console.log(this.colorSetMap)
 
         //Hide all divs. We will show the ones with information in them later on
         var chartNamesPlotted = [];

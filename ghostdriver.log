@@ -1,5 +1,55 @@
-[INFO  - 2017-07-29T23:18:45.130Z] GhostDriver - Main - running on port 55860
-[INFO  - 2017-07-29T23:18:45.220Z] Session [449cc6f0-74b4-11e7-980d-61875976894c] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2017-07-29T23:18:45.220Z] Session [449cc6f0-74b4-11e7-980d-61875976894c] - page.customHeaders:  - {}
-[INFO  - 2017-07-29T23:18:45.220Z] Session [449cc6f0-74b4-11e7-980d-61875976894c] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2017-07-29T23:18:45.220Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 449cc6f0-74b4-11e7-980d-61875976894c
+[INFO  - 2017-09-05T17:59:01.533Z] GhostDriver - Main - running on port 56674
+[INFO  - 2017-09-05T17:59:02.513Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2017-09-05T17:59:02.513Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.customHeaders:  - {}
+[INFO  - 2017-09-05T17:59:02.513Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-09-05T17:59:02.513Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: e68653b0-9263-11e7-ba49-17eef410f15d
+[ERROR - 2017-09-05T17:59:15.236Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: HTMLVideoElement
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T17:59:15.236Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
+  (anonymous function) (https://files.cointraffic.io/pub/2759/d3e07674c1/index.html:69)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:00:52.734Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: HTMLVideoElement
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:00:52.734Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
+  (anonymous function) (https://files.cointraffic.io/pub/2759/fb7634838b/index.html:70)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:00:56.521Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: HTMLVideoElement
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:00:56.521Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
+  (anonymous function) (https://files.cointraffic.io/pub/2759/fb7634838b/index.html:70)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:02:52.699Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: Stats
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:02:52.699Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
+  global code (https://files.cointraffic.io/pub/2836/3c2f792624/index.html:218)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:02:53.568Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: Stats
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:02:53.568Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
+  global code (https://files.cointraffic.io/pub/2820/fe3f1099fa/index.html:231)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:03:48.435Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: Stats
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:03:48.435Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
+  global code (https://files.cointraffic.io/pub/2836/3c2f792624/index.html:218)
+
+  phantomjs://platform/console++.js:263 in error
+[INFO  - 2017-09-05T18:04:01.646Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2017-09-05T18:04:12.186Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: Stats
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-09-05T18:04:12.186Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
+  global code (https://files.cointraffic.io/pub/2836/91f60e/index.html:219)
+
+  phantomjs://platform/console++.js:263 in error

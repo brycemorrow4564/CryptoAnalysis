@@ -9,11 +9,7 @@ class Globals:
     def __init__(self): 
         self.main_page_url = 'https://coinmarketcap.com/currencies/'
         self.driver = driver_setup(self.main_page_url)
-        self.csvDirRoot = '../WebApp/CryptoCSV/'
-        self.csvDirName = 'CryptoCSV'
-        self.jsonDirRoot = '../WebApp/CryptoJSON/'
-        self.jsonDirName = 'CryptoJSON'
-        self.queryString = '?start=20130428&end='
+        self.queryString = '?start=20130428&end=' #Querystring based on earliest possible start date.
 
 #General driver and executable path setup 
 def driver_setup(url):

@@ -1,4 +1,10 @@
-import csv
+'''
+This file is executed via a python shell contained within server side nodejs
+This program will scrape the data from the web and convert it to json format. 
+It will return this aggregate object to the nodejs program which will store 
+this information in a database (sqlite?)
+'''
+
 import json
 import time
 import re
@@ -16,7 +22,7 @@ from selenium.webdriver.common.by import By
 
 import settings as settings 
 
-'''HACKY DRIVER UTILITY FUNCTIONS (BECAUSE SELENIUM SUCKS !!!)'''
+''' DRIVER UTILITY FUNCTIONS '''
 
 def close_and_reset_driver(url):
     GLOBAL.driver.close()
@@ -78,7 +84,6 @@ def get_top_100_coin_names():
 def month_num_from_name(month):
     return {datetime.date(2017, i, 1).strftime('%B').lower():i for i in range(1,13)}[month.lower()]
 
-
 #'Jun 10, 2017' --> datetime.datetime object 
 def parse_date(rawDateData):
     dateRegex = re.compile('([^\s\,]+)')
@@ -88,125 +93,56 @@ def parse_date(rawDateData):
     year = datetimeData[2]
     return datetime.datetime(int(year), month_num_from_name(monthName), int(day))
 
-'''FILE READS AND WRITE (CSV/JSON)'''
-
-def write_to_csv(rowObjects, fieldnames, coinName): 
-    csvfile = open(GLOBAL.csvDirRoot + coinName + '.csv', 'w')
-    writer = csv.DictWriter(csvfile, extrasaction='ignore', fieldnames=fieldnames)
-    writer.writeheader()
-    for obj in rowObjects:
-        for fieldname in fieldnames: 
-            try: 
-                obj[fieldname] = int(obj[fieldname].replace(',','')) #convert data from string to int if possible else pass 
-            except Exception as e:
-                pass
-        writer.writerow(obj)
-    csvfile.close()
-
-def write_to_json(fieldnames, coinName): 
-    csvfile = open(GLOBAL.csvDirRoot + coinName + '.csv', 'r')
-    jsonfile = open(str(GLOBAL.jsonDirRoot + coinName + '.json'), 'w')
-    reader = [row for row in csv.DictReader(csvfile, fieldnames)][1:]
-    numRows = len(reader)
-    jsonfile.write('{ "name": ' + '"' + coinName + '",\n "priceHistory": [' )
-    for i in xrange(numRows): #eliminate last row which is header row for csv
-        row = reader[i]
-        for fieldname in fieldnames[1:]:
-            try: 
-                row[fieldname] = float(row[fieldname]) #this will fail if field should have value but is empty i.e. '-'
-            except Exception as e: 
-                pass
-        try:
-            json.dump(row, jsonfile)
-        except Exception as e: 
-            print "Misclassification of url routing by coinmarketcap"
-            jsonfile.close()
-            return 
-        jsonfile.write(',\n' if i != numRows - 1 else '\n')
-    jsonfile.write(']}')
-    jsonfile.close()
-
-#Aggregates contents of all json files into one large file (ALLCOINS.json)
-def create_aggregate_json(): 
-    jsonStr = '{ "Coins": [\n'
-    fileNames = os.listdir(GLOBAL.jsonDirName)
-    numFiles = len(fileNames)
-    for i in xrange(numFiles): 
-        filename = fileNames[i]
-        with open(GLOBAL.jsonDirRoot + filename) as jsonFile: 
-            jsonObj = json.load(jsonFile)
-            jsonStr += json.dumps(jsonObj) + (',\n' if i != numFiles - 1 else '\n')       
-    jsonStr += ']}'
-    aggrJsonObj = json.loads(jsonStr)
-    with open(GLOBAL.jsonDirRoot + 'ALLCOINS.json', 'w') as aggregateFile: 
-        json.dump(aggrJsonObj, aggregateFile)
-        aggregateFile.close()
-
-'''DATA DIRECTORY MANAGEMENT'''
-
-def clear_crypto_dirs():
-    #Remove Dirs if the exist, if they do not we catch error and continue on
-    try:
-        shutil.rmtree(GLOBAL.csvDirRoot)
-    except: 
-        pass
-    try:
-        shutil.rmtree(GLOBAL.jsonDirRoot)
-    except: 
-        pass
-    os.mkdir('../WebApp/' + GLOBAL.csvDirName)
-    os.mkdir('../WebApp/' + GLOBAL.jsonDirName)
-
 '''MAIN LOGIC FUNCTIONS'''
 
-'''
-Since almost all of the exeuction time of the program is the navigating between pages and waiting for pages to load, 
-compared to extremely fast html parsing operations for the formatting and storage (csv, json) of data, I made the 
-design choice to have the program start from scratch with each iteration, rather than trying to simply append data
-to preexisting files. 
-'''
-    
 def run_data_scraper():
-    clear_crypto_dirs() #clear all previous data from csv and json dirs 
-    top100Coins = get_top_100_coin_names()
-    coinNames = top100Coins
-    urls = [GLOBAL.main_page_url + coinName + '/historical-data/' + GLOBAL.queryString for coinName in top100Coins]
-    #coinRank = {coinNames[i]: i+1 for i in xrange(len(coinNames))}
+    coinNames, agg_coin_data = get_top_100_coin_names(), []
+    urls = [GLOBAL.main_page_url + coinName + '/historical-data/' + GLOBAL.queryString for coinName in coinNames]
+    #Gather data from web
     for i in xrange(len(coinNames)):
-        coinName = coinNames[i]
-        url = urls[i]
-        driver_get_page_timeout_wrapper(url) #after this you are guaranteed to be on historical data page 
+        print ('iteration for ' + coinNames[i] + " at " + str(time.time() - start_time))
+        driver_get_page_timeout_wrapper(urls[i]) #after this you are guaranteed to be on historical data page 
         if not verify_query_string_url(): 
             print "Query string was not found in the url for " + coinName
-            continue 
-        #Scrape data 
-        fieldnames = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap']
-        rowObjects = scrape_rows(fieldnames)
-        #Write to csv 
-        write_to_csv(rowObjects, fieldnames, coinName)
-        #Create json from previously created csv 
-        write_to_json(fieldnames, coinName)
-    #Create all encompassing file after we have gathered and parsed all data 
-    create_aggregate_json()
+            continue
+        agg_coin_data.append({
+            "name": coinNames[i], 
+            "data": [{k:v for k,v in elem.iteritems() if k not in ['High','Low','Close']} for elem in scrape_rows(['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'MarketCap'])]
+        })
+    print ("SENTINEL") #marker so we can find index of json object in stdout
+    print (json.dumps(agg_coin_data)) #wrap via json.dumps so that string is in correct form for parsing by nodejs
 
 def main():
-    global GLOBAL
-    GLOBAL = settings.setup()
-    run_data_scraper()
-    try:
-        pass
-        #run_data_scraper()
-    except Exception as e:
-        sys.stdout.write( e.message)
-    GLOBAL.driver.close()
+    print ("SENTINEL"); 
+    print(json.dumps([{
+             'name':'one', 
+             'data':[{"Volume": "629", "Date": "Aug 04, 2015", "Market Cap": "74,890", "Open": "0.009419"},
+                     {"Volume": "630", "Date": "Aug 05, 2015", "Market Cap": "74,891", "Open": "0.009420"}] 
+            },
+            {
+             'name':'two', 
+             'data':[{"Volume": "629", "Date": "Aug 04, 2015", "Market Cap": "74,890", "Open": "0.009419"},
+                     {"Volume": "630", "Date": "Aug 05, 2015", "Market Cap": "74,891", "Open": "0.009422"}] 
+            },
+            {
+             'name':'three', 
+             'data':[{"Volume": "629", "Date": "Aug 04, 2015", "Market Cap": "74,890", "Open": "0.009419"},
+                     {"Volume": "630", "Date": "Aug 05, 2015", "Market Cap": "74,891", "Open": "0.009424"}] 
+            }]))
+
+    # global GLOBAL
+    # print("Begin setup ")
+    # GLOBAL = settings.setup()
+    # print("Run data scraper " + str(time.time() - start_time))
+    # run_data_scraper()
+    # GLOBAL.driver.close()
 
 if __name__ == '__main__':
+    global start_time 
     start_time = time.time()
     main()
     elapsed_time = time.time() - start_time
     print elapsed_time
-
-
 
 '''
 Things to implement  

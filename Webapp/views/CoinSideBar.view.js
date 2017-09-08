@@ -21,9 +21,13 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
         var mcSorter = new sap.ui.model.Sorter('priceHistory', null); //sorts items by market cap valuation
 
         mcSorter.fnCompare = function(a, b) {
-            aVal = a[0]['Market Cap'];
-            bVal = b[0]['Market Cap'];
-            return aVal > bVal ? -1 : aVal == bVal ? 0 : 1;
+            try {
+                aVal = a[0]['Market Cap'];
+                bVal = b[0]['Market Cap'];
+                return aVal > bVal ? -1 : aVal == bVal ? 0 : 1;
+            } catch (err) {
+                return -1;
+            }
         };
 
         var templateItem = new COMPONENT.StandardListItem({
