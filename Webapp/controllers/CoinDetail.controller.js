@@ -56,7 +56,7 @@ sap.ui.define([
             $('.CHARTDIV').addClass('hideChart');
 
             var core                = sap.ui.getCore(),
-                allCoinsData        = core.getModel(GLOBALS.aggCoinModelId).getProperty("/Coins"),
+                allCoinsData        = core.getModel(GLOBALS.aggCoinModelId).getProperty('/Coins'),
                 coinDataMap         = {},
                 coinNames           = [],
                 coinToChartData     = core.getModel(GLOBALS.coinChartModelId).getProperty('/columns'),

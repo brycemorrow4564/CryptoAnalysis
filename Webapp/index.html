@@ -39,9 +39,9 @@
 
         //Setup some initial data
         var dataModesObj = {
-                'active': 'Market Cap',     //Current data mode
+                'active': 'MarketCap',     //Current data mode
                 'modes': [                  //All possible data modes
-                    {'name': 'Market Cap'},
+                    {'name': 'MarketCap'},
                     {'name': 'Volume'},
                     {'name': 'Daily Price'}
                 ]
@@ -51,8 +51,17 @@
             },
             core = sap.ui.getCore();
 
+        var agg_data = {};
+        $.ajax({
+            async: false,
+            url: 'http://localhost:8080/coins/',
+            success: function(response) {
+                agg_data = response;
+            }
+        });
+
         core.setModel(new COMPONENT.JSONModel(dataModesObj), GLOBALS.dataModeModelId);
-        core.setModel(new COMPONENT.JSONModel(JSON_LOADER.get_aggregate_json()), GLOBALS.aggCoinModelId);
+        core.setModel(new COMPONENT.JSONModel(agg_data), GLOBALS.aggCoinModelId);
         core.setModel(new COMPONENT.JSONModel(coinToChartData), GLOBALS.coinChartModelId);
     </script>
 </head>

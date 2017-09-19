@@ -39,8 +39,6 @@ HIGHSTOCK_JSON_FORMATTER = {
             this.setupColorSets();
         }
 
-        console.log(this.colorSetMap)
-
         //Hide all divs. We will show the ones with information in them later on
         var chartNamesPlotted = [];
 
@@ -60,21 +58,24 @@ HIGHSTOCK_JSON_FORMATTER = {
                 pointsArr               = []; //array of points objects to be passed to options.series.data
 
             coinList.forEach(function(coinName) {
-                var priceHist   = coinDataMap[coinName]['priceHistory'],
+                var priceHist   = coinDataMap[coinName]['data'],
                     points      = [];
 
-                for (var x = priceHist.length - 1; x > 0; x--) {
+                for (var x = priceHist.length - 1; x >= 0; x--) {
                     var rowObj = priceHist[x],
                         date = rowObj['Date'].replace(',','').replace(' ','-'),
                         epoch = new Date(date).valueOf(),
-                        d = rowObj[dataMode];
-                    if (isNaN(d)) { //if row has no value entry i.e. '-' then skip
+                        d = parseFloat(rowObj[dataMode].replace(",","")); //returns NaN if input value is invalid
+                    if (isNaN(d)) {
                         continue;
                     }
                     points.push([epoch, d]);
                 }
                 pointsArr.push(points);
             });
+
+            console.log("here")
+            console.log(pointsArr);
 
             //This variable is used so that we only remove the hidden class for charts where data is plotted
             dataPlottedForChartMap[plotDivId] = pointsArr.length !== 0;

@@ -105,37 +105,35 @@ def run_data_scraper():
         if not verify_query_string_url(): 
             print "Query string was not found in the url for " + coinName
             continue
+        data = [{k:v for k,v in elem.iteritems() if k not in ['High','Low','Close']} for elem in scrape_rows(['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'MarketCap'])]
         agg_coin_data.append({
             "name": coinNames[i], 
-            "data": [{k:v for k,v in elem.iteritems() if k not in ['High','Low','Close']} for elem in scrape_rows(['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'MarketCap'])]
+            "data": data
         })
     print ("SENTINEL") #marker so we can find index of json object in stdout
     print (json.dumps(agg_coin_data)) #wrap via json.dumps so that string is in correct form for parsing by nodejs
 
 def main():
-    print ("SENTINEL"); 
-    print(json.dumps([{
-             'name':'one', 
-             'data':[{"Volume": "629", "Date": "Aug 04, 2015", "Market Cap": "74,890", "Open": "0.009419"},
-                     {"Volume": "630", "Date": "Aug 05, 2015", "Market Cap": "74,891", "Open": "0.009420"}] 
-            },
-            {
-             'name':'two', 
-             'data':[{"Volume": "629", "Date": "Aug 04, 2015", "Market Cap": "74,890", "Open": "0.009419"},
-                     {"Volume": "630", "Date": "Aug 05, 2015", "Market Cap": "74,891", "Open": "0.009422"}] 
-            },
-            {
-             'name':'three', 
-             'data':[{"Volume": "629", "Date": "Aug 04, 2015", "Market Cap": "74,890", "Open": "0.009419"},
-                     {"Volume": "630", "Date": "Aug 05, 2015", "Market Cap": "74,891", "Open": "0.009424"}] 
-            }]))
-
-    # global GLOBAL
-    # print("Begin setup ")
-    # GLOBAL = settings.setup()
-    # print("Run data scraper " + str(time.time() - start_time))
-    # run_data_scraper()
-    # GLOBAL.driver.close()
+    # print ("SENTINEL");
+    # print(json.dumps([{
+    #          'name':'oneeee',
+    #          'data':[{"Volume": "629", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+    #                  {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009420"}]
+    #         },
+    #         {
+    #          'name':'two',
+    #          'data':[{"Volume": "629", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+    #                  {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009422"}]
+    #         },
+    #         {
+    #          'name':'three',
+    #          'data':[{"Volume": "629", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+    #                  {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009424"}]
+    #         }]))
+    global GLOBAL
+    GLOBAL = settings.setup()
+    run_data_scraper()
+    GLOBAL.driver.close()
 
 if __name__ == '__main__':
     global start_time 

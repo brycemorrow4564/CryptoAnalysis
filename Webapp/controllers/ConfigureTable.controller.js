@@ -53,8 +53,6 @@ sap.ui.define([
             coinToChartModel.getProperty('/columns').forEach(function(coinToChartObj) {
                 coinToChartObj['data'].forEach(function(coinName) { allCoinNamesObjects.push({"name": coinName}); });
             });
-
-            //this.getView().getModel(this.allCoinsModelId).setData({'coins': allCoinNamesObjects});
         },
 
         updateAllCoins: function() {
@@ -365,8 +363,8 @@ sap.ui.define([
                 case "Volume":
                     dataModeObj.active = 'Volume';
                     break;
-                case "Market Cap":
-                    dataModeObj.active = 'Market Cap';
+                case "MarketCap":
+                    dataModeObj.active = 'MarketCap';
                     break;
                 case "Daily Price":
                     dataModeObj.active = 'Open';

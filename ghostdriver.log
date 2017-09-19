@@ -1,55 +1,36 @@
-[INFO  - 2017-09-05T17:59:01.533Z] GhostDriver - Main - running on port 56674
-[INFO  - 2017-09-05T17:59:02.513Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2017-09-05T17:59:02.513Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.customHeaders:  - {}
-[INFO  - 2017-09-05T17:59:02.513Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2017-09-05T17:59:02.513Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: e68653b0-9263-11e7-ba49-17eef410f15d
-[ERROR - 2017-09-05T17:59:15.236Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: HTMLVideoElement
+[INFO  - 2017-09-12T19:24:01.917Z] GhostDriver - Main - running on port 52426
+[INFO  - 2017-09-12T19:24:01.943Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2017-09-12T19:24:01.943Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.customHeaders:  - {}
+[INFO  - 2017-09-12T19:24:01.943Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-09-12T19:24:01.943Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: eeea2630-97ef-11e7-99ea-85e3622be49e
+[ERROR - 2017-09-12T19:24:19.083Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.onError - msg: ReferenceError: Can't find variable: HTMLVideoElement
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T17:59:15.236Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
-  (anonymous function) (https://files.cointraffic.io/pub/2759/d3e07674c1/index.html:69)
+[ERROR - 2017-09-12T19:24:19.083Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.onError - stack:
+  (anonymous function) (https://ctnet2.in/pub/2934/7aea8b4382/index.html:69)
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:00:52.734Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: HTMLVideoElement
+[ERROR - 2017-09-12T19:24:19.124Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.onError - msg: ReferenceError: Can't find variable: Stats
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:00:52.734Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
-  (anonymous function) (https://files.cointraffic.io/pub/2759/fb7634838b/index.html:70)
+[ERROR - 2017-09-12T19:24:19.124Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.onError - stack:
+  global code (https://ctnet2.in/pub/2934/7aea8b4382/index.html:247)
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:00:56.521Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: HTMLVideoElement
+[ERROR - 2017-09-12T19:24:42.544Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.onError - msg: ReferenceError: Can't find variable: HTMLVideoElement
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:00:56.521Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
-  (anonymous function) (https://files.cointraffic.io/pub/2759/fb7634838b/index.html:70)
+[ERROR - 2017-09-12T19:24:42.544Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.onError - stack:
+  (anonymous function) (https://files.cointraffic.io/pub/2935/a46215f2/index.html:69)
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:02:52.699Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: Stats
+[ERROR - 2017-09-12T19:24:42.692Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.onError - msg: ReferenceError: Can't find variable: Stats
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:02:52.699Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
-  global code (https://files.cointraffic.io/pub/2836/3c2f792624/index.html:218)
+[ERROR - 2017-09-12T19:24:42.692Z] Session [eeea2630-97ef-11e7-99ea-85e3622be49e] - page.onError - stack:
+  global code (https://files.cointraffic.io/pub/2935/a46215f2/index.html:260)
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:02:53.568Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: Stats
-
-  phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:02:53.568Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
-  global code (https://files.cointraffic.io/pub/2820/fe3f1099fa/index.html:231)
-
-  phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:03:48.435Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: Stats
-
-  phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:03:48.435Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
-  global code (https://files.cointraffic.io/pub/2836/3c2f792624/index.html:218)
-
-  phantomjs://platform/console++.js:263 in error
-[INFO  - 2017-09-05T18:04:01.646Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
-[ERROR - 2017-09-05T18:04:12.186Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - msg: ReferenceError: Can't find variable: Stats
-
-  phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-09-05T18:04:12.186Z] Session [e68653b0-9263-11e7-ba49-17eef410f15d] - page.onError - stack:
-  global code (https://files.cointraffic.io/pub/2836/91f60e/index.html:219)
-
-  phantomjs://platform/console++.js:263 in error
+[INFO  - 2017-09-12T19:29:01.934Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2017-09-12T19:34:02.605Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2017-09-12T19:34:02.605Z] SessionManagerReqHand - _cleanupWindowlessSessions - Deleted Session 'eeea2630-97ef-11e7-99ea-85e3622be49e', because windowless
