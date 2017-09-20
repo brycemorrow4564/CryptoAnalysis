@@ -26,6 +26,31 @@ sap.ui.define([
 
         onInit: function() {
 
+
+            $.ajax({
+                async: false,
+                url: 'http://localhost:8080/coins/',
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+
+            $.ajax({
+                async: false,
+                url: 'http://localhost:8080/coins/ethereum',
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+
+            $.ajax({
+                async: false,
+                url: 'http://localhost:8080/all_coin_names/',
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+
             console.log('Config: init');
 
             /* Setup AllCoins model, which is used to display list of all coin names for batch action.
@@ -53,6 +78,13 @@ sap.ui.define([
             coinToChartModel.getProperty('/columns').forEach(function(coinToChartObj) {
                 coinToChartObj['data'].forEach(function(coinName) { allCoinNamesObjects.push({"name": coinName}); });
             });
+
+            this.getView().getModel(this.allCoinsModelId).setData({
+                "coins": allCoinNamesObjects
+            });
+
+            console.log(this.getView().getModel(this.allCoinsModelId).getJSON()); 
+
         },
 
         updateAllCoins: function() {
@@ -195,7 +227,7 @@ sap.ui.define([
 
         removeCoins: function() {
 
-        console.log('Config: remove coins');
+            console.log('Config: remove coins');
 
             //Get List control, get selected items, and extract text to get the names of clicked coins
             var selectCoins = sap.ui.getCore().byId(this.removeSelectorId),

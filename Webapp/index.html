@@ -57,11 +57,18 @@
             url: 'http://localhost:8080/coins/',
             success: function(response) {
                 agg_data = response;
+                agg_data['Coins'].forEach(function(coinObj) {
+                    coinObj['data'].forEach(function(elem) {
+                        elem['Volume'] = parseInt(elem['Volume'].replace(/,/g,''));
+                        elem['MarketCap'] = parseInt(elem['MarketCap'].replace(/,/g,''));
+                        elem['Open'] = parseFloat(elem['Open'].replace(/,/g,''));
+                    });
+                });
+                core.setModel(new COMPONENT.JSONModel(agg_data), GLOBALS.aggCoinModelId);
             }
         });
 
         core.setModel(new COMPONENT.JSONModel(dataModesObj), GLOBALS.dataModeModelId);
-        core.setModel(new COMPONENT.JSONModel(agg_data), GLOBALS.aggCoinModelId);
         core.setModel(new COMPONENT.JSONModel(coinToChartData), GLOBALS.coinChartModelId);
     </script>
 </head>

@@ -62,13 +62,15 @@ HIGHSTOCK_JSON_FORMATTER = {
                     points      = [];
 
                 for (var x = priceHist.length - 1; x >= 0; x--) {
+                    //Check to ensure we have a valid data point
+                    if (isNaN(priceHist[x][dataMode])) {
+                        continue;
+                    }
+
                     var rowObj = priceHist[x],
                         date = rowObj['Date'].replace(',','').replace(' ','-'),
                         epoch = new Date(date).valueOf(),
-                        d = parseFloat(rowObj[dataMode].replace(",","")); //returns NaN if input value is invalid
-                    if (isNaN(d)) {
-                        continue;
-                    }
+                        d = rowObj[dataMode]; //returns NaN if input value is invalid
                     points.push([epoch, d]);
                 }
                 pointsArr.push(points);

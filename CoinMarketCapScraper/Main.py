@@ -31,7 +31,6 @@ def close_and_reset_driver(url):
 def verify_query_string_url():
     return GLOBAL.queryString in GLOBAL.driver.current_url
 
-
 def driver_get_page_timeout_wrapper(url):
     while True: 
         try: 
