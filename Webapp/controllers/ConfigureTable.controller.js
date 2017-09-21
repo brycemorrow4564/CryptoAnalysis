@@ -83,7 +83,7 @@ sap.ui.define([
                 "coins": allCoinNamesObjects
             });
 
-            console.log(this.getView().getModel(this.allCoinsModelId).getJSON()); 
+            console.log(this.getView().getModel(this.allCoinsModelId).getJSON());
 
         },
 

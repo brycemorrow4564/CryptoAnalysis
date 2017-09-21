@@ -68,9 +68,9 @@
         "target": ["CoinSideBar", "ConfigureTable"]
       },
       {
-        "name": "About",
-        "pattern": "About",
-        "target": ["CoinSideBar", "About"]
+        "name": "API",
+        "pattern": "API",
+        "target": ["CoinSideBar", "API"]
       }
     ],
     "targets": {
@@ -84,8 +84,8 @@
         "controlAggregation": "detailPages",
         "viewLevel": 2
       },
-      "About": {
-        "viewName": "About",
+      "API": {
+        "viewName": "API",
         "controlAggregation": "detailPages",
         "viewLevel": 3
       },

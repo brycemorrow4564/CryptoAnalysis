@@ -160,7 +160,6 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 ]
             }).addStyleClass('centerChildren');
 
-
         var vertLayout = new COMPONENT.VerticalLayout({
                 id: oController.vertLayoutId,
                 width: "100%",

@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2422578b-8ef9-4f55-94f5-d11943ee919d" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Webapp/controllers/About.controller.js" afterPath="$PROJECT_DIR$/Webapp/controllers/API.controller.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Webapp/views/About.view.js" afterPath="$PROJECT_DIR$/Webapp/views/API.view.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoinMarketCapScraper/Main.py" afterPath="$PROJECT_DIR$/CoinMarketCapScraper/Main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/HighstockJsonFormatter.js" afterPath="$PROJECT_DIR$/Webapp/Utility/HighstockJsonFormatter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" afterPath="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/GenerateCustomHeader.js" afterPath="$PROJECT_DIR$/Webapp/Utility/GenerateCustomHeader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/Utility/RouterGeneral.js" afterPath="$PROJECT_DIR$/Webapp/Utility/RouterGeneral.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js" afterPath="$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/index.html" afterPath="$PROJECT_DIR$/Webapp/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/manifest.json" afterPath="$PROJECT_DIR$/Webapp/manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/styles.css" afterPath="$PROJECT_DIR$/Webapp/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" afterPath="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cryptodata.db" afterPath="$PROJECT_DIR$/cryptodata.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ghostdriver.log" afterPath="$PROJECT_DIR$/ghostdriver.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
     </list>
@@ -22,28 +28,7 @@
     <favorites_list name="CryptoAnalysis" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConfigureTable.view.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="144" column="43" lean-forward="false" selection-start-line="144" selection-start-column="30" selection-end-line="144" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfigureTable.controller.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="85" column="82" lean-forward="false" selection-start-line="85" selection-start-column="82" selection-end-line="85" selection-end-column="82" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,36 +39,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>if exists</find>
-      <find>creating table for</find>
-      <find>we have an err when creating table for</find>
-      <find>coinData\['name']</find>
-      <find>newData.</find>
-      <find>coins</find>
-      <find>res.send</find>
-      <find>r</find>
-      <find>ro</find>
-      <find>row</find>
-      <find>rows\[</find>
-      <find>rows\</find>
-      <find>rows</find>
-      <find>rows[</find>
-      <find>rows[i</find>
-      <find>rows\[i</find>
-      <find>pri</find>
-      <find>price</find>
-      <find>priceH</find>
-      <find>priceHi</find>
-      <find>priceHist</find>
-      <find>priceHis</find>
-      <find>dataMode</find>
-      <find>a</find>
-      <find>allC</find>
-      <find>allCoinsModel</find>
-      <find>allCoinsModelI</find>
-      <find>allCoinsModelId</find>
-      <find>remove Charts</find>
-      <find>Remove Charts</find>
+      <find>addStyleClass(</find>
+      <find>addStyleClass(&quot;</find>
+      <find>addStyleClass(&quot;sapuires</find>
+      <find>addStyleClass(&quot;sapuire</find>
+      <find>addStyleClass(&quot;sapui</find>
+      <find>addStyleClass(&quot;sap</find>
+      <find>res</find>
+      <find>respons</find>
+      <find>responsive</find>
+      <find>responsivemargin</find>
+      <find>C</find>
+      <find>COMPONE</find>
+      <find>COMPONENT</find>
+      <find>COMPONENT.LI</find>
+      <find>COMPONENT.L</find>
+      <find>COMPONENT.List</find>
+      <find>.</find>
+      <find>.list</find>
+      <find>.lis</find>
+      <find>NET</find>
+      <find>NET.</find>
+      <find>NET.L</find>
+      <find>NET.List</find>
+      <find>NET.Lis</find>
+      <find>NE</find>
+      <find>NENT</find>
+      <find>NENT.list</find>
+      <find>vertical</find>
+      <find>configpanelmargin</find>
+      <find>sap</find>
     </findStrings>
     <replaceStrings>
       <replace>Market Cap</replace>
@@ -113,8 +98,9 @@
       <replace>routeMatched</replace>
       <replace>getCustomHeader(oController.getView())</replace>
       <replace>$.sap.require</replace>
-      <replace>MarketCap</replace>
       <replace>coin_name</replace>
+      <replace>MarketCap</replace>
+      <replace>API</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/Webapp/views</dir>
@@ -135,8 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Webapp/views/CoinComparison.view.js" />
-        <option value="$PROJECT_DIR$/Webapp/controllers/CoinComparison.controller.js" />
         <option value="$PROJECT_DIR$/Webapp/Utility/AppCreated.js" />
         <option value="$PROJECT_DIR$/Webapp/views/MasterPage.view.js" />
         <option value="$PROJECT_DIR$/Webapp/controllers/MasterPage.controller.js" />
@@ -163,29 +147,31 @@
         <option value="$PROJECT_DIR$/Webapp/Utility/LocalJsonLoader.js" />
         <option value="$PROJECT_DIR$/Webapp/views/Fragments/DragAndDropAlert.fragment.js" />
         <option value="$PROJECT_DIR$/Webapp/views/fragments/DragAndDropAlert.fragment.js" />
-        <option value="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" />
         <option value="$PROJECT_DIR$/Webapp/main.js" />
         <option value="$PROJECT_DIR$/Webapp/Component.js" />
-        <option value="$PROJECT_DIR$/Webapp/controllers/About.controller.js" />
         <option value="$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js" />
         <option value="$PROJECT_DIR$/Webapp/views/App.view.js" />
-        <option value="$PROJECT_DIR$/Webapp/Utility/RouterGeneral.js" />
         <option value="$PROJECT_DIR$/Webapp/test.html" />
-        <option value="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" />
         <option value="$PROJECT_DIR$/Webapp/views/CoinDetail.view.js" />
-        <option value="$PROJECT_DIR$/Webapp/Utility/GenerateCustomHeader.js" />
-        <option value="$PROJECT_DIR$/Webapp/views/About.view.js" />
-        <option value="$PROJECT_DIR$/Webapp/manifest.json" />
-        <option value="$PROJECT_DIR$/Webapp/styles.css" />
         <option value="$PROJECT_DIR$/CoinMarketCapScraper/settings.py" />
         <option value="$PROJECT_DIR$/CoinMarketCapScraper/ParallelDriverTest.py" />
         <option value="$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js" />
         <option value="$PROJECT_DIR$/Webapp/controllers/CoinDetail.controller.js" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/CoinMarketCapScraper/Main.py" />
         <option value="$PROJECT_DIR$/Webapp/index.html" />
         <option value="$PROJECT_DIR$/Webapp/Utility/HighstockJsonFormatter.js" />
         <option value="$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js" />
+        <option value="$PROJECT_DIR$/Webapp/controllers/About.controller.js" />
+        <option value="$PROJECT_DIR$/Webapp/views/About.view.js" />
+        <option value="$PROJECT_DIR$/Webapp/manifest.json" />
+        <option value="$PROJECT_DIR$/Webapp/Utility/RouterGeneral.js" />
+        <option value="$PROJECT_DIR$/Webapp/Utility/GenerateCustomHeader.js" />
+        <option value="$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js" />
+        <option value="$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js" />
+        <option value="$PROJECT_DIR$/Webapp/views/API.view.js" />
+        <option value="$PROJECT_DIR$/Webapp/controllers/API.controller.js" />
+        <option value="$PROJECT_DIR$/Webapp/styles.css" />
+        <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
   </component>
@@ -267,24 +253,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Utility" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CryptoAnalysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CryptoAnalysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="CryptoJSON" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -329,7 +297,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Webapp" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
@@ -711,8 +679,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1438" height="797" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1438" height="797" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -728,7 +695,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21557719" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21557719" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.071428575" sideWeight="0.47148818" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -847,28 +814,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/main.js" />
-    <entry file="file://$PROJECT_DIR$/Webapp/controllers/App.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="11" lean-forward="false" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/controllers/About.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/Utility/Globals.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -876,49 +822,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/test.html" />
-    <entry file="file://$PROJECT_DIR$/Webapp/views/About.view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="61" lean-forward="false" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/Utility/GenerateCustomHeader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="62" lean-forward="false" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="56" column="22" lean-forward="false" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="20" lean-forward="false" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/Utility/RouterGeneral.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="45" lean-forward="false" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/Component.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -940,13 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2445">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/views/CoinDetail.view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="46" column="30" lean-forward="false" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -987,13 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/views/CoinSideBar.view.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1006,14 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="106" column="174" lean-forward="false" selection-start-line="106" selection-start-column="174" selection-end-line="106" selection-end-column="174" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="167" column="34" lean-forward="false" selection-start-line="167" selection-start-column="34" selection-end-line="167" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1034,18 +916,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js">
+    <entry file="file://$PROJECT_DIR$/Webapp/controllers/App.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="144" column="43" lean-forward="false" selection-start-line="144" selection-start-column="30" selection-end-line="144" selection-end-column="43" />
+        <state relative-caret-position="45">
+          <caret line="3" column="11" lean-forward="false" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/views/CoinDetail.view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/Utility/GenerateCustomHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="50" lean-forward="false" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/views/App.view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/Utility/RouterGeneral.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="65" column="29" lean-forward="false" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/controllers/CoinSideBar.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Webapp/controllers/ConfigureTable.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="85" column="82" lean-forward="false" selection-start-line="85" selection-start-column="82" selection-end-line="85" selection-end-column="82" />
+        <state relative-caret-position="210">
+          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/Utility/ComponentGlobals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2505">
+          <caret line="167" column="86" lean-forward="false" selection-start-line="167" selection-start-column="86" selection-end-line="167" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/views/API.view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/views/ConfigureTable.view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="173" column="44" lean-forward="false" selection-start-line="173" selection-start-column="44" selection-end-line="173" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Webapp/controllers/API.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
           <folding />
         </state>
       </provider>

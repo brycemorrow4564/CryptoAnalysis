@@ -6,7 +6,7 @@ CUSTOM_HEADER_GENERATOR = {
     customHeader: function(targetBtnText) {
 
         var htmlStr = '',
-            btnTexts = ['Charts', 'Configuration', 'About'];
+            btnTexts = ['Charts', 'Configuration', 'API'];
 
         btnTexts.forEach(function(label) {
             if (label === targetBtnText) {
@@ -32,7 +32,7 @@ CUSTOM_HEADER_GENERATOR = {
     },
 
     viewNameToButtonText: {
-        "About": "About",
+        "API": "API",
         "CoinDetail": "Charts",
         "ConfigureTable": "Configuration"
     },

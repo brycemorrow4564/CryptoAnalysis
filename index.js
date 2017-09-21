@@ -165,7 +165,7 @@ eventEmitter.on('dbUpdate', dbUpdate);
 var PythonShell = require('python-shell');
 var schedule = require("node-schedule");
 
-var j = schedule.scheduleJob('0 30 * * * *', function() {
+var j = schedule.scheduleJob('0 * 3 * * *', function() { // job scheduled for 3:00 AM
 
     console.log("started job: " + Date());
 

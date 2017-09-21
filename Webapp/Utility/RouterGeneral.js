@@ -3,7 +3,7 @@ ROUTER = {
     buttonRoutePatternMap: {
         "Charts":           "CoinDetail",
         "Configuration":    "ConfigureTable",
-        "About":            "About"
+        "API":              "API"
     },
 
     handleNavigation: function(jqueryObj) {

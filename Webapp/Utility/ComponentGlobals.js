@@ -48,6 +48,7 @@ var COMPONENT = {
     "JSONModel"         : sap.ui.model.json.JSONModel,
     "List"              : sap.m.List,
     "StandardListItem"  : sap.m.StandardListItem,
+    "DisplayListItem"   : sap.m.DisplayListItem,
     "HTML"              : sap.ui.core.HTML,
     "jsfragment"        : sap.ui.jsfragment,
     "DetailPage"        : sap.m.semantic.DetailPage,
