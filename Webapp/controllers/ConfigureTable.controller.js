@@ -21,35 +21,34 @@ sap.ui.define([
         segButtonsId        : 'SegButtons',
         vertLayoutId        : 'VertLayout',
         dataModeSelectorId  : 'DataModeSelector',
-
-        dragAndDropAlertDisplayed: false,
+        firstMatch          : true,
 
         onInit: function() {
 
 
-            $.ajax({
-                async: false,
-                url: 'http://localhost:8080/coins/',
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-
-            $.ajax({
-                async: false,
-                url: 'http://localhost:8080/coins/ethereum',
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-
-            $.ajax({
-                async: false,
-                url: 'http://localhost:8080/all_coin_names/',
-                success: function(response) {
-                    console.log(response);
-                }
-            });
+//            $.ajax({
+//                async: false,
+//                url: 'http://localhost:8080/coins/',
+//                success: function(response) {
+//                    console.log(response);
+//                }
+//            });
+//
+//            $.ajax({
+//                async: false,
+//                url: 'http://localhost:8080/coins/ethereum',
+//                success: function(response) {
+//                    console.log(response);
+//                }
+//            });
+//
+//            $.ajax({
+//                async: false,
+//                url: 'http://localhost:8080/all_coin_names/',
+//                success: function(response) {
+//                    console.log(response);
+//                }
+//            });
 
             console.log('Config: init');
 
@@ -82,6 +81,14 @@ sap.ui.define([
             this.getView().getModel(this.allCoinsModelId).setData({
                 "coins": allCoinNamesObjects
             });
+
+            if (this.firstMatch) {
+                COMPONENT.MessageToast.show("You can drag and drop coin tiles to move them between charts", {
+                    duration: 4000,
+                    autoClose: false
+                });
+                this.firstMatch = false;
+            }
 
             console.log(this.getView().getModel(this.allCoinsModelId).getJSON());
 
