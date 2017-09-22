@@ -5,7 +5,7 @@ db.run("CREATE TABLE IF NOT EXISTS Coins (coin_name TEXT)", [], function() { con
 
 var express = require('express');
 var app = express();
-var port = 8080;
+var port = process.env.PORT || 8080;
 
 app.set('view engine', 'pug');
 app.use('/', express.static(__dirname + '/Webapp')); // make express look in the Webapp directory for assets (css/js/img)
