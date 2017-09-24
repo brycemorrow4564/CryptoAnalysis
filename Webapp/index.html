@@ -54,7 +54,7 @@
         var agg_data = {};
         $.ajax({
             async: false,
-            url: 'http://localhost:8080/coins/',
+            url: 'https://tranquil-bastion-27755.herokuapp.com/coins/',
             success: function(response) {
                 agg_data = response;
                 agg_data['Coins'].forEach(function(coinObj) {
