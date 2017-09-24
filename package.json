@@ -3,20 +3,16 @@
   "version": "1.0.0",
   "description": "Crypto Currency Data Viz",
   "main": "index.js",
+  "engines": {
+    "node": "6.11.3",
+    "npm": "5.4.2"
+  },
   "dependencies": {
-    "ajax-request": "^1.2.3",
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "http-proxy": "^1.16.2",
-    "jquery": "^3.2.1",
-    "mongodb": "^2.2.31",
-    "morgan": "^1.8.2",
-    "node-schedule": "^1.2.3",
-    "openui5.runtime.downloader": "^1.46.11",
-    "pug": "^2.0.0-rc.2",
+    "express": "^4.15.4",
+    "node-schedule": "^1.2.5",
+    "pug": "^2.0.0-rc.4",
     "python-shell": "^0.4.0",
-    "sqlite3": "^3.1.9",
-    "upper-case": "^1.1.3"
+    "sqlite3": "^3.1.11"
   },
   "devDependencies": {},
   "scripts": {

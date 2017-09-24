@@ -1,10 +1,3 @@
-'''
-This file is executed via a python shell contained within server side nodejs
-This program will scrape the data from the web and convert it to json format. 
-It will return this aggregate object to the nodejs program which will store 
-this information in a database (sqlite?)
-'''
-
 import json
 import time
 import re
