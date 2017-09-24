@@ -5,6 +5,7 @@ db.run("CREATE TABLE IF NOT EXISTS Coins (coin_name TEXT)", [], function() { con
 
 var express = require('express');
 var app = express();
+//var port = 8080;
 var port = process.env.PORT || 8080;
 
 app.set('view engine', 'pug');
@@ -49,6 +50,7 @@ app.get('/coins/', function (req, res) {
             })
             counter += 1;
             if (counter == coin_objs.length) {
+                console.log(coin_data);
                 res.send({
                     "Coins": coin_data
                 });
@@ -164,6 +166,24 @@ eventEmitter.on('dbUpdate', dbUpdate);
 //SETUP SCHEDULED EXECUTION OF WEB DATA SCRAPER 
 var PythonShell = require('python-shell');
 var schedule = require("node-schedule");
+
+    //RUN ONCE UPON DEPLOY TO GET UPDATED INFO
+    console.log("started job: " + Date());
+
+    PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err, results) {
+        console.log("Finished at " + Date());
+        console.log(results);
+        if (err) throw err;
+        var data = '';
+        for (var i = 0; i < results.length; i++) {
+            if (results[i] === 'SENTINEL') {
+                data = results[i+1];
+                break;
+            }
+        }
+        var obj = JSON.parse(data);
+        eventEmitter.emit('dbUpdate', obj);
+    });
 
 var j = schedule.scheduleJob('0 * 3 * * *', function() { // job scheduled for 3:00 AM
 
