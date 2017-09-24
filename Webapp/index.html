@@ -51,11 +51,14 @@
             },
             core = sap.ui.getCore();
 
-        var agg_data = {};
+        var agg_data = {"Coins" : []},
+            success  = false;
         $.ajax({
             async: false,
             url: 'https://tranquil-bastion-27755.herokuapp.com/coins/',
+            //url: 'http://localhost:8080/coins/',
             success: function(response) {
+                success = true;
                 agg_data = response;
                 agg_data['Coins'].forEach(function(coinObj) {
                     coinObj['data'].forEach(function(elem) {
@@ -68,6 +71,10 @@
             }
         });
 
+        if (!success) {
+            core.setModel(new COMPONENT.JSONModel(agg_data), GLOBALS.aggCoinModelId);
+        }
+
         core.setModel(new COMPONENT.JSONModel(dataModesObj), GLOBALS.dataModeModelId);
         core.setModel(new COMPONENT.JSONModel(coinToChartData), GLOBALS.coinChartModelId);
     </script>
@@ -75,3 +82,18 @@
 <body class="sapUiBody" id="content">
 </body>
 </html>
+
+<!--
+
+                for (var i = 0; i < agg_data['Coins'].length; i++) {
+                    coinObj = agg_data['Coins'][i];
+                    for (var x = 0; x < coinObj['data']; x++) {
+                        var elem = coinObj['data'][x];
+                        agg_data['Coins'][i]['data'][x]['Volume'] = parseInt(elem['Volume'].replace(/,/g,''));
+                        agg_data['Coins'][i]['data'][x]['MarketCap'] = parseInt(elem['MarketCap'].replace(/,/g,''));
+                        agg_data['Coins'][i]['data'][x]['Open'] = parseFloat(elem['Open'].replace(/,/g,''));
+                    }
+                }
+                agg_data = response;
+
+-->
