@@ -9,11 +9,7 @@ import json
 import time
 import re
 import datetime
-import os
 import lxml.html
-import shutil
-import locale
-import sys
 
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -140,8 +136,3 @@ if __name__ == '__main__':
     main()
     elapsed_time = time.time() - start_time
     print elapsed_time
-
-'''
-Things to implement  
-1. Find out how to make sure geckodriver process only on a single port 
-'''

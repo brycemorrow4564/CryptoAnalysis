@@ -167,23 +167,22 @@ eventEmitter.on('dbUpdate', dbUpdate);
 var PythonShell = require('python-shell');
 var schedule = require("node-schedule");
 
-    //RUN ONCE UPON DEPLOY TO GET UPDATED INFO
-    console.log("started job: " + Date());
+//RUN ONCE UPON DEPLOY TO GET UPDATED INFO
+console.log("started job: " + Date());
 
-    PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err, results) {
-        console.log("Finished at " + Date());
-        console.log(results);
-        if (err) throw err;
-        var data = '';
-        for (var i = 0; i < results.length; i++) {
-            if (results[i] === 'SENTINEL') {
-                data = results[i+1];
-                break;
-            }
+PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err, results) {
+    console.log("Finished at " + Date());
+    if (err) throw err;
+    var data = '';
+    for (var i = 0; i < results.length; i++) {
+        if (results[i] === 'SENTINEL') {
+            data = results[i+1];
+            break;
         }
-        var obj = JSON.parse(data);
-        eventEmitter.emit('dbUpdate', obj);
-    });
+    }
+    var obj = JSON.parse(data);
+    eventEmitter.emit('dbUpdate', obj);
+});
 
 var j = schedule.scheduleJob('0 * 3 * * *', function() { // job scheduled for 3:00 AM
 
