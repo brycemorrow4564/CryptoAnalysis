@@ -84,8 +84,7 @@ sap.ui.define([
 
             if (this.firstMatch) {
                 COMPONENT.MessageToast.show("You can drag and drop coin tiles to move them between charts", {
-                    duration: 4000,
-                    autoClose: false
+                    duration: 4000
                 });
                 this.firstMatch = false;
             }
