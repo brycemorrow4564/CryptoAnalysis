@@ -4,17 +4,19 @@
   "description": "Crypto Currency Data Viz",
   "main": "index.js",
   "engines": {
-    "node": "6.11.3",
-    "npm": "5.4.2"
+    "node": "^8.4.0",
+    "npm": "^5.3"
   },
   "dependencies": {
     "express": "^4.15.4",
     "node-schedule": "^1.2.5",
+    "events": "1.1.1",
     "pug": "^2.0.0-rc.4",
     "python-shell": "^0.4.0",
-    "sqlite3": "^3.1.11"
+    "sqlite3": "^3.1.12",
+    "mocha": "^3.5.3",
+    "should":"^13.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node index.js"
   },
