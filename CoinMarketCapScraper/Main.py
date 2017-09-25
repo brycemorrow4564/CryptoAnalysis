@@ -2,7 +2,7 @@ import json
 import time
 import re
 import datetime
-#import lxml.html Heroku isn't recognizing this library for some reason so workaround implemented via regex
+import lxml.html
 
 import settings as settings 
 
@@ -41,6 +41,7 @@ def scrape_rows(fieldnames):
             print "unable to locate table on page " + GLOBAL.driver.current_url
             pass
     tbody = table.find_element_by_tag_name('tbody')
+    '''
     #------------------------------------------------------------------------------------------------------------------------------------
     #Heroku not recognizing lxml.html library so quick workaround fix
     tableRegex = re.compile('<tr.*?>\s*<td.*?>(.*?)</td>\s*<td.*?>(.*?)</td>\s*<td.*?>(.*?)</td>\s*<td.*?>(.*?)</td>\s*<td.*?>(.*?)</td>\s*<td.*?>(.*?)</td>\s*<td.*?>(.*?)</td>\s*</tr>')
@@ -59,7 +60,7 @@ def scrape_rows(fieldnames):
         cellVals = [c.text for c in row.getchildren()]
         rowObjects.append({key: val for key, val in zip(fieldnames, cellVals)})
     return rowObjects
-    '''
+
 
 #Get names of all coins in top 100 and the urls where their historical data is stored
 def get_top_100_coin_names(): 
