@@ -7,8 +7,7 @@ db.run("CREATE TABLE IF NOT EXISTS Coins (coin_name TEXT)", [], function() { con
 
 var express = require('express');
 var app = express();
-//var port = process.env.PORT || 8080;
-var port = 8080;
+var port = process.env.PORT || 8080;
 
 
 app.set('view engine', 'pug');
