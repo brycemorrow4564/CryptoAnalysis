@@ -21,12 +21,8 @@
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-core');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-widget');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-mouse');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-sortable');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-droppable');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-draggable');
-
-        $.sap.require('sap.crypto.app.Utility.ComponentGlobals');
-        $.sap.require('sap.crypto.app.Utility.Globals');
 
         //Initialize App
         sap.ui.getCore().attachInit(function () {
@@ -81,18 +77,3 @@
 <body class="sapUiBody" id="content">
 </body>
 </html>
-
-<!--
-
-                for (var i = 0; i < agg_data['Coins'].length; i++) {
-                    coinObj = agg_data['Coins'][i];
-                    for (var x = 0; x < coinObj['data']; x++) {
-                        var elem = coinObj['data'][x];
-                        agg_data['Coins'][i]['data'][x]['Volume'] = parseInt(elem['Volume'].replace(/,/g,''));
-                        agg_data['Coins'][i]['data'][x]['MarketCap'] = parseInt(elem['MarketCap'].replace(/,/g,''));
-                        agg_data['Coins'][i]['data'][x]['Open'] = parseFloat(elem['Open'].replace(/,/g,''));
-                    }
-                }
-                agg_data = response;
-
--->

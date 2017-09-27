@@ -16,17 +16,15 @@ $.sap.require('sap.m.MessageToast');
 $.sap.require('sap.m.semantic.DetailPage');
 $.sap.require('sap.m.MultiComboBox');
 $.sap.require('sap.m.ComboBox');
-$.sap.require('sap.m.Popover');
 $.sap.require('sap.m.Toolbar');
 $.sap.require('sap.m.ToolbarSpacer');
 $.sap.require('sap.m.SearchField');
-$.sap.require('sap.m.ObjectHeader');
 $.sap.require('sap.ui.table.Table');
 $.sap.require('sap.ui.layout.Grid');
-$.sap.require('sap.ui.core.Icon');
 $.sap.require('sap.ui.layout.SplitterLayoutData');
 
 var COMPONENT = {
+
     "SplitApp"          : sap.m.SplitApp,
     "SplitterLayoutData": sap.ui.layout.SplitterLayoutData,
     "View"              : sap.ui.core.mvc.View,
@@ -40,9 +38,7 @@ var COMPONENT = {
     "Page"              : sap.m.Page,
     "Dialog"            : sap.m.Dialog,
     "SearchField"       : sap.m.SearchField,
-    "Popover"           : sap.m.Popover,
     "App"               : sap.m.App,
-    "ObjectHeader"      : sap.m.ObjectHeader,
     "Toolbar"           : sap.m.Toolbar,
     "ToolbarSpacer"     : sap.m.ToolbarSpacer,
     "JSONModel"         : sap.ui.model.json.JSONModel,
@@ -57,7 +53,6 @@ var COMPONENT = {
     "MultiComboBox"     : sap.m.MultiComboBox,
     "ComboBox"          : sap.m.ComboBox,
     "HeaderContainer"   : sap.m.HeaderContainer,
-    "Icon"              : sap.ui.core.Icon,
     "HorizontalLayout"  : sap.ui.layout.HorizontalLayout,
     "Grid"              : sap.ui.layout.Grid,
     "VerticalLayout"    : sap.ui.layout.VerticalLayout,

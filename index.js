@@ -1,7 +1,7 @@
 //module.paths.push('/usr/local/lib/node_modules'); //comment out for deployment
 
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.cached.Database('cryptodata.db');
+var db = new sqlite3.Database('cryptodata.db');
 
 db.run("CREATE TABLE IF NOT EXISTS Coins (coin_name TEXT)", [], function() { console.log("created initial Coins table"); })
 
@@ -13,7 +13,7 @@ var port = process.env.PORT || 8080;
 app.set('view engine', 'pug');
 app.use('/', express.static(__dirname + '/Webapp')); // make express look in the Webapp directory for assets (css/js/img)
 app.listen(port, function() {
-	console.log('Our app is running on http://localhost:' + port);
+	console.log('Our app is deployed to Heroku');
 });
 
 //JSON API
@@ -186,7 +186,7 @@ PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err,
     eventEmitter.emit('dbUpdate', obj);
 });
 
-var j = schedule.scheduleJob('0 * 3 * * *', function() { // job scheduled for 3:00 AM
+var j = schedule.scheduleJob('0 3 * * *', function() { // job scheduled for 3:00 AM
 
     console.log("started job: " + Date());
 
