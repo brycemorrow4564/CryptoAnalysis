@@ -26,29 +26,44 @@ sap.ui.define([
         onInit: function() {
 
 
-//            $.ajax({
-//                async: false,
-//                url: 'http://localhost:8080/coins/',
-//                success: function(response) {
-//                    console.log(response);
-//                }
-//            });
-//
-//            $.ajax({
-//                async: false,
-//                url: 'http://localhost:8080/coins/ethereum',
-//                success: function(response) {
-//                    console.log(response);
-//                }
-//            });
-//
-//            $.ajax({
-//                async: false,
-//                url: 'http://localhost:8080/all_coin_names/',
-//                success: function(response) {
-//                    console.log(response);
-//                }
-//            });
+            $.ajax({
+                async: false,
+                url: 'http://localhost:8080/coins/',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(one, two, three) {
+                    console.log(one);
+                    console.log(two);
+                    console.log(three);
+                }
+            });
+
+            $.ajax({
+                async: false,
+                url: 'http://localhost:8080/coins/ethereum',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(one, two, three) {
+                    console.log(one);
+                    console.log(two);
+                    console.log(three);
+                }
+            });
+
+            $.ajax({
+                async: false,
+                url: 'http://localhost:8080/all_coin_names/',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(one, two, three) {
+                    console.log(one);
+                    console.log(two);
+                    console.log(three);
+                }
+            });
 
             console.log('Config: init');
 
