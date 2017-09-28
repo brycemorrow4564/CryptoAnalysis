@@ -28,7 +28,7 @@ sap.ui.define([
 
             $.ajax({
                 async: false,
-                url: 'https://tranquil-bastion-27755.herokuapp.com/coins/',
+                url: '/coins/',
                 success: function(response) {
                     console.log(response);
                 },
@@ -41,7 +41,7 @@ sap.ui.define([
 
             $.ajax({
                 async: false,
-                url: 'https://tranquil-bastion-27755.herokuapp.com/coins/ethereum',
+                url: '/coins/ethereum',
                 success: function(response) {
                     console.log(response);
                 },
@@ -54,7 +54,7 @@ sap.ui.define([
 
             $.ajax({
                 async: false,
-                url: 'https://tranquil-bastion-27755.herokuapp.com/all_coin_names/',
+                url: '/all_coin_names/',
                 success: function(response) {
                     console.log(response);
                 },
