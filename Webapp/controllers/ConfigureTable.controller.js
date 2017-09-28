@@ -25,45 +25,44 @@ sap.ui.define([
 
         onInit: function() {
 
-
-            $.ajax({
-                async: false,
-                url: '/coins/',
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(one, two, three) {
-                    console.log(one);
-                    console.log(two);
-                    console.log(three);
-                }
-            });
-
-            $.ajax({
-                async: false,
-                url: '/coins/ethereum',
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(one, two, three) {
-                    console.log(one);
-                    console.log(two);
-                    console.log(three);
-                }
-            });
-
-            $.ajax({
-                async: false,
-                url: '/all_coin_names/',
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(one, two, three) {
-                    console.log(one);
-                    console.log(two);
-                    console.log(three);
-                }
-            });
+//            $.ajax({
+//                async: false,
+//                url: '/coins/',
+//                success: function(response) {
+//                    console.log(response);
+//                },
+//                error: function(one, two, three) {
+//                    console.log(one);
+//                    console.log(two);
+//                    console.log(three);
+//                }
+//            });
+//
+//            $.ajax({
+//                async: false,
+//                url: '/coins/ethereum',
+//                success: function(response) {
+//                    console.log(response);
+//                },
+//                error: function(one, two, three) {
+//                    console.log(one);
+//                    console.log(two);
+//                    console.log(three);
+//                }
+//            });
+//
+//            $.ajax({
+//                async: false,
+//                url: '/all_coin_names/',
+//                success: function(response) {
+//                    console.log(response);
+//                },
+//                error: function(one, two, three) {
+//                    console.log(one);
+//                    console.log(two);
+//                    console.log(three);
+//                }
+//            });
 
             console.log('Config: init');
 
