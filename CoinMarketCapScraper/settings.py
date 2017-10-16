@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
 import datetime
-import requests
 
 class Globals: 
 

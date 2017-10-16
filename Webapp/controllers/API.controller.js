@@ -14,7 +14,7 @@ sap.ui.define([
 
         onInit: function() {
 
-            var urlPrefix = 'https://tranquil-bastion-27755.herokuapp.com/',
+            var urlPrefix = 'https://tranquil-bastion-27755.herokuapp.com',
                 apiObj = {
                     "API_functions" : [
                         {
