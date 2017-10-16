@@ -1,4 +1,4 @@
-module.paths.push('/usr/local/lib/node_modules'); //comment out for deployment
+//module.paths.push('/usr/local/lib/node_modules'); //comment out for deployment
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('cryptodata.db');
@@ -44,11 +44,12 @@ app.get('/coins/:name', function (req, res) {
 //GET data for all coins
 app.get('/coins/', function (req, res) {
 
-    var coin_objs   = [],
-        coin_data   = [],
-        counter     = 0;
-
     db.serialize(function() {
+
+        var coin_objs   = [],
+            coin_data   = [],
+            counter     = 0,
+            num_coins   = 100;
 
 //        var specific_coin_cb = function(err, rows) {
 //            coin_data.push({
@@ -93,27 +94,31 @@ app.get('/coins/', function (req, res) {
 
         //HERE IS THE NEW CODE ----------------------------------------------------------------------
 
-        var sendCoins = function(err) {
-            if (err) { console.log(err); }
-            res.send({
-                "Coins": coin_data
-            });
-        };
-
         var addCoin = function(err, row) {
             if (err) { console.log(err); }
             setTimeout(function() {
                 var name = row.coin_name;
                 db.all("SELECT * FROM " + name, [], function(err, rows) {
+                     counter += 1;
                      coin_data.push({
-                         "name": name,
+                         "name": name.replace('_','-'),
                          "data": rows
                      });
+                     if (counter === num_coins) {
+                         console.log("sending back");
+                         console.log(coin_data);
+                         res.send({
+                             "Coins": coin_data
+                         });
+                     } else {
+                         console.log('counter is ' + counter);
+                     }
                 });
             }, 0);
+
         };
 
-        db.each("SELECT * FROM Coins", [], addCoin, sendCoins);
+        db.each("SELECT * FROM Coins", [], addCoin);
 
     });
 
