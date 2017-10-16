@@ -1,4 +1,4 @@
-//module.paths.push('/usr/local/lib/node_modules'); //comment out for deployment
+module.paths.push('/usr/local/lib/node_modules'); //comment out for deployment
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('cryptodata.db');
@@ -8,7 +8,6 @@ db.run("CREATE TABLE IF NOT EXISTS Coins (coin_name TEXT)", [], function() { con
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 8080;
-
 
 app.set('view engine', 'pug');
 app.use('/', express.static(__dirname + '/Webapp')); // make express look in the Webapp directory for assets (css/js/img)
@@ -25,11 +24,17 @@ app.get('/coins/:name', function (req, res) {
 
         db.all("SELECT * FROM " + req.params.name, [], function(err, rows) {
             if (err) {
+                res.send({
+                     "name": '',
+                     "data": '',
+                     "err" : true
+                });
                 return err;
             }
             res.send({
                 "name": req.params.name.replace('_','-'),
-                "data": rows
+                "data": rows,
+                "err" : false
             })
         });
 
@@ -45,37 +50,70 @@ app.get('/coins/', function (req, res) {
 
     db.serialize(function() {
 
-        var specific_coin_cb = function(err, rows) {
-            coin_data.push({
-                "name": coin_objs[counter]['coin_name'].replace('_','-'),
-                "data": rows
-            })
-            counter += 1;
-            if (counter == coin_objs.length) {
-                console.log(coin_data);
-                res.send({
-                    "Coins": coin_data
-                });
-            }
-        }
+//        var specific_coin_cb = function(err, rows) {
+//            coin_data.push({
+//                "name": coin_objs[counter]['coin_name'].replace('_','-'),
+//                "data": rows
+//            });
+//            counter += 1;
+//            if (counter == coin_objs.length) {
+//                res.send({
+//                    "Coins": coin_data
+//                });
+//            }
+//        }
+//
+//        var asyncForEach = function(arr) {
+//
+//            setTimeout(function() {
+//                arr.forEach(function(elem) {
+//                    setTimeout(function() {
+//                        db.all("SELECT * FROM " + elem['coin_name'], [], specific_coin_cb)
+//                    }, 0);
+//                });
+//            }, 0);
+//
+//            if (arr.length === 0) {
+//                res.send({
+//                    "Coins": []
+//                });
+//            }
+//        };
+//
+//        var coinsCollectedCb = function(err, rows) {
+//            if (err) {
+//                return err;
+//            }
+//            coin_objs = rows;
+//            asyncForEach(coin_objs);
+//        };
+//
+//        db.all("SELECT * FROM Coins", [], coinsCollectedCb);
 
-        var asyncForEach = function(arr) {
-            arr.forEach(function(elem) {
-                setTimeout(function() {
-                    db.all("SELECT * FROM " + elem['coin_name'], [], specific_coin_cb)
-                }, 0);
+
+        //HERE IS THE NEW CODE ----------------------------------------------------------------------
+
+        var sendCoins = function(err) {
+            if (err) { console.log(err); }
+            res.send({
+                "Coins": coin_data
             });
         };
 
-        var coinsCollectedCb = function(err, rows) {
-            if (err) {
-                return err;
-            }
-            coin_objs = rows;
-            asyncForEach(coin_objs);
+        var addCoin = function(err, row) {
+            if (err) { console.log(err); }
+            setTimeout(function() {
+                var name = row.coin_name;
+                db.all("SELECT * FROM " + name, [], function(err, rows) {
+                     coin_data.push({
+                         "name": name,
+                         "data": rows
+                     });
+                });
+            }, 0);
         };
 
-        db.all("SELECT * FROM Coins", [], coinsCollectedCb);
+        db.each("SELECT * FROM Coins", [], addCoin, sendCoins);
 
     });
 
@@ -106,6 +144,7 @@ app.get('/all_coin_names/', function (req, res) {
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 
+//Callback fired after web scraper runs, updating db asynchronously
 var dbUpdate = function (newData) {
 
     db.serialize(function() {
@@ -130,11 +169,15 @@ var dbUpdate = function (newData) {
         };
 
         var asyncForEach = function(arr) {
-            arr.forEach(function(coinData) {
-                setTimeout(function() {
-                    createCoinTableThenInsert(coinData);
-                }, 0);
-            });
+
+            setTimeout(function() {
+                arr.forEach(function(coinData) {
+                    setTimeout(function() {
+                        createCoinTableThenInsert(coinData);
+                    }, 0);
+                });
+            }, 0);
+
         };
 
         var loadNewData = function(err) {
@@ -165,11 +208,11 @@ var dbUpdate = function (newData) {
 
 eventEmitter.on('dbUpdate', dbUpdate);
 
-//SETUP SCHEDULED EXECUTION OF WEB DATA SCRAPER 
+//SETUP SCHEDULED EXECUTION OF WEB DATA SCRAPER
 var PythonShell = require('python-shell');
 var schedule = require("node-schedule");
 
-//RUN ONCE UPON DEPLOY TO GET UPDATED INFO
+//RUN ONCE UPON DEPLOY TO GET UPDATED INFO ASAP
 console.log("started job: " + Date());
 
 PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err, results) {
@@ -186,13 +229,13 @@ PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err,
     eventEmitter.emit('dbUpdate', obj);
 });
 
-var j = schedule.scheduleJob('0 3 * * *', function() { // job scheduled for 3:00 AM
+//SCRIPT SCHEDULED TO RUN AT 3:00 AM each day to update with new data
+var j = schedule.scheduleJob('0 14 * * *', function() {
 
-    console.log("started job: " + Date());
+    console.log("started scheduled job: " + Date());
 
     PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err, results) {
         console.log("Finished at " + Date());
-        console.log(results);
         if (err) throw err;
         var data = '';
         for (var i = 0; i < results.length; i++) {
@@ -206,4 +249,3 @@ var j = schedule.scheduleJob('0 3 * * *', function() { // job scheduled for 3:00
     });
 
 });
-
