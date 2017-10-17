@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <title>Crypto Analysis</title>
     <link rel="stylesheet" href="styles.css"/>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="./Highstock-5.0.12/code/highstock.js"></script>
     <script id="sap-ui-bootstrap"
             src="./resources/sap-ui-core.js"
             data-sap-ui-theme="sap_belize"
@@ -13,13 +16,8 @@
             data-sap-ui-compatVersion="edge"
             data-sap-ui-preload="async"
             data-sap-ui-resourceroots='{
-            "sap.crypto.app": "."}'>
-    </script>
+            "sap.crypto.app": "."}'></script>
     <script>
-
-        //TODO HIGH IMPORTANCE
-        //Get rid of the component globals file and only load in components when necessary
-
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-core');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-widget');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-mouse');
@@ -39,7 +37,7 @@
 
         //Setup some initial data
         var dataModesObj = {
-                'active': 'MarketCap',      //Current data mode
+                'active': 'MarketCap',     //Current data mode
                 'modes': [                  //All possible data modes
                     {'name': 'MarketCap'},
                     {'name': 'Volume'},
@@ -80,11 +78,5 @@
     </script>
 </head>
 <body class="sapUiBody" id="content">
-    <script
-        src="https://code.jquery.com/jquery-1.10.2.js"
-        integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
-        crossorigin="anonymous"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" async></script>
-    <script src="./Highstock-5.0.12/code/highstock.js"></script>
 </body>
 </html>

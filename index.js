@@ -1,12 +1,3 @@
-//TODO  GENERAL CASE TODOS IN NO PARTICULAR ORDER
-
-//TODO  1. Alternate method for storing coins in the database when the coin name contains '-' OR '_'.
-//TODO     Current Method will break if a coin contains '_' in its name
-//TODO  2. Add date checking for initial run of web scraping script to ensure multiple jobs will
-//TODO     be launched at the same time
-//TODO  3. Add logified data field for data sent to users via JSON API queries
-//TODO  4. IMPORTANT! Precompute values to be returned to users via JSON API calls
-
 //module.paths.push('/usr/local/lib/node_modules'); //comment out for deployment
 
 var sqlite3 = require('sqlite3').verbose();
@@ -24,11 +15,7 @@ app.listen(port, function() {
 	console.log('Our app is deployed to Heroku');
 });
 
-// -----------------------------------------------------------------------
-// JSON API
-// -----------------------------------------------------------------------
-
-//TODO Add appropriate arror response for /coins/:name request
+//JSON API
 
 //GET data for specific coin
 app.get('/coins/:name', function (req, res) {
@@ -54,8 +41,6 @@ app.get('/coins/:name', function (req, res) {
     });
 });
 
-//TODO Add appropriate arror response for /coins/ request
-
 //GET data for all coins
 app.get('/coins/', function (req, res) {
 
@@ -65,6 +50,49 @@ app.get('/coins/', function (req, res) {
             coin_data   = [],
             counter     = 0,
             num_coins   = 100;
+
+//        var specific_coin_cb = function(err, rows) {
+//            coin_data.push({
+//                "name": coin_objs[counter]['coin_name'].replace('_','-'),
+//                "data": rows
+//            });
+//            counter += 1;
+//            if (counter == coin_objs.length) {
+//                res.send({
+//                    "Coins": coin_data
+//                });
+//            }
+//        }
+//
+//        var asyncForEach = function(arr) {
+//
+//            setTimeout(function() {
+//                arr.forEach(function(elem) {
+//                    setTimeout(function() {
+//                        db.all("SELECT * FROM " + elem['coin_name'], [], specific_coin_cb)
+//                    }, 0);
+//                });
+//            }, 0);
+//
+//            if (arr.length === 0) {
+//                res.send({
+//                    "Coins": []
+//                });
+//            }
+//        };
+//
+//        var coinsCollectedCb = function(err, rows) {
+//            if (err) {
+//                return err;
+//            }
+//            coin_objs = rows;
+//            asyncForEach(coin_objs);
+//        };
+//
+//        db.all("SELECT * FROM Coins", [], coinsCollectedCb);
+
+
+        //HERE IS THE NEW CODE ----------------------------------------------------------------------
 
         var addCoin = function(err, row) {
             if (err) { console.log(err); }
@@ -89,12 +117,12 @@ app.get('/coins/', function (req, res) {
             }, 0);
 
         };
+
         db.each("SELECT * FROM Coins", [], addCoin);
+
     });
 
 });
-
-//TODO Add appropriate arror response for /all_coin_names/ request
 
 //GET list of all coin names
 app.get('/all_coin_names/', function (req, res) {
@@ -131,12 +159,10 @@ var dbUpdate = function (newData) {
         var createCoinTableThenInsert = function(coinData) {
             // IMPORTANT ---------------------------------------------------------------------------------------------
             coinData['name'] = coinData['name'].replace('-','_');
-            var coin_name = coinData['name']; //replace beacuse sqlite3 doesn't support '-' in a table name
+            var coin_name = coinData['name']; //replace bc sqlite3 doesn't support '-' in a table name
             // IMPORTANT ---------------------------------------------------------------------------------------------
             db.run("CREATE TABLE " + coin_name + " " + schema, [], function(err) {
-                if (err) {
-                    console.log("we have an err when creating table for " + coin_name);
-                }
+                if (err) { console.log("we have an err when creating table for " + coin_name); }
                 console.log("created table for " + coin_name);
                 var addRecords = db.prepare("INSERT INTO " + coin_name + " VALUES (?,?,?,?)");
                 coinData['data'].forEach(function(record) {
@@ -193,6 +219,7 @@ var schedule = require("node-schedule");
 
 //RUN ONCE UPON DEPLOY TO GET UPDATED INFO ASAP
 console.log("started job: " + Date());
+
 PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err, results) {
     console.log("Finished at " + Date());
     if (err) throw err;
@@ -207,7 +234,7 @@ PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err,
     eventEmitter.emit('dbUpdate', obj);
 });
 
-//SCRIPT SCHEDULED TO RUN AT 12:14 AM each day to update with new data
+//SCRIPT SCHEDULED TO RUN AT 3:00 AM each day to update with new data
 var j = schedule.scheduleJob('0 14 * * *', function() {
 
     console.log("started scheduled job: " + Date());
