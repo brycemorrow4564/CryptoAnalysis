@@ -1,4 +1,10 @@
-//module.paths.push('/usr/local/lib/node_modules'); //comment out for deployment
+//Todo 1. Add error responses to JSON API
+//Todo 2. Precompute data for JSON API queries
+//Todo 3. Add check so that two jobs are not ever in process at the same time
+//Todo 4. Add logified data field to JSON API queries. See if this can be handled via some Highstock chart option
+//Todo 5. Add rate limiting to the API
+
+module.paths.push('/usr/local/lib/node_modules'); //comment out for deployment
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('cryptodata.db');
@@ -16,6 +22,8 @@ app.listen(port, function() {
 });
 
 //JSON API
+
+//TODO Add appropriate error responses for calls to json api
 
 //GET data for specific coin
 app.get('/coins/:name', function (req, res) {
@@ -50,49 +58,6 @@ app.get('/coins/', function (req, res) {
             coin_data   = [],
             counter     = 0,
             num_coins   = 100;
-
-//        var specific_coin_cb = function(err, rows) {
-//            coin_data.push({
-//                "name": coin_objs[counter]['coin_name'].replace('_','-'),
-//                "data": rows
-//            });
-//            counter += 1;
-//            if (counter == coin_objs.length) {
-//                res.send({
-//                    "Coins": coin_data
-//                });
-//            }
-//        }
-//
-//        var asyncForEach = function(arr) {
-//
-//            setTimeout(function() {
-//                arr.forEach(function(elem) {
-//                    setTimeout(function() {
-//                        db.all("SELECT * FROM " + elem['coin_name'], [], specific_coin_cb)
-//                    }, 0);
-//                });
-//            }, 0);
-//
-//            if (arr.length === 0) {
-//                res.send({
-//                    "Coins": []
-//                });
-//            }
-//        };
-//
-//        var coinsCollectedCb = function(err, rows) {
-//            if (err) {
-//                return err;
-//            }
-//            coin_objs = rows;
-//            asyncForEach(coin_objs);
-//        };
-//
-//        db.all("SELECT * FROM Coins", [], coinsCollectedCb);
-
-
-        //HERE IS THE NEW CODE ----------------------------------------------------------------------
 
         var addCoin = function(err, row) {
             if (err) { console.log(err); }
@@ -234,7 +199,7 @@ PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err,
     eventEmitter.emit('dbUpdate', obj);
 });
 
-//SCRIPT SCHEDULED TO RUN AT 3:00 AM each day to update with new data
+//SCRIPT SCHEDULED TO RUN AT 12:14 AM each day to update with new data
 var j = schedule.scheduleJob('0 14 * * *', function() {
 
     console.log("started scheduled job: " + Date());

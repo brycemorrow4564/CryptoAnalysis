@@ -2,18 +2,20 @@ import json
 import time
 import re
 import datetime
-#import lxml.html
 
 import settings as settings
 
 ''' DRIVER UTILITY FUNCTIONS '''
 
+
 def close_and_reset_driver(url):
     GLOBAL.driver.close()
     GLOBAL.driver = GLOBAL.driver_setup(url)
 
+
 def verify_query_string_url():
     return GLOBAL.queryString in GLOBAL.driver.current_url
+
 
 def driver_get_page_timeout_wrapper(url):
     while True:
@@ -25,7 +27,9 @@ def driver_get_page_timeout_wrapper(url):
             #Case of 30s timeout so severe network issues. It's best to close driver and reopen window
             close_and_reset_driver(url)
 
+
 '''DATA SCRAPING'''
+
 
 #Returns list of row objects (or dicts)
 def scrape_rows(fieldnames):
@@ -49,6 +53,11 @@ def scrape_rows(fieldnames):
         #This line is a little ugly but it formats data and converts elements of each tuple from unicode to a string
         rowObjects.append({key: val for key, val in zip(fieldnames, list([''.join(elem) for elem in parsedHtml[i]]))})
     return rowObjects
+
+    # --------------------------------------------------------------------------------------------------------
+    # Alternative method of parsing html to extract data. Did not use during deploy due to issues with Heroku
+    # importing the lxml.html library.
+    # --------------------------------------------------------------------------------------------------------
     # thtml = str('<table><tbody>' + tbody.get_attribute('innerHTML') + '</tbody></table>').strip()
     # root = lxml.html.fromstring(thtml)
     # xpathOne = 'tbody/tr'
@@ -66,15 +75,18 @@ def get_top_100_coin_names():
     table = GLOBAL.driver.find_element_by_id(tableId)
     rows = table.find_elements_by_tag_name('tr')
     coinNames = list()
-    for r in rows[1:]: #remove first item from urls since it is header row
+    for r in rows[1:]: #remove first item from urls since it is header row of table
         coinNames.append(r.get_attribute('id')[3:])
     return coinNames
 
+
 '''DATE UTILITY FUNCTIONS'''
+
 
 #given name of month returns integer 1-12
 def month_num_from_name(month):
     return {datetime.date(2017, i, 1).strftime('%B').lower():i for i in range(1,13)}[month.lower()]
+
 
 #'Jun 10, 2017' --> datetime.datetime object
 def parse_date(rawDateData):
@@ -85,14 +97,14 @@ def parse_date(rawDateData):
     year = datetimeData[2]
     return datetime.datetime(int(year), month_num_from_name(monthName), int(day))
 
+
 '''MAIN LOGIC FUNCTIONS'''
+
 
 def run_data_scraper():
     coinNames, agg_coin_data = get_top_100_coin_names(), []
     urls = [GLOBAL.main_page_url + coinName + '/historical-data/' + GLOBAL.queryString for coinName in coinNames]
-    #Gather data from web
-    for i in xrange(len(coinNames)):
-        print ('iteration for ' + coinNames[i] + " at " + str(time.time() - start_time))
+    for i in range(len(coinNames)):
         driver_get_page_timeout_wrapper(urls[i]) #after this you are guaranteed to be on historical data page
         if not verify_query_string_url():
             print "Query string was not found in the url for " + coinName
@@ -105,7 +117,11 @@ def run_data_scraper():
     print ("SENTINEL") #marker so we can find index of json object in stdout via nodejs
     print (json.dumps(agg_coin_data)) #wrap via json.dumps so that string is in correct form for parsing by nodejs
 
+
 def main():
+    # ------------------------------------------------------------------------------------------------------
+    # SOME QUICK TEST DATA IN CORRECT FORMAT FOR NODEJS
+    # ------------------------------------------------------------------------------------------------------
     # print ("SENTINEL");
     # print(json.dumps([{
     #          'name':'oneeee',
@@ -127,9 +143,6 @@ def main():
     run_data_scraper()
     GLOBAL.driver.close()
 
+
 if __name__ == '__main__':
-    global start_time
-    start_time = time.time()
     main()
-    elapsed_time = time.time() - start_time
-    print elapsed_time
