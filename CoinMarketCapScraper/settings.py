@@ -1,7 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-
 import datetime
+
+#Setup some global variables in object to be passed to data scraper for use in functions/states of the finite state machine
 
 class Globals: 
 

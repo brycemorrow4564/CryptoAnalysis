@@ -5,9 +5,6 @@
     <meta charset="utf-8">
     <title>Crypto Analysis</title>
     <link rel="stylesheet" href="styles.css"/>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="./Highstock-5.0.12/code/highstock.js"></script>
     <script id="sap-ui-bootstrap"
             src="./resources/sap-ui-core.js"
             data-sap-ui-theme="sap_belize"
@@ -16,13 +13,22 @@
             data-sap-ui-compatVersion="edge"
             data-sap-ui-preload="async"
             data-sap-ui-resourceroots='{
-            "sap.crypto.app": "."}'></script>
+            "sap.crypto.app": "."}'>
+    </script>
     <script>
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-core');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-widget');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-mouse');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-droppable');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-draggable');
+
+        //TODO HIGH IMPORTANCE
+        //Get rid of the component globals file and only load in components when necessary
+
+        jqueryLibs = ['sap.ui.thirdparty.jqueryui.jquery-ui-core',
+                      'sap.ui.thirdparty.jqueryui.jquery-ui-widget',
+                      'sap.ui.thirdparty.jqueryui.jquery-ui-mouse',
+                      'sap.ui.thirdparty.jqueryui.jquery-ui-droppable',
+                      'sap.ui.thirdparty.jqueryui.jquery-ui-draggable';
+
+        sap.ui.require(jqueryLibs, function() {
+            //empty callback since we don't need these modules right away
+        });
 
         //Initialize App
         sap.ui.getCore().attachInit(function () {
@@ -37,7 +43,7 @@
 
         //Setup some initial data
         var dataModesObj = {
-                'active': 'MarketCap',     //Current data mode
+                'active': 'MarketCap',      //Current data mode
                 'modes': [                  //All possible data modes
                     {'name': 'MarketCap'},
                     {'name': 'Volume'},
@@ -78,5 +84,8 @@
     </script>
 </head>
 <body class="sapUiBody" id="content">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="./Highstock-5.0.12/code/highstock.js"></script>
 </body>
 </html>
