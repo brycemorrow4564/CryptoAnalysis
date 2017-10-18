@@ -57,7 +57,7 @@ app.get('/coins/', function (req, res) {
         var coin_objs   = [],
             coin_data   = [],
             counter     = 0,
-            num_coins   = 3;
+            num_coins   = 100;
 
         var addCoin = function(err, row) {
             if (err) { console.log(err); }
