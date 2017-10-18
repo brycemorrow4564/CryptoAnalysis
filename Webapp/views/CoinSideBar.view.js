@@ -8,7 +8,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
 
    createContent: function(oController) {
 
-        var searchBar = new COMPONENT.SearchField({
+        var searchBar = new sap.m.SearchField({
             items: "{" + GLOBALS.aggCoinModelId + ">/Coins}",
             placeholder: 'Search Coins',
             liveChange: function(evt) {oController.onLiveChange(evt); },
@@ -30,13 +30,13 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
             }
         };
 
-        var templateItem = new COMPONENT.StandardListItem({
+        var templateItem = new sap.m.StandardListItem({
            title: '{' + GLOBALS.aggCoinModelId + '>name}',
            type: 'Active',
            tap: function(oEvent) { oController.listItemClick(oEvent); }
         });
 
-        var coinList = new COMPONENT.List({
+        var coinList = new sap.m.List({
             id: oController.coinListId,
             title: 'Current',
             mode: sap.m.ListMode.MultiSelect,
@@ -55,9 +55,9 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
         };
 
         //only do right side border, top will be handled at page level.
-        var page = new COMPONENT.Page({
+        var page = new sap.m.Page({
             id: oController.pageId,
-            customHeader: new COMPONENT.Toolbar({
+            customHeader: new sap.m.Toolbar({
                 content: [
                     searchBar
                 ]

@@ -10,7 +10,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
 
    createContent: function(oController) {
 
-        var noContentFormat = new COMPONENT.Title({
+        var noContentFormat = new sap.m.Title({
             id: oController.noContentMsgId,
             text: 'Add coins from sidebar to see graphs',
         }).addStyleClass('noContentTitle'),
@@ -22,11 +22,11 @@ sap.ui.jsview("sap.crypto.app.views.CoinDetail", {
             htmlStr += "<div id='Chart " + i + "' class='CHARTDIV'></div>";
         }
 
-        var html = new COMPONENT.HTML({
+        var html = new sap.ui.core.HTML({
             content: htmlStr
         });
 
-        var page = new COMPONENT.Page({
+        var page = new sap.m.Page({
             id: oController.detailPageId,
             customHeader: CUSTOM_HEADER_GENERATOR.getCustomHeader(oController.getView()),
             content: [

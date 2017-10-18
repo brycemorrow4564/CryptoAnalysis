@@ -20,10 +20,10 @@ CUSTOM_HEADER_GENERATOR = {
 
         htmlStr += '<div class="header-bottom-border"></div>';
 
-        return new COMPONENT.Toolbar({
+        return new sap.m.Toolbar({
             content: [
-                new COMPONENT.ToolbarSpacer(),
-                new COMPONENT.HTML({
+                new sap.m.ToolbarSpacer(),
+                new sap.ui.core.HTML({
                     content: htmlStr
                 })
             ]

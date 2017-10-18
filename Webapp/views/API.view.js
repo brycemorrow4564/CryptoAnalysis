@@ -10,29 +10,29 @@ sap.ui.jsview("sap.crypto.app.views.API", {
 
     createContent: function(oController) {
 
-        var apiList = new COMPONENT.List({
+        var apiList = new sap.m.List({
             id: oController.apiListId,
             headerText: "API Calls"
         }).bindItems({
              path: oController.apiModelId + ">/API_functions",
-             template: new COMPONENT.DisplayListItem({
+             template: new sap.m.DisplayListItem({
                 "label": "{" + oController.apiModelId + ">url}",
                 "value": "{" + oController.apiModelId + ">data}"
              })
         });
 
-        var donateList = new COMPONENT.List({
+        var donateList = new sap.m.List({
             id: oController.donateListId,
             headerText: "Donate Links"
         }).bindItems({
             path: oController.donateModelId + ">/DonateKeys",
-            template: new COMPONENT.DisplayListItem({
+            template: new sap.m.DisplayListItem({
                 "label": "{" + oController.donateModelId + ">currency}",
                 "value": "{" + oController.donateModelId + ">address}"
             })
         });
 
-        var layout = new COMPONENT.VerticalLayout({
+        var layout = new sap.ui.layout.VerticalLayout({
             id: 'LayoutWrapper',
             width: "90%",
             content: [
@@ -41,7 +41,7 @@ sap.ui.jsview("sap.crypto.app.views.API", {
             ]
         })
 
-        var page =  new COMPONENT.Page({
+        var page =  new sap.m.Page({
             customHeader: CUSTOM_HEADER_GENERATOR.getCustomHeader(oController.getView()),
             content: [
                 layout

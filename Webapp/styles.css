@@ -167,6 +167,11 @@ SIDE BAR STYLING
 CONFIG PANEL FORMATTING
 */
 
+#InfoButton {
+    margin-top: .25rem;
+    margin-left: .5rem;
+}
+
 #__page0-intHeader { /* Colors config page header */
     background-color: #eff4f9;
 }

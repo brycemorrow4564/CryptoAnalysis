@@ -104,6 +104,56 @@ sap.ui.define([
                     newObj.data = [coinName];
                     data.push(newObj);
                 }
+
+                //Since a coin was newly selected, we now need to check if we have loaded the data for this coin into app
+                var dataModel   = sap.ui.getCore().getModel(GLOBALS.aggCoinModelId),
+                    coins       = dataModel.getProperty('/Coins'),
+                    dataLoaded  = false;
+
+                for (var x = 0; x < coins.length; x++) {
+                    if (coins[x]['name'] === coinName) {
+                        dataLoaded = !(coins[x]['data'].length === 0);
+                        break;
+                    }
+                }
+
+                if (!dataLoaded) { //If we didn't find this particular coins data in model, we load it in via API
+
+                    var busyDialog = sap.ui.jsfragment('sap.crypto.app.views.fragments.BusyDialog');
+                    $.sap.syncStyleClass('sapUiSizeCompact', this.getView(), busyDialog);
+                    busyDialog.open();
+
+                    $.when(
+                        $.ajax({
+                            async: false,
+                            url: '/coins/' + coinName
+                        })
+                    )
+                    .done(function(response) {
+
+                        var rawData = response['data'];
+                        for (var k = 0; k < rawData.length; k++) {
+                            var elem = rawData[k];
+                            elem['Volume'] = parseInt(elem['Volume'].replace(/,/g,''));
+                            elem['MarketCap'] = parseInt(elem['MarketCap'].replace(/,/g,''));
+                            elem['Open'] = parseFloat(elem['Open'].replace(/,/g,''));
+                        }
+                        var cleanedData = rawData; //data has been correctly formatted at this point
+
+                        for (var q = 0; q < coins.length; q++) {
+                            if (coins[q]['name'] === coinName) {
+                                coins[q]['data'] = cleanedData;
+                                break;
+                            }
+                        }
+
+                        dataModel.setData({"Coins": coins});
+                        dataModel.refresh(true);
+                        setTimeout(function() {busyDialog.close()}, 350); //350 msec Delay to avoid flashing screen w/ no dialog shown
+                    });
+
+                }
+
             }
 
             //Reset model data on core after performing necessary changes

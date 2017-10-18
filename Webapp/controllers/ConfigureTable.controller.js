@@ -25,51 +25,14 @@ sap.ui.define([
 
         onInit: function() {
 
-//            $.ajax({
-//                async: false,
-//                url: '/coins/',
-//                success: function(response) {
-//                    console.log(response);
-//                },
-//                error: function(one, two, three) {
-//                    console.log(one);
-//                    console.log(two);
-//                    console.log(three);
-//                }
-//            });
-//
-//            $.ajax({
-//                async: false,
-//                url: '/coins/ethereum',
-//                success: function(response) {
-//                    console.log(response);
-//                },
-//                error: function(one, two, three) {
-//                    console.log(one);
-//                    console.log(two);
-//                    console.log(three);
-//                }
-//            });
-//
-//            $.ajax({
-//                async: false,
-//                url: '/all_coin_names/',
-//                success: function(response) {
-//                    console.log(response);
-//                },
-//                error: function(one, two, three) {
-//                    console.log(one);
-//                    console.log(two);
-//                    console.log(three);
-//                }
-//            });
-
             console.log('Config: init');
 
             /* Setup AllCoins model, which is used to display list of all coin names for batch action.
                Data will be loaded into this model via onRouteMatched. It will also be updated when selection
                events occur in the CoinSideBar view. */
-            this.getView().setModel(new COMPONENT.JSONModel({}), this.allCoinsModelId);
+            this.getView().setModel(new sap.ui.model.json.JSONModel({}), this.allCoinsModelId);
+
+            this.setupPopover(); //Create model and data items for message info popover
 
             sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
             sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'updateAllCoins', this.updateAllCoins, this);
@@ -97,7 +60,7 @@ sap.ui.define([
             });
 
             if (this.firstMatch) {
-                COMPONENT.MessageToast.show("You can drag and drop coin tiles to move them between charts", {
+                sap.m.MessageToast.show("You can drag and drop coin tiles to move them between charts", {
                     duration: 4000
                 });
                 this.firstMatch = false;
@@ -223,7 +186,7 @@ sap.ui.define([
 
             for (var i = 0; i < coins.length; i++) {
                 buttons.push(
-                    new COMPONENT.Button({
+                    new sap.m.Button({
                         text: coins[i]
                     }).addStyleClass('chartTableBtnMarker')
                 );
@@ -231,12 +194,12 @@ sap.ui.define([
 
             return new sap.m.ColumnListItem({
                 cells: [
-                    new COMPONENT.Label({
+                    new sap.m.Label({
                         text : {
                             'path': GLOBALS.coinChartModelId + '>name'
                         }
                     }),
-                    new COMPONENT.HorizontalLayout({
+                    new sap.ui.layout.HorizontalLayout({
                         width: '100%',
                         allowWrapping: true,
                         content: buttons
@@ -427,6 +390,56 @@ sap.ui.define([
 
           dataModeModel.setData(dataModeObj);
           dataModeModel.refresh(true);
+        },
+
+        setupPopover: function() {
+
+            var popoverMsgTemplate = new sap.m.MessagePopoverItem({
+                type: '{type}',
+                title: '{title}',
+                description: '{description}'
+            });
+
+            var popoverMessages = [
+                {
+                    type: 'Information',
+                    title: 'Set Default Chart',
+                    description: 'Setting the default chart allows you to specify which of your charts coins should be added to by default',
+                },
+                {
+                    type: 'Information',
+                    title: 'Set Data Mode',
+                    description: 'Setting the data mode changes the type of data you will see for your selected cryptocurrencies. Check the dropdown to see your options.',
+                },
+                {
+                    type: 'Information',
+                    title: 'Removing Items',
+                    description: 'You can toggle between removing whole charts or removing a subset of the coins you have selected.',
+                },
+                {
+                    type: 'Information',
+                    title: 'Drag and Drop',
+                    description: 'You can drag and drop coin tiles between charts within the table to easily manage which coins appear in which chart.',
+                }
+            ];
+
+            var popover = new sap.m.MessagePopover({
+                items: {
+                    path: '/',
+                    template: popoverMsgTemplate
+                }
+            });
+
+            var popoverModel = new sap.ui.model.json.JSONModel();
+            popoverModel.setData(popoverMessages);
+
+            popover.setModel(popoverModel);
+
+            this.infoPopover = popover;
+        },
+
+        displayPopover: function(oEvent) {
+            this.infoPopover.openBy(oEvent.getSource());
         }
 
    });

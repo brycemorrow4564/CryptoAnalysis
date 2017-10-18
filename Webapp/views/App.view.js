@@ -1,4 +1,5 @@
-$.sap.require("sap.crypto.app.Utility.ComponentGlobals");
+$.sap.require('sap.m.SplitApp');
+$.sap.require('sap.ui.layout.SplitterLayoutData');
 
 sap.ui.jsview("sap.crypto.app.views.App", {
 
@@ -9,8 +10,8 @@ sap.ui.jsview("sap.crypto.app.views.App", {
    createContent: function(oController) {
 
         this.setDisplayBlock(true);
-        this.oApp = new COMPONENT.SplitApp("app", {
-            layoutData: new COMPONENT.SplitterLayoutData({
+        this.oApp = new sap.m.SplitApp("app", {
+            layoutData: new sap.ui.layout.SplitterLayoutData({
                 resizable: true
             })
         });

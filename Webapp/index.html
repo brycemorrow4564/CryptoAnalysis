@@ -20,21 +20,28 @@
     <script>
 
         //   Todos
-        //1. Get rid of the component globals file and only load in components when necessary
-        //2. Deconstruct data from charts on coinmarketcap to get more precise data (minutes rather than days)
-        //3. Switch to the same graphing utility that bitfinex uses as it allows for more analysis tools
-        //4. Test alternatives for asynchronous loading of various project modules.
-        //5. Integrate barcode scan for donation links
-        //6. Add a readme on github
-        //7. Some barebones documentation for the api including examples of data form
-        //8. Change form of models so page can be displayed before all of the data is loaded into the application.
-        //   continue to load data asynchronously in the background. 
+        //
+        //   COMPLETED 1. Get rid of the component globals file and only load in components when necessary
+        //   2. Deconstruct data from charts on coinmarketcap to get more precise data (minutes rather than days)
+        //   3. Switch to the same graphing utility that bitfinex uses as it allows for more analysis tools
+        //   4. Test alternatives for asynchronous loading of various project modules.
+        //   5. Integrate barcode scan for donation links
+        //   6. Add a readme on github
+        //   7. Some barebones documentation for the api including examples of data form
+        //   COMPLETED 8. Change form of models so page can be displayed before all of the data is loaded into the application.
+        //      continue to load data asynchronously in the background.
 
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-core');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-widget');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-mouse');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-droppable');
         $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-draggable');
+
+        //IMPORTANT IMPORTS: If you forget these the javascript for the header bottom border gets messed up
+        //                   due to some semantic differences between pages and detail/master pages.
+        $.sap.require('sap.m.semantic.MasterPage');
+        $.sap.require('sap.m.semantic.DetailPage');
+        $.sap.require("sap.crypto.app.Utility.Globals");
 
         //Initialize App
         sap.ui.getCore().attachInit(function () {
@@ -43,9 +50,6 @@
                 name : "sap.crypto.app"
             }).placeAt("content");
         });
-
-        $.sap.require("sap.crypto.app.Utility.ComponentGlobals");
-        $.sap.require("sap.crypto.app.Utility.Globals");
 
         //Setup some initial data
         var dataModesObj = {
@@ -66,27 +70,27 @@
 
         $.ajax({
             async: false,
-            url: '/coins/',
+            url: '/all_coin_names/',
             success: function(response) {
                 success = true;
                 agg_data = response;
+                var coin_objs = [];
                 agg_data['Coins'].forEach(function(coinObj) {
-                    coinObj['data'].forEach(function(elem) {
-                        elem['Volume'] = parseInt(elem['Volume'].replace(/,/g,''));
-                        elem['MarketCap'] = parseInt(elem['MarketCap'].replace(/,/g,''));
-                        elem['Open'] = parseFloat(elem['Open'].replace(/,/g,''));
+                    coin_objs.push({
+                        'name': coinObj['coin_name'],
+                        'data': [] //all coins start with empty data field and we load in as requested by user
                     });
                 });
-                core.setModel(new COMPONENT.JSONModel(agg_data), GLOBALS.aggCoinModelId);
+                core.setModel(new sap.ui.model.json.JSONModel({"Coins": coin_objs}), GLOBALS.aggCoinModelId);
             }
         });
 
         if (!success) {
-            core.setModel(new COMPONENT.JSONModel(agg_data), GLOBALS.aggCoinModelId);
+            core.setModel(new sap.ui.model.json.JSONModel(agg_data), GLOBALS.aggCoinModelId);
         }
 
-        core.setModel(new COMPONENT.JSONModel(dataModesObj), GLOBALS.dataModeModelId);
-        core.setModel(new COMPONENT.JSONModel(coinToChartData), GLOBALS.coinChartModelId);
+        core.setModel(new sap.ui.model.json.JSONModel(dataModesObj), GLOBALS.dataModeModelId);
+        core.setModel(new sap.ui.model.json.JSONModel(coinToChartData), GLOBALS.coinChartModelId);
     </script>
 </head>
 <body class="sapUiBody" id="content">
