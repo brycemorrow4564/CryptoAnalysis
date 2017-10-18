@@ -21,91 +21,47 @@ app.listen(port, function() {
 	console.log('Our app is deployed to Heroku');
 });
 
-//JSON API
+//JSON API AND QUERY PRECOMPUTATION -----------------------------------------------------------------------------------------
 
-//TODO Add appropriate error responses for calls to json api
+//Global variables to store precomputed query responses in
+var allCoinNamesResponse    = {'Coins': []};
+var allCoinDataResponse     = {'Coins': []}; //Individual coin queries can be extracted from this aggregate object
+
+//TODO Add appropriate error responses for calls to JSON API
 
 //GET data for specific coin
 app.get('/coins/:name', function (req, res) {
 
-    db.serialize(function() {
+    var coins = allCoinDataResponse['Coins'],
+        err   = true;
 
-        db.all("SELECT * FROM " + req.params.name.replace('-','_'), [], function(err, rows) {
-            if (err) {
-                res.send({
-                     "name": '',
-                     "data": '',
-                     "err" : true
-                });
-                return err;
-            }
-            res.send({
-                "name": req.params.name.replace('_','-'),
-                "data": rows,
-                "err" : false
-            })
+    for (var i = 0; i < coins.length; i++) {
+        var curr = coins[i];
+        //Minor point: We precomputed allCoinDataResponse so that all coin names have already had the underscore
+        //             replaced with a slash so there is no need to perform that replacement here.
+        if (curr['name'] === req.params.name) {
+            res.send(curr);
+            err = false;
+            break;
+        }
+    }
+
+    if (err) {
+        res.send({
+            "error": true
         });
+    }
 
-    });
 });
 
 //GET data for all coins
 app.get('/coins/', function (req, res) {
-
-    db.serialize(function() {
-
-        var coin_objs   = [],
-            coin_data   = [],
-            counter     = 0,
-            num_coins   = 100;
-
-        var addCoin = function(err, row) {
-            if (err) { console.log(err); }
-            setTimeout(function() {
-                var name = row.coin_name;
-                db.all("SELECT * FROM " + name, [], function(err, rows) {
-                     counter += 1;
-                     coin_data.push({
-                         "name": name.replace('_','-'),
-                         "data": rows
-                     });
-                     if (counter === num_coins) {
-                         res.send({
-                             "Coins": coin_data
-                         });
-                     } else {
-                         console.log('counter is ' + counter);
-                     }
-                });
-            }, 0);
-
-        };
-
-        db.each("SELECT * FROM Coins", [], addCoin);
-
-    });
-
+    res.send(allCoinDataResponse);
 });
 
 //GET list of all coin names
 app.get('/all_coin_names/', function (req, res) {
-
-    db.serialize(function() {
-
-        db.all("SELECT * FROM Coins", [], function(err, rows) {
-            if (err) {
-                return err;
-            }
-            for (var i = 0; i < rows.length; i++) {
-                rows[i]['coin_name'] = rows[i]['coin_name'].replace('_','-');
-            }
-            res.send({
-                "Coins": rows
-            })
-        });
-
-    });
-
+    res.send(allCoinNamesResponse);
 })
 
 //CREATE EVENTEMITTER INSTANCE AND DEFINE CUSTOM EVENTS FOR TRIGGERING ACTION
@@ -144,6 +100,12 @@ var dbUpdate = function (newData) {
                         createCoinTableThenInsert(coinData);
                     }, 0);
                 });
+                //After we have queued up all web api calls to the create/insert function, we add one final call to
+                //precompute aggregate object upon completion of all inserts
+                setTimeout(function() {
+                    console.log("call to precompute queries");
+                    eventEmitter.emit("precomputeQueries");
+                });
             }, 0);
 
         };
@@ -172,9 +134,85 @@ var dbUpdate = function (newData) {
         db.each("SELECT * FROM Coins", [], dropSpecificCoinTable, dropCoinsTable);
 
     });
-}
+};
+
+var precomputeAllCoinNames = function() {
+
+    db.serialize(function() {
+
+        db.all("SELECT * FROM Coins", [], function(err, rows) {
+            if (err) {
+                return err;
+            }
+            for (var i = 0; i < rows.length; i++) {
+                rows[i]['coin_name'] = rows[i]['coin_name'].replace('_','-');
+            }
+            allCoinNamesResponse = { //stored in global var
+                "Coins": rows
+            }
+            console.log("precomputed response");
+            console.log(allCoinNamesResponse);
+        });
+
+    });
+};
+
+var precomputeAllCoinData = function() {
+
+    db.serialize(function() {
+
+        var coin_objs   = [],
+            coin_data   = [],
+            counter     = 0,
+            num_coins   = 100;
+
+        var addCoin = function(err, row) {
+            if (err) { console.log(err); }
+            setTimeout(function() {
+                var name = row.coin_name;
+                db.all("SELECT * FROM " + name, [], function(err, rows) {
+                     counter += 1;
+                     coin_data.push({
+                         "name": name.replace('_','-'),
+                         "data": rows
+                     });
+                     if (counter === num_coins) {
+                         console.log("we out counter");
+                         allCoinDataResponse = {
+                             "Coins": coin_data
+                         };
+                         console.log("precomputed all coin data ");
+                     } else {
+                         console.log('counter is ' + counter);
+                     }
+                });
+            }, 0);
+
+        };
+
+        db.each("SELECT * FROM Coins", [], addCoin);
+
+    });
+};
+
+//Called after data has been stored in the database.
+//Perform logic to extract data from db and store in globals for fast/easy access
+var precomputeQueries = function() {
+
+    //Precompute allCoinNames
+    setTimeout(function() {
+        precomputeAllCoinNames();
+    }, 0);
+
+    //Precompute allCoinData
+    setTimeout(function() {
+        precomputeAllCoinData();
+    }, 0);
+
+};
 
 eventEmitter.on('dbUpdate', dbUpdate);
+eventEmitter.on('precomputeQueries', precomputeQueries);
 
 //SETUP SCHEDULED EXECUTION OF WEB DATA SCRAPER
 var PythonShell = require('python-shell');
@@ -197,8 +235,8 @@ PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err,
     eventEmitter.emit('dbUpdate', obj);
 });
 
-//SCRIPT SCHEDULED TO RUN AT 12:14 AM each day to update with new data
-var j = schedule.scheduleJob('0 14 * * *', function() {
+//SCRIPT SCHEDULED TO RUN AT 12:30 AM each day to update with new data
+var j = schedule.scheduleJob('0 30 * * *', function() {
 
     console.log("started scheduled job: " + Date());
 
