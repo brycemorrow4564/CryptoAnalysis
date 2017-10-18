@@ -6,6 +6,8 @@
 
 //module.paths.push('/usr/local/lib/node_modules'); //COMMENT OUT FOR DEPLOYMENT
 
+//--------------------------------- APP SETUP AND MODULE LOADING  ------------------------------------------------------
+
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('cryptodata.db');
 
@@ -21,11 +23,15 @@ app.listen(port, function() {
 	console.log('Our app is deployed to Heroku');
 });
 
-//JSON API AND QUERY PRECOMPUTATION -----------------------------------------------------------------------------------------
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+
+//--------------------------------- JSON API AND QUERY PRECOMPUTATION --------------------------------------------------
 
 //Global variables to store precomputed query responses in
 var allCoinNamesResponse    = {'Coins': []};
-var allCoinDataResponse     = {'Coins': []}; //Individual coin queries can be extracted from this aggregate object
+var allCoinDataResponse     = {'Coins': []};    //Individual coin queries can be extracted from this aggregate object
+var num_coins               = 100;              //Used to signal that certain queries are finished VERY IMPORTANT 
 
 //TODO Add appropriate error responses for calls to JSON API
 
@@ -64,78 +70,6 @@ app.get('/all_coin_names/', function (req, res) {
     res.send(allCoinNamesResponse);
 })
 
-//CREATE EVENTEMITTER INSTANCE AND DEFINE CUSTOM EVENTS FOR TRIGGERING ACTION
-var events = require('events');
-var eventEmitter = new events.EventEmitter();
-
-//Callback fired after web scraper runs, updating db asynchronously
-var dbUpdate = function (newData) {
-
-    db.serialize(function() {
-
-        var schema = '(Volume TEXT, Date TEXT, MarketCap TEXT, Open TEXT)';
-
-        var createCoinTableThenInsert = function(coinData) {
-            // IMPORTANT ---------------------------------------------------------------------------------------------
-            coinData['name'] = coinData['name'].replace('-','_');
-            var coin_name = coinData['name']; //replace bc sqlite3 doesn't support '-' in a table name
-            // IMPORTANT ---------------------------------------------------------------------------------------------
-            db.run("CREATE TABLE " + coin_name + " " + schema, [], function(err) {
-                if (err) { console.log("we have an err when creating table for " + coin_name); }
-                console.log("created table for " + coin_name);
-                var addRecords = db.prepare("INSERT INTO " + coin_name + " VALUES (?,?,?,?)");
-                coinData['data'].forEach(function(record) {
-                    addRecords.run([record['Volume'].toString(), record['Date'].toString(), record['MarketCap'].toString(), record['Open'].toString()]);
-                });
-                addRecords.finalize();
-            })
-            .run("INSERT INTO Coins VALUES (?)", coin_name, function(err) { if (err) { console.log("err on insert for " + coin_name)}})
-        };
-
-        var asyncForEach = function(arr) {
-
-            setTimeout(function() {
-                arr.forEach(function(coinData) {
-                    setTimeout(function() {
-                        createCoinTableThenInsert(coinData);
-                    }, 0);
-                });
-                //After we have queued up all web api calls to the create/insert function, we add one final call to
-                //precompute aggregate object upon completion of all inserts
-                setTimeout(function() {
-                    console.log("call to precompute queries");
-                    eventEmitter.emit("precomputeQueries");
-                });
-            }, 0);
-
-        };
-
-        var loadNewData = function(err) {
-            if (err) { console.log(err); }
-            asyncForEach(newData);
-        };
-
-        var createNewCoinsTable = function(err) {
-            if (err) { console.log(err); }
-            db.run("CREATE TABLE Coins (coin_name TEXT)", [], loadNewData);
-        };
-
-        var dropCoinsTable = function(err) {
-            if (err) { console.log(err); }
-            db.run("DROP TABLE Coins", [], createNewCoinsTable);
-        };
-
-        var dropSpecificCoinTable = function(err, row) {
-            if (err) { console.log(err); }
-            console.log("dropping " + row.coin_name);
-            db.run("DROP TABLE " + row.coin_name);
-        };
-
-        db.each("SELECT * FROM Coins", [], dropSpecificCoinTable, dropCoinsTable);
-
-    });
-};
-
 var precomputeAllCoinNames = function() {
 
     db.serialize(function() {
@@ -163,8 +97,7 @@ var precomputeAllCoinData = function() {
 
         var coin_objs   = [],
             coin_data   = [],
-            counter     = 0,
-            num_coins   = 100;
+            counter     = 0;
 
         var addCoin = function(err, row) {
             if (err) { console.log(err); }
@@ -210,6 +143,77 @@ var precomputeQueries = function() {
     }, 0);
 
 };
+
+//--------------------------------- MANAGING DATABASE WHEN NEW DATA RECEIVED -------------------------------------------
+
+//Callback fired after web scraper runs, updating db asynchronously
+var dbUpdate = function (newData) {
+
+    db.serialize(function() {
+
+        var schema = '(Volume TEXT, Date TEXT, MarketCap TEXT, Open TEXT)';
+
+        var createCoinTableThenInsert = function(coinData) {
+            // IMPORTANT ---------------------------------------------------------------------------------------------
+            coinData['name'] = coinData['name'].replace('-','_');
+            var coin_name = coinData['name']; //replace bc sqlite3 doesn't support '-' in a table name
+            // IMPORTANT ---------------------------------------------------------------------------------------------
+            db.run("CREATE TABLE " + coin_name + " " + schema, [], function(err) {
+                if (err) { console.log("we have an err when creating table for " + coin_name); }
+                console.log("created table for " + coin_name);
+                var addRecords = db.prepare("INSERT INTO " + coin_name + " VALUES (?,?,?,?)");
+                coinData['data'].forEach(function(record) {
+                    addRecords.run([record['Volume'].toString(), record['Date'].toString(), record['MarketCap'].toString(), record['Open'].toString()]);
+                });
+                addRecords.finalize();
+                counter += 1;
+                if (counter === num_coins) {
+                    console.log("call to precompute queries");
+                    eventEmitter.emit("precomputeQueries");
+                }
+            })
+            .run("INSERT INTO Coins VALUES (?)", coin_name, function(err) { if (err) { console.log("err on insert for " + coin_name)}})
+        };
+
+        var asyncForEach = function(arr) {
+
+            setTimeout(function() {
+                arr.forEach(function(coinData) {
+                    setTimeout(function() {
+                        createCoinTableThenInsert(coinData);
+                    }, 0);
+                });
+            }, 0);
+
+        };
+
+        var loadNewData = function(err) {
+            if (err) { console.log(err); }
+            asyncForEach(newData);
+        };
+
+        var createNewCoinsTable = function(err) {
+            if (err) { console.log(err); }
+            db.run("CREATE TABLE Coins (coin_name TEXT)", [], loadNewData);
+        };
+
+        var dropCoinsTable = function(err) {
+            if (err) { console.log(err); }
+            db.run("DROP TABLE Coins", [], createNewCoinsTable);
+        };
+
+        var dropSpecificCoinTable = function(err, row) {
+            if (err) { console.log(err); }
+            console.log("dropping " + row.coin_name);
+            db.run("DROP TABLE " + row.coin_name);
+        };
+
+        db.each("SELECT * FROM Coins", [], dropSpecificCoinTable, dropCoinsTable);
+
+    });
+};
+
+//--------------------------------- SETUP EVENT FIRING AND SCHEDULE JOBS -----------------------------------------------
 
 eventEmitter.on('dbUpdate', dbUpdate);
 eventEmitter.on('precomputeQueries', precomputeQueries);
