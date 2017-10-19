@@ -126,7 +126,7 @@ def main():
     # print(json.dumps([{
     #          'name':'oneeee',
     #          'data':[{"Volume": "629", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
-    #                  {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009420"}]
+    #                  {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,899", "Open": "0.009420"}]
     #         },
     #         {
     #          'name':'two',
@@ -136,7 +136,7 @@ def main():
     #         {
     #          'name':'three',
     #          'data':[{"Volume": "633", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
-    #                  {"Volume": "634", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009424"}]
+    #                  {"Volume": "634", "Date": "Aug 05, 2015", "MarketCap": "74,893", "Open": "0.009424"}]
     #         }]))
     global GLOBAL
     GLOBAL = settings.setup()

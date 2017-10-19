@@ -1,5 +1,6 @@
 //Todo 1. Add error responses to JSON API
-//Todo COMPLETED 2. Precompute data for JSON API queries
+//COMPLETED 2. Precompute data for JSON API queries
+//Todo 6. During precomputation, include coin rank in terms of most recent market cap for in app sorting
 //Todo 3. Add check so that two jobs are not ever in process at the same time
 //Todo 4. Add logified data field to JSON API queries. See if this can be handled via some Highstock chart option
 //Todo 5. Add rate limiting to the API. Do this via a user registration system to grant access. Find some npm plugin
@@ -68,27 +69,36 @@ app.get('/coins/', function (req, res) {
 //GET list of all coin names
 app.get('/all_coin_names/', function (req, res) {
     res.send(allCoinNamesResponse);
-})
+});
 
+var sortByKey = function(arr, key) {
+    return arr.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((y < x) ? -1 : ((y > x) ? 1 : 0));
+    });
+};
+
+//Function is always called after precomputeAllCoinData so we can generate coin list in order of top market cap coins
 var precomputeAllCoinNames = function() {
 
-    db.serialize(function() {
+    var coins = allCoinDataResponse['Coins'];
+    for (var i = 0; i < coins.length; i++) {
+        coins[i] = {
+            'coin_name':        coins[i]['name'],
+            'recentMarketCap':  coins[i]['data'][coins[i]['data'].length-1]['MarketCap'] //Extract most recent market cap evaluation
+        }
+    }
 
-        db.all("SELECT * FROM Coins", [], function(err, rows) {
-            if (err) {
-                return err;
-            }
-            for (var i = 0; i < rows.length; i++) {
-                rows[i]['coin_name'] = rows[i]['coin_name'].replace('_','-');
-            }
-            allCoinNamesResponse = { //stored in global var
-                "Coins": rows
-            }
-            console.log("precomputed response");
-            console.log(allCoinNamesResponse);
-        });
+    sorted_coins = sortByKey(coins, 'recentMarketCap');
+    for (var t = 0; t < sorted_coins.length; t++) {
+        sorted_coins[t] = {
+            'coin_name': sorted_coins[t]['coin_name']
+        }
+    }
 
-    });
+    allCoinNamesResponse = sorted_coins;
+    console.log(allCoinNamesResponse);
+
 };
 
 var precomputeAllCoinData = function() {
@@ -110,11 +120,12 @@ var precomputeAllCoinData = function() {
                          "data": rows
                      });
                      if (counter === num_coins) {
-                         console.log("we out counter");
                          allCoinDataResponse = {
                              "Coins": coin_data
                          };
-                         console.log("precomputed all coin data ");
+                         console.log("precomputed all coin data");
+                         console.log(allCoinDataResponse);
+                         eventEmitter.emit('precomputeCoinNames');
                      } else {
                          console.log('counter is ' + counter);
                      }
@@ -131,17 +142,7 @@ var precomputeAllCoinData = function() {
 //Called after data has been stored in the database.
 //Perform logic to extract data from db and store in globals for fast/easy access
 var precomputeQueries = function() {
-
-    //Precompute allCoinNames
-    setTimeout(function() {
-        precomputeAllCoinNames();
-    }, 0);
-
-    //Precompute allCoinData
-    setTimeout(function() {
-        precomputeAllCoinData();
-    }, 0);
-
+    precomputeAllCoinData();
 };
 
 //--------------------------------- MANAGING DATABASE WHEN NEW DATA RECEIVED -------------------------------------------
@@ -219,6 +220,7 @@ var dbUpdate = function (newData) {
 
 eventEmitter.on('dbUpdate', dbUpdate);
 eventEmitter.on('precomputeQueries', precomputeQueries);
+eventEmitter.on('precomputeCoinNames', precomputeAllCoinNames);
 
 //SETUP SCHEDULED EXECUTION OF WEB DATA SCRAPER
 var PythonShell = require('python-shell');
@@ -241,8 +243,8 @@ PythonShell.run('./CoinMarketCapScraper/Main.py', {'mode':'text'}, function(err,
     eventEmitter.emit('dbUpdate', obj);
 });
 
-//SCRIPT SCHEDULED TO RUN AT 12:30 AM each day to update with new data
-var j = schedule.scheduleJob('0 30 * * *', function() {
+//SCRIPT SCHEDULED TO RUN AT 5:30 AM each day to update with new data
+var j = schedule.scheduleJob('5 30 * * *', function() {
 
     console.log("started scheduled job: " + Date());
 
