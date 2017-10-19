@@ -32,7 +32,7 @@ var eventEmitter = new events.EventEmitter();
 //Global variables to store precomputed query responses in
 var allCoinNamesResponse    = {'Coins': []};
 var allCoinDataResponse     = {'Coins': []};    //Individual coin queries can be extracted from this aggregate object
-var num_coins               = 100;              //Used to signal that certain queries are finished VERY IMPORTANT
+var num_coins               = 3;              //Used to signal that certain queries are finished VERY IMPORTANT
 
 //TODO Add appropriate error responses for calls to JSON API
 
@@ -74,7 +74,7 @@ app.get('/all_coin_names/', function (req, res) {
 var sortByKey = function(arr, key) {
     return arr.sort(function(a, b) {
         var x = a[key]; var y = b[key];
-        return ((y < x) ? -1 : ((y > x) ? 1 : 0));
+        return ((y < x) ? - 1 : ((y > x) ? 1 : 0));
     });
 };
 
@@ -85,7 +85,7 @@ var precomputeAllCoinNames = function() {
     for (var i = 0; i < coins.length; i++) {
         coins[i] = {
             'coin_name':        coins[i]['name'],
-            'recentMarketCap':  coins[i]['data'][coins[i]['data'].length-1]['MarketCap'] //Extract most recent market cap evaluation
+            'recentMarketCap':  coins[i]['data'][coins[i]['data'].length - 1]['MarketCap'] //Extract most recent market cap evaluation
         }
     }
 
@@ -100,6 +100,7 @@ var precomputeAllCoinNames = function() {
         "Coins": sorted_coins
     };
 
+    console.log("computed all coin names response");
     console.log(allCoinNamesResponse);
 };
 
