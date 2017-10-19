@@ -85,7 +85,7 @@ var precomputeAllCoinNames = function() {
     for (var i = 0; i < coins.length; i++) {
         coins[i] = {
             'coin_name':        coins[i]['name'],
-            'recentMarketCap':  coins[i]['data'][coins[i]['data'].length - 1]['MarketCap'] //Extract most recent market cap evaluation
+            'recentMarketCap':  coins[i]['data'][0]['MarketCap'] //Extract most recent market cap evaluation
         }
     }
 
