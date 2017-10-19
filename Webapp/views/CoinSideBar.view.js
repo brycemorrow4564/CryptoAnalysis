@@ -18,17 +18,17 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
 
         //Create option to toggle sorter functions based on input from user (price, marketcap, alphabetical, etc.)
 
-        var mcSorter = new sap.ui.model.Sorter('data', null); //sorts items by market cap valuation
-
-        mcSorter.fnCompare = function(a, b) {
-            try {
-                aVal = a[0]['MarketCap'];
-                bVal = b[0]['MarketCap'];
-                return aVal > bVal ? -1 : aVal == bVal ? 0 : 1;
-            } catch (err) {
-                return -1;
-            }
-        };
+//        var mcSorter = new sap.ui.model.Sorter('data', null); //sorts items by market cap valuation
+//
+//        mcSorter.fnCompare = function(a, b) {
+//            try {
+//                aVal = a[0]['MarketCap'];
+//                bVal = b[0]['MarketCap'];
+//                return aVal > bVal ? -1 : aVal == bVal ? 0 : 1;
+//            } catch (err) {
+//                return -1;
+//            }
+//        };
 
         var templateItem = new sap.m.StandardListItem({
            title: '{' + GLOBALS.aggCoinModelId + '>name}',
@@ -43,7 +43,7 @@ sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
             selectionChange: function(evt) { oController.checkBoxClick(evt); }
         }).bindItems({
             path: GLOBALS.aggCoinModelId + ">/Coins",
-            sorter : mcSorter,
+//            sorter : mcSorter,
             template: templateItem
         });
 

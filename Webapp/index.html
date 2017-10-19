@@ -73,6 +73,8 @@
             async: false,
             url: '/all_coin_names/',
             success: function(response) {
+                console.log("got a response");
+                console.log(response);
                 success = true;
                 agg_data = response;
                 var coin_objs = [];
