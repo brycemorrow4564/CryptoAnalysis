@@ -122,26 +122,26 @@ def main():
     # ------------------------------------------------------------------------------------------------------
     # SOME QUICK TEST DATA IN CORRECT FORMAT FOR NODEJS
     # ------------------------------------------------------------------------------------------------------
-    print ("SENTINEL");
-    print(json.dumps([{
-             'name':'oneeee',
-             'data':[{"Volume": "629", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
-                     {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,899", "Open": "0.009420"}]
-            },
-            {
-             'name':'two',
-             'data':[{"Volume": "631", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
-                     {"Volume": "632", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009422"}]
-            },
-            {
-             'name':'three',
-             'data':[{"Volume": "633", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
-                     {"Volume": "634", "Date": "Aug 05, 2015", "MarketCap": "74,893", "Open": "0.009424"}]
-            }]))
-    # global GLOBAL
-    # GLOBAL = settings.setup()
-    # run_data_scraper()
-    # GLOBAL.driver.close()
+    # print ("SENTINEL");
+    # print(json.dumps([{
+    #          'name':'oneeee',
+    #          'data':[{"Volume": "629", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+    #                  {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,899", "Open": "0.009420"}]
+    #         },
+    #         {
+    #          'name':'two',
+    #          'data':[{"Volume": "631", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+    #                  {"Volume": "632", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009422"}]
+    #         },
+    #         {
+    #          'name':'three',
+    #          'data':[{"Volume": "633", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+    #                  {"Volume": "634", "Date": "Aug 05, 2015", "MarketCap": "74,893", "Open": "0.009424"}]
+    #         }]))
+    global GLOBAL
+    GLOBAL = settings.setup()
+    run_data_scraper()
+    GLOBAL.driver.close()
 
 
 if __name__ == '__main__':

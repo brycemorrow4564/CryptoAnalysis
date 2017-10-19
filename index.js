@@ -32,7 +32,7 @@ var eventEmitter = new events.EventEmitter();
 //Global variables to store precomputed query responses in
 var allCoinNamesResponse    = {'Coins': []};
 var allCoinDataResponse     = {'Coins': []};    //Individual coin queries can be extracted from this aggregate object
-var num_coins               = 3;              //Used to signal that certain queries are finished VERY IMPORTANT
+var num_coins               = 100;              //Used to signal that certain queries are finished VERY IMPORTANT
 
 //TODO Add appropriate error responses for calls to JSON API
 
