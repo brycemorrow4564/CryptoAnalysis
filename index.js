@@ -81,7 +81,7 @@ var sortByKey = function(arr, key) {
 //Function is always called after precomputeAllCoinData so we can generate coin list in order of top market cap coins
 var precomputeAllCoinNames = function() {
 
-    var coins = allCoinDataResponse['Coins'];
+    var coins = Object.assign({}, allCoinDataResponse['Coins']);
     for (var i = 0; i < coins.length; i++) {
         coins[i] = {
             'coin_name':        coins[i]['name'],
