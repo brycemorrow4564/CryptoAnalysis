@@ -102,6 +102,8 @@ var precomputeAllCoinNames = function() {
 
     console.log("computed all coin names response");
     console.log(allCoinNamesResponse);
+    console.log("and now for the data again ");
+    console.log(allCoinDataResponse);
 };
 
 var precomputeAllCoinData = function() {
