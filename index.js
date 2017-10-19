@@ -1,6 +1,6 @@
 //Todo 1. Add error responses to JSON API
 //COMPLETED 2. Precompute data for JSON API queries
-//Todo 6. During precomputation, include coin rank in terms of most recent market cap for in app sorting
+//COMPLETED 6. During precomputation, include coin rank in terms of most recent market cap for in app sorting
 //Todo 3. Add check so that two jobs are not ever in process at the same time
 //Todo 4. Add logified data field to JSON API queries. See if this can be handled via some Highstock chart option
 //Todo 5. Add rate limiting to the API. Do this via a user registration system to grant access. Find some npm plugin
@@ -96,9 +96,11 @@ var precomputeAllCoinNames = function() {
         }
     }
 
-    allCoinNamesResponse = sorted_coins;
-    console.log(allCoinNamesResponse);
+    allCoinNamesResponse = {
+        "Coins": sorted_coins
+    };
 
+    console.log(allCoinNamesResponse);
 };
 
 var precomputeAllCoinData = function() {
@@ -131,7 +133,6 @@ var precomputeAllCoinData = function() {
                      }
                 });
             }, 0);
-
         };
 
         db.each("SELECT * FROM Coins", [], addCoin);
@@ -153,7 +154,6 @@ var dbUpdate = function (newData) {
     db.serialize(function() {
 
         var counter = 0;
-
         var schema = '(Volume TEXT, Date TEXT, MarketCap TEXT, Open TEXT)';
 
         var createCoinTableThenInsert = function(coinData) {
@@ -179,7 +179,6 @@ var dbUpdate = function (newData) {
         };
 
         var asyncForEach = function(arr) {
-
             setTimeout(function() {
                 arr.forEach(function(coinData) {
                     setTimeout(function() {
@@ -187,7 +186,6 @@ var dbUpdate = function (newData) {
                     }, 0);
                 });
             }, 0);
-
         };
 
         var loadNewData = function(err) {
@@ -212,7 +210,6 @@ var dbUpdate = function (newData) {
         };
 
         db.each("SELECT * FROM Coins", [], dropSpecificCoinTable, dropCoinsTable);
-
     });
 };
 
