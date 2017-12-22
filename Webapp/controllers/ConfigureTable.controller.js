@@ -275,7 +275,7 @@ sap.ui.define([
                     });
                 } else {
                     for (var i = 0; i < coins.length; i++) {
-                        if ($.inArray(coins[i], coinNames) == -1) { //returns -1 if not in array so we, keep these coins
+                        if ($.inArray(coins[i], coinNames) == -1) { //returns -1 if not in array so we keep these coins
                             keepCoins.push(coins[i]);
                         }
                     }

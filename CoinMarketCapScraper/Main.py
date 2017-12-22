@@ -23,7 +23,7 @@ def driver_get_page_timeout_wrapper(url):
             GLOBAL.driver.get(url)
             break
         except:
-            print "30 sec timeout"
+            print ("30 sec timeout")
             #Case of 30s timeout so severe network issues. It's best to close driver and reopen window
             close_and_reset_driver(url)
 
@@ -39,10 +39,10 @@ def scrape_rows(fieldnames):
     while True:
         try:
             table = GLOBAL.driver.find_element_by_class_name(tableClass)
-            print "found table " + GLOBAL.driver.current_url
+            print ("found table " + GLOBAL.driver.current_url)
             break
         except:
-            print "unable to locate table on page " + GLOBAL.driver.current_url
+            print ("unable to locate table on page " + GLOBAL.driver.current_url)
             pass
     tbody = table.find_element_by_tag_name('tbody').get_attribute('innerHTML')
     #Heroku not recognizing lxml.html library so quick workaround fix implemented below using regex
@@ -107,7 +107,7 @@ def run_data_scraper():
     for i in range(len(coinNames)):
         driver_get_page_timeout_wrapper(urls[i]) #after this you are guaranteed to be on historical data page
         if not verify_query_string_url():
-            print "Query string was not found in the url for " + coinName
+            print ("Query string was not found in the url for " + coinName)
             continue
         data = [{k:v for k,v in elem.iteritems() if k not in ['High','Low','Close']} for elem in scrape_rows(['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'MarketCap'])]
         agg_coin_data.append({
@@ -122,26 +122,26 @@ def main():
     # ------------------------------------------------------------------------------------------------------
     # SOME QUICK TEST DATA IN CORRECT FORMAT FOR NODEJS
     # ------------------------------------------------------------------------------------------------------
-    # print ("SENTINEL");
-    # print(json.dumps([{
-    #          'name':'oneeee',
-    #          'data':[{"Volume": "629", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
-    #                  {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,899", "Open": "0.009420"}]
-    #         },
-    #         {
-    #          'name':'two',
-    #          'data':[{"Volume": "631", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
-    #                  {"Volume": "632", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009422"}]
-    #         },
-    #         {
-    #          'name':'three',
-    #          'data':[{"Volume": "633", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
-    #                  {"Volume": "634", "Date": "Aug 05, 2015", "MarketCap": "74,893", "Open": "0.009424"}]
-    #         }]))
-    global GLOBAL
-    GLOBAL = settings.setup()
-    run_data_scraper()
-    GLOBAL.driver.close()
+    print ("SENTINEL");
+    print(json.dumps([{
+             'name':'oneeee',
+             'data':[{"Volume": "629", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+                     {"Volume": "630", "Date": "Aug 05, 2015", "MarketCap": "74,899", "Open": "0.009420"}]
+            },
+            {
+             'name':'two',
+             'data':[{"Volume": "631", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+                     {"Volume": "632", "Date": "Aug 05, 2015", "MarketCap": "74,891", "Open": "0.009422"}]
+            },
+            {
+             'name':'three',
+             'data':[{"Volume": "633", "Date": "Aug 04, 2015", "MarketCap": "74,890", "Open": "0.009419"},
+                     {"Volume": "634", "Date": "Aug 05, 2015", "MarketCap": "74,893", "Open": "0.009424"}]
+            }]))
+    # global GLOBAL
+    # GLOBAL = settings.setup()
+    # run_data_scraper()
+    # GLOBAL.driver.close()
 
 
 if __name__ == '__main__':

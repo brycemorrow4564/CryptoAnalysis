@@ -149,7 +149,7 @@ sap.ui.define([
 
                         dataModel.setData({"Coins": coins});
                         dataModel.refresh(true);
-                        setTimeout(function() {busyDialog.close()}, 350); //350 msec Delay to avoid flashing screen w/ no dialog shown
+                        setTimeout(function() {busyDialog.close()}, 400); //400 msec Delay to avoid flashing screen w/ no dialog shown
                     });
 
                 }
@@ -193,9 +193,7 @@ sap.ui.define([
         },
 
         deselectAllCoins: function(channel, event) {
-
             console.log('Sidebar: deselect all');
-
             sap.ui.getCore().byId(this.coinListId).removeSelections(true);
         },
 

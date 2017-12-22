@@ -5,7 +5,7 @@
 //Todo 4. Add logified data field to JSON API queries. See if this can be handled via some Highstock chart option
 //Todo 5. Add rate limiting to the API. Do this via a user registration system to grant access. Find some npm plugin
 
-//module.paths.push('/usr/local/lib/node_modules'); //COMMENT OUT FOR DEPLOYMENT
+module.paths.push('/usr/local/lib/node_modules'); //COMMENT OUT FOR DEPLOYMENT
 
 //--------------------------------- APP SETUP AND MODULE LOADING  ------------------------------------------------------
 
@@ -18,10 +18,18 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 8080;
 
+if (port === 8080) {
+    console.log('Application deployed locally');
+} else {
+    console.log("Application deployed to Heroku");
+}
+
+console.log('Our app is deployed to Heroku');
+
 app.set('view engine', 'pug');
 app.use('/', express.static(__dirname + '/Webapp')); // make express look in the Webapp directory for assets (css/js/img)
 app.listen(port, function() {
-	console.log('Our app is deployed to Heroku');
+
 });
 
 var events = require('events');

@@ -8,14 +8,17 @@
     "npm": "^5.3"
   },
   "dependencies": {
-    "express": "^4.15.4",
-    "node-schedule": "^1.2.5",
+    "async": "^2.6.0",
+    "cheerio": "^0.22.0",
     "events": "1.1.1",
+    "express": "^4.15.4",
+    "mocha": "^3.5.3",
+    "node-schedule": "^1.2.5",
     "pug": "^2.0.0-rc.4",
     "python-shell": "^0.4.0",
-    "sqlite3": "^3.1.12",
-    "mocha": "^3.5.3",
-    "should":"^13.1.0"
+    "request": "^2.83.0",
+    "should": "^13.1.0",
+    "sqlite3": "^3.1.12"
   },
   "scripts": {
     "start": "node index.js"
