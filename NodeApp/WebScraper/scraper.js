@@ -1,10 +1,11 @@
 const run = () => {
 
-    const request   = require('request'),
-          cheerio   = require('cheerio'),
-          async     = require('async'),
-          baseUrl   = 'https://coinmarketcap.com',
-          urlSuffix = 'historical-data/?start=20130428&end=';
+    const request       = require('request'),
+          cheerio       = require('cheerio'),
+          async         = require('async'),
+          dataParser    = require('./../DataParsing/incomingDataParser'),
+          baseUrl       = 'https://coinmarketcap.com',
+          urlSuffix     = 'historical-data/?start=20130428&end=';
 
     const parseResponses = (htmlArr) => {
 
@@ -25,15 +26,20 @@ const run = () => {
             //Mapping function called for each url in urls
             function(url, next) {
                 return request(url, (error, response, html) => {
-                    return next(error, html);
+                    //Note that we return an object that includes the url so we know which coin corresponds to the data
+                    return next(error, {
+                        "url": url,
+                        "html": html
+                    });
                 })
             },
             //Final callback on completion of all async requests
             function(err, results) {
-                //At this point we have collected html for all target pages. Pass to parsing function
-
-                //PICKUP HERE. CREATE PARSING INTERFACE THAT INTERACTS WITH 1. DATA COMING IN FROM WEB
-                //AND 2. DATA EXTRACTED FROM DATABASE THAT WE WISH TO SEND TO USER TO ANSWER API QUERY
+                if (err) {
+                    console.log(err);
+                }
+                //At this point we have collected html for all target pages. Pass to parsing module
+                dataParser.parse(results);
             }
         );
     });
