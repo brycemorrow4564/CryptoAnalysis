@@ -5,7 +5,7 @@ const run = () => {
           async         = require('async'),
           dataParser    = require('./../DataParsing/incomingDataParser'),
           baseUrl       = 'https://coinmarketcap.com',
-          urlSuffix     = 'historical-data/?start=20130428&end=';
+          urlSuffix     = 'historical-data/?start=20130428&end=20501224';
 
     const parseResponses = (htmlArr) => {
 

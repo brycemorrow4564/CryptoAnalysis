@@ -9,7 +9,7 @@ const run = () => {
     //Setup EventEmitter
     const events = require('events');
     const eventEmitter = new events.EventEmitter();
-    //Test run data scraper
+    //Test run data scraper. Later we schedule this.
     const scraper = require('./WebScraper/scraper');
     scraper.run();
 
