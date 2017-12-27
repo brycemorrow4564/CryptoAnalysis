@@ -1,8 +1,8 @@
 const initialize = () => {
 
-    //--------------------------------- IMPORTANT  ------------------------------------------------------
-    module.paths.push('/usr/local/lib/node_modules'); //COMMENT OUT FOR DEPLOYMENT
-    //--------------------------------- IMPORTANT  ------------------------------------------------------
+    // -------------------------------- IMPORTANT  ------------------------------------------------------
+    // module.paths.push('/usr/local/lib/node_modules'); //COMMENT OUT FOR DEPLOYMENT
+    // -------------------------------- IMPORTANT  ------------------------------------------------------
 
     const express = require('express');
     const app     = express();

@@ -125,7 +125,6 @@ sap.ui.define([
 
                     $.when(
                         $.ajax({
-                            async: false,
                             url: '/coins/' + coinName
                         })
                     )
@@ -140,7 +139,7 @@ sap.ui.define([
 
                         dataModel.setData({"Coins": coins});
                         dataModel.refresh(true);
-                        busyDialog.close(); 
+                        busyDialog.close();
                     });
 
                 }
