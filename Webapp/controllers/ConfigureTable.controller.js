@@ -374,22 +374,10 @@ sap.ui.define([
                 dataModeModel   = core.getModel(GLOBALS.dataModeModelId) ,
                 dataModeObj     = JSON.parse(dataModeModel.getJSON());
 
-            switch (newMode) {
-                case "Volume":
-                    dataModeObj.active = 'Volume';
-                    break;
-                case "MarketCap":
-                    dataModeObj.active = 'MarketCap';
-                    break;
-                case "Daily Price":
-                    dataModeObj.active = 'Open';
-                    break;
-                default:
-                    throw "Data mode unrecognized";
-            }
+            dataModeObj.active = newMode;
 
-          dataModeModel.setData(dataModeObj);
-          dataModeModel.refresh(true);
+            dataModeModel.setData(dataModeObj);
+            dataModeModel.refresh(true);
         },
 
         setupPopover: function() {

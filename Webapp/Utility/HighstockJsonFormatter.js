@@ -53,31 +53,16 @@ HIGHSTOCK_JSON_FORMATTER = {
 
         for (var i = 0; i < coinToChartData.length; i++) {
             var coinChartObj            = coinToChartData[i],
-                plotDivId               = coinChartObj['name'],
-                coinList                = coinChartObj['data'],
+                plotDivId               = coinChartObj['name'], //name of chart
+                coinList                = coinChartObj['data'], //list of coins for that particular chart
                 pointsArr               = []; //array of points objects to be passed to options.series.data
 
+            //For each coin on this chart, we extract the relevant data
             coinList.forEach(function(coinName) {
-                var priceHist   = coinDataMap[coinName]['data'],
-                    points      = [];
-
-                for (var x = priceHist.length - 1; x >= 0; x--) {
-                    //Check to ensure we have a valid data point
-                    if (isNaN(priceHist[x][dataMode])) {
-                        continue;
-                    }
-
-                    var rowObj = priceHist[x],
-                        date = rowObj['Date'].replace(',','').replace(' ','-'),
-                        epoch = new Date(date).valueOf(),
-                        d = rowObj[dataMode]; //returns NaN if input value is invalid
-                    points.push([epoch, d]);
-                }
-                pointsArr.push(points);
+                var histData    = coinDataMap[coinName]['data'],
+                    points      = histData.map((row) => { return [row['Date'], row[dataMode]]; });
+                pointsArr.push(points.reverse());
             });
-
-            console.log("here")
-            console.log(pointsArr);
 
             //This variable is used so that we only remove the hidden class for charts where data is plotted
             dataPlottedForChartMap[plotDivId] = pointsArr.length !== 0;
@@ -205,7 +190,7 @@ HIGHSTOCK_JSON_FORMATTER = {
                 }
             },
             subtitle: {
-                text: dataMode === "Open" ? 'Daily Price' : dataMode,
+                text: dataMode,
                 style: {
                     fontSize: '20px',
                     fontWeight: 'bold',

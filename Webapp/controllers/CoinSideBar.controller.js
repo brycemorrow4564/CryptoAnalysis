@@ -131,25 +131,16 @@ sap.ui.define([
                     )
                     .done(function(response) {
 
-                        var rawData = response['data'];
-                        for (var k = 0; k < rawData.length; k++) {
-                            var elem = rawData[k];
-                            elem['Volume'] = parseInt(elem['Volume'].replace(/,/g,''));
-                            elem['MarketCap'] = parseInt(elem['MarketCap'].replace(/,/g,''));
-                            elem['Open'] = parseFloat(elem['Open'].replace(/,/g,''));
-                        }
-                        var cleanedData = rawData; //data has been correctly formatted at this point
-
                         for (var q = 0; q < coins.length; q++) {
                             if (coins[q]['name'] === coinName) {
-                                coins[q]['data'] = cleanedData;
+                                coins[q]['data'] = response['data'];
                                 break;
                             }
                         }
 
                         dataModel.setData({"Coins": coins});
                         dataModel.refresh(true);
-                        setTimeout(function() {busyDialog.close()}, 400); //400 msec Delay to avoid flashing screen w/ no dialog shown
+                        setTimeout(function() {busyDialog.close()}, 1000); //400 msec Delay to avoid flashing screen w/ no dialog shown
                     });
 
                 }

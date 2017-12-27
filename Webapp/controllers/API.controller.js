@@ -18,15 +18,11 @@ sap.ui.define([
                 apiObj = {
                     "API_functions" : [
                         {
-                            "url"   : urlPrefix + '/coins/',
-                            "data"  : "Get data for all top 100 coins (Market Cap, Daily Price, Volume)."
-                        },
-                        {
                             "url"   : urlPrefix + '/coins/coinName',
-                            "data"  : "Get data for single coin (Market Cap, Daily Price, Volume)."
+                            "data"  : "Get data for single coin (Date, Market Cap, Open, Close, High, Low, Volume)."
                         },
                         {
-                            "url"   : urlPrefix + '/all_coin_names/',
+                            "url"   : urlPrefix + '/coin_names/',
                             "data"  : "Get names of top 100 coins."
                         },
                     ]

@@ -57,7 +57,10 @@
                 'modes': [                  //All possible data modes
                     {'name': 'MarketCap'},
                     {'name': 'Volume'},
-                    {'name': 'Daily Price'}
+                    {'name': 'Open'},
+                    {'name': 'Close'},
+                    {'name': 'High'},
+                    {'name': 'Low'}
                 ]
             },
             coinToChartData = {
@@ -70,14 +73,12 @@
 
         $.ajax({
             async: false,
-            url: '/all_coin_names/',
+            url: '/coin_names/',
             success: function(response) {
-                console.log("got a response");
-                console.log(response);
                 success = true;
                 agg_data = response;
                 var coin_objs = [];
-                agg_data['Coins'].forEach(function(coinObj) {
+                agg_data['coin_names'].forEach(function(coinObj) {
                     coin_objs.push({
                         'name': coinObj['coin_name'],
                         'data': [] //all coins start with empty data field and we load in as requested by user

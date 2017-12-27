@@ -79,7 +79,7 @@ sap.ui.define([
 
             for (var i = 0; i < allCoinsData.length; i++) {
                 if (coinNames.includes(allCoinsData[i]['name'])) {
-                    coinDataMap[allCoinsData[i]['name']] = allCoinsData[i]
+                    coinDataMap[allCoinsData[i]['name']] = allCoinsData[i];
                 }
             }
 

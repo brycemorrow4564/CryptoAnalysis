@@ -18,21 +18,30 @@ const run = () => {
             $('.currency-symbol').each((ind, elem) => {
                 urls.push(baseUrl + elem.children[0].attribs.href + urlSuffix);
             });
-            //loop through our target urls, request pages
-            async.map(urls,
-                //Mapping function called for each url in urls
-                (url, done) => {
+
+            const sendRequest = (url, done) => {
                     return request(url, (error, response, html) => {
-                        //Note that we return an object that includes the url so we know which coin corresponds to the data
-                        return done(error, {
-                            "url": url,
-                            "html": html
-                        });
+                        if (error) {
+                            console.log("Resending request to " + url);
+                            return sendRequest(url, done); //recurse on failure
+                        } else {
+                            //Note that we return an object that includes the url so we know which coin corresponds to the data
+                            return done(null, {
+                                "url": url,
+                                "html": html
+                            });
+                        }
                     });
-                },
+            };
+
+            //loop through our target urls, request pages
+            async.mapLimit(urls, 105,
+                //Mapping function called for each url in urls
+                sendRequest,
                 //Final callback on completion of all async requests
                 (err, results) => {
                     if (err) {
+                        console.log('in the final callback');
                         console.log(err);
                     }
                     //At this point we have collected html for all target pages. Pass to parsing module

@@ -77,7 +77,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 ]
             });
             dataModeSelector.bindProperty('placeholder', GLOBALS.dataModeModelId + '>/active', function(val) {
-                return val === 'Open' ? "Daily Price" : val; //Display daily price instead of open or just normal val
+                return val; //Display daily price instead of open or just normal val
             });
 
 

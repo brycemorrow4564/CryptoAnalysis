@@ -75,9 +75,6 @@ const enterData = (data) => {
             console.log("An error occurred when dropping a particular coin table or the coin names table");
             console.log(err);
         }
-        console.log("here is data");
-        console.log(data);
-
         //asynchronously create and add data rows to tables
         async.each(data,
             //Asynchronously executed function creates table for particular coin, then fire callback to enter data
