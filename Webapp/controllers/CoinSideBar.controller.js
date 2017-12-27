@@ -140,7 +140,7 @@ sap.ui.define([
 
                         dataModel.setData({"Coins": coins});
                         dataModel.refresh(true);
-                        setTimeout(function() {busyDialog.close()}, 1000); //400 msec Delay to avoid flashing screen w/ no dialog shown
+                        busyDialog.close(); 
                     });
 
                 }
