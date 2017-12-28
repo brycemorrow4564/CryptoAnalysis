@@ -34,6 +34,10 @@ HIGHSTOCK_JSON_FORMATTER = {
     //Input should ALWAYS be a list of json coin objects even for a single coin to simplify implementation
     processAndPlot: function(coinToChartData, coinDataMap, dataMode) {
 
+        $.sap.require("sap.crypto.app.Utility.Globals");
+        var logifyModel = sap.ui.getCore().getModel(GLOBALS.logifyModelId),
+            logify = logifyModel.getData()['active'];
+
         //Randomly shuffle base color set and assign variants to charts randomly
         if (!this.colorsSetup) {
             this.setupColorSets();
@@ -60,7 +64,7 @@ HIGHSTOCK_JSON_FORMATTER = {
             //For each coin on this chart, we extract the relevant data
             coinList.forEach(function(coinName) {
                 var histData    = coinDataMap[coinName]['data'],
-                    points      = histData.map((row) => { return [row['Date'], row[dataMode]]; });
+                    points      = histData.map((row) => { return [row['Date'], logify ? Math.log(row[dataMode]) : row[dataMode]]; });
                 pointsArr.push(points.reverse());
             });
 

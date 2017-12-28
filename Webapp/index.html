@@ -24,7 +24,6 @@
         //   COMPLETED 8. Change form of models so page can be displayed before all of the data is loaded into the application.
         //                continue to load data asynchronously in the background.
 
-        //   2. Deconstruct data from charts on coinmarketcap to get more precise data (minutes rather than days)
         //   3. Switch to the same graphing utility that bitfinex uses as it allows for more analysis tools
         //   4. Test alternatives for asynchronous loading of various project modules.
         //   5. Integrate barcode scan for donation links
@@ -44,7 +43,7 @@
         $.sap.require("sap.crypto.app.Utility.Globals");
 
         //Initialize App
-        sap.ui.getCore().attachInit(function () {
+         sap.ui.getCore().attachInit(function () {
             new sap.ui.core.ComponentContainer({
                 propagateModel: true,
                 name : "sap.crypto.app"
@@ -92,8 +91,18 @@
             core.setModel(new sap.ui.model.json.JSONModel(agg_data), GLOBALS.aggCoinModelId);
         }
 
-        core.setModel(new sap.ui.model.json.JSONModel(dataModesObj), GLOBALS.dataModeModelId);
-        core.setModel(new sap.ui.model.json.JSONModel(coinToChartData), GLOBALS.coinChartModelId);
+        const logModeData = {
+            "active": false,
+            "options": [{"option": true},
+                        {"option": false}]
+        };
+        const logModeModel = new sap.ui.model.json.JSONModel(logModeData);
+        const dataModeModel = new sap.ui.model.json.JSONModel(dataModesObj);
+        const coinToChartModel = new sap.ui.model.json.JSONModel(coinToChartData);
+
+        core.setModel(logModeModel, GLOBALS.logifyModelId);
+        core.setModel(dataModeModel, GLOBALS.dataModeModelId);
+        core.setModel(coinToChartModel, GLOBALS.coinChartModelId);
     </script>
 </head>
 <body class="sapUiBody" id="content">

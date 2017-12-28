@@ -21,6 +21,7 @@ sap.ui.define([
         segButtonsId        : 'SegButtons',
         vertLayoutId        : 'VertLayout',
         dataModeSelectorId  : 'DataModeSelector',
+        logModeSelectorId   : "LogModeSelector",
         firstMatch          : true,
 
         onInit: function() {
@@ -378,6 +379,32 @@ sap.ui.define([
 
             dataModeModel.setData(dataModeObj);
             dataModeModel.refresh(true);
+        },
+
+        setLogMode: function(oEvent) {
+
+            console.log('Config: log mode for chart data');
+
+            var selector        = sap.ui.getCore().byId(this.logModeSelectorId),
+                newMode         = selector.getSelectedItem().getText(),
+                logModeModel    = core.getModel(GLOBALS.logifyModelId) ,
+                logModeObj      = JSON.parse(logModeModel.getJSON());
+
+            console.log(true === newMode);
+
+            switch (newMode) {
+                case 'true':
+                    logModeObj.active = true; break;
+                case 'false':
+                    logModeObj.active = false; break;
+                default:
+                    throw "Unrecognized log mode";
+            }
+
+            console.log('log mode is now ' + logModeObj.active);
+
+            logModeModel.setData(logModeObj);
+            logModeModel.refresh(true);
         },
 
         setupPopover: function() {

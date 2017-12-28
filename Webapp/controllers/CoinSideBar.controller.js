@@ -46,7 +46,8 @@ sap.ui.define([
             console.log('Sidebar: selection change');
 
             var coinToChartModel = sap.ui.getCore().getModel(GLOBALS.coinChartModelId),
-                data = coinToChartModel.getProperty('/columns');
+                data = coinToChartModel.getProperty('/columns'),
+                asyncUpdateOccurred = false;
 
             //Make conditional changes to coinToChart model
             if (!itemStatus) { //If item was unselected, we need to remove the coin name from the table config model
@@ -119,6 +120,8 @@ sap.ui.define([
 
                 if (!dataLoaded) { //If we didn't find this particular coins data in model, we load it in via API
 
+                    asyncUpdateOccurred = true;
+
                     var busyDialog = sap.ui.jsfragment('sap.crypto.app.views.fragments.BusyDialog');
                     $.sap.syncStyleClass('sapUiSizeCompact', this.getView(), busyDialog);
                     busyDialog.open();
@@ -139,6 +142,16 @@ sap.ui.define([
 
                         dataModel.setData({"Coins": coins});
                         dataModel.refresh(true);
+
+                        var eventBus = sap.ui.getCore().getEventBus(),
+                            currDetPageName = sap.ui.getCore().byId("app").getCurrentDetailPage().sViewName.split('.').splice(-1)[0].trim();
+
+                        if (currDetPageName === 'CoinDetail') {
+                            eventBus.publish('CoinSideBar', 'generateCoinView'); //CoinDetail subscribes to this event and reacts to model changes
+                        } else if (currDetPageName === 'ConfigureTable') {
+                            eventBus.publish('CoinSideBar', 'updateAllCoins'); //ConfigureTable subscribes to this to keep table updated
+                        }
+
                         busyDialog.close();
                     });
 
@@ -151,13 +164,15 @@ sap.ui.define([
             model.setData({'columns': data});
             model.refresh(true);
 
-            var eventBus = sap.ui.getCore().getEventBus(),
-                currDetPageName = sap.ui.getCore().byId("app").getCurrentDetailPage().sViewName.split('.').splice(-1)[0].trim();
+            if (!asyncUpdateOccurred) {
+                var eventBus = sap.ui.getCore().getEventBus(),
+                    currDetPageName = sap.ui.getCore().byId("app").getCurrentDetailPage().sViewName.split('.').splice(-1)[0].trim();
 
-            if (currDetPageName === 'CoinDetail') {
-                eventBus.publish('CoinSideBar', 'generateCoinView'); //CoinDetail subscribes to this event and reacts to model changes
-            } else if (currDetPageName === 'ConfigureTable') {
-                eventBus.publish('CoinSideBar', 'updateAllCoins'); //ConfigureTable subscribes to this to keep table updated
+                if (currDetPageName === 'CoinDetail') {
+                    eventBus.publish('CoinSideBar', 'generateCoinView'); //CoinDetail subscribes to this event and reacts to model changes
+                } else if (currDetPageName === 'ConfigureTable') {
+                    eventBus.publish('CoinSideBar', 'updateAllCoins'); //ConfigureTable subscribes to this to keep table updated
+                }
             }
         },
 

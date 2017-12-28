@@ -80,6 +80,41 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 return val; //Display daily price instead of open or just normal val
             });
 
+            var logTemplate = new sap.ui.core.ListItem({
+                    text: '{' + GLOBALS.logifyModelId + '>option}'
+                }),
+                logModeSelector = new sap.m.ComboBox({
+                    id: oController.logModeSelectorId,
+                    width: '100%',
+                    layoutData : new sap.ui.layout.GridData({
+                      span : "XL4 L4 M5 S5",
+                      indent: "XL2 L2 M1 S1"
+                    })
+                }).bindItems(GLOBALS.logifyModelId + '>/options', logTemplate),
+                setLogModeBtn = new sap.m.Button({
+                    text: 'Set Log Mode',
+                    width: '100%',
+                    press: function(oEvent) {
+                        oController.setLogMode(oEvent);
+                    },
+                    layoutData : new sap.ui.layout.GridData({
+                      span : "XL4 L4 M5 S5",
+                      indent: 'XL0 L0 M0 S0'
+                    })
+                }).addStyleClass('removeBtnBorderRadiusLeft').addStyleClass('configBtnMedia'),
+                logModeRow = new sap.ui.layout.Grid({
+                    hSpacing: 0,
+                    vSpacing: 0,
+                    width: "100%",
+                    content: [
+                        logModeSelector,
+                        setLogModeBtn
+                    ]
+                });
+                logModeSelector.bindProperty('placeholder', GLOBALS.logifyModelId + '>/active', function(val) {
+                    return val; //Display daily price instead of open or just normal val
+                });
+
 
         var chartTemplate = new sap.ui.core.ListItem({
                 text: '{' + oController.coinToChartModelId + '>name}'
@@ -171,6 +206,7 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                 width: "100%",
                 content: [
                     dataModeRow,
+                    logModeRow,
                     setDefaultRow,
                     removeRow,
                     addChartResetConfigRow,
