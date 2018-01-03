@@ -105,7 +105,8 @@ HIGHSTOCK_JSON_FORMATTER = {
         var options = {
 
             rangeSelector: {
-                selected: 3
+                allButtonsEnabled: true,
+                selected: 2
             },
             colors: this.colorSetMap[chartName],
             credits: {

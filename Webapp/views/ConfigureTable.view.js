@@ -273,11 +273,11 @@ sap.ui.jsview("sap.crypto.app.views.ConfigureTable", {
                         //Now we determine if it was dropped in a different div from where it was originally
                         var dragBtnId = ui.draggable.context.id,
                             coinName  = sap.ui.getCore().byId(dragBtnId).getText();
-                        if ($('#' + dragBtnId).parent()[0] == targetDiv[0]) {
+                        if ($('#' + dragBtnId).parent()[0] === targetDiv[0]) {
                             //button was dropped in div it originated from so do nothing
                         } else {
-                            //button was dropped in a new div so we can alter out model
-                            var newChart = $($(targetDiv.parents('tr')[0]).find('label')[0]).context.innerText;
+                            //button was dropped in a new div so we can alter our model
+                            var newChart = $($($(targetDiv.parents('tr')[0]).find('label'))).context.cells[1].innerText;
                             oController.moveCoinsToChart([coinName], newChart);
                         }
                     } else {
