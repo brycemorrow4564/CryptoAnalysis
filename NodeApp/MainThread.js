@@ -1,7 +1,7 @@
 const run = () => {
 
     //SETTING VARIABLES
-    const runScraperOnStartup = true; //For dev purposes, set to false for faster testing. set to true for deployment
+    const runScraperOnStartup = false; //For dev purposes, set to false for faster testing. set to true for deployment
 
     //Run Server Setup bind to port
     const server = require('./ExpressServer/server'); //IMPORTANT: check this module to comment our module path for deployment

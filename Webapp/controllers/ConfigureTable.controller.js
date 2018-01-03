@@ -53,7 +53,9 @@ sap.ui.define([
                 allCoinNamesObjects = [];
 
             coinToChartModel.getProperty('/columns').forEach(function(coinToChartObj) {
-                coinToChartObj['data'].forEach(function(coinName) { allCoinNamesObjects.push({"name": coinName}); });
+                coinToChartObj['data'].forEach(function(coinName) {
+                    allCoinNamesObjects.push({"name": coinName});
+                });
             });
 
             this.getView().getModel(this.allCoinsModelId).setData({
@@ -61,10 +63,10 @@ sap.ui.define([
             });
 
             if (this.firstMatch) {
-                sap.m.MessageToast.show("You can drag and drop coin tiles to move them between charts", {
-                    duration: 4000
-                });
                 this.firstMatch = false;
+                sap.m.MessageToast.show("You can drag and drop coin tiles to move them between charts", {
+                    duration: 5000
+                });
             }
 
             console.log(this.getView().getModel(this.allCoinsModelId).getJSON());
@@ -132,29 +134,31 @@ sap.ui.define([
                 allCoinNamesObjects = [],
                 coinToChartObjects  = [],
                 unclickCoinNames    = [],
-                allCoinsObj         = {},
                 chartCounter        = 1;
 
+            var chartName;
+
             chartsToRemoveItems.forEach(function(chartItem) {
-                var chartName = chartItem.getText();
+                chartName = chartItem.getText();
                 chartsToRemove.push(chartName);
-                if (chartName == GLOBALS.defaultChartId) {
+                if (chartName === GLOBALS.defaultChartId) {
                     GLOBALS.defaultChartId = "Chart 1";
                 }
             });
 
             globalModel.getProperty('/columns').forEach(function(coinToChartObj) {
-                var chartName = coinToChartObj['name'];
+                chartName = coinToChartObj['name'];
                 $('#' + chartName).addClass('hideChart');
-                if ($.inArray(chartName, chartsToRemove) == -1) { //returns -1 if not in array so we, keep these coins
+                if ($.inArray(chartName, chartsToRemove) === -1) { //returns -1 if not in array so we, keep these coins
                     var coinNames = coinToChartObj['data'];
                     coinNames.forEach(function(name) {
                         allCoinNamesObjects.push({"name": name});
                     });
                     coinToChartObjects.push({ //redo chart names since we might remove non-consecutive charts
-                        'name': 'Chart ' + chartCounter++,
+                        'name': 'Chart ' + chartCounter,
                         'data': coinNames
                     });
+                    chartCounter += 1;
                 } else {
                     //since we are removing this chart, we need to keep track of which coins
                     //are being removed so we can publish to event bus and unclick in sidebar
@@ -181,7 +185,6 @@ sap.ui.define([
             console.log('Config: generate table coin cells on change');
 
             var data = oContext.oModel.getProperty(oContext.sPath),
-                chartName = data['name'],
                 coins = data['data'],
                 buttons = [];
 
@@ -224,16 +227,14 @@ sap.ui.define([
             var globalModel = sap.ui.getCore().getModel(this.coinToChartModelId),
                 allCoinsModel = this.getView().getModel(this.allCoinsModelId),
                 allCoinNamesObjects = [],
-                coinToChartObjects = [],
-                unclickCoinNames = [],
-                allCoinsObj = {};
+                coinToChartObjects = [];
 
             globalModel.getProperty('/columns').forEach(function(coinToChartObj) {
                 var chartName = coinToChartObj['name'],
                     coins = coinToChartObj['data'],
                     keepCoins = [];
                 for (var i = 0; i < coins.length; i++) {
-                    if ($.inArray(coins[i], selectedCoinNames) == -1) { //returns -1 if not in array so we, keep these coins
+                    if ($.inArray(coins[i], selectedCoinNames) === -1) { //returns -1 if not in array so we, keep these coins
                         allCoinNamesObjects.push({"name": coins[i]});
                         keepCoins.push(coins[i]);
                     }
@@ -258,7 +259,7 @@ sap.ui.define([
             selectCoins.setSelectedItems([]);
         },
 
-        moveCoinsToChart(coinNames, newChart) {
+        moveCoinsToChart: function(coinNames, newChart) {
 
             console.log('Config: move coins to chart');
 
@@ -269,14 +270,14 @@ sap.ui.define([
                 var chartName = coinToChartObj['name'],
                     coins = coinToChartObj['data'],
                     keepCoins = [];
-                if (chartName == newChart) {
+                if (chartName === newChart) {
                     coinToChartObjects.push({
                         "name": chartName,
                         "data": coinNames.concat(coins)
                     });
                 } else {
                     for (var i = 0; i < coins.length; i++) {
-                        if ($.inArray(coins[i], coinNames) == -1) { //returns -1 if not in array so we keep these coins
+                        if ($.inArray(coins[i], coinNames) === -1) { //returns -1 if not in array so we keep these coins
                             keepCoins.push(coins[i]);
                         }
                     }
@@ -285,7 +286,6 @@ sap.ui.define([
                         "data": keepCoins
                     });
                 }
-
             });
 
             //Set new data and refresh
@@ -310,7 +310,7 @@ sap.ui.define([
             var core = sap.ui.getCore(),
                 currCombo = core.byId(this.removeRowId).getContent()[0];
 
-            if (newComboId == this.coinMode) {
+            if (newComboId === this.coinMode) {
                 //activate coin combo selector
                 currCombo.bindItems(this.allCoinsModelId + '>/coins', this.getCoinTemplate());
                 currCombo.setPlaceholder('Remove Coins');
@@ -419,22 +419,22 @@ sap.ui.define([
                 {
                     type: 'Information',
                     title: 'Set Default Chart',
-                    description: 'Setting the default chart allows you to specify which of your charts coins should be added to by default',
+                    description: 'Setting the default chart allows you to specify which of your charts coins should be added to by default'
                 },
                 {
                     type: 'Information',
                     title: 'Set Data Mode',
-                    description: 'Setting the data mode changes the type of data you will see for your selected cryptocurrencies. Check the dropdown to see your options.',
+                    description: 'Setting the data mode changes the type of data you will see for your selected cryptocurrencies. Check the dropdown to see your options.'
                 },
                 {
                     type: 'Information',
                     title: 'Removing Items',
-                    description: 'You can toggle between removing whole charts or removing a subset of the coins you have selected.',
+                    description: 'You can toggle between removing whole charts or removing a subset of the coins you have selected.'
                 },
                 {
                     type: 'Information',
                     title: 'Drag and Drop',
-                    description: 'You can drag and drop coin tiles between charts within the table to easily manage which coins appear in which chart.',
+                    description: 'You can drag and drop coin tiles between charts within the table to easily manage which coins appear in which chart.'
                 }
             ];
 

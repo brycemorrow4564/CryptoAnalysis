@@ -18,8 +18,6 @@ CUSTOM_HEADER_GENERATOR = {
             }
         });
 
-        htmlStr += '<div class="header-bottom-border"></div>';
-
         return new sap.m.Toolbar({
             content: [
                 new sap.m.ToolbarSpacer(),

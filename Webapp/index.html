@@ -3,106 +3,89 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Crypto Analysis</title>
+    <title>Crypto Analysis Application</title>
     <link rel="stylesheet" href="styles.css"/>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="./Highstock-5.0.12/code/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js" async></script>
     <script id="sap-ui-bootstrap"
-            src="./resources/sap-ui-core.js"
+            src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
             data-sap-ui-theme="sap_belize"
             data-sap-ui-libs="sap.m"
+            data-sap-ui-language="en"
             data-sap-ui-bindingSyntax="complex"
             data-sap-ui-compatVersion="edge"
             data-sap-ui-preload="async"
-            data-sap-ui-resourceroots='{
-            "sap.crypto.app": "."}'></script>
+            data-sap-ui-resourceroots='{"sap.crypto.app": "."}'></script>
     <script>
-        //   Todos
 
-        //   COMPLETED 1. Get rid of the component globals file and only load in components when necessary
-        //   COMPLETED 8. Change form of models so page can be displayed before all of the data is loaded into the application.
-        //                continue to load data asynchronously in the background.
+        sap.ui.getCore().attachInit(() => {
 
-        //   3. Switch to the same graphing utility that bitfinex uses as it allows for more analysis tools
-        //   4. Test alternatives for asynchronous loading of various project modules.
-        //   5. Integrate barcode scan for donation links
-        //   6. Add a readme on github
-        //   7. Some barebones documentation for the api including examples of data form
+            //Used to access global ids for specific models
+            $.sap.require("sap.crypto.app.Utility.Globals");
 
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-core');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-widget');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-mouse');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-droppable');
-        $.sap.require('sap.ui.thirdparty.jqueryui.jquery-ui-draggable');
+            //Initialize App as soon as we have loaded in all components
 
-        //IMPORTANT IMPORTS: If you forget these the javascript for the header bottom border gets messed up
-        //                   due to some semantic differences between pages and detail/master pages.
-        $.sap.require('sap.m.semantic.MasterPage');
-        $.sap.require('sap.m.semantic.DetailPage');
-        $.sap.require("sap.crypto.app.Utility.Globals");
-
-        //Initialize App
-         sap.ui.getCore().attachInit(function () {
             new sap.ui.core.ComponentContainer({
                 propagateModel: true,
                 name : "sap.crypto.app"
             }).placeAt("content");
-        });
 
-        //Setup some initial data
-        var dataModesObj = {
-                'active': 'MarketCap',      //Current data modes
-                'modes': [                  //All possible data modes
-                    {'name': 'MarketCap'},
-                    {'name': 'Volume'},
-                    {'name': 'Open'},
-                    {'name': 'Close'},
-                    {'name': 'High'},
-                    {'name': 'Low'}
-                ]
-            },
-            coinToChartData = {
-                "columns": []
-            },
-            core = sap.ui.getCore();
+            //Data formats for models and model setup
+            var core            = sap.ui.getCore(),
+                dataModeData    =
+                    {
+                        'active': 'MarketCap',
+                        'modes': [
+                            {'name': 'MarketCap'},
+                            {'name': 'Volume'},
+                            {'name': 'Open'},
+                            {'name': 'Close'},
+                            {'name': 'High'},
+                            {'name': 'Low'}
+                        ]
+                    },
+                coinToChartData =
+                    {
+                        "columns": []
+                    },
+                aggCoinData     =
+                    {
+                        "Coins" : []
+                    },
+                logModeData     =
+                    {
+                        "active": false,
+                        "options": [{"option": true},
+                                    {"option": false}]
+                    };
 
-        var agg_data = {"Coins" : []},
-            success  = false;
+            const logModeModel      = new sap.ui.model.json.JSONModel(logModeData);
+            const dataModeModel     = new sap.ui.model.json.JSONModel(dataModeData);
+            const coinToChartModel  = new sap.ui.model.json.JSONModel(coinToChartData);
+            const aggCoinModel      = new sap.ui.model.json.JSONModel(aggCoinData);
 
-        $.ajax({
-            async: false,
-            url: '/coin_names/',
-            success: function(response) {
-                success = true;
-                agg_data = response;
-                var coin_objs = [];
-                agg_data['coin_names'].forEach(function(coinObj) {
-                    coin_objs.push({
-                        'name': coinObj['coin_name'],
-                        'data': [] //all coins start with empty data field and we load in as requested by user
+            core.setModel(logModeModel, GLOBALS.logifyModelId);
+            core.setModel(dataModeModel, GLOBALS.dataModeModelId);
+            core.setModel(coinToChartModel, GLOBALS.coinChartModelId);
+            core.setModel(aggCoinModel, GLOBALS.aggCoinModelId);
+
+            //Bring in coin data to model once server responds
+            $.ajax({
+                url: '/coin_names/',
+                success: function(response) {
+                    var coin_objs = [];
+                    response['coin_names'].forEach(function(coinObj) {
+                        coin_objs.push({
+                            'name': coinObj['coin_name'],
+                            'data': [] //all coins start with empty data field and we load in as requested by user
+                        });
                     });
-                });
-                core.setModel(new sap.ui.model.json.JSONModel({"Coins": coin_objs}), GLOBALS.aggCoinModelId);
-            }
+                    aggCoinModel.setData({"Coins": coin_objs});
+                    aggCoinModel.refresh(true);
+                }
+            });
+
         });
 
-        if (!success) {
-            core.setModel(new sap.ui.model.json.JSONModel(agg_data), GLOBALS.aggCoinModelId);
-        }
-
-        const logModeData = {
-            "active": false,
-            "options": [{"option": true},
-                        {"option": false}]
-        };
-        const logModeModel = new sap.ui.model.json.JSONModel(logModeData);
-        const dataModeModel = new sap.ui.model.json.JSONModel(dataModesObj);
-        const coinToChartModel = new sap.ui.model.json.JSONModel(coinToChartData);
-
-        core.setModel(logModeModel, GLOBALS.logifyModelId);
-        core.setModel(dataModeModel, GLOBALS.dataModeModelId);
-        core.setModel(coinToChartModel, GLOBALS.coinChartModelId);
     </script>
 </head>
 <body class="sapUiBody" id="content">

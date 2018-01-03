@@ -4,7 +4,6 @@
     "_version": "1.1.0",
     "id": "sap.crypto.app",
     "type": "application",
-    "i18n": "i18n/i18n.properties",
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
     "applicationVersion": {
@@ -25,10 +24,6 @@
   },
   "sap.ui5": {
     "_version": "1.1.0",
-    "rootView": {
-      "viewName": "sap.crypto.app.views.App",
-      "type": "JS"
-    },
     "dependencies": {
       "minUI5Version": "1.30",
       "libs": {
@@ -36,12 +31,7 @@
       }
     },
     "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "sap.ui.demo.wt.i18n.i18n"
-        }
-      }
+
     },
     "routing": {
       "config": {
@@ -79,6 +69,11 @@
         "controlAggregation": "masterPages",
         "viewLevel": 0
       },
+      "CoinDetail": {
+        "viewName": "CoinDetail",
+        "controlAggregation": "detailPages",
+        "viewLevel": 1
+      },
       "ConfigureTable": {
         "viewName": "ConfigureTable",
         "controlAggregation": "detailPages",
@@ -88,11 +83,6 @@
         "viewName": "API",
         "controlAggregation": "detailPages",
         "viewLevel": 3
-      },
-      "CoinDetail": {
-        "viewName": "CoinDetail",
-        "controlAggregation": "detailPages",
-        "viewLevel": 1
       }
     }
     }

@@ -64,7 +64,7 @@ HIGHSTOCK_JSON_FORMATTER = {
             //For each coin on this chart, we extract the relevant data
             coinList.forEach(function(coinName) {
                 var histData    = coinDataMap[coinName]['data'],
-                    points      = histData.map((row) => { return [row['Date'], logify ? Math.log(row[dataMode]) : row[dataMode]]; });
+                    points      = histData.map(function(row) { return [row['Date'], logify ? Math.log(row[dataMode]) : row[dataMode]]; } );
                 pointsArr.push(points.reverse());
             });
 

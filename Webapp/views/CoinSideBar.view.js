@@ -1,5 +1,3 @@
-$.sap.require("sap.crypto.app.Utility.ComponentGlobals")
-
 sap.ui.jsview("sap.crypto.app.views.CoinSideBar", {
 
    getControllerName: function() {

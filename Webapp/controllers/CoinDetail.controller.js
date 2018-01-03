@@ -22,7 +22,7 @@ sap.ui.define([
             //Generate coin view whenever we navigate to this page (say from configure table page)
             //We attach this function after rendering so that we can locate the html divs for plotting
             var controller = this;
-            this.getView().attachAfterRendering(function(evt, self = controller) {
+            this.getView().attachAfterRendering(function(evt) {
                 var router = sap.ui.core.UIComponent.getRouterFor(controller);
                 router.attachRoutePatternMatched(controller.generateCoinView, controller);
                 if (controller.isInit) {

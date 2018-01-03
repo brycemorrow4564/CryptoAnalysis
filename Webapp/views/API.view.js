@@ -1,4 +1,3 @@
-$.sap.require("sap.crypto.app.Utility.ComponentGlobals");
 $.sap.require('sap.crypto.app.Utility.GenerateCustomHeader');
 $.sap.require('sap.crypto.app.Utility.RouterGeneral');
 
@@ -53,14 +52,6 @@ sap.ui.jsview("sap.crypto.app.views.API", {
                 sap.m.Page.prototype.onAfterRendering.apply(this);
             }
             ROUTER.setupHeaderRouting();
-
-            //On click of donate links we activate page overlay and bitcoin QR code
-            $('#DonateList li').on('click', function(oEvent) {
-
-            });
-
-            var topOffset = $('.sapMPageHeader').height() - 3; //Border width is 2px so subtract
-            $('.header-bottom-border').css('top', topOffset);
         };
 
         return page;
