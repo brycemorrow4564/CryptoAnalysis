@@ -61,6 +61,11 @@
         "name": "API",
         "pattern": "API",
         "target": ["CoinSideBar", "API"]
+      },
+      {
+         "name": "CoinCorrelation",
+         "pattern": "Correlation",
+         "target": ["CoinSideBar", "CoinCorrelation"]
       }
     ],
     "targets": {
@@ -74,15 +79,20 @@
         "controlAggregation": "detailPages",
         "viewLevel": 1
       },
+      "CoinCorrelation": {
+        "viewName": "CoinCorrelation",
+        "controlAggregation": "detailPages",
+        "viewLevel": 2
+      },
       "ConfigureTable": {
         "viewName": "ConfigureTable",
         "controlAggregation": "detailPages",
-        "viewLevel": 2
+        "viewLevel": 3
       },
       "API": {
         "viewName": "API",
         "controlAggregation": "detailPages",
-        "viewLevel": 3
+        "viewLevel": 4
       }
     }
     }

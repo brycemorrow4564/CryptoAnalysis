@@ -5,8 +5,10 @@ CUSTOM_HEADER_GENERATOR = {
     //Generate custom control header used on About, CoinDetail, and Configuration Pages
     customHeader: function(targetBtnText) {
 
+        console.log("TARGET BTN: " + targetBtnText);
+
         var htmlStr = '',
-            btnTexts = ['Charts', 'Configuration', 'API'];
+            btnTexts = ['Charts', 'Correlation', 'Configuration', 'API'];
 
         btnTexts.forEach(function(label) {
             if (label === targetBtnText) {
@@ -32,7 +34,8 @@ CUSTOM_HEADER_GENERATOR = {
     viewNameToButtonText: {
         "API": "API",
         "CoinDetail": "Charts",
-        "ConfigureTable": "Configuration"
+        "ConfigureTable": "Configuration",
+        "CoinCorrelation": "Correlation"
     },
 
     getCustomHeader: function(view) {
