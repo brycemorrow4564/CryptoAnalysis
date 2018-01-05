@@ -31,6 +31,10 @@ html.sap-desktop body.sapUiBody .sapMBtn:focus > .sapMBtnActive.sapMFocusable {
 HEADER STYLINGS
 */
 
+header.sapMPageHeader > div.sapMPageHeader {
+        border-bottom: 1px solid #eff4fa;
+}
+
 .header-button {
     position: relative;
     height: 3rem;

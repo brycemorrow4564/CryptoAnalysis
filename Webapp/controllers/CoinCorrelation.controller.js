@@ -8,19 +8,11 @@ sap.ui.define([
 
             console.log('Initiate coin correlation view');
 
-            var controller = this;
-            this.getView().attachAfterRendering(function(evt) {
-                var router = sap.ui.core.UIComponent.getRouterFor(controller);
-                router.attachRoutePatternMatched(controller.generateCoinView, controller);
-                if (controller.isInit) {
-                    controller.isInit = false;
-                    router.fireRoutePatternMatched({
-                        'name': 'CoinDetail'
-                    });
-                }
-            });
+            sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
+        },
 
-
+        onRouteMatched: function() {
+            var correlationMatrix = this.generateCorrelationMatrix();
         },
 
         calculateCorrelation: function(dataOne, dataTwo, activeMetric) {
@@ -33,7 +25,7 @@ sap.ui.define([
             */
             var endIndex    = Math.min(dataOne.length, dataTwo.length),
                 p           = 0;
-            var sumXY = sumX = sumY = sumX2 = sumY2 = 0;
+            var sumXY = 0, sumX = 0, sumY = 0, sumX2 = 0, sumY2 = 0;
             //Let dataOne be rv X and dataTwo be rv Y
             while (p < endIndex) {
                 var currX = dataOne[p][activeMetric],
@@ -43,6 +35,7 @@ sap.ui.define([
                 sumX2   += currX**2;
                 sumY2   += currY**2;
                 sumXY   += currX * currY
+                p++;
             }
             var numDataPoints   = endIndex,
                 corr            = (numDataPoints * sumXY - sumX * sumY) /
@@ -93,10 +86,18 @@ sap.ui.define([
                     if (colCoin === rowCoin) {
                         correlationMatrix[c][r] = 1;
                     } else {
-                        var dataOne = coinDataMap[coinOne],
-                            dataTwo = coinDataMap[coinTwo];
-                            corr    = calculateCorrelation(dataOne, dataTwo, activeMetric);
-                        correlationMatrix[c][r] = corr;
+                        var calculatedMirror = false;
+                        try {
+                            correlationMatrix[c][r] = correlationMatrix[r][c]
+                            calculatedMirror = true;
+                        } catch (err) {}
+                        if (!calculatedMirror) {
+                            var dataOne = coinDataMap[colCoin],
+                                dataTwo = coinDataMap[rowCoin],
+                                corr    = this.calculateCorrelation(dataOne, dataTwo, activeMetric);
+                            correlationMatrix[c][r] = corr;
+                        }
+                        console.log("done for " + rowCoin  + " and " + colCoin);
                     }
                 }
             }

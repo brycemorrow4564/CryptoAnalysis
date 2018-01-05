@@ -1,3 +1,6 @@
+$.sap.require('sap.crypto.app.Utility.GenerateCustomHeader');
+$.sap.require('sap.crypto.app.Utility.RouterGeneral');
+
 sap.ui.jsview("sap.crypto.app.views.CoinCorrelation", {
 
     getControllerName: function() {

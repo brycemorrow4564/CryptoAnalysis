@@ -1,33 +1,16 @@
-const run = () => {
+const asyncRequestUrls = (urls, limit, resultsProcessingCallback, async, request) => {
 
-    const request       = require('request'),
-          cheerio       = require('cheerio'),
-          async         = require('async'),
-          dataParser    = require('./../DataParsing/dataParser'),
-          baseUrl       = 'https://coinmarketcap.com',
-          urlSuffix     = 'historical-data/?start=20130428&end=20501224';
-
-    request(baseUrl,
-        (error, response, html) => {
-            if (error) {
-                console.log(error);
-            }
-            const $ = cheerio.load(html);
-            var urls = [];
-            //Scrape coin names from page, get url extensions to append to base url
-            $('.currency-symbol').each((ind, elem) => {
-                urls.push(baseUrl + elem.children[0].attribs.href + urlSuffix);
-            });
-
+            /*
+            Send an asynchronous request to a webpage. When we complete request, either error or success,
+            then we call the "done" callback (maintains order as part of async.map) with appropriate params
+            */
             const sendRequest = (url, done) => {
                     return request(url, (error, response, html) => {
                         if (error) {
-                            console.log("Throwing error for url: " + url);
-                            console.log(url);
-                            console.log(error);
                             return done(error);
+                        } else if (Math.floor(Math.random() * 11) < 2) {
+                            return done(new Error('RANDOM ERROR'));
                         } else {
-                            //Note that we return an object that includes the url so we know which coin corresponds to the data
                             return done(null, {
                                 "url": url,
                                 "html": html
@@ -36,28 +19,19 @@ const run = () => {
                     });
             };
 
-            const printResultsKeys = (results) => {
-                results.forEach((elem) => {
-                    console.log(Object.keys(elem));
-                })
-            }
-
             /*
-            failedUrlMappings is an array of objects in form of {url: indexThatResponseToThisUrlBelongsInResultsArray}
+            failedUrlMappings is an array of objects in form of {url : indexThatResponseToThisUrlBelongsInResultsArray}
             */
             const processFailedRequests = (urls, failedUrlMappings, results) => {
 
-                failedUrls = failedUrlMappings.map((elem) => Object.keys(elem)[0] ); //extract keys as array of urls
+                failedUrls = failedUrlMappings.map((elem) => Object.keys(elem)[0] );
 
                 const sendRequests = (failedUrls) => {
 
                     async.map(failedUrls,
                         async.reflect(sendRequest),
                         (err, newResults) => {
-                            if (err) {
-                                console.log("In initial callback for results");
-                                console.log(err);
-                            }
+                            if (err) { console.log(err); }
                             var moreFailedUrls = [];
                             for (var x = 0; x < newResults.length; x++) {
                                 if (newResults[x].error) {
@@ -85,7 +59,10 @@ const run = () => {
                             }
                             //if we have no new failures, we have received data for all previously failed urls. We run parser
                             if (moreFailedUrls.length === 0) {
-                                dataParser.parse(results.map((elem) => elem.value));
+                                console.log("SUCCESS 2");
+                                //console.log(results);
+                                results = results.map((elem) => elem.value);
+                                resultsProcessingCallback(results);
                             } else {
                                 //recurse with new failed urls
                                 processFailedRequests(urls, moreFailedUrls, results);
@@ -100,20 +77,14 @@ const run = () => {
 
             };
 
-            //loop through our target urls, request pages
-            async.map(urls,
-                //Mapping function called for each url in urls
+            async.mapLimit(urls, limit,
                 async.reflect(sendRequest), //async reflect wraps return obj in wrapper so we can easily check for errors in results callback
-                //Final callback on completion of all async requests
-                async (err, results) => {
-                    if (err) {
-                        console.log('In CoinMarketCap Urls results callback');
-                        console.log(err);
-                    }
+                (err, results) => {
+                    if (err) { console.log(err); }
                     var failedUrls = [];
                     for (var x = 0; x < results.length; x++) {
                         if (results[x].error) {
-                            console.log("an error occurred when requesting url: " + urls[x]);
+                            console.log("an error occurred on first time request for url: " + urls[x]);
                             var obj = {};
                             obj[urls[x]] = x; //failed url is key. index into results where response belongs is value
                             failedUrls.push(obj);
@@ -121,14 +92,15 @@ const run = () => {
                     }
 
                     if (failedUrls.length === 0) {
-                        dataParser.parse(results.map((elem) => elem.value)); //unwrap reflect objects on success
+                        console.log("SUCCESS");
+                        results = results.map((elem) => elem.value);
+                        resultsProcessingCallback(results);
                     } else {
                         processFailedRequests(urls, failedUrls, results);
                     }
                 }
             );
-        }
-    );
+
 };
 
-module.exports.run = run;
+module.exports.asyncRequestUrls = asyncRequestUrls;
