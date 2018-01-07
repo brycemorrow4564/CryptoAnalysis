@@ -1,12 +1,15 @@
 //Database fields (need global access in this file)
 const fields = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap'];
 const async  = require('async');
+const jsonic = require('jsonic');
+const cheerio = require('cheerio');
+const db = require('../Database/database');
 
-const parse = (dataArr) => {
+// --------------------------------------- COIN MARKET CAP SCRAPER -----------------------------------------------------
 
-    console.log("Begin the parsing of our inbound html from the web scraper");
+const parseCoinMarketCapData = (dataArr) => {
 
-    const cheerio = require('cheerio');
+    console.log("Begin the parsing of our inbound html from coinmarketcap");
 
     async.map(dataArr,
         (incDataObj, done) => {
@@ -42,12 +45,12 @@ const parse = (dataArr) => {
             if (err !== null) {
                 console.log(err);
             }
-            typifyToStore(results);
+            typifyCoinMarketCapDataAndStore(results);
         }
     );
 }
 
-const typifyToStore = (data) => {
+const typifyCoinMarketCapDataAndStore = (data) => {
 
     console.log("We have our data now we need to ensure correct types for storage in db");
     /*
@@ -55,7 +58,6 @@ const typifyToStore = (data) => {
     Date => epoch which will be stored as int
     Everything else => double
     */
-    const db = require('../Database/database');
 
     async.map(data,
         //Asynchronous function performs type conversions for each individual set of coin data
@@ -142,9 +144,74 @@ const typifyToStore = (data) => {
             if (err) {
                 console.log(err);
             }
-            db.enterData(aggregateData);
+            db.enterCoinMarketCapData(aggregateData);
         }
     );
 }
 
-module.exports.parse = parse;
+// --------------------------------------- REDDIT METRICS SCRAPER ------------------------------------------------------
+
+const parseRedditMetricsData = (dataArr) => {
+
+    var subredditGrowthData = [];
+    dataArr.forEach((responseObj) => {
+        var url     = responseObj.url,
+            html    = responseObj.html,
+            $       = cheerio.load(html),
+            scripts = $('script').toArray();
+        for (var i = 0; i < scripts.length; i++) {
+            var scriptContents = scripts[i].children;
+            for (var v = 0; v < scriptContents.length; v++) {
+                var scriptBody = scriptContents[v].data;
+                if (scriptBody.includes('subscriber-growth')) {
+                    //we have found target script which loads data. We now extract
+                    var targetStr   = "element: 'subscriber-growth'",
+                        p           = scriptBody.indexOf(targetStr) + targetStr.length,
+                        start       = -1,
+                        end         = -1;
+                    while (scriptBody[p] !== '[') { p++; } //find start index for data
+                    start = p;
+                    while (scriptBody[p] !== ']') { p++; } //find end index for data
+                    end = p + 1;
+                    var data = jsonic(scriptBody.substring(start, end)); //parse data arr from string
+                    var subredditInd = url.indexOf("/r/") + 3;
+                    subredditGrowthData.push({
+                        "subreddit": url.substring(subredditInd),
+                        "data":      data
+                    });
+                    break;
+                }
+            }
+        }
+
+    });
+    //At this point we have all of the data for the subreddits. Add into the database
+    typifyRedditMetricsDataAndStore(subredditGrowthData);
+};
+
+/*
+data is an array where every object follows this structure: { y: '2012-10-30', a: 0 }
+where key y maps to a string object representing the date. a maps to the growth (num of subscribers)
+that occurred on that day.
+*/
+const typifyRedditMetricsDataAndStore = (data) => {
+    data = data.map((elem) => {
+        var data = elem['data'];
+        data = data.map((d) => {
+            return {
+                "Date": (new Date(d['y'])).valueOf(),
+                "Count": d['a']
+            };
+        });
+        return {
+            "url": elem.subreddit,
+            'data': data
+        };
+    });
+    console.log(data);
+    db.enterRedditMetricsData(data);
+};
+
+
+module.exports.parseCoinMarketCapData = parseCoinMarketCapData;
+module.exports.parseRedditMetricsData = parseRedditMetricsData;

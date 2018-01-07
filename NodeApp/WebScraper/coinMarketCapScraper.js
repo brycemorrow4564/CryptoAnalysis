@@ -2,9 +2,9 @@ const run = () => {
 
     const request       = require('request'),
           cheerio       = require('cheerio'),
-          async         = require('async'),
           asyncReqMod   = require('./asyncUrlRequestProcessor'),
           dataParser    = require('./../DataParsing/dataParser'),
+          asyncLimit    = 30,
           baseUrl       = 'https://coinmarketcap.com',
           urlSuffix     = 'historical-data/?start=20130428&end=20501224';
 
@@ -21,12 +21,11 @@ const run = () => {
             });
 
             /*
-            urls: urls to request asynchronously
-            50 is our limit of concurrent asynchronous requests
-            dataParser.parse is callback function for finished results data
-            pass references to async and request modules
+            example url would be https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=20130428&end=20180107
+            We query each url in urls with this module, and the return data array includes the html from each of the pages
+            that we requested. upon receiving this data array, we pass to our data processing callback
             */
-            asyncReqMod.asyncRequestUrls(urls, 30, dataParser.parse, async, request);
+            asyncReqMod.asyncRequestUrls(urls, asyncLimit, dataParser.parseCoinMarketCapData);
         }
     );
 };

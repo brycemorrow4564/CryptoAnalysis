@@ -1,4 +1,7 @@
-const asyncRequestUrls = (urls, limit, resultsProcessingCallback, async, request) => {
+const async     = require('async'),
+      request   = require('request');
+
+const asyncRequestUrls = (urls, limit, resultsProcessingCallback) => {
 
             //DEBUG VARIABLES TO SIMULATE NETWORK FAILURES CONDITIONS
             const randomFailuresEnabled = false,

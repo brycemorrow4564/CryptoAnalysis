@@ -37,6 +37,44 @@ const setup = (app, db) => {
         });
     });
 
+    //GET data for specific subreddit
+    app.get('/subreddits/:name', (req, res) => {
+
+        const tableName = 'YY' + req.params.name.replace(/-/g,'_');
+        db.all(`SELECT * FROM ${tableName}`, [], (err, rows) => {
+            if (err) {
+                res.send({
+                    "error": err
+                });
+            } else {
+                res.send({
+                    'name': req.params.name,
+                    'data': rows
+                });
+            }
+        });
+    });
+
+
+    //GET all subreddit names
+    app.get('/subreddit_names/', (req, res) => {
+
+        db.all('SELECT * FROM Subreddits', [], (err, rows) => {
+            if (err) {
+                res.send({
+                    "error": err
+                });
+            } else {
+                for (var i = 0; i < rows.length; i++) {
+                    rows[i].subreddit_name = rows[i].subreddit_name.slice(2).replace(/_/g,'-');
+                }
+                res.send({
+                    "subreddit_names": rows
+                });
+            }
+        });
+    });
+
     console.log("API has been setup");
 
 };

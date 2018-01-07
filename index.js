@@ -1,2 +1,2 @@
-const thread = require('./NodeApp/MainThread');
+const thread = require('./NodeApp/mainThread');
 thread.run();

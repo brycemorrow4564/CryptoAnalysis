@@ -6,6 +6,8 @@ sap.ui.define([
 
         onInit: function() {
 
+            $.sap.require("sap.crypto.app.Utility.MatrixHtmlGenerator");
+
             console.log('Initiate coin correlation view');
 
             sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
@@ -64,6 +66,10 @@ sap.ui.define([
                 });
             });
 
+            if (selectedCoins.length === 0) {
+                return;
+            }
+
             //create mapping from coin names to their corresponding data
             aggCoinData['Coins'].forEach((coinObj) => {
                 coinDataMap[coinObj.name] = coinObj.data;
@@ -102,12 +108,15 @@ sap.ui.define([
                 }
             }
 
-            console.log(correlationMatrix);
-            return {
-                "coins" : selectedCoins,
-                "matrix": correlationMatrix
-            }
+            $('#correlation-matrix-holder').each(function(index) { var elem = $(this); elem.empty(); });
 
+            Matrix({
+                container : '#correlation-matrix-holder',
+                data      : correlationMatrix,
+                labels    : selectedCoins,
+                start_color : '#ffffff',
+                end_color : '#3498db'
+            });
         }
 
    });

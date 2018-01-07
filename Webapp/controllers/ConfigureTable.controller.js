@@ -370,7 +370,8 @@ sap.ui.define([
 
             console.log('Config: set data mode');
 
-            var selector        = sap.ui.getCore().byId(this.dataModeSelectorId),
+            var core            = sap.ui.getCore(),
+                selector        = core.byId(this.dataModeSelectorId),
                 newMode         = selector.getSelectedItem().getText(),
                 dataModeModel   = core.getModel(GLOBALS.dataModeModelId) ,
                 dataModeObj     = JSON.parse(dataModeModel.getJSON());
@@ -385,7 +386,8 @@ sap.ui.define([
 
             console.log('Config: log mode for chart data');
 
-            var selector        = sap.ui.getCore().byId(this.logModeSelectorId),
+            var core            = sap.ui.getCore(),
+                selector        = core.byId(this.logModeSelectorId),
                 newMode         = selector.getSelectedItem().getText(),
                 logModeModel    = core.getModel(GLOBALS.logifyModelId) ,
                 logModeObj      = JSON.parse(logModeModel.getJSON());

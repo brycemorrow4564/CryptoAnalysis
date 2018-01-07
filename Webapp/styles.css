@@ -1,4 +1,18 @@
 /*
+CORRELATION MATRIX STYLINGS
+*/
+
+.axis text {
+    font: 10px sans-serif;
+}
+
+.axis line, .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+/*
 GENERAL STYLINGS
 */
 
@@ -49,7 +63,7 @@ header.sapMPageHeader > div.sapMPageHeader {
 }
 
 .active-header-tab {
-    border-bottom: 3px solid #0a5899;
+    border-bottom: 4px solid #0a5899;
     position: relative;
     z-index: 3;
 }
