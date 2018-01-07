@@ -2,14 +2,25 @@
 CORRELATION MATRIX STYLINGS
 */
 
-.axis text {
-    font: 10px sans-serif;
-}
+#CorrelationTable
 
-.axis line, .axis path {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
+
+
+*/
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /*
@@ -243,7 +254,12 @@ CONFIG PANEL FORMATTING
     margin: 0 auto;
 }
 
-#ChartManagerTable table { /* Border for config table */
+#CorrelationTable { /* Margins for correlation table */
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+#ChartManagerTable table, #CorrelationTable { /* Border for config and correlation table */
     border: 1px solid #d1e0ee;
 }
 

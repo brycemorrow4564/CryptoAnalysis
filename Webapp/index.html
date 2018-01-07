@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <title>Crypto Analysis Application</title>
     <link rel="stylesheet" href="styles.css"/>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highstock/5.0.12/highstock.js"></script>
     <script id="sap-ui-bootstrap"
             src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
@@ -48,6 +47,10 @@
                     {
                         "columns": []
                     },
+                correlationMatrixData =
+                    {
+                        "columns": []
+                    },
                 aggCoinData     =
                     {
                         "Coins" : []
@@ -63,11 +66,13 @@
             const dataModeModel     = new sap.ui.model.json.JSONModel(dataModeData);
             const coinToChartModel  = new sap.ui.model.json.JSONModel(coinToChartData);
             const aggCoinModel      = new sap.ui.model.json.JSONModel(aggCoinData);
+            const corrMatrixModel   = new sap.ui.model.json.JSONModel(correlationMatrixData);
 
             core.setModel(logModeModel, GLOBALS.logifyModelId);
             core.setModel(dataModeModel, GLOBALS.dataModeModelId);
             core.setModel(coinToChartModel, GLOBALS.coinChartModelId);
             core.setModel(aggCoinModel, GLOBALS.aggCoinModelId);
+            core.setModel(corrMatrixModel, GLOBALS.correlationMatrixModelId);
 
             //Bring in coin data to model once server responds
             $.ajax({

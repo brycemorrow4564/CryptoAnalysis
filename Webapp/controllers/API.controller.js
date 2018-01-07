@@ -25,6 +25,14 @@ sap.ui.define([
                             "url"   : urlPrefix + '/coin_names/',
                             "data"  : "Get names of top 100 coins."
                         },
+                        {
+                            "url"   : urlPrefix + '/coins/subreddits/subreddit_name',
+                            "data"  : "Get data for daily subreddit subscription growth (Date, Count)."
+                        },
+                        {
+                            "url"   : urlPrefix + '/subreddit_names/',
+                            "data"  : "Get names of subreddits that we have scraped data from."
+                        },
                     ]
                 },
                 donateObj = {

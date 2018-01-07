@@ -1,122 +1,104 @@
+$.sap.require('sap.crypto.app.Utility.Globals');
+
 sap.ui.define([
    "sap/ui/core/mvc/Controller"
 ], function (Controller) {
    "use strict";
    return Controller.extend("sap.crypto.app.controllers.CoinCorrelation", {
 
+        pageId: "correlationPageId",
+        tableId: "CorrelationTable",
+
         onInit: function() {
-
-            $.sap.require("sap.crypto.app.Utility.MatrixHtmlGenerator");
-
             console.log('Initiate coin correlation view');
-
             sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
+            sap.ui.getCore().getEventBus().subscribe('CoinSideBar', 'regenerateCorrelationTable', this.generateCorrelationTable, this);
         },
 
         onRouteMatched: function() {
-            var correlationMatrix = this.generateCorrelationMatrix();
-        },
 
-        calculateCorrelation: function(dataOne, dataTwo, activeMetric) {
-            /*
-            Data assumption: All data runs from a start date (span of 2013-2017) and runs to the current date
-            We calculate our correlation data only over days where there is data for both coins. So if for example
-            we compare bitcoin and bitcoin cash, we drop all days from bitcoin where there is not price data for
-            bitcoin cash. We want to track general levels of correlation for whatever attribute (market cap, open, high
-            low, etc.) is currently selected. We assume dataOne !== dataTwo as we handle this case in generate function.
-            */
-            var endIndex    = Math.min(dataOne.length, dataTwo.length),
-                p           = 0;
-            var sumXY = 0, sumX = 0, sumY = 0, sumX2 = 0, sumY2 = 0;
-            //Let dataOne be rv X and dataTwo be rv Y
-            while (p < endIndex) {
-                var currX = dataOne[p][activeMetric],
-                    currY = dataTwo[p][activeMetric];
-                sumX    += currX;
-                sumY    += currY;
-                sumX2   += currX**2;
-                sumY2   += currY**2;
-                sumXY   += currX * currY
-                p++;
+            var currDetPageName = sap.ui.getCore().byId("app").getCurrentDetailPage().sViewName.split('.').splice(-1)[0].trim();
+            if (currDetPageName !== "CoinCorrelation") {
+                return;
             }
-            var numDataPoints   = endIndex,
-                corr            = (numDataPoints * sumXY - sumX * sumY) /
-                                  Math.sqrt((numDataPoints*sumX2 - sumX**2)*(numDataPoints*sumY2 - sumY**2));
 
-            return corr;
+            this.generateCorrelationTable();
         },
 
-        generateCorrelationMatrix: function() {
-
-            $.sap.require("sap.crypto.app.Utility.Globals");
+        generateCorrelationTable: function() {
 
             const core                  = sap.ui.getCore(),
-                  selectedCoinsData     = core.getModel(GLOBALS.coinChartModelId).getData(),
-                  analysisMetricData    = core.getModel(GLOBALS.dataModeModelId).getData(),
-                  aggCoinData           = core.getModel(GLOBALS.aggCoinModelId).getData(),
-                  activeMetric          = analysisMetricData['active'];
-            var selectedCoins           = [],
-                coinDataMap             = {};
+                  selectedCoinsData     = core.getModel(GLOBALS.coinChartModelId).getData();
+            var selectedCoins           = [];
 
             //get names of all selected coins
-            selectedCoinsData['columns'].forEach((chartObj) => {
+            selectedCoinsData['columns'].forEach(function(chartObj) {
                 var coins = chartObj['data'];
-                coins.forEach((coin) => {
+                coins.forEach(function(coin) {
                     selectedCoins.push(coin);
                 });
             });
 
             if (selectedCoins.length === 0) {
+                const page = sap.ui.getCore().byId(this.pageId);
+                page.destroyContent();
                 return;
             }
 
-            //create mapping from coin names to their corresponding data
-            aggCoinData['Coins'].forEach((coinObj) => {
-                coinDataMap[coinObj.name] = coinObj.data;
+            var tableOptions = {
+                    id: this.tableId,
+                    width: "90%"
+                },
+                columns = [];
+
+            columns.push("CoinNames");
+            selectedCoins.forEach(function(coinName) {
+                columns.push(coinName);
             });
 
-            //Create array one column at a time as we are calculating correlation values
-            //EX: Creating a 3x3 square matrix of values. f = filled, * = space initialized
-            /*     0               1               2             3
-                 * * *           f * *           f f *         f f f
-                          =>     f         =>    f f      =>   f f f
-                                 f               f f           f f f
-            */
-            const numCoins = selectedCoins.length;
-            var correlationMatrix = new Array(numCoins);
-            for (var c = 0; c < selectedCoins.length; c++) {
-                var colCoin = selectedCoins[c];
-                correlationMatrix[c] = new Array(numCoins);
-                for (var r = 0; r < selectedCoins.length; r++) {
-                    var rowCoin = selectedCoins[r];
-                    if (colCoin === rowCoin) {
-                        correlationMatrix[c][r] = 1;
-                    } else {
-                        var calculatedMirror = false;
-                        try {
-                            correlationMatrix[c][r] = correlationMatrix[r][c]
-                            calculatedMirror = true;
-                        } catch (err) {}
-                        if (!calculatedMirror) {
-                            var dataOne = coinDataMap[colCoin],
-                                dataTwo = coinDataMap[rowCoin],
-                                corr    = this.calculateCorrelation(dataOne, dataTwo, activeMetric);
-                            correlationMatrix[c][r] = corr;
+            columns = columns.map(function(colName) {
+                return new sap.m.Column({
+                    header: new sap.m.Label({text: colName}),
+                    width: (100 / columns.length) + '%'
+                })
+            });
+
+            //We destroy content so we can create new table with same id
+            const page = sap.ui.getCore().byId(this.pageId);
+            page.destroyContent();
+
+            tableOptions.columns = columns;
+            var correlationTable = new sap.m.Table(tableOptions);
+
+            correlationTable.bindItems({
+                path: GLOBALS.correlationMatrixModelId + '>/columns',
+                factory: function(sId, oContext) {
+
+                    var data        = oContext.oModel.getProperty(oContext.sPath),
+                        numCoins    = Object.keys(data).length - 1,
+                        cells       = [];
+
+                    cells.push(new sap.m.Label({
+                        text: {
+                            path: GLOBALS.correlationMatrixModelId + '>coin_name'
                         }
-                        console.log("done for " + rowCoin  + " and " + colCoin);
+                    }));
+
+                    for (var i = 0; i < numCoins; i++) {
+                        cells.push(new sap.m.Label({
+                            text: {
+                                path: GLOBALS.correlationMatrixModelId + '>' + i //correlation values indexed by count in model
+                            }
+                        }));
                     }
+
+                    return new sap.m.ColumnListItem({
+                        "cells": cells
+                    });
                 }
-            }
-
-            $('#correlation-matrix-holder').each(function(index) { var elem = $(this); elem.empty(); });
-
-            Matrix({
-                container : '#correlation-matrix-holder',
-                data      : correlationMatrix,
-                labels    : selectedCoins,
-                start_color : '#ffffff',
-                end_color : '#3498db'
             });
+
+            page.addContent(correlationTable);
         }
 
    });

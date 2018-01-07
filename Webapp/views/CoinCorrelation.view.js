@@ -9,15 +9,10 @@ sap.ui.jsview("sap.crypto.app.views.CoinCorrelation", {
 
     createContent: function(oController) {
 
-        var correlationMatrixHolder = new sap.ui.core.HTML({
-            content: '<div id="correlation-matrix-holder"></div>'
-        });
-
         var page =  new sap.m.Page({
+            id: oController.pageId,
             customHeader: CUSTOM_HEADER_GENERATOR.getCustomHeader(oController.getView()),
-            content: [
-                correlationMatrixHolder
-            ]
+            content: []
         });
 
         page.onAfterRendering = function(evt) {

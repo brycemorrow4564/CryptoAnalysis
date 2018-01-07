@@ -1,4 +1,5 @@
 $.sap.require('sap.crypto.app.Utility.Globals');
+$.sap.require('sap.crypto.app.Utility.CorrelationModule');
 
 sap.ui.define([
    "sap/ui/core/mvc/Controller"
@@ -152,6 +153,9 @@ sap.ui.define([
                             eventBus.publish('CoinSideBar', 'updateAllCoins'); //ConfigureTable subscribes to this to keep table updated
                         }
 
+                        CORRELATION_MODULE.generateCorrelationMatrix();
+                        eventBus.publish('CoinSideBar', 'regenerateCorrelationTable');
+
                         busyDialog.close();
                     });
 
@@ -173,6 +177,9 @@ sap.ui.define([
                 } else if (currDetPageName === 'ConfigureTable') {
                     eventBus.publish('CoinSideBar', 'updateAllCoins'); //ConfigureTable subscribes to this to keep table updated
                 }
+
+                CORRELATION_MODULE.generateCorrelationMatrix();
+                eventBus.publish('CoinSideBar', 'regenerateCorrelationTable');
             }
         },
 
