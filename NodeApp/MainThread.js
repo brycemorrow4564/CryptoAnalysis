@@ -25,8 +25,8 @@ const run = () => {
 //    const scheduleModule = require('./Scheduler/scheduler');
 //    scheduleModule.scheduleWebScraper(eventEmitter);
 
-    const subredditMonitoringModule = require('./WebScraper/coinMarketCapSubredditScraper');
-    subredditMonitoringModule.getSubredditUrls();
+    const redditMetricsScraper = require('./WebScraper/redditMetricsScraper');
+    redditMetricsScraper.run();
 
 };
 

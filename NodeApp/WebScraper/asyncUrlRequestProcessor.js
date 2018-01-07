@@ -1,106 +1,117 @@
 const asyncRequestUrls = (urls, limit, resultsProcessingCallback, async, request) => {
 
+            //DEBUG VARIABLES TO SIMULATE NETWORK FAILURES CONDITIONS
+            const randomFailuresEnabled = false,
+                  failureRate           = 0; //to the nearest percent
+            //END DEBUG VARIABLES
+
+            var returnArr           = [], //top level scope so we can add finished request data from any callback
+                brokenUrls          = [], //any urls we are unable to retrieve data from after multiple attempts
+                failureCountMap     = {}, //Count failures for each url. If we fail too many times stop trying and exit
+                failureCountLimit   = 3;
+
+            urls.forEach((url) => {
+                failureCountMap[url] = 0;
+            });
+
             /*
-            Send an asynchronous request to a webpage. When we complete request, either error or success,
-            then we call the "done" callback (maintains order as part of async.map) with appropriate params
+            THIS METHOD IS ONLY EVER CALLED ONCE ALL RESPONSES ARE RECEIVED SO WE PASS NO PARAMS
+            We use the original urls parameter passed in to determine the correct ordering of our
+            response objects, as async.map gives no definitive guarantees on relative ordering of responses.
             */
+            const orderResponses = () => {
+
+                var sortedArr   = [];
+
+                for (var x = 0; x < urls.length; x++) {
+                    var currUrl = urls[x],
+                        found   = false;
+                    for (var y = 0; y < returnArr.length; y++) {
+                        var currObj = returnArr[y];
+                        if (currObj.url === currUrl) {
+                            sortedArr.push(currObj);
+                            found = true;
+                            break;
+                        }
+                    }
+                    //In some cases, the data we desire is not at the requested url. Maybe add some flags
+                    //to handle cases like this later on.
+                    if (!found) {
+                        //DO SOMETHING LATER ON?
+                    }
+                }
+
+                returnArr = sortedArr;
+                return;
+            }
+
             const sendRequest = (url, done) => {
-                    return request(url, (error, response, html) => {
+                    var params = {
+                        "url": url,
+                        "rejectUnauthorized": false //include rejectUnauthorized to resolve issue with failure to validate first certificate
+                    };
+                    return request(params, (error, response, html) => {
+                        /*
+                        Important note: done callback is what we call when a single request finishes over
+                        the course of the running of async.map. Typically if we experience failure, we pass
+                        it as the first parameter to the done function but I have changed the mechanism for
+                        the purpose of easing error detection and recovering.
+                        */
                         if (error) {
-                            return done(error);
-                        } else if (Math.floor(Math.random() * 11) < 2) {
-                            return done(new Error('RANDOM ERROR'));
-                        } else {
                             return done(null, {
                                 "url": url,
+                                "errorOccurred": true,
+                                "error": error
+                            });
+                        } else if (randomFailuresEnabled && Math.floor(Math.random() * 101) < 100 * failureRate) {
+                             return done(null, {
+                                 "url": url,
+                                 "errorOccurred": true,
+                                 "error": new Error("RANDOM ERROR")
+                             });
+                        } else {
+                            return done(null, {
+                                "url":  url,
                                 "html": html
                             });
                         }
                     });
             };
 
-            /*
-            failedUrlMappings is an array of objects in form of {url : indexThatResponseToThisUrlBelongsInResultsArray}
-            */
-            const processFailedRequests = (urls, failedUrlMappings, results) => {
-
-                failedUrls = failedUrlMappings.map((elem) => Object.keys(elem)[0] );
-
-                const sendRequests = (failedUrls) => {
-
-                    async.map(failedUrls,
-                        async.reflect(sendRequest),
-                        (err, newResults) => {
-                            if (err) { console.log(err); }
-                            var moreFailedUrls = [];
-                            for (var x = 0; x < newResults.length; x++) {
-                                if (newResults[x].error) {
-                                    console.log("we failed again for url: " + failedUrls[x]);
-                                    var obj = {};
-                                    failedUrlMappings.forEach((mapping) => {
-                                        if (mapping[failedUrls[x]] > -1) {
-                                            obj[failedUrls[x]] = mapping[failedUrls[x]];
-                                        }
-                                    });
-                                    moreFailedUrls.push(obj);
+            const fireAsyncRequests = (urls) => {
+                async.mapLimit(urls, limit,
+                    sendRequest, //callback called for each url in urls
+                    (err, results) => {
+                        if (err) { console.log(err); }
+                        var failedUrls = [];
+                        for (var x = 0; x < results.length; x++) {
+                            if (results[x].errorOccurred) {
+                                console.log("A request error occurred for: " + results[x].url);
+                                console.log(results[x].error);
+                                failureCountMap[results[x].url] += 1;
+                                //If we fail more than 3 times on a url we give up on url
+                                if (failureCountMap[results[x].url] === 3) {
+                                    brokenUrls.push(results[x].url);
                                 } else {
-                                    //The request for this url succeeded so we add into our original results array
-                                    console.log("second (or more) attempt succeeded for " + failedUrls[x]);
-                                    var resultsIndex = -1;
-                                    failedUrlMappings.forEach((mapping) => {
-                                        if (mapping[failedUrls[x]] > -1) {
-                                            resultsIndex = mapping[failedUrls[x]];
-                                        }
-                                    });
-                                    var html = newResults[x].value
-
-                                    results[resultsIndex] = {'value': html}; //wrap in object with key value for standard form
+                                    failedUrls.push(results[x].url);
                                 }
-                            }
-                            //if we have no new failures, we have received data for all previously failed urls. We run parser
-                            if (moreFailedUrls.length === 0) {
-                                console.log("SUCCESS 2");
-                                //console.log(results);
-                                results = results.map((elem) => elem.value);
-                                resultsProcessingCallback(results);
                             } else {
-                                //recurse with new failed urls
-                                processFailedRequests(urls, moreFailedUrls, results);
-                                //This recursion will continue until this condition is not met and data is sent to dataParser
+                                returnArr.push(results[x]);
                             }
                         }
-                    );
-
-                };
-
-                sendRequests(failedUrls);
-
+                        if (failedUrls.length === 0) {
+                            console.log("We have successfully processed all requests");
+                            orderResponses();
+                            resultsProcessingCallback(returnArr, brokenUrls);
+                        } else {
+                            fireAsyncRequests(failedUrls); //Recurse to re-send failed requests
+                        }
+                    }
+                );
             };
 
-            async.mapLimit(urls, limit,
-                async.reflect(sendRequest), //async reflect wraps return obj in wrapper so we can easily check for errors in results callback
-                (err, results) => {
-                    if (err) { console.log(err); }
-                    var failedUrls = [];
-                    for (var x = 0; x < results.length; x++) {
-                        if (results[x].error) {
-                            console.log("an error occurred on first time request for url: " + urls[x]);
-                            var obj = {};
-                            obj[urls[x]] = x; //failed url is key. index into results where response belongs is value
-                            failedUrls.push(obj);
-                        }
-                    }
-
-                    if (failedUrls.length === 0) {
-                        console.log("SUCCESS");
-                        results = results.map((elem) => elem.value);
-                        resultsProcessingCallback(results);
-                    } else {
-                        processFailedRequests(urls, failedUrls, results);
-                    }
-                }
-            );
-
+            fireAsyncRequests(urls);
 };
+
 
 module.exports.asyncRequestUrls = asyncRequestUrls;

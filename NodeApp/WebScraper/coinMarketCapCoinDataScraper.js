@@ -26,7 +26,7 @@ const run = () => {
             dataParser.parse is callback function for finished results data
             pass references to async and request modules
             */
-            asyncReqMod.asyncRequestUrls(urls, 50, dataParser.parse, async, request);
+            asyncReqMod.asyncRequestUrls(urls, 30, dataParser.parse, async, request);
         }
     );
 };
