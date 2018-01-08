@@ -4,7 +4,8 @@ ROUTER = {
         "Charts":           "CoinDetail",
         "Configuration":    "ConfigureTable",
         "API":              "API",
-        "Correlation":      "CoinCorrelation"
+        "Correlation":      "CoinCorrelation",
+        "Subreddits":       "Subreddits"
     },
 
     handleNavigation: function(jqueryObj) {

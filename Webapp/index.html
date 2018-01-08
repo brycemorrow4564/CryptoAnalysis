@@ -60,6 +60,10 @@
                         "active": false,
                         "options": [{"option": true},
                                     {"option": false}]
+                    },
+                subredditData   =
+                    {
+                      "subreddits": []
                     };
 
             const logModeModel      = new sap.ui.model.json.JSONModel(logModeData);
@@ -67,12 +71,14 @@
             const coinToChartModel  = new sap.ui.model.json.JSONModel(coinToChartData);
             const aggCoinModel      = new sap.ui.model.json.JSONModel(aggCoinData);
             const corrMatrixModel   = new sap.ui.model.json.JSONModel(correlationMatrixData);
+            const subredditModel    = new sap.ui.model.json.JSONModel(subredditData);
 
             core.setModel(logModeModel, GLOBALS.logifyModelId);
             core.setModel(dataModeModel, GLOBALS.dataModeModelId);
             core.setModel(coinToChartModel, GLOBALS.coinChartModelId);
             core.setModel(aggCoinModel, GLOBALS.aggCoinModelId);
             core.setModel(corrMatrixModel, GLOBALS.correlationMatrixModelId);
+            core.setModel(subredditModel, GLOBALS.subredditModelId);
 
             //Bring in coin data to model once server responds
             $.ajax({
@@ -87,6 +93,16 @@
                     });
                     aggCoinModel.setData({"Coins": coin_objs});
                     aggCoinModel.refresh(true);
+                }
+            });
+
+            //Bring in subreddit names
+            $.ajax({
+                url: '/subreddit_names/',
+                success: function(response) {
+                    var data = response['subreddit_names'];
+                    subredditModel.setData({"subreddits": data});
+                    subredditModel.refresh(true);
                 }
             });
 

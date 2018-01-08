@@ -184,7 +184,6 @@ const enterRedditMetricsData = (data) => {
                 const tableName = 'YY' + url.replace(/-/g, '_');
                 db.run('INSERT INTO Subreddits VALUES (?)', tableName);
                 // -------------------------------------------------------------------------------
-                db.run('INSERT INTO Subreddits VALUES (?)', tableName);
                 db.run(`CREATE TABLE ${tableName} ${rmSchema}`, [],
                     (err) => {
                         if (err) {

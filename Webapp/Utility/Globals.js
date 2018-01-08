@@ -4,5 +4,6 @@ var GLOBALS = {
     coinChartModelId: "CoinToChart",
     correlationMatrixModelId: "CorrelationMatrixModel",
     dataModeModelId: 'DataModeModel',
-    logifyModelId: 'LogifyDataModel'
+    logifyModelId: 'LogifyDataModel',
+    subredditModelId: "SubredditModel"
 }

@@ -23,7 +23,7 @@ sap.ui.define([
                         },
                         {
                             "url"   : urlPrefix + '/coin_names/',
-                            "data"  : "Get names of top 100 coins."
+                            "data"  : "Get names of top coins."
                         },
                         {
                             "url"   : urlPrefix + '/coins/subreddits/subreddit_name',

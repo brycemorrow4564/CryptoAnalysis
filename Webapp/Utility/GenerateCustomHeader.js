@@ -8,7 +8,7 @@ CUSTOM_HEADER_GENERATOR = {
         console.log("TARGET BTN: " + targetBtnText);
 
         var htmlStr = '',
-            btnTexts = ['Charts', 'Correlation', 'Configuration', 'API'];
+            btnTexts = ['Charts', 'Subreddits', 'Correlation', 'Configuration', 'API'];
 
         btnTexts.forEach(function(label) {
             if (label === targetBtnText) {
@@ -35,7 +35,8 @@ CUSTOM_HEADER_GENERATOR = {
         "API": "API",
         "CoinDetail": "Charts",
         "ConfigureTable": "Configuration",
-        "CoinCorrelation": "Correlation"
+        "CoinCorrelation": "Correlation",
+        "Subreddits": "Subreddits"
     },
 
     getCustomHeader: function(view) {

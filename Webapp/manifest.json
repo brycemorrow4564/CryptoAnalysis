@@ -42,11 +42,16 @@
         "controlId": "app"
       },
       "routes": [
-        {
-          "name": "",
-          "pattern": "",
-          "target": ["CoinSideBar", "CoinDetail"]
-        },
+      {
+        "name": "",
+        "pattern": "",
+        "target": ["CoinSideBar", "CoinDetail"]
+      },
+      {
+        "name": "Subreddits",
+        "pattern": "Subreddits",
+        "target": ["CoinSideBar", "Subreddits"]
+      },
       {
         "name": "CoinDetail",
         "pattern": "Charts",
@@ -79,20 +84,25 @@
         "controlAggregation": "detailPages",
         "viewLevel": 1
       },
+      "Subreddits": {
+        "viewName": "Subreddits",
+        "controlAggregation": "detailPages",
+        "viewLevel": 2
+      },
       "CoinCorrelation": {
         "viewName": "CoinCorrelation",
         "controlAggregation": "detailPages",
-        "viewLevel": 2
+        "viewLevel": 3
       },
       "ConfigureTable": {
         "viewName": "ConfigureTable",
         "controlAggregation": "detailPages",
-        "viewLevel": 3
+        "viewLevel": 4
       },
       "API": {
         "viewName": "API",
         "controlAggregation": "detailPages",
-        "viewLevel": 4
+        "viewLevel": 5
       }
     }
     }

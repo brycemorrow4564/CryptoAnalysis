@@ -58,8 +58,6 @@ sap.ui.define([
                 });
             });
 
-            console.log(coinToChartModel.getData());
-
             this.getView().getModel(this.allCoinsModelId).setData({
                 "coins": allCoinNamesObjects
             });

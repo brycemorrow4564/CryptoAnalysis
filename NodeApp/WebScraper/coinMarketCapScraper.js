@@ -5,10 +5,12 @@ const run = () => {
           asyncReqMod   = require('./asyncUrlRequestProcessor'),
           dataParser    = require('./../DataParsing/dataParser'),
           asyncLimit    = 30,
+          numCoins      = 150,
+          firstPageUrl  = 'https://coinmarketcap.com/all/views/all/',
           baseUrl       = 'https://coinmarketcap.com',
           urlSuffix     = 'historical-data/?start=20130428&end=20501224';
 
-    request(baseUrl, (error, response, html) => {
+    request(firstPageUrl, (error, response, html) => {
 
             if (error) {
                 console.log(error);
@@ -19,6 +21,8 @@ const run = () => {
             $('.currency-symbol').each((ind, elem) => {
                 urls.push(baseUrl + elem.children[0].attribs.href + urlSuffix);
             });
+
+            urls = urls.splice(0, numCoins);
 
             /*
             example url would be https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=20130428&end=20180107
