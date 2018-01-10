@@ -1,7 +1,7 @@
 const async     = require('async'),
       request   = require('request');
 
-const asyncRequestUrls = (urls, limit, resultsProcessingCallback) => {
+const asyncRequestUrls = (urls, dataSource, limit, resultsProcessingCallback) => {
 
             //DEBUG VARIABLES TO SIMULATE NETWORK FAILURES CONDITIONS
             const randomFailuresEnabled = false,
@@ -103,9 +103,13 @@ const asyncRequestUrls = (urls, limit, resultsProcessingCallback) => {
                             }
                         }
                         if (failedUrls.length === 0) {
-                            console.log("We have successfully processed all requests");
+                            console.log(`We have successfully processed ${urls.length - brokenUrls.length} requests and we have failed on ${brokenUrls.length}`);
+                            if (brokenUrls.length > 0) {
+                                console.log("Our requests failed for the following urls");
+                                console.log(brokenUrls);
+                            }
                             orderResponses();
-                            resultsProcessingCallback(returnArr, brokenUrls);
+                            resultsProcessingCallback(returnArr, dataSource);
                         } else {
                             fireAsyncRequests(failedUrls); //Recurse to re-send failed requests
                         }

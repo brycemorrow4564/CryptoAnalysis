@@ -8,10 +8,21 @@ sap.ui.define([
    return Controller.extend("sap.crypto.app.controllers.Subreddits", {
 
         subredditSelectorId: "SubredditSelectorBox",
+        firstVisit: true,
 
         onInit: function() {
             console.log('Initiate subreddits view');
             sap.ui.core.UIComponent.getRouterFor(this).attachRoutePatternMatched(this.onRouteMatched, this);
+
+            if (this.firstVisit) {
+                this.firstVisit = false;
+                $.ajax({
+                    url: '/top_15_subreddits_by_growth/',
+                    success: function(response) {
+                        HIGHSTOCK_JSON_FORMATTER.processAndPlotTopFifteenSubreddits(response)
+                    }
+                });
+            }
         },
 
         onRouteMatched: function() {

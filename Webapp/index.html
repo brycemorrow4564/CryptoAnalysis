@@ -1,3 +1,20 @@
+<!--
+1. Hover boxes on graph are off by one day
+2. After initial scraping change mode to "Update" which will only scrape most recent data. This will greatly
+   decrease the time spent on database operations, which currently take up most of the runtime of our node jobs.
+3. Rework highstock plotting utility. It's really redundant right now and would benefit from a more standardized data
+   input interface with flags to differentiate types of plots.
+4. Create a global routing framework for events that cause updates to data models. Right now all of these actions are
+   scattered throughout the applicaiton and it is difficult to keep track of a lot of things
+5. Create an API module which we can pass options and flags and callbacks in order to standardize our data queries.
+6. More flexible interface for configuring subreddit charts (single chart mode or compare all mode to start)
+7. Rework nodejs database operations
+8. Change "drag and drop" alert to exist in a higher level of the view so it is not tied to a single detail page
+9. General routing module should be able to do more. Think on this some more.
+10. NodeApp: asyncUrlRequestProcessor sorting of returned data array not working?
+-->
+
+
 <!DOCTYPE html>
 <html>
 <head>

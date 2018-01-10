@@ -20,9 +20,15 @@ sap.ui.jsview("sap.crypto.app.views.Subreddits", {
                     oController.displaySubredditData(oEvent);
                 }
             }).bindItems(GLOBALS.subredditModelId + '>/subreddits', template),
-            chartHtml = new sap.ui.core.HTML({
-                content: '<div id="SubredditGraph"></div>'
-            });
+            topFifteenSubredditsHtml = '';
+
+        for (var i = 1; i < 16; i++) {
+            topFifteenSubredditsHtml += '<div id=TopSubreddit' + i + '></div>';
+        }
+
+        chartHtml = new sap.ui.core.HTML({
+            content: '<div id="SubredditGraph"></div>' + topFifteenSubredditsHtml
+        });
 
         var page =  new sap.m.Page({
             customHeader: CUSTOM_HEADER_GENERATOR.getCustomHeader(oController.getView()),

@@ -1,6 +1,7 @@
 const run = () => {
 
-    const request       = require('request'),
+    const dataSource    = "coinmarketcap",
+          request       = require('request'),
           cheerio       = require('cheerio'),
           asyncReqMod   = require('./asyncUrlRequestProcessor'),
           dataParser    = require('./../DataParsing/dataParser'),
@@ -29,7 +30,7 @@ const run = () => {
             We query each url in urls with this module, and the return data array includes the html from each of the pages
             that we requested. upon receiving this data array, we pass to our data processing callback
             */
-            asyncReqMod.asyncRequestUrls(urls, asyncLimit, dataParser.parseCoinMarketCapData);
+            asyncReqMod.asyncRequestUrls(urls, dataSource, asyncLimit, dataParser.parseData);
         }
     );
 };

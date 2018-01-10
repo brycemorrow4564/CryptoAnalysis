@@ -1,10 +1,11 @@
-const coinMarketCapScraper = require('./coinMarketCapScraper');
-const redditMetricsScraper = require('./redditMetricsScraper');
+const cmScraper = require('./coinMarketCapScraper');
+const rmScraper = require('./redditMetricsScraper');
 
 const getScraper = (scraperName) => {
 
-    if      (scraperName === 'redditmetrics') { return redditMetricsScraper; }
-    else if (scraperName === 'coinmarketcap') { return coinMarketCapScraper; }
+    //Channel incoming data to correct scraping sub-module
+    if      (scraperName === 'redditmetrics') { return rmScraper; }
+    else if (scraperName === 'coinmarketcap') { return cmScraper; }
     else { throw new Error("ERROR: Unrecognized scraper type requested from WebScraper module"); }
 
 };

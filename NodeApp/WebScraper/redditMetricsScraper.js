@@ -1,13 +1,11 @@
 const run = () => {
 
-    const request       = require('request'),
-          dataParser    = require('./../DataParsing/dataParser'),
-          asyncReqMod   = require('./asyncUrlRequestProcessor'),
-          asyncLimit    = 30,
-          baseUrl       = 'http://redditmetrics.com/r/';
-
-    //INSERT SOME LOGIC FOR COMPUTING/GATHERING NAMES OF SUBREDDITS OF INTEREST
-    var subreddits          = ['iota',
+    const dataSource        = "redditmetrics",
+          dataParser        = require('./../DataParsing/dataParser'),
+          asyncReqMod       = require('./asyncUrlRequestProcessor'),
+          asyncLimit        = 30,
+          baseUrl           = 'http://redditmetrics.com/r/',
+          subredditLinks    = ['iota',
                                'stellar',
                                'bitcoin',
                                'ethereum',
@@ -141,17 +139,15 @@ const run = () => {
                                'wingsdao',
                                'AdEx',
                                'pillarproject',
-                               'counterparty_xcp'],
+                               'counterparty_xcp'].map((elem) => baseUrl + elem);
 
-        subredditLinks      = subreddits.map((elem) => baseUrl + elem),
-        subredditGrowthData = [];
 
     /*
     example url would be http://redditmetrics.com/r/bitcoin
     We query each url in urls with this module, and the return data array includes the html from each of the pages
     that we requested. upon receiving this data array, we pass to our data processing callback
     */
-    asyncReqMod.asyncRequestUrls(subredditLinks, asyncLimit, dataParser.parseRedditMetricsData);
+    asyncReqMod.asyncRequestUrls(subredditLinks, dataSource, asyncLimit, dataParser.parseData);
 };
 
 module.exports.run = run;

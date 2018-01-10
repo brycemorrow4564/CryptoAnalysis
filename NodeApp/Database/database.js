@@ -1,16 +1,46 @@
-var db;
-var eventEmitter;
-const async = require('async'),
-cmFields = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap'], //coinmarketcap data fields
-rmFields = ['Date', 'Count'], //redditmetrics data fields
-cmSchema = '(Date REAL, Open REAL, High REAL, Low REAL, Close REAL, Volume REAL, MarketCap REAL)', //coinmarketcap schema
-rmSchema = '(Date REAL, Count REAL)'; //redditmetrics data
+//const dbMapper = require('./dbInputKeyMapper') //Module for handling data to be input to database. Data specifications in module
+//
+//const enterData = (data, dataSource) => {
+//
+//    /*
+//    For each object in the parameter data, there is an object with the following structure:
+//    {
+//        "pKey": "some unique id like the name of a coin or a subreddit link",
+//        "data": "array of objects, each of which contains data about the pKey element on some given Date (represented by epoch of Date object)
+//    }
+//    This mapping module (represented as variable dbMapper) does the following:
+//    1. Creates and populates a table for mapping pKey values to their (generated) table id's in the database
+//    2. for each element in data: stores element['data'] as the rows of the table mapped to by pKey (from table generated in step 1)
+//    The reason for this is that the pKey values are things like urls, coin names, etc. and are not always valid tables names for
+//    an sqlite3 database. This provides a reliable way to consistently generate identifiable tables for storing unpredictable data.
+//    */
+//    dbMapper.generateMappingTables(data, dataSource);
+//    dbMapper.storeDataInTables(data);
+//
+//};
+//
+//module.exports.enterData = enterData;
 
-const setup = (runScraperOnStartup, eventEmitterRef) => {
+
+
+
+
+//variables declared for global scobe. assigned value upon module setup.
+var db, eventEmitter;
+
+const
+async       = require('async'),
+cmFields    = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap'],                        //coinmarketcap data fields
+rmFields    = ['Date', 'Count'],                                                                       //redditmetrics data fields
+cmSchema    = '(Date REAL, Open REAL, High REAL, Low REAL, Close REAL, Volume REAL, MarketCap REAL)',  //coinmarketcap schema
+rmSchema    = '(Date REAL, Count REAL)';                                                               //redditmetrics data
+
+
+
+const setup = (runScraperOnStartup, fromScratchDbStartupModeEnabled, eventEmitterRef) => {
 
     eventEmitter = eventEmitterRef;
-
-    const sqlite3 = require('sqlite3').verbose();
+    const sqlite3 = require('sqlite3').verbose(); //verbose provides longer stacktraces
     db = new sqlite3.Database('cryptodata.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
         //error callback to ensure that we successfully create/open the database
         (error) => {
@@ -67,7 +97,7 @@ const setup = (runScraperOnStartup, eventEmitterRef) => {
     return db;
 };
 
-const enterCoinMarketCapData = (data) => {
+const enterCoinMarketCapData = (dataArr) => {
 
     console.log('entering data into the database');
 
@@ -97,10 +127,10 @@ const enterCoinMarketCapData = (data) => {
             console.log(err);
         }
         //asynchronously create and add data rows to tables
-        async.each(data,
+        async.each(dataArr,
             //Asynchronously executed function creates table for particular coin, then fire callback to enter data
             (coinDataObj, done) => {
-                const [coinName, data] = [coinDataObj.coinName, coinDataObj.data];
+                const [coinName, data] = [coinDataObj.pKey, coinDataObj.data];
                 // -------------------------  IMPORTANT  -----------------------------------------
                 // Table names in SQL db can't include '-' so we change to '_'
                 // SQL table names can't begin with a number. So we prefix all names with "XX"
@@ -177,7 +207,7 @@ const enterRedditMetricsData = (data) => {
         async.each(data,
             //Asynchronously executed function creates table for particular coin, then fire callback to enter data
             (subredditDataObj, done) => {
-                const [url, data] = [subredditDataObj.url, subredditDataObj.data];
+                const [url, data] = [subredditDataObj.pKey, subredditDataObj.data];
                 // -------------------------  IMPORTANT  -----------------------------------------
                 // Table names in SQL db can't include '-' so we change to '_'
                 // Add 'YY' as prefix to differentiate from coin tables

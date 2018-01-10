@@ -40,6 +40,27 @@ HIGHSTOCK_JSON_FORMATTER = {
         return array;
     },
 
+    processAndPlotTopFifteenSubreddits: function(dataArr) {
+        if (!this.colorsSetup) {
+            this.setupColorSets();
+        }
+        var data = dataArr['subredditData'],
+            seriesData = [];
+        for (var i = 0; i < data.length; i++) {
+            var d = data[i];
+                innerData = d.data;
+            innerData = innerData.map((elem) => { return [elem.Date, elem.Count]; });
+            var options = this.getSubredditOptions([{
+                name: d.name,
+                type: 'line',
+                data: innerData
+            }]);
+            console.log("DATA FOR TOP FIFTEEN SUBREDDITS");
+            console.log(innerData);
+            Highcharts.stockChart("TopSubreddit" + (i+1), options);
+        }
+    },
+
     processAndPlotSubredditData: function(selectedSubredditNames, data) {
 
         if (!this.colorsSetup) {
@@ -56,8 +77,22 @@ HIGHSTOCK_JSON_FORMATTER = {
             }
         });
 
-        var options = this.getSubredditOptions(plotData);
+        var seriesData = [];
 
+        plotData.forEach(function(elem) {
+            seriesData.push({
+                name: elem.subreddit_name,
+                type: 'line',
+                data: elem.data.data.map(function(elem) {
+                    return [elem.Date, elem.Count];
+                })
+            });
+        });
+
+        var options = this.getSubredditOptions(seriesData);
+
+        console.log("DATA FOR SUBREDDITS");
+        console.log(seriesData[0].data);
         Highcharts.stockChart("SubredditGraph", options);
     },
 
@@ -108,23 +143,9 @@ HIGHSTOCK_JSON_FORMATTER = {
         })
     },
 
-    getSubredditOptions: function(plotData) {
+    getSubredditOptions: function(seriesData) {
 
-        var seriesData = [];
-
-        plotData.forEach(function(elem) {
-            seriesData.push({
-                name: elem.subreddit_name,
-                type: 'line',
-                data: elem.data.data.map(function(elem) {
-                    return [elem.Date, elem.Count];
-                })
-            });
-        });
-
-        console.log(seriesData);
-
-        var options = {
+        return options = {
 
             rangeSelector: {
                 allButtonsEnabled: true,
@@ -272,9 +293,6 @@ HIGHSTOCK_JSON_FORMATTER = {
                 }]
             }
         };
-
-        return options;
-
     },
 
     getOptions: function(chartName, dataMode, coinList, pointsArr) {
