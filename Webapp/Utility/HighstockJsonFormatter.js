@@ -122,7 +122,7 @@ HIGHSTOCK_JSON_FORMATTER = {
             coinList.forEach(function(coinName) {
                 var histData    = coinDataMap[coinName]['data'],
                     points      = histData.map(function(row) { return [row['Date'], logify ? Math.log(row[dataMode]) : row[dataMode]]; } );
-                pointsArr.push(points.reverse());
+                pointsArr.push(points);
             });
 
             //This variable is used so that we only remove the hidden class for charts where data is plotted

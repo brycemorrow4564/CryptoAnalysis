@@ -2,7 +2,7 @@ const initialize = () => {
 
     const express = require('express'),
           app     = express(),
-          devPort = 8081,
+          devPort = 8080,
           port    = process.env.PORT || devPort;
 
     app.use(express.static(__dirname + '/../../Webapp')); // Tells server where to find html, css, js files to send to client on page nav

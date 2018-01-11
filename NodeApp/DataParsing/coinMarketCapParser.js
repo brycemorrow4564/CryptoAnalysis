@@ -5,6 +5,8 @@ const fields        = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Market
 
 const parseData = (dataArr, dataSource) => {
 
+    console.log(dataSource);
+
     console.log("Begin the parsing of our inbound html from coinmarketcap");
 
     async.map(dataArr,
@@ -133,7 +135,7 @@ const typifyAndStore = (data, dataSource) => {
             }
             return done(null, {
                 'pKey': coinDataObj['pKey'],
-                'data': d
+                'data': d.reverse()
             });
         },
         //Send correctly typed aggregate data to DB for storage
@@ -141,7 +143,7 @@ const typifyAndStore = (data, dataSource) => {
             if (err) {
                 console.log(err);
             }
-            db.enterCoinMarketCapData(aggregateData, dataSource);
+            db.enterData(aggregateData, dataSource);
         }
     );
 }

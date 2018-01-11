@@ -24,7 +24,7 @@ growth by day. All of the ranking is done server side and we include this inform
                       penult = d[dLen-2];
                 subredditGrowthData.push({
                     "subreddit": elem.subreddit,
-                    "growthRate": final.Count === 0 || penult.Count === 0 ? 0: final.Count / penult.Count,
+                    "growthRate": final.Count * penult.Count === 0 ? 0: final.Count / penult.Count,
                     "data": d
                 });
             });

@@ -3,6 +3,8 @@ const async     = require('async'),
 
 const asyncRequestUrls = (urls, dataSource, limit, resultsProcessingCallback) => {
 
+            console.log("STARTED FOR " + dataSource);
+
             //DEBUG VARIABLES TO SIMULATE NETWORK FAILURES CONDITIONS
             const randomFailuresEnabled = false,
                   failureRate           = 0; //to the nearest percent

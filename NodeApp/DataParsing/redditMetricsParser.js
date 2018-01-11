@@ -65,7 +65,7 @@ const typifyAndStore = (data, dataSource) => {
             'data': data
         };
     });
-    db.enterRedditMetricsData(data, dataSource);
+    db.enterData(data, dataSource);
 };
 
 module.exports.parseData = parseData;
