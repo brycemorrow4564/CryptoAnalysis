@@ -9,7 +9,7 @@ var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split(''),
         {
             "source": "redditmetrics",
             "mappingTableName": "Subreddits",
-            "dataTableSchema": '(Date REAL, Count REAL)',
+            "dataTableSchema": '(Date REAL, Count REAL, UNIQUE(Date, Count))',
             "dataTableInsertString": '(?,?)',
             "numIdentifiers": 135, //we are currently scraping from 135 subreddits
             "alphabet": [],
@@ -18,7 +18,7 @@ var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split(''),
         {
             "source": "coinmarketcap",
             "mappingTableName": "Coins",
-            "dataTableSchema": '(Date REAL, Open REAL, High REAL, Low REAL, Close REAL, Volume REAL, MarketCap REAL)',
+            "dataTableSchema": '(Date REAL, Open REAL, High REAL, Low REAL, Close REAL, Volume REAL, MarketCap REAL, UNIQUE(Date, Open, High, Low, Close, Volume, MarketCap))',
             "dataTableInsertString": '(?,?,?,?,?,?,?)',
             "numIdentifiers": 150, //we are currently collecting data for top 150 coins
             "alphabet": [],
@@ -56,8 +56,6 @@ const setup = (dbRef) => {
 
 const run = (data, dataSource) => {
 
-    console.log(`DATA SOURCE: ${dataSource}`);
-
     //find relevant info object
     var dataInfo = undefined;
     for (var i = 0; i < dataSourcesInfo.length; i++) {
@@ -83,7 +81,7 @@ const run = (data, dataSource) => {
 
     //insert data into tables (triggered as a callback)
     const insertData = () => {
-
+        var promiseResolveCount = 0;
         db.each(`SELECT * FROM ${mappingTableName}`, [],
             (err, row) => {
                 if (err) {
@@ -91,20 +89,29 @@ const run = (data, dataSource) => {
                 }
                 var pKey = row.pKey,
                     tableName = row.tableName,
-                    data = pKeyToDataMap[pKey];
-                db.run(`CREATE TABLE ${tableName} ${dataInfo.dataTableSchema}`, [], () => {
-                    var bulkLoadRows = db.prepare(`INSERT INTO ${tableName} VALUES ${dataInfo.dataTableInsertString}`),
-                        runFunc = bulkLoadRows.run;
-                    //We are entering data this way since we have the number of parameters to call bulkLoadRows.run with varies by dataSource
-                    data.forEach((row) => { runFunc.apply(bulkLoadRows, row); });
-                    //After we complete our bulk loading, we call the finish callback.
-                    bulkLoadRows.finalize(() => {
-                        console.log(`We have entered data for ${pKey} in mapped table ${tableName}`);
+                    data = pKeyToDataMap[pKey],
+                    dataEntryPromise = new Promise((resolve, reject) => {
+                        db.run(`CREATE TABLE ${tableName} ${dataInfo.dataTableSchema}`, [], () => {
+                            var bulkLoadRows = db.prepare(`INSERT INTO ${tableName} VALUES ${dataInfo.dataTableInsertString}`),
+                                runFunc = bulkLoadRows.run;
+                            //We are entering data this way since we have the number of parameters to call bulkLoadRows.run with varies by dataSource
+                            data.forEach((row) => { runFunc.apply(bulkLoadRows, row); });
+                            //After we complete our bulk loading, we call the finish callback.
+                            bulkLoadRows.finalize(() => {
+                                console.log(`We have entered data for ${pKey} in mapped table ${tableName}`);
+                                resolve(); //will either resolve or error will be thrown so no explicit call to reject
+                            });
+                        });
                     });
+                dataEntryPromise.then(() => {
+                    promiseResolveCount++;
+                    if (promiseResolveCount === dataInfo.numIdentifiers) {
+                        console.log(`WE HAVE FINISHED ENTERING DATA FOR DATA SOURCE: ${dataSource}`);
+                    }
                 });
             },
             () => {
-                console.log("CREATED ALL TABLES AND INSERTED ALL DATA FOR " + dataSource);
+
             }
         );
     };

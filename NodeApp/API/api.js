@@ -107,11 +107,8 @@ growth by day. All of the ranking is done server side and we include this inform
                     "error": err
                 });
             } else {
-                for (var i = 0; i < rows.length; i++) {
-                    rows[i].coin_name = rows[i].coin_name.slice(2).replace(/_/g,'-');
-                }
                 res.send({
-                    "coin_names": rows
+                    "coin_names": rows.map((elem) => { return elem.pKey; })
                 });
             }
         });
@@ -120,19 +117,22 @@ growth by day. All of the ranking is done server side and we include this inform
     //GET data for specific subreddit
     app.get('/subreddits/:name', (req, res) => {
 
-        const tableName = 'YY' + req.params.name.replace(/-/g,'_');
-        db.all(`SELECT * FROM ${tableName}`, [], (err, rows) => {
-            if (err) {
+        db.all(`SELECT S.tableName FROM Subreddits AS S WHERE S.pkey = \"${req.params.name}\"`, [], (err, rows) => {
+            if (rows.length === 0) {
                 res.send({
-                    "error": err
+                    "error": "the requested subreddit does not exist in the database"
+                });
+            } else if (rows.length > 1) {
+                res.send({
+                    "error": "server side error with mapping of pKeys to database tables"
                 });
             } else {
                 res.send({
-                    'name': req.params.name,
-                    'data': rows
-                });
+                    "subredditData": rows[0]
+                })
             }
         });
+
     });
 
 
@@ -145,11 +145,8 @@ growth by day. All of the ranking is done server side and we include this inform
                     "error": err
                 });
             } else {
-                for (var i = 0; i < rows.length; i++) {
-                    rows[i].subreddit_name = rows[i].subreddit_name.slice(2).replace(/_/g,'-');
-                }
                 res.send({
-                    "subreddit_names": rows
+                    "subreddit_names": rows.map((elem) => { return elem.pKey; })
                 });
             }
         });

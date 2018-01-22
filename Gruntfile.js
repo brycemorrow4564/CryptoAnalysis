@@ -11,7 +11,6 @@ module.exports = function(grunt) {
                         cwd: 'Webapp',
                         prefix: 'sap/crypto/app',
                         compress: true,
-
                         src: [
                                '**/*.js',
                                '**/*.html',

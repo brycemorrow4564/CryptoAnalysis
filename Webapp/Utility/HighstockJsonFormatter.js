@@ -41,6 +41,7 @@ HIGHSTOCK_JSON_FORMATTER = {
     },
 
     processAndPlotTopFifteenSubreddits: function(dataArr) {
+
         if (!this.colorsSetup) {
             this.setupColorSets();
         }
