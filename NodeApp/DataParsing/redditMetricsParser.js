@@ -23,9 +23,9 @@ const parseData = (dataArr, dataSource) => {
                         p           = scriptBody.indexOf(targetStr) + targetStr.length,
                         start       = -1,
                         end         = -1;
-                    while (scriptBody[p] !== '[') { p++; } //find start index for data
+                    while (scriptBody[p] !== '[') { p++; }
                     start = p;
-                    while (scriptBody[p] !== ']') { p++; } //find end index for data
+                    while (scriptBody[p] !== ']') { p++; }
                     end = p + 1;
                     //We use jsonic here as we are parsing a json object that has non-string keys like: {a: true}
                     var data = jsonic(scriptBody.substring(start, end)); //parse data arr from string.

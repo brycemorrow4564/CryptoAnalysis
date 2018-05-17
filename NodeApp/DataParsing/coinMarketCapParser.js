@@ -32,6 +32,7 @@ const parseData = (dataArr, dataSource) => {
             }
             const coinNameRegex = /\/currencies\/(.*)\/historical-data/;
             const coinName = coinNameRegex.exec(url)[1];
+
             return done(null, {
                 'pKey': coinName,
                 'data': rowObjects
@@ -131,6 +132,7 @@ const typifyAndStore = (data, dataSource) => {
                 );
                 d[x] = row;
             }
+
             return done(null, {
                 'pKey': coinDataObj['pKey'],
                 'data': d.reverse()

@@ -6,7 +6,7 @@ const run = () => {
           asyncReqMod   = require('./asyncUrlRequestProcessor'),
           dataParser    = require('./../DataParsing/dataParser'),
           asyncLimit    = 30,
-          numCoins      = 150,
+          numCoins      = 100,
           firstPageUrl  = 'https://coinmarketcap.com/all/views/all/',
           baseUrl       = 'https://coinmarketcap.com',
           urlSuffix     = 'historical-data/?start=20130428&end=20501224';

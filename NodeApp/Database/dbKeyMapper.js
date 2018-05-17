@@ -9,20 +9,20 @@ var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split(''),
         {
             "source": "redditmetrics",
             "mappingTableName": "Subreddits",
-            "dataTableSchema": '(Date REAL, Count REAL, UNIQUE(Date, Count))',
+            "dataTableSchema": '(Date REAL, Count REAL)',
+            "dataTableFields": ['Date', 'Count'], 
             "dataTableInsertString": '(?,?)',
             "numIdentifiers": 135, //we are currently scraping from 135 subreddits
-            "alphabet": [],
-            "mappings": {}
+            "alphabet": []
         },
         {
             "source": "coinmarketcap",
             "mappingTableName": "Coins",
             "dataTableSchema": '(Date REAL, Open REAL, High REAL, Low REAL, Close REAL, Volume REAL, MarketCap REAL, UNIQUE(Date, Open, High, Low, Close, Volume, MarketCap))',
+            "dataTableFields": ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'MarketCap'],
             "dataTableInsertString": '(?,?,?,?,?,?,?)',
-            "numIdentifiers": 150, //we are currently collecting data for top 150 coins
-            "alphabet": [],
-            "mappings": {}
+            "numIdentifiers": 100, //we are currently collecting data for top 150 coins
+            "alphabet": []
         }
     ];
 
@@ -90,15 +90,27 @@ const run = (data, dataSource) => {
                 var pKey = row.pKey,
                     tableName = row.tableName,
                     data = pKeyToDataMap[pKey],
-                    dataEntryPromise = new Promise((resolve, reject) => {
+                    dataEntryPromise = new Promise((resolve, reject) => { 
                         db.run(`CREATE TABLE ${tableName} ${dataInfo.dataTableSchema}`, [], () => {
-                            var bulkLoadRows = db.prepare(`INSERT INTO ${tableName} VALUES ${dataInfo.dataTableInsertString}`),
+                            let bulkLoadRows = db.prepare(`INSERT INTO ${tableName} VALUES ${dataInfo.dataTableInsertString}`), 
                                 runFunc = bulkLoadRows.run;
                             //We are entering data this way since we have the number of parameters to call bulkLoadRows.run with varies by dataSource
-                            data.forEach((row) => { runFunc.apply(bulkLoadRows, row); });
+                            data.forEach((row) => { 
+                                let rowArr = dataInfo.dataTableFields.reduce((accumulator, curr) => { 
+                                    if (curr == "MarketCap") {
+                                        accumulator.push(row["Market Cap"]);
+                                    } else {
+                                        accumulator.push(row[curr]); 
+                                    }
+                                    return accumulator; 
+                                }, []);  
+                                bulkLoadRows.run(...rowArr); 
+                                //runFunc.apply(bulkLoadRows, row); 
+                            });
                             //After we complete our bulk loading, we call the finish callback.
                             bulkLoadRows.finalize(() => {
                                 console.log(`We have entered data for ${pKey} in mapped table ${tableName}`);
+                                //db.all(`SELECT * FROM ${tableName}`, [], (err, rows) => { console.log(rows); })
                                 resolve(); //will either resolve or error will be thrown so no explicit call to reject
                             });
                         });

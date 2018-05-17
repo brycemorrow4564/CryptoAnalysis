@@ -14,7 +14,6 @@
 10. NodeApp: asyncUrlRequestProcessor sorting of returned data array not working?
 -->
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,9 +101,9 @@
                 url: '/coin_names/',
                 success: function(response) {
                     var coin_objs = [];
-                    response['coin_names'].forEach(function(coinObj) {
+                    response['coin_names'].forEach(function(name) {
                         coin_objs.push({
-                            'name': coinObj['coin_name'],
+                            'name': name,
                             'data': [] //all coins start with empty data field and we load in as requested by user
                         });
                     });
